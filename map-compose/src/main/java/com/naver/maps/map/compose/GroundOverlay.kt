@@ -44,8 +44,8 @@ public class GroundOverlayPosition private constructor(
             return GroundOverlayPosition()
         }
 
-        public fun create(latLngBounds: LatLngBounds): GroundOverlayPosition {
-            return GroundOverlayPosition(latLngBounds = latLngBounds)
+        public fun create(bounds: LatLngBounds): GroundOverlayPosition {
+            return GroundOverlayPosition(latLngBounds = bounds)
         }
     }
 }
@@ -56,7 +56,7 @@ public class GroundOverlayPosition private constructor(
  * @param position the position of the ground overlay
  * @param image the image of the ground overlay
  * @param tag optional tag to associate with the ground overlay
- * @param transparency the transparency of the ground overlay
+ * @param alpha the alpha of the ground overlay
  * @param visible the visibility of the ground overlay
  * @param zIndex the z-index of the ground overlay
  * @param onClick a lambda invoked when the ground overlay is clicked
@@ -67,7 +67,7 @@ public fun GroundOverlay(
     position: GroundOverlayPosition = GroundOverlayPosition.create(),
     image: OverlayImage = GroundOverlay.DEFAULT_IMAGE,
     tag: Any? = null,
-    transparency: Float = 0f,
+    alpha: Float = 1f,
     visible: Boolean = true,
     zIndex: Int = 0,
     onClick: (GroundOverlay) -> Boolean = { false },
@@ -79,7 +79,7 @@ public fun GroundOverlay(
             val groundOverlay = GroundOverlay().apply {
                 this.position(position)
                 this.image = image
-                this.alpha = transparency
+                this.alpha = alpha
                 this.isVisible = visible
                 this.zIndex = zIndex
             }
@@ -97,10 +97,10 @@ public fun GroundOverlay(
         update = {
             update(onClick) { this.onGroundOverlayClick = it }
 
-            set(image) { this.groundOverlay.image = it }
             set(position) { this.groundOverlay.position(it) }
+            set(image) { this.groundOverlay.image = it }
             set(tag) { this.groundOverlay.tag = it }
-            set(transparency) { this.groundOverlay.alpha = it }
+            set(alpha) { this.groundOverlay.alpha = it }
             set(visible) { this.groundOverlay.isVisible = it }
             set(zIndex) { this.groundOverlay.zIndex = it }
         }

@@ -134,7 +134,7 @@ private suspend inline fun MapView.newComposition(
 ): Composition {
     val map = awaitMap()
     return Composition(
-        MapApplier(map, this), parent
+        MapApplier(map), parent
     ).apply {
         setContent(content)
     }

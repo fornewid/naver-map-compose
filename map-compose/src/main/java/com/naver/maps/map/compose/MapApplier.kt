@@ -16,11 +16,11 @@
 package com.naver.maps.map.compose
 
 import androidx.compose.runtime.AbstractApplier
-import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.overlay.ArrowheadPathOverlay
 import com.naver.maps.map.overlay.CircleOverlay
 import com.naver.maps.map.overlay.GroundOverlay
+import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.LocationOverlay
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.MultipartPathOverlay
@@ -38,18 +38,11 @@ private object MapNodeRoot : MapNode
 
 internal class MapApplier(
     val map: NaverMap,
-    private val mapView: MapView,
 ) : AbstractApplier<MapNode>(MapNodeRoot) {
 
     private val decorations = mutableListOf<MapNode>()
 
-    init {
-        attachClickListeners()
-    }
-
     override fun onClear() {
-        // TODO: (sungyong.an) 확인 필요
-        // map.clear()
         decorations.forEach { it.onCleared() }
         decorations.clear()
     }
@@ -74,34 +67,8 @@ internal class MapApplier(
         decorations.remove(index, count)
     }
 
-    private fun attachClickListeners() {
-        // TODO: (sungyong.an) 확인 필요
-        // Marker
-//        map.setOnInfoWindowClickListener { marker ->
-//            nodeForMarker(marker)
-//                ?.onInfoWindowClick
-//                ?.invoke(marker)
-//        }
-//        map.setOnInfoWindowCloseListener { marker ->
-//            nodeForMarker(marker)
-//                ?.onInfoWindowClose
-//                ?.invoke(marker)
-//        }
-//        map.setOnInfoWindowLongClickListener { marker ->
-//            nodeForMarker(marker)
-//                ?.onInfoWindowLongClick
-//                ?.invoke(marker)
-//        }
-//        map.setInfoWindowAdapter(
-//            ComposeInfoWindowAdapter(
-//                mapView,
-//                markerNodeFinder = { nodeForMarker(it) }
-//            )
-//        )
-    }
-
     internal fun nodeForCircleOverlay(
-        circleOverlay: CircleOverlay
+        circleOverlay: CircleOverlay,
     ): CircleOverlayNode? {
         return decorations.firstOrNull {
             it is CircleOverlayNode && it.circleOverlay == circleOverlay
@@ -109,7 +76,7 @@ internal class MapApplier(
     }
 
     internal fun nodeForPolygonOverlay(
-        polygonOverlay: PolygonOverlay
+        polygonOverlay: PolygonOverlay,
     ): PolygonOverlayNode? {
         return decorations.firstOrNull {
             it is PolygonOverlayNode && it.polygonOverlay == polygonOverlay
@@ -117,7 +84,7 @@ internal class MapApplier(
     }
 
     internal fun nodeForPolylineOverlay(
-        polylineOverlay: PolylineOverlay
+        polylineOverlay: PolylineOverlay,
     ): PolylineOverlayNode? {
         return decorations.firstOrNull {
             it is PolylineOverlayNode && it.polylineOverlay == polylineOverlay
@@ -125,7 +92,7 @@ internal class MapApplier(
     }
 
     internal fun nodeForPathOverlay(
-        pathOverlay: PathOverlay
+        pathOverlay: PathOverlay,
     ): PathOverlayNode? {
         return decorations.firstOrNull {
             it is PathOverlayNode && it.pathOverlay == pathOverlay
@@ -133,7 +100,7 @@ internal class MapApplier(
     }
 
     internal fun nodeForMultipartPathOverlay(
-        multipartPathOverlay: MultipartPathOverlay
+        multipartPathOverlay: MultipartPathOverlay,
     ): MultipartPathOverlayNode? {
         return decorations.firstOrNull {
             it is MultipartPathOverlayNode && it.multipartPathOverlay == multipartPathOverlay
@@ -141,7 +108,7 @@ internal class MapApplier(
     }
 
     internal fun nodeForArrowheadPathOverlay(
-        arrowheadPathOverlay: ArrowheadPathOverlay
+        arrowheadPathOverlay: ArrowheadPathOverlay,
     ): ArrowheadPathOverlayNode? {
         return decorations.firstOrNull {
             it is ArrowheadPathOverlayNode && it.arrowheadPathOverlay == arrowheadPathOverlay
@@ -149,7 +116,7 @@ internal class MapApplier(
     }
 
     internal fun nodeForGroundOverlay(
-        groundOverlay: GroundOverlay
+        groundOverlay: GroundOverlay,
     ): GroundOverlayNode? {
         return decorations.firstOrNull {
             it is GroundOverlayNode && it.groundOverlay == groundOverlay
@@ -157,7 +124,7 @@ internal class MapApplier(
     }
 
     internal fun nodeForLocationOverlay(
-        locationOverlay: LocationOverlay
+        locationOverlay: LocationOverlay,
     ): LocationOverlayNode? {
         return decorations.firstOrNull {
             it is LocationOverlayNode && it.locationOverlay == locationOverlay
@@ -165,10 +132,18 @@ internal class MapApplier(
     }
 
     internal fun nodeForMarker(
-        marker: Marker
+        marker: Marker,
     ): MarkerNode? {
         return decorations.firstOrNull {
             it is MarkerNode && it.marker == marker
         } as? MarkerNode
+    }
+
+    internal fun nodeForInfoWindow(
+        infoWindow: InfoWindow,
+    ): InfoWindowNode? {
+        return decorations.firstOrNull {
+            it is InfoWindowNode && it.infoWindow == infoWindow
+        } as? InfoWindowNode
     }
 }

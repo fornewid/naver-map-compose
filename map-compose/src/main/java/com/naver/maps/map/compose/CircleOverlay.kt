@@ -20,12 +20,17 @@ import androidx.compose.runtime.ComposeNode
 import androidx.compose.runtime.currentComposer
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.overlay.CircleOverlay
 
 internal class CircleOverlayNode(
     val circleOverlay: CircleOverlay,
-    var onCircleOverlayClick: (CircleOverlay) -> Boolean
+    var onCircleOverlayClick: (CircleOverlay) -> Boolean,
+    var density: Density
 ) : MapNode {
     override fun onRemoved() {
         circleOverlay.remove()
@@ -36,11 +41,11 @@ internal class CircleOverlayNode(
  * A composable for a circle overlay on the map.
  *
  * @param center the [LatLng] to use for the center of this circle
- * @param fillColor the fill color of the circle
+ * @param color the fill color of the circle
  * @param radius the radius of the circle in meters.
- * @param strokeColor the stroke color of the circle
+ * @param outlineColor the outline color of the circle
  * @param tag optional tag to be associated with the circle
- * @param strokeWidth the width of the circle's outline in screen pixels
+ * @param outlineWidth the width of the circle's outline in screen pixels
  * @param visible the visibility of the circle
  * @param zIndex the z-index of the circle
  * @param onClick a lambda invoked when the circle is clicked
@@ -49,25 +54,26 @@ internal class CircleOverlayNode(
 @Composable
 public fun CircleOverlay(
     center: LatLng,
-    fillColor: Color = Color.Transparent,
+    color: Color = Color.Transparent,
     radius: Double = 0.0,
-    strokeColor: Color = Color.Black,
-    strokeWidth: Int = 10,
+    outlineColor: Color = Color.Black,
+    outlineWidth: Dp = 10.dp,
     tag: Any? = null,
     visible: Boolean = true,
     zIndex: Int = 0,
     onClick: (CircleOverlay) -> Boolean = { false },
 ) {
     val mapApplier = currentComposer.applier as? MapApplier
+    val density = LocalDensity.current
     ComposeNode<CircleOverlayNode, MapApplier>(
         factory = {
             val map = mapApplier?.map ?: error("Error adding circle")
             val circleOverlay = CircleOverlay().apply {
                 this.center = center
-                this.color = fillColor.toArgb()
+                this.color = color.toArgb()
                 this.radius = radius
-                this.outlineColor = strokeColor.toArgb()
-                this.outlineWidth = strokeWidth
+                this.outlineColor = outlineColor.toArgb()
+                this.outlineWidth = with(density) { outlineWidth.roundToPx() }
                 this.isVisible = visible
                 this.zIndex = zIndex
             }
@@ -80,16 +86,21 @@ public fun CircleOverlay(
                     ?.invoke(circleOverlay)
                     ?: false
             }
-            CircleOverlayNode(circleOverlay, onClick)
+            CircleOverlayNode(circleOverlay, onClick, density)
         },
         update = {
+            // The node holds density so that the updater blocks can be non-capturing,
+            // allowing the compiler to turn them into singletons
+            update(density) { this.density = it }
             update(onClick) { this.onCircleOverlayClick = it }
 
             set(center) { this.circleOverlay.center = it }
-            set(fillColor) { this.circleOverlay.color = it.toArgb() }
+            set(color) { this.circleOverlay.color = it.toArgb() }
             set(radius) { this.circleOverlay.radius = it }
-            set(strokeColor) { this.circleOverlay.outlineColor = it.toArgb() }
-            set(strokeWidth) { this.circleOverlay.outlineWidth = it }
+            set(outlineColor) { this.circleOverlay.outlineColor = it.toArgb() }
+            set(outlineWidth) {
+                this.circleOverlay.outlineWidth = with(this.density) { it.roundToPx() }
+            }
             set(tag) { this.circleOverlay.tag = it }
             set(visible) { this.circleOverlay.isVisible = it }
             set(zIndex) { this.circleOverlay.zIndex = it }

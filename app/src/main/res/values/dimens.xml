@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="logo_margin">12dp</dimen>
+    <dimen name="marker_size">60dp</dimen>
+    <dimen name="custom_info_window_offset_x">-27dp</dimen>
+    <dimen name="custom_info_window_offset_y">-9dp</dimen>
+    <dimen name="overlay_line_width">3dp</dimen>
+    <dimen name="overlay_pattern_interval">10dp</dimen>
+    <dimen name="location_overlay_circle_raduis">100dp</dimen>
+    <dimen name="path_overlay_width">8dp</dimen>
+    <dimen name="path_overlay_outline_width">2dp</dimen>
+    <dimen name="arrowhead_path_overlay_width">10dp</dimen>
+    <dimen name="arrowhead_path_overlay_outline_width">2dp</dimen>
+    <dimen name="arrowhead_path_overlay_elevation">5dp</dimen>
+    <dimen name="fit_bounds_padding">24dp</dimen>
+    <dimen name="map_padding_left">40dp</dimen>
+    <dimen name="map_padding_top">20dp</dimen>
+    <dimen name="map_padding_right">60dp</dimen>
+    <dimen name="map_padding_bottom">100dp</dimen>
+    <dimen name="scroll_by_x">200dp</dimen>
+    <dimen name="scroll_by_y">-100dp</dimen>
+    <dimen name="pick_radius">30dp</dimen>
+</resources>

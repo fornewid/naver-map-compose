@@ -18,12 +18,10 @@ package com.naver.maps.map.compose
 import android.graphics.PointF
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ComposeNode
-import androidx.compose.runtime.CompositionContext
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.currentComposer
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.rememberCompositionContext
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -33,15 +31,14 @@ import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 
 internal class MarkerNode(
-    val compositionContext: CompositionContext,
     val marker: Marker,
     val markerState: MarkerState,
     var onMarkerClick: (Marker) -> Boolean,
     var onInfoWindowClick: (Marker) -> Unit,
     var onInfoWindowClose: (Marker) -> Unit,
     var onInfoWindowLongClick: (Marker) -> Unit,
-    var infoWindow: (@Composable (Marker) -> Unit)?,
-    var infoContent: (@Composable (Marker) -> Unit)?,
+    var infoWindow: @Composable() ((Marker) -> Unit)?,
+    var infoContent: @Composable() ((Marker) -> Unit)?,
 ) : MapNode {
 
     override fun onAttached() {
@@ -185,7 +182,7 @@ public fun Marker(
 /**
  * A composable for a marker on the map wherein its entire info window can be
  * customized. If this customization is not required, use
- * [com.naver.maps.map.overlay.Marker].
+ * [com.naver.maps.map.compose.Marker].
  *
  * @param state the [MarkerState] to be used to control or observe the marker
  * state such as its position and info window
@@ -252,7 +249,7 @@ public fun MarkerInfoWindow(
 /**
  * A composable for a marker on the map wherein its info window contents can be
  * customized. If this customization is not required, use
- * [com.naver.maps.map.overlay.Marker].
+ * [com.naver.maps.map.compose.Marker].
  *
  * @param state the [MarkerState] to be used to control or observe the marker
  * state such as its position and info window
@@ -365,7 +362,6 @@ private fun MarkerImpl(
     infoContent: @Composable() ((Marker) -> Unit)? = null,
 ) {
     val mapApplier = currentComposer.applier as? MapApplier
-    val compositionContext = rememberCompositionContext()
     ComposeNode<MarkerNode, MapApplier>(
         factory = {
             val map = mapApplier?.map ?: error("Error adding marker")
@@ -392,15 +388,14 @@ private fun MarkerImpl(
                     ?: false
             }
             MarkerNode(
-                compositionContext = compositionContext,
                 marker = marker,
                 markerState = state,
                 onMarkerClick = onClick,
                 onInfoWindowClick = onInfoWindowClick,
                 onInfoWindowClose = onInfoWindowClose,
                 onInfoWindowLongClick = onInfoWindowLongClick,
-                infoContent = infoContent,
                 infoWindow = infoWindow,
+                infoContent = infoContent,
             )
         },
         update = {
@@ -435,10 +430,6 @@ private fun MarkerImpl(
             set(zIndex) { this.marker.zIndex = it }
         }
     )
-}
-
-private fun Marker.remove() {
-    this.map = null
 }
 
 private fun Marker.showInfoWindow() {

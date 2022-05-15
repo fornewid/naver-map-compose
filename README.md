@@ -1,4 +1,4 @@
-# NAVER Map Android SDK for Jetpack Compose 🗺 (WIP)
+# NAVER Map Android SDK for Jetpack Compose 🗺
 
 <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
 <a href='https://developer.android.com'><img src='http://img.shields.io/badge/platform-android-green.svg'/></a>
@@ -11,11 +11,15 @@ This repository contains [Jetpack Compose](compose) components for the NAVER Map
 * An [API key][api-key]
 * API level 21+
 
-## Installation (WIP)
+## Installation
 
 ```groovy
+repositories {
+    mavenCentral()
+}
+
 dependencies {
-    implementation 'io.github.fornewid:naver-map-compose:TODO'
+    implementation 'io.github.fornewid:naver-map-compose:<version>'
     
     // Make sure to also include the latest version of the NAVER Map SDK for Android 
     implementation 'com.naver.maps:map-sdk:3.15.0'

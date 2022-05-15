@@ -29,7 +29,7 @@ package com.naver.maps.map.compose {
   }
 
   public final class CircleOverlayKt {
-    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void CircleOverlay(com.naver.maps.geometry.LatLng center, optional long fillColor, optional double radius, optional long strokeColor, optional int strokeWidth, optional Object? tag, optional boolean visible, optional int zIndex, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.CircleOverlay,java.lang.Boolean> onClick);
+    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void CircleOverlay(com.naver.maps.geometry.LatLng center, optional long color, optional double radius, optional long outlineColor, optional float outlineWidth, optional Object? tag, optional boolean visible, optional int zIndex, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.CircleOverlay,java.lang.Boolean> onClick);
   }
 
   @androidx.compose.runtime.Immutable public enum DragState {
@@ -42,7 +42,7 @@ package com.naver.maps.map.compose {
   }
 
   public final class GroundOverlayKt {
-    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void GroundOverlay(optional com.naver.maps.map.compose.GroundOverlayPosition position, optional com.naver.maps.map.overlay.OverlayImage image, optional Object? tag, optional float transparency, optional boolean visible, optional int zIndex, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.GroundOverlay,java.lang.Boolean> onClick);
+    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void GroundOverlay(optional com.naver.maps.map.compose.GroundOverlayPosition position, optional com.naver.maps.map.overlay.OverlayImage image, optional Object? tag, optional float alpha, optional boolean visible, optional int zIndex, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.GroundOverlay,java.lang.Boolean> onClick);
   }
 
   public final class GroundOverlayPosition {
@@ -53,7 +53,37 @@ package com.naver.maps.map.compose {
 
   public static final class GroundOverlayPosition.Companion {
     method public com.naver.maps.map.compose.GroundOverlayPosition create();
-    method public com.naver.maps.map.compose.GroundOverlayPosition create(com.naver.maps.geometry.LatLngBounds latLngBounds);
+    method public com.naver.maps.map.compose.GroundOverlayPosition create(com.naver.maps.geometry.LatLngBounds bounds);
+  }
+
+  public final class InfoWindowKt {
+    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void InfoWindow(com.naver.maps.map.compose.InfoWindowState state, optional com.naver.maps.map.overlay.InfoWindow.Adapter adapter, optional android.graphics.PointF anchor, optional int offsetX, optional int offsetY, optional float alpha, optional Object? tag, optional boolean visible, optional int zIndex, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.InfoWindow,java.lang.Boolean> onClick);
+    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static inline com.naver.maps.map.compose.InfoWindowState rememberInfoWindowState(optional Object? key, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.compose.InfoWindowState,kotlin.Unit> init);
+  }
+
+  public final class InfoWindowPosition {
+    method public com.naver.maps.map.overlay.Align? getAlign();
+    method public com.naver.maps.map.overlay.Marker? getMarker();
+    method public com.naver.maps.geometry.LatLng? getPosition();
+    property public final com.naver.maps.map.overlay.Align? align;
+    property public final com.naver.maps.map.overlay.Marker? marker;
+    property public final com.naver.maps.geometry.LatLng? position;
+    field public static final com.naver.maps.map.compose.InfoWindowPosition.Companion Companion;
+  }
+
+  public static final class InfoWindowPosition.Companion {
+    method public com.naver.maps.map.compose.InfoWindowPosition close();
+    method public com.naver.maps.map.compose.InfoWindowPosition open(com.naver.maps.map.overlay.Marker marker);
+    method public com.naver.maps.map.compose.InfoWindowPosition open(com.naver.maps.map.overlay.Marker marker, com.naver.maps.map.overlay.Align align);
+    method public com.naver.maps.map.compose.InfoWindowPosition open(com.naver.maps.geometry.LatLng position);
+  }
+
+  @com.naver.maps.map.compose.ExperimentalNaverMapApi public final class InfoWindowState {
+    ctor public InfoWindowState(optional com.naver.maps.map.compose.InfoWindowPosition position);
+    method @UiThread public void close();
+    method @UiThread public void open(com.naver.maps.map.overlay.Marker marker);
+    method @UiThread public void open(com.naver.maps.map.overlay.Marker marker, com.naver.maps.map.overlay.Align align);
+    method @UiThread public void open(com.naver.maps.geometry.LatLng position);
   }
 
   public final class LocationOverlayKt {
@@ -232,7 +262,7 @@ package com.naver.maps.map.compose {
   }
 
   public final class PathOverlayKt {
-    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void PathOverlay(java.util.List<com.naver.maps.geometry.LatLng> points, optional double progress, optional long color, optional long strokeColor, optional int strokeWidth, optional long passedColor, optional long passedOutlineColor, optional boolean isHideCollidedSymbols, optional boolean isHideCollidedMarkers, optional boolean isHideCollidedCaptions, optional Object? tag, optional boolean visible, optional int width, optional int zIndex, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.PathOverlay,java.lang.Boolean> onClick);
+    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void PathOverlay(java.util.List<com.naver.maps.geometry.LatLng> coords, optional double progress, optional long color, optional long outlineColor, optional float outlineWidth, optional long passedColor, optional long passedOutlineColor, optional com.naver.maps.map.overlay.OverlayImage? patternImage, optional float patternInterval, optional boolean isHideCollidedSymbols, optional boolean isHideCollidedMarkers, optional boolean isHideCollidedCaptions, optional Object? tag, optional boolean visible, optional float width, optional int zIndex, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.PathOverlay,java.lang.Boolean> onClick);
   }
 
   public final class PolygonOverlayKt {

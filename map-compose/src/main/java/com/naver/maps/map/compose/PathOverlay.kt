@@ -20,12 +20,18 @@ import androidx.compose.runtime.ComposeNode
 import androidx.compose.runtime.currentComposer
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.overlay.PathOverlay
 
 internal class PathOverlayNode(
     val pathOverlay: PathOverlay,
-    var onPathOverlayClick: (PathOverlay) -> Boolean
+    var onPathOverlayClick: (PathOverlay) -> Boolean,
+    var density: Density
 ) : MapNode {
     override fun onRemoved() {
         pathOverlay.remove()
@@ -35,7 +41,7 @@ internal class PathOverlayNode(
 /**
  * A composable for a path overlay on the map.
  *
- * @param points the points comprising the path
+ * @param coords the coordinates comprising the path
  * @param progress the progress of the path
  * @param color the color of the path
  * TODO: (sungyong.an) 설명 추가
@@ -47,39 +53,44 @@ internal class PathOverlayNode(
 @ExperimentalNaverMapApi
 @Composable
 public fun PathOverlay(
-    points: List<LatLng>,
+    coords: List<LatLng>,
     progress: Double = 0.0,
     color: Color = Color.Black,
-    strokeColor: Color = Color.Black,
-    strokeWidth: Int = 10,
+    outlineColor: Color = Color.Black,
+    outlineWidth: Dp = 10.dp,
     passedColor: Color = Color.Black,
     passedOutlineColor: Color = Color.Black,
+    patternImage: OverlayImage? = null,
+    patternInterval: Dp = 50.dp,
     isHideCollidedSymbols: Boolean = false,
     isHideCollidedMarkers: Boolean = false,
     isHideCollidedCaptions: Boolean = false,
     tag: Any? = null,
     visible: Boolean = true,
-    width: Int = 10,
+    width: Dp = 10.dp,
     zIndex: Int = 0,
     onClick: (PathOverlay) -> Boolean = { false }
 ) {
     val mapApplier = currentComposer.applier as MapApplier?
+    val density = LocalDensity.current
     ComposeNode<PathOverlayNode, MapApplier>(
         factory = {
             val map = mapApplier?.map ?: error("Error adding PathOverlay")
             val pathOverlay = PathOverlay().apply {
-                this.coords = points
+                this.coords = coords
                 this.progress = progress
                 this.color = color.toArgb()
-                this.outlineColor = strokeColor.toArgb()
-                this.outlineWidth = strokeWidth
+                this.outlineColor = outlineColor.toArgb()
+                this.outlineWidth = with(density) { outlineWidth.roundToPx() }
                 this.passedColor = passedColor.toArgb()
                 this.passedOutlineColor = passedOutlineColor.toArgb()
+                this.patternImage = patternImage
+                this.patternInterval = with(density) { patternInterval.roundToPx() }
                 this.isHideCollidedSymbols = isHideCollidedSymbols
                 this.isHideCollidedMarkers = isHideCollidedMarkers
                 this.isHideCollidedCaptions = isHideCollidedCaptions
                 this.isVisible = visible
-                this.width = width
+                this.width = with(density) { width.roundToPx() }
                 this.zIndex = zIndex
             }
             pathOverlay.tag = tag
@@ -91,24 +102,33 @@ public fun PathOverlay(
                     ?.invoke(pathOverlay)
                     ?: false
             }
-            PathOverlayNode(pathOverlay, onClick)
+            PathOverlayNode(pathOverlay, onClick, density)
         },
         update = {
+            // The node holds density so that the updater blocks can be non-capturing,
+            // allowing the compiler to turn them into singletons
+            update(density) { this.density = it }
             update(onClick) { this.onPathOverlayClick = it }
 
-            set(points) { this.pathOverlay.coords = it }
+            set(coords) { this.pathOverlay.coords = it }
             set(progress) { this.pathOverlay.progress = it }
             set(color) { this.pathOverlay.color = it.toArgb() }
-            set(strokeColor) { this.pathOverlay.outlineColor = it.toArgb() }
-            set(strokeWidth) { this.pathOverlay.outlineWidth = it }
+            set(outlineColor) { this.pathOverlay.outlineColor = it.toArgb() }
+            set(outlineWidth) {
+                this.pathOverlay.outlineWidth = with(this.density) { it.roundToPx() }
+            }
             set(passedColor) { this.pathOverlay.passedColor = it.toArgb() }
             set(passedOutlineColor) { this.pathOverlay.passedOutlineColor = it.toArgb() }
+            set(patternImage) { this.pathOverlay.patternImage = it }
+            set(patternInterval) {
+                this.pathOverlay.patternInterval = with(this.density) { it.roundToPx() }
+            }
             set(isHideCollidedSymbols) { this.pathOverlay.isHideCollidedSymbols = it }
             set(isHideCollidedMarkers) { this.pathOverlay.isHideCollidedMarkers = it }
             set(isHideCollidedCaptions) { this.pathOverlay.isHideCollidedCaptions = it }
             set(tag) { this.pathOverlay.tag = it }
             set(visible) { this.pathOverlay.isVisible = it }
-            set(width) { this.pathOverlay.width = it }
+            set(width) { this.pathOverlay.width = with(this.density) { it.roundToPx() } }
             set(zIndex) { this.pathOverlay.zIndex = it }
         }
     )
