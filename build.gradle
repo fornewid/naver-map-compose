@@ -11,6 +11,8 @@ buildscript {
     dependencies {
         classpath libs.android.pluginGradle
         classpath libs.kotlin.pluginGradle
+        classpath libs.mavenPublish.pluginGradle
+        classpath libs.metalava.pluginGradle
     }
 }
 
@@ -24,6 +26,12 @@ allprojects {
         mavenCentral()
         maven {
             url 'https://naver.jfrog.io/artifactory/maven/'
+        }
+    }
+
+    plugins.withId("com.vanniktech.maven.publish") {
+        mavenPublish {
+            sonatypeHost = "S01"
         }
     }
 }
@@ -47,6 +55,16 @@ subprojects {
             jvmTarget = "1.8"
             // Allow use of @OptIn
             freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+        }
+    }
+
+    // If we have a POM Artifact ID, we should generate API files
+    if (project.hasProperty('POM_ARTIFACT_ID')) {
+        apply plugin: 'me.tylerbwong.gradle.metalava'
+
+        metalava {
+            filename = "api/current.api"
+            reportLintsAsErrors = true
         }
     }
 }

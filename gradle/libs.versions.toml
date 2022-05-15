@@ -11,6 +11,9 @@ compose = "1.1.1"
 [libraries]
 
 android-pluginGradle = "com.android.tools.build:gradle:7.2.0"
+mavenPublish-pluginGradle = "com.vanniktech:gradle-maven-publish-plugin:0.17.0"
+metalava-pluginGradle = "me.tylerbwong.gradle:metalava-gradle:0.1.9"
+
 material = "com.google.android.material:material:1.4.0"
 
 naver-map = "com.naver.maps:map-sdk:3.15.0"
