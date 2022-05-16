@@ -20,22 +20,31 @@ import androidx.compose.runtime.ComposeNode
 import androidx.compose.runtime.currentComposer
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.overlay.ArrowheadPathOverlay
 
 internal class ArrowheadPathOverlayNode(
     val arrowheadPathOverlay: ArrowheadPathOverlay,
-    var onArrowheadPathOverlayClick: (ArrowheadPathOverlay) -> Boolean
+    var onArrowheadPathOverlayClick: (ArrowheadPathOverlay) -> Boolean,
+    var density: Density,
 ) : MapNode {
     override fun onRemoved() {
         arrowheadPathOverlay.remove()
     }
 }
 
+public object ArrowheadPathOverlayDefaults {
+    public const val DefaultGlobalZIndex: Int = ArrowheadPathOverlay.DEFAULT_GLOBAL_Z_INDEX
+}
+
 /**
  * A composable for a multipart path overlay on the map.
  *
- * @param points the points comprising the path
+ * @param coords the points comprising the path
  * @param color the color of the path
  * TODO: (sungyong.an) 설명 추가
  * @param visible the visibility of the path
@@ -46,32 +55,35 @@ internal class ArrowheadPathOverlayNode(
 @ExperimentalNaverMapApi
 @Composable
 public fun ArrowheadPathOverlay(
-    points: List<LatLng>,
+    coords: List<LatLng>,
     color: Color = Color.Black,
-    strokeColor: Color = Color.Black,
-    strokeWidth: Int = 10,
+    outlineColor: Color = Color.Black,
+    outlineWidth: Dp = 10.dp,
     headSizeRatio: Float = 1f,
-    elevation: Int = 0,
+    elevation: Dp = 0.dp,
     tag: Any? = null,
     visible: Boolean = true,
-    width: Int = 10,
+    width: Dp = 10.dp,
     zIndex: Int = 0,
-    onClick: (ArrowheadPathOverlay) -> Boolean = { false }
+    globalZIndex: Int = ArrowheadPathOverlayDefaults.DefaultGlobalZIndex,
+    onClick: (ArrowheadPathOverlay) -> Boolean = { false },
 ) {
     val mapApplier = currentComposer.applier as MapApplier?
+    val density = LocalDensity.current
     ComposeNode<ArrowheadPathOverlayNode, MapApplier>(
         factory = {
             val map = mapApplier?.map ?: error("Error adding ArrowheadPathOverlay")
             val arrowheadPathOverlay = ArrowheadPathOverlay().apply {
-                this.coords = points
+                this.coords = coords
                 this.color = color.toArgb()
-                this.outlineColor = strokeColor.toArgb()
-                this.outlineWidth = strokeWidth
+                this.outlineColor = outlineColor.toArgb()
+                this.outlineWidth = with(density) { outlineWidth.roundToPx() }
                 this.headSizeRatio = headSizeRatio
-                this.elevation = elevation
+                this.elevation = with(density) { elevation.roundToPx() }
                 this.isVisible = visible
-                this.width = width
+                this.width = with(density) { width.roundToPx() }
                 this.zIndex = zIndex
+                this.globalZIndex = globalZIndex
             }
             arrowheadPathOverlay.tag = tag
             arrowheadPathOverlay.map = map
@@ -82,21 +94,31 @@ public fun ArrowheadPathOverlay(
                     ?.invoke(arrowheadPathOverlay)
                     ?: false
             }
-            ArrowheadPathOverlayNode(arrowheadPathOverlay, onClick)
+            ArrowheadPathOverlayNode(arrowheadPathOverlay, onClick, density)
         },
         update = {
+            // The node holds density so that the updater blocks can be non-capturing,
+            // allowing the compiler to turn them into singletons
+            update(density) { this.density = it }
             update(onClick) { this.onArrowheadPathOverlayClick = it }
 
-            set(points) { this.arrowheadPathOverlay.coords = it }
+            set(coords) { this.arrowheadPathOverlay.coords = it }
             set(color) { this.arrowheadPathOverlay.color = it.toArgb() }
-            set(strokeColor) { this.arrowheadPathOverlay.outlineColor = it.toArgb() }
-            set(strokeWidth) { this.arrowheadPathOverlay.outlineWidth = it }
+            set(outlineColor) { this.arrowheadPathOverlay.outlineColor = it.toArgb() }
+            set(outlineWidth) {
+                this.arrowheadPathOverlay.outlineWidth = with(this.density) { it.roundToPx() }
+            }
             set(headSizeRatio) { this.arrowheadPathOverlay.headSizeRatio = it }
-            set(elevation) { this.arrowheadPathOverlay.elevation = it }
+            set(elevation) {
+                this.arrowheadPathOverlay.elevation = with(density) { it.roundToPx() }
+            }
             set(tag) { this.arrowheadPathOverlay.tag = it }
             set(visible) { this.arrowheadPathOverlay.isVisible = it }
-            set(width) { this.arrowheadPathOverlay.width = it }
+            set(width) {
+                this.arrowheadPathOverlay.width = with(this.density) { it.roundToPx() }
+            }
             set(zIndex) { this.arrowheadPathOverlay.zIndex = it }
+            set(globalZIndex) { this.arrowheadPathOverlay.globalZIndex = it }
         }
     )
 }

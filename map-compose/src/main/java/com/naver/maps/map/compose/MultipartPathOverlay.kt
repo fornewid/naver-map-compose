@@ -18,17 +18,26 @@ package com.naver.maps.map.compose
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ComposeNode
 import androidx.compose.runtime.currentComposer
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.overlay.MultipartPathOverlay
 import com.naver.maps.map.overlay.OverlayImage
 
 internal class MultipartPathOverlayNode(
     val multipartPathOverlay: MultipartPathOverlay,
-    var onMultipartPathOverlayClick: (MultipartPathOverlay) -> Boolean
+    var onMultipartPathOverlayClick: (MultipartPathOverlay) -> Boolean,
+    var density: Density,
 ) : MapNode {
     override fun onRemoved() {
         multipartPathOverlay.remove()
     }
+}
+
+public object MultipartPathOverlayDefaults {
+    public const val DefaultGlobalZIndex: Int = MultipartPathOverlay.DEFAULT_GLOBAL_Z_INDEX
 }
 
 /**
@@ -48,19 +57,21 @@ public fun MultipartPathOverlay(
     coordParts: List<List<LatLng>>,
     colorParts: List<MultipartPathOverlay.ColorPart>,
     progress: Double = 0.0,
-    strokeWidth: Int = 10,
+    outlineWidth: Dp = 10.dp,
     patternImage: OverlayImage? = null,
-    patternInterval: Int = 0,
+    patternInterval: Dp = 0.dp,
     isHideCollidedSymbols: Boolean = false,
     isHideCollidedMarkers: Boolean = false,
     isHideCollidedCaptions: Boolean = false,
     tag: Any? = null,
     visible: Boolean = true,
-    width: Int = 10,
+    width: Dp = 10.dp,
     zIndex: Int = 0,
-    onClick: (MultipartPathOverlay) -> Boolean = { false }
+    globalZIndex: Int = MultipartPathOverlayDefaults.DefaultGlobalZIndex,
+    onClick: (MultipartPathOverlay) -> Boolean = { false },
 ) {
     val mapApplier = currentComposer.applier as MapApplier?
+    val density = LocalDensity.current
     ComposeNode<MultipartPathOverlayNode, MapApplier>(
         factory = {
             val map = mapApplier?.map ?: error("Error adding MultipartPathOverlay")
@@ -68,15 +79,16 @@ public fun MultipartPathOverlay(
                 this.coordParts = coordParts
                 this.colorParts = colorParts
                 this.progress = progress
-                this.outlineWidth = strokeWidth
+                this.outlineWidth = with(density) { outlineWidth.roundToPx() }
                 this.patternImage = patternImage
-                this.patternInterval = patternInterval
+                this.patternInterval = with(density) { patternInterval.roundToPx() }
                 this.isHideCollidedSymbols = isHideCollidedSymbols
                 this.isHideCollidedMarkers = isHideCollidedMarkers
                 this.isHideCollidedCaptions = isHideCollidedCaptions
                 this.isVisible = visible
-                this.width = width
+                this.width = with(density) { width.roundToPx() }
                 this.zIndex = zIndex
+                this.globalZIndex = globalZIndex
             }
             multipartPathOverlay.tag = tag
             multipartPathOverlay.map = map
@@ -87,24 +99,34 @@ public fun MultipartPathOverlay(
                     ?.invoke(multipartPathOverlay)
                     ?: false
             }
-            MultipartPathOverlayNode(multipartPathOverlay, onClick)
+            MultipartPathOverlayNode(multipartPathOverlay, onClick, density)
         },
         update = {
+            // The node holds density so that the updater blocks can be non-capturing,
+            // allowing the compiler to turn them into singletons
+            update(density) { this.density = it }
             update(onClick) { this.onMultipartPathOverlayClick = it }
 
             set(coordParts) { this.multipartPathOverlay.coordParts = it }
             set(colorParts) { this.multipartPathOverlay.colorParts = it }
             set(progress) { this.multipartPathOverlay.progress = it }
-            set(strokeWidth) { this.multipartPathOverlay.outlineWidth = it }
+            set(outlineWidth) {
+                this.multipartPathOverlay.outlineWidth = with(this.density) { it.roundToPx() }
+            }
             set(patternImage) { this.multipartPathOverlay.patternImage = it }
-            set(patternInterval) { this.multipartPathOverlay.patternInterval = it }
+            set(patternInterval) {
+                this.multipartPathOverlay.patternInterval = with(this.density) { it.roundToPx() }
+            }
             set(isHideCollidedSymbols) { this.multipartPathOverlay.isHideCollidedSymbols = it }
             set(isHideCollidedMarkers) { this.multipartPathOverlay.isHideCollidedMarkers = it }
             set(isHideCollidedCaptions) { this.multipartPathOverlay.isHideCollidedCaptions = it }
             set(tag) { this.multipartPathOverlay.tag = it }
             set(visible) { this.multipartPathOverlay.isVisible = it }
-            set(width) { this.multipartPathOverlay.width = it }
+            set(width) {
+                this.multipartPathOverlay.width = with(this.density) { it.roundToPx() }
+            }
             set(zIndex) { this.multipartPathOverlay.zIndex = it }
+            set(globalZIndex) { this.multipartPathOverlay.globalZIndex = it }
         }
     )
 }

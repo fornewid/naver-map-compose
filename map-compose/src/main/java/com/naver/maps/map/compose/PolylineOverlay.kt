@@ -20,6 +20,10 @@ import androidx.compose.runtime.ComposeNode
 import androidx.compose.runtime.currentComposer
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.overlay.PolylineOverlay
 import com.naver.maps.map.overlay.PolylineOverlay.LineCap
@@ -27,17 +31,22 @@ import com.naver.maps.map.overlay.PolylineOverlay.LineJoin
 
 internal class PolylineOverlayNode(
     val polylineOverlay: PolylineOverlay,
-    var onPolylineOverlayClick: (PolylineOverlay) -> Boolean
+    var onPolylineOverlayClick: (PolylineOverlay) -> Boolean,
+    var density: Density,
 ) : MapNode {
     override fun onRemoved() {
         polylineOverlay.remove()
     }
 }
 
+public object PolylineOverlayDefaults {
+    public const val DefaultGlobalZIndex: Int = PolylineOverlay.DEFAULT_GLOBAL_Z_INDEX
+}
+
 /**
  * A composable for a polyline on the map.
  *
- * @param points the points comprising the polyline
+ * @param coords the points comprising the polyline
  * @param color the color of the polyline
  * @param capType the cap type for all vertices of the polyline
  * @param joinType the join type for all vertices of the polyline except the start and end vertices
@@ -50,30 +59,33 @@ internal class PolylineOverlayNode(
 @ExperimentalNaverMapApi
 @Composable
 public fun PolylineOverlay(
-    points: List<LatLng>,
+    coords: List<LatLng>,
     color: Color = Color.Black,
     capType: LineCap = LineCap.Round,
     joinType: LineJoin = LineJoin.Miter,
-    pattern: IntArray = intArrayOf(),
+    pattern: Array<Dp> = emptyArray(),
     tag: Any? = null,
     visible: Boolean = true,
-    width: Int = 10,
+    width: Dp = 10.dp,
     zIndex: Int = 0,
-    onClick: (PolylineOverlay) -> Boolean = { false }
+    globalZIndex: Int = PolygonOverlayDefaults.DefaultGlobalZIndex,
+    onClick: (PolylineOverlay) -> Boolean = { false },
 ) {
     val mapApplier = currentComposer.applier as MapApplier?
+    val density = LocalDensity.current
     ComposeNode<PolylineOverlayNode, MapApplier>(
         factory = {
             val map = mapApplier?.map ?: error("Error adding Polyline")
             val polylineOverlay = PolylineOverlay().apply {
-                this.coords = points
+                this.coords = coords
                 this.color = color.toArgb()
                 this.capType = capType
                 this.joinType = joinType
-                this.setPattern(*pattern)
+                this.setPattern(*pattern.map { with(density) { it.roundToPx() } }.toIntArray())
                 this.isVisible = visible
-                this.width = width
+                this.width = with(density) { width.roundToPx() }
                 this.zIndex = zIndex
+                this.globalZIndex = globalZIndex
             }
             polylineOverlay.tag = tag
             polylineOverlay.map = map
@@ -84,20 +96,30 @@ public fun PolylineOverlay(
                     ?.invoke(polylineOverlay)
                     ?: false
             }
-            PolylineOverlayNode(polylineOverlay, onClick)
+            PolylineOverlayNode(polylineOverlay, onClick, density)
         },
         update = {
+            // The node holds density so that the updater blocks can be non-capturing,
+            // allowing the compiler to turn them into singletons
+            update(density) { this.density = it }
             update(onClick) { this.onPolylineOverlayClick = it }
 
-            set(points) { this.polylineOverlay.coords = it }
+            set(coords) { this.polylineOverlay.coords = it }
             set(color) { this.polylineOverlay.color = it.toArgb() }
             set(capType) { this.polylineOverlay.capType = it }
             set(joinType) { this.polylineOverlay.joinType = it }
-            set(pattern) { this.polylineOverlay.setPattern(*it) }
+            set(pattern) {
+                this.polylineOverlay.setPattern(
+                    *it.map { with(density) { it.roundToPx() } }.toIntArray()
+                )
+            }
             set(tag) { this.polylineOverlay.tag = it }
             set(visible) { this.polylineOverlay.isVisible = it }
-            set(width) { this.polylineOverlay.width = it }
+            set(width) {
+                this.polylineOverlay.width = with(this.density) { it.roundToPx() }
+            }
             set(zIndex) { this.polylineOverlay.zIndex = it }
+            set(globalZIndex) { this.polylineOverlay.globalZIndex = it }
         }
     )
 }

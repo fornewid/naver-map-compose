@@ -18,7 +18,6 @@ package com.naver.maps.map.compose
 import android.graphics.PointF
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ComposeNode
-import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.currentComposer
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,13 +25,23 @@ import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.NaverMap
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 
 internal class MarkerNode(
     val marker: Marker,
     val markerState: MarkerState,
+    var density: Density,
     var onMarkerClick: (Marker) -> Boolean,
     var onInfoWindowClick: (Marker) -> Unit,
     var onInfoWindowClose: (Marker) -> Unit,
@@ -56,9 +65,13 @@ internal class MarkerNode(
     }
 }
 
-@Immutable
-public enum class DragState {
-    START, DRAG, END
+public object MarkerDefaults {
+    public const val DefaultGlobalZIndex: Int = Marker.DEFAULT_GLOBAL_Z_INDEX
+    public val SizeAuto: Dp = Marker.SIZE_AUTO.dp
+    public val DefaultCaptionTextSize: TextUnit = Marker.DEFAULT_CAPTION_TEXT_SIZE.sp
+    public const val DefaultCaptionMinZoom: Double = NaverMap.MINIMUM_ZOOM.toDouble()
+    public const val DefaultCaptionMaxZoom: Double = NaverMap.MAXIMUM_ZOOM.toDouble()
+    public val DefaultCaptionAligns: Array<Align> = arrayOf(Align.Bottom)
 }
 
 /**
@@ -67,7 +80,7 @@ public enum class DragState {
  * @param position the initial marker position
  */
 public class MarkerState(
-    position: LatLng = LatLng(0.0, 0.0)
+    position: LatLng = LatLng(0.0, 0.0),
 ) {
     /**
      * Current position of the marker.
@@ -113,7 +126,7 @@ public class MarkerState(
 @Composable
 public fun rememberMarkerState(
     key: String? = null,
-    position: LatLng = LatLng(0.0, 0.0)
+    position: LatLng = LatLng(0.0, 0.0),
 ): MarkerState = rememberSaveable(key = key, saver = MarkerState.Saver) {
     MarkerState(position)
 }
@@ -125,13 +138,13 @@ public fun rememberMarkerState(
  * state such as its position and info window
  * @param alpha the alpha (opacity) of the marker
  * @param anchor the anchor for the marker image
- * @param flat sets if the marker should be flat against the map
+ * @param isFlat sets if the marker should be flat against the map
  * @param icon sets the icon for the marker
  * @param infoWindowAnchor the anchor point of the info window on the marker image
- * @param rotation the rotation of the marker in degrees clockwise about the marker's anchor point
- * @param snippet the snippet for the marker
+ * @param angle the angle of the marker in degrees clockwise about the marker's anchor point
+ * @param subCaptionText the snippet for the marker
  * @param tag optional tag to associate with the marker
- * @param title the title for the marker
+ * @param captionText the title for the marker
  * @param visible the visibility of the marker
  * @param zIndex the z-index of the marker
  * @param onClick a lambda invoked when the marker is clicked
@@ -143,17 +156,41 @@ public fun rememberMarkerState(
 @Composable
 public fun Marker(
     state: MarkerState = rememberMarkerState(),
+    width: Dp = MarkerDefaults.SizeAuto,
+    height: Dp = MarkerDefaults.SizeAuto,
     alpha: Float = 1.0f,
     anchor: Offset = Offset(0.5f, 1.0f),
-    flat: Boolean = false,
+    isFlat: Boolean = false,
     icon: OverlayImage = Marker.DEFAULT_ICON,
+    iconTintColor: Color = Color.Transparent,
     infoWindowAnchor: Offset = Offset(0.5f, 0.0f),
-    rotation: Float = 0.0f,
-    snippet: String? = null,
+    angle: Float = 0.0f,
+    minZoom: Double = OverlayDefaults.DefaultMinZoom,
+    isMinZoomInclusive: Boolean = true,
+    maxZoom: Double = OverlayDefaults.DefaultMaxZoom,
+    isMaxZoomInclusive: Boolean = true,
+    subCaptionText: String? = null,
+    subCaptionColor: Color = Color.Black,
+    subCaptionTextSize: TextUnit = MarkerDefaults.DefaultCaptionTextSize,
+    subCaptionMinZoom: Double = MarkerDefaults.DefaultCaptionMinZoom,
+    subCaptionMaxZoom: Double = MarkerDefaults.DefaultCaptionMaxZoom,
+    subCaptionHaloColor: Color = Color.White,
+    subCaptionRequestedWidth: Dp = 0.dp,
+    isHideCollidedSymbols: Boolean = false,
+    isHideCollidedMarkers: Boolean = false,
+    isHideCollidedCaptions: Boolean = false,
+    isForceShowIcon: Boolean = false,
+    isForceShowCaption: Boolean = false,
     tag: Any? = null,
-    title: String? = null,
+    captionText: String? = null,
+    captionColor: Color = Color.Black,
+    captionTextSize: TextUnit = MarkerDefaults.DefaultCaptionTextSize,
+    captionMinZoom: Double = MarkerDefaults.DefaultCaptionMinZoom,
+    captionMaxZoom: Double = MarkerDefaults.DefaultCaptionMaxZoom,
+    captionAligns: Array<Align> = MarkerDefaults.DefaultCaptionAligns,
     visible: Boolean = true,
     zIndex: Int = 0,
+    globalZIndex: Int = MarkerDefaults.DefaultGlobalZIndex,
     onClick: (Marker) -> Boolean = { false },
     onInfoWindowClick: (Marker) -> Unit = {},
     onInfoWindowClose: (Marker) -> Unit = {},
@@ -161,17 +198,41 @@ public fun Marker(
 ) {
     MarkerImpl(
         state = state,
+        width = width,
+        height = height,
         alpha = alpha,
         anchor = anchor,
-        flat = flat,
+        isFlat = isFlat,
         icon = icon,
+        iconTintColor = iconTintColor,
         infoWindowAnchor = infoWindowAnchor,
-        rotation = rotation,
-        snippet = snippet,
+        angle = angle,
+        minZoom = minZoom,
+        isMinZoomInclusive = isMinZoomInclusive,
+        maxZoom = maxZoom,
+        isMaxZoomInclusive = isMaxZoomInclusive,
+        subCaptionText = subCaptionText,
+        subCaptionColor = subCaptionColor,
+        subCaptionTextSize = subCaptionTextSize,
+        subCaptionMinZoom = subCaptionMinZoom,
+        subCaptionMaxZoom = subCaptionMaxZoom,
+        subCaptionHaloColor = subCaptionHaloColor,
+        subCaptionRequestedWidth = subCaptionRequestedWidth,
+        isHideCollidedSymbols = isHideCollidedSymbols,
+        isHideCollidedMarkers = isHideCollidedMarkers,
+        isHideCollidedCaptions = isHideCollidedCaptions,
+        isForceShowIcon = isForceShowIcon,
+        isForceShowCaption = isForceShowCaption,
         tag = tag,
-        title = title,
+        captionText = captionText,
+        captionColor = captionColor,
+        captionTextSize = captionTextSize,
+        captionMinZoom = captionMinZoom,
+        captionMaxZoom = captionMaxZoom,
+        captionAligns = captionAligns,
         visible = visible,
         zIndex = zIndex,
+        globalZIndex = globalZIndex,
         onClick = onClick,
         onInfoWindowClick = onInfoWindowClick,
         onInfoWindowClose = onInfoWindowClose,
@@ -188,13 +249,13 @@ public fun Marker(
  * state such as its position and info window
  * @param alpha the alpha (opacity) of the marker
  * @param anchor the anchor for the marker image
- * @param flat sets if the marker should be flat against the map
+ * @param isFlat sets if the marker should be flat against the map
  * @param icon sets the icon for the marker
  * @param infoWindowAnchor the anchor point of the info window on the marker image
- * @param rotation the rotation of the marker in degrees clockwise about the marker's anchor point
- * @param snippet the snippet for the marker
+ * @param angle the angle of the marker in degrees clockwise about the marker's anchor point
+ * @param subCaptionText the snippet for the marker
  * @param tag optional tag to associate with the marker
- * @param title the title for the marker
+ * @param captionText the title for the marker
  * @param visible the visibility of the marker
  * @param zIndex the z-index of the marker
  * @param onClick a lambda invoked when the marker is clicked
@@ -208,36 +269,84 @@ public fun Marker(
 @Composable
 public fun MarkerInfoWindow(
     state: MarkerState = rememberMarkerState(),
+    width: Dp = MarkerDefaults.SizeAuto,
+    height: Dp = MarkerDefaults.SizeAuto,
     alpha: Float = 1.0f,
     anchor: Offset = Offset(0.5f, 1.0f),
-    flat: Boolean = false,
+    isFlat: Boolean = false,
     icon: OverlayImage = Marker.DEFAULT_ICON,
+    iconTintColor: Color = Color.Transparent,
     infoWindowAnchor: Offset = Offset(0.5f, 0.0f),
-    rotation: Float = 0.0f,
-    snippet: String? = null,
+    angle: Float = 0.0f,
+    minZoom: Double = OverlayDefaults.DefaultMinZoom,
+    isMinZoomInclusive: Boolean = true,
+    maxZoom: Double = OverlayDefaults.DefaultMaxZoom,
+    isMaxZoomInclusive: Boolean = true,
+    subCaptionText: String? = null,
+    subCaptionColor: Color = Color.Black,
+    subCaptionTextSize: TextUnit = MarkerDefaults.DefaultCaptionTextSize,
+    subCaptionMinZoom: Double = MarkerDefaults.DefaultCaptionMinZoom,
+    subCaptionMaxZoom: Double = MarkerDefaults.DefaultCaptionMaxZoom,
+    subCaptionHaloColor: Color = Color.White,
+    subCaptionRequestedWidth: Dp = 0.dp,
+    isHideCollidedSymbols: Boolean = false,
+    isHideCollidedMarkers: Boolean = false,
+    isHideCollidedCaptions: Boolean = false,
+    isForceShowIcon: Boolean = false,
+    isForceShowCaption: Boolean = false,
     tag: Any? = null,
-    title: String? = null,
+    captionText: String? = null,
+    captionColor: Color = Color.Black,
+    captionTextSize: TextUnit = MarkerDefaults.DefaultCaptionTextSize,
+    captionMinZoom: Double = MarkerDefaults.DefaultCaptionMinZoom,
+    captionMaxZoom: Double = MarkerDefaults.DefaultCaptionMaxZoom,
+    captionAligns: Array<Align> = MarkerDefaults.DefaultCaptionAligns,
     visible: Boolean = true,
     zIndex: Int = 0,
+    globalZIndex: Int = MarkerDefaults.DefaultGlobalZIndex,
     onClick: (Marker) -> Boolean = { false },
     onInfoWindowClick: (Marker) -> Unit = {},
     onInfoWindowClose: (Marker) -> Unit = {},
     onInfoWindowLongClick: (Marker) -> Unit = {},
-    content: @Composable() ((Marker) -> Unit)? = null
+    content: @Composable() ((Marker) -> Unit)? = null,
 ) {
     MarkerImpl(
         state = state,
+        width = width,
+        height = height,
         alpha = alpha,
         anchor = anchor,
-        flat = flat,
+        isFlat = isFlat,
         icon = icon,
+        iconTintColor = iconTintColor,
         infoWindowAnchor = infoWindowAnchor,
-        rotation = rotation,
-        snippet = snippet,
+        angle = angle,
+        minZoom = minZoom,
+        isMinZoomInclusive = isMinZoomInclusive,
+        maxZoom = maxZoom,
+        isMaxZoomInclusive = isMaxZoomInclusive,
+        subCaptionText = subCaptionText,
+        subCaptionColor = subCaptionColor,
+        subCaptionTextSize = subCaptionTextSize,
+        subCaptionMinZoom = subCaptionMinZoom,
+        subCaptionMaxZoom = subCaptionMaxZoom,
+        subCaptionHaloColor = subCaptionHaloColor,
+        subCaptionRequestedWidth = subCaptionRequestedWidth,
+        isHideCollidedSymbols = isHideCollidedSymbols,
+        isHideCollidedMarkers = isHideCollidedMarkers,
+        isHideCollidedCaptions = isHideCollidedCaptions,
+        isForceShowIcon = isForceShowIcon,
+        isForceShowCaption = isForceShowCaption,
         tag = tag,
-        title = title,
+        captionText = captionText,
+        captionColor = captionColor,
+        captionTextSize = captionTextSize,
+        captionMinZoom = captionMinZoom,
+        captionMaxZoom = captionMaxZoom,
+        captionAligns = captionAligns,
         visible = visible,
         zIndex = zIndex,
+        globalZIndex = globalZIndex,
         onClick = onClick,
         onInfoWindowClick = onInfoWindowClick,
         onInfoWindowClose = onInfoWindowClose,
@@ -255,13 +364,13 @@ public fun MarkerInfoWindow(
  * state such as its position and info window
  * @param alpha the alpha (opacity) of the marker
  * @param anchor the anchor for the marker image
- * @param flat sets if the marker should be flat against the map
+ * @param isFlat sets if the marker should be flat against the map
  * @param icon sets the icon for the marker
  * @param infoWindowAnchor the anchor point of the info window on the marker image
- * @param rotation the rotation of the marker in degrees clockwise about the marker's anchor point
- * @param snippet the snippet for the marker
+ * @param angle the angle of the marker in degrees clockwise about the marker's anchor point
+ * @param subCaptionText the snippet for the marker
  * @param tag optional tag to associate with the marker
- * @param title the title for the marker
+ * @param captionText the title for the marker
  * @param visible the visibility of the marker
  * @param zIndex the z-index of the marker
  * @param onClick a lambda invoked when the marker is clicked
@@ -275,36 +384,84 @@ public fun MarkerInfoWindow(
 @Composable
 public fun MarkerInfoWindowContent(
     state: MarkerState = rememberMarkerState(),
+    width: Dp = MarkerDefaults.SizeAuto,
+    height: Dp = MarkerDefaults.SizeAuto,
     alpha: Float = 1.0f,
     anchor: Offset = Offset(0.5f, 1.0f),
-    flat: Boolean = false,
+    isFlat: Boolean = false,
     icon: OverlayImage = Marker.DEFAULT_ICON,
+    iconTintColor: Color = Color.Transparent,
     infoWindowAnchor: Offset = Offset(0.5f, 0.0f),
-    rotation: Float = 0.0f,
-    snippet: String? = null,
+    angle: Float = 0.0f,
+    minZoom: Double = OverlayDefaults.DefaultMinZoom,
+    isMinZoomInclusive: Boolean = true,
+    maxZoom: Double = OverlayDefaults.DefaultMaxZoom,
+    isMaxZoomInclusive: Boolean = true,
+    subCaptionText: String? = null,
+    subCaptionColor: Color = Color.Black,
+    subCaptionTextSize: TextUnit = MarkerDefaults.DefaultCaptionTextSize,
+    subCaptionMinZoom: Double = MarkerDefaults.DefaultCaptionMinZoom,
+    subCaptionMaxZoom: Double = MarkerDefaults.DefaultCaptionMaxZoom,
+    subCaptionHaloColor: Color = Color.White,
+    subCaptionRequestedWidth: Dp = 0.dp,
+    isHideCollidedSymbols: Boolean = false,
+    isHideCollidedMarkers: Boolean = false,
+    isHideCollidedCaptions: Boolean = false,
+    isForceShowIcon: Boolean = false,
+    isForceShowCaption: Boolean = false,
     tag: Any? = null,
-    title: String? = null,
+    captionText: String? = null,
+    captionColor: Color = Color.Black,
+    captionTextSize: TextUnit = MarkerDefaults.DefaultCaptionTextSize,
+    captionMinZoom: Double = MarkerDefaults.DefaultCaptionMinZoom,
+    captionMaxZoom: Double = MarkerDefaults.DefaultCaptionMaxZoom,
+    captionAligns: Array<Align> = MarkerDefaults.DefaultCaptionAligns,
     visible: Boolean = true,
     zIndex: Int = 0,
+    globalZIndex: Int = MarkerDefaults.DefaultGlobalZIndex,
     onClick: (Marker) -> Boolean = { false },
     onInfoWindowClick: (Marker) -> Unit = {},
     onInfoWindowClose: (Marker) -> Unit = {},
     onInfoWindowLongClick: (Marker) -> Unit = {},
-    content: @Composable() ((Marker) -> Unit)? = null
+    content: @Composable() ((Marker) -> Unit)? = null,
 ) {
     MarkerImpl(
         state = state,
+        width = width,
+        height = height,
         alpha = alpha,
         anchor = anchor,
-        flat = flat,
+        isFlat = isFlat,
         icon = icon,
+        iconTintColor = iconTintColor,
         infoWindowAnchor = infoWindowAnchor,
-        rotation = rotation,
-        snippet = snippet,
+        angle = angle,
+        minZoom = minZoom,
+        isMinZoomInclusive = isMinZoomInclusive,
+        maxZoom = maxZoom,
+        isMaxZoomInclusive = isMaxZoomInclusive,
+        subCaptionText = subCaptionText,
+        subCaptionColor = subCaptionColor,
+        subCaptionTextSize = subCaptionTextSize,
+        subCaptionMinZoom = subCaptionMinZoom,
+        subCaptionMaxZoom = subCaptionMaxZoom,
+        subCaptionHaloColor = subCaptionHaloColor,
+        subCaptionRequestedWidth = subCaptionRequestedWidth,
+        isHideCollidedSymbols = isHideCollidedSymbols,
+        isHideCollidedMarkers = isHideCollidedMarkers,
+        isHideCollidedCaptions = isHideCollidedCaptions,
+        isForceShowIcon = isForceShowIcon,
+        isForceShowCaption = isForceShowCaption,
         tag = tag,
-        title = title,
+        captionText = captionText,
+        captionColor = captionColor,
+        captionTextSize = captionTextSize,
+        captionMinZoom = captionMinZoom,
+        captionMaxZoom = captionMaxZoom,
+        captionAligns = captionAligns,
         visible = visible,
         zIndex = zIndex,
+        globalZIndex = globalZIndex,
         onClick = onClick,
         onInfoWindowClick = onInfoWindowClick,
         onInfoWindowClose = onInfoWindowClose,
@@ -320,13 +477,13 @@ public fun MarkerInfoWindowContent(
  * state such as its position and info window
  * @param alpha the alpha (opacity) of the marker
  * @param anchor the anchor for the marker image
- * @param flat sets if the marker should be flat against the map
+ * @param isFlat sets if the marker should be flat against the map
  * @param icon sets the icon for the marker
  * @param infoWindowAnchor the anchor point of the info window on the marker image
- * @param rotation the rotation of the marker in degrees clockwise about the marker's anchor point
- * @param snippet the snippet for the marker
+ * @param angle the angle of the marker in degrees clockwise about the marker's anchor point
+ * @param subCaptionText the snippet for the marker
  * @param tag optional tag to associate with the marker
- * @param title the title for the marker
+ * @param captionText the title for the marker
  * @param visible the visibility of the marker
  * @param zIndex the z-index of the marker
  * @param onClick a lambda invoked when the marker is clicked
@@ -343,17 +500,41 @@ public fun MarkerInfoWindowContent(
 @Composable
 private fun MarkerImpl(
     state: MarkerState = rememberMarkerState(),
+    width: Dp = MarkerDefaults.SizeAuto,
+    height: Dp = MarkerDefaults.SizeAuto,
     alpha: Float = 1.0f,
     anchor: Offset = Offset(0.5f, 1.0f),
-    flat: Boolean = false,
+    isFlat: Boolean = false,
     icon: OverlayImage = Marker.DEFAULT_ICON,
+    iconTintColor: Color = Color.Transparent,
     infoWindowAnchor: Offset = Offset(0.5f, 0.0f),
-    rotation: Float = 0.0f,
-    snippet: String? = null,
+    angle: Float = 0.0f,
+    minZoom: Double = OverlayDefaults.DefaultMinZoom,
+    isMinZoomInclusive: Boolean = true,
+    maxZoom: Double = OverlayDefaults.DefaultMaxZoom,
+    isMaxZoomInclusive: Boolean = true,
+    subCaptionText: String? = null,
+    subCaptionColor: Color = Color.Black,
+    subCaptionTextSize: TextUnit = MarkerDefaults.DefaultCaptionTextSize,
+    subCaptionMinZoom: Double = MarkerDefaults.DefaultCaptionMinZoom,
+    subCaptionMaxZoom: Double = MarkerDefaults.DefaultCaptionMaxZoom,
+    subCaptionHaloColor: Color = Color.White,
+    subCaptionRequestedWidth: Dp = 0.dp,
+    isHideCollidedSymbols: Boolean = false,
+    isHideCollidedMarkers: Boolean = false,
+    isHideCollidedCaptions: Boolean = false,
+    isForceShowIcon: Boolean = false,
+    isForceShowCaption: Boolean = false,
     tag: Any? = null,
-    title: String? = null,
+    captionText: String? = null,
+    captionColor: Color = Color.Black,
+    captionTextSize: TextUnit = MarkerDefaults.DefaultCaptionTextSize,
+    captionMinZoom: Double = MarkerDefaults.DefaultCaptionMinZoom,
+    captionMaxZoom: Double = MarkerDefaults.DefaultCaptionMaxZoom,
+    captionAligns: Array<Align> = MarkerDefaults.DefaultCaptionAligns,
     visible: Boolean = true,
     zIndex: Int = 0,
+    globalZIndex: Int = MarkerDefaults.DefaultGlobalZIndex,
     onClick: (Marker) -> Boolean = { false },
     onInfoWindowClick: (Marker) -> Unit = {},
     onInfoWindowClose: (Marker) -> Unit = {},
@@ -362,21 +543,48 @@ private fun MarkerImpl(
     infoContent: @Composable() ((Marker) -> Unit)? = null,
 ) {
     val mapApplier = currentComposer.applier as? MapApplier
+    val density = LocalDensity.current
     ComposeNode<MarkerNode, MapApplier>(
         factory = {
             val map = mapApplier?.map ?: error("Error adding marker")
             val marker: Marker = Marker().apply {
+                this.width = with(density) { width.roundToPx() }
+                this.height = with(density) { height.roundToPx() }
                 this.alpha = alpha
                 this.anchor = PointF(anchor.x, anchor.y)
-                this.isFlat = flat
+                this.isFlat = isFlat
                 this.icon = icon
+                this.iconTintColor = iconTintColor.toArgb()
                 this.infoWindow?.anchor = PointF(infoWindowAnchor.x, infoWindowAnchor.y)
                 this.position = state.position
-                this.angle = rotation
-                this.subCaptionText = snippet.orEmpty()
-                this.captionText = title.orEmpty()
+                this.angle = angle
+                this.minZoom = minZoom
+                this.isMinZoomInclusive = isMinZoomInclusive
+                this.maxZoom = maxZoom
+                this.isMaxZoomInclusive = isMaxZoomInclusive
+                this.subCaptionText = subCaptionText.orEmpty()
+                this.subCaptionColor = subCaptionColor.toArgb()
+                this.subCaptionTextSize = subCaptionTextSize.value
+                this.subCaptionMinZoom = subCaptionMinZoom
+                this.subCaptionMaxZoom = subCaptionMaxZoom
+                this.subCaptionHaloColor = subCaptionHaloColor.toArgb()
+                this.subCaptionRequestedWidth = with(density) {
+                    subCaptionRequestedWidth.roundToPx()
+                }
+                this.isHideCollidedSymbols = isHideCollidedSymbols
+                this.isHideCollidedMarkers = isHideCollidedMarkers
+                this.isHideCollidedCaptions = isHideCollidedCaptions
+                this.isForceShowIcon = isForceShowIcon
+                this.isForceShowCaption = isForceShowCaption
+                this.captionText = captionText.orEmpty()
+                this.captionColor = captionColor.toArgb()
+                this.captionTextSize = captionTextSize.value
+                this.captionMinZoom = captionMinZoom
+                this.captionMaxZoom = captionMaxZoom
+                this.setCaptionAligns(*captionAligns.map { it.value }.toTypedArray())
                 this.isVisible = visible
                 this.zIndex = zIndex
+                this.globalZIndex = globalZIndex
             }
             marker.map = map
             marker.tag = tag
@@ -390,6 +598,7 @@ private fun MarkerImpl(
             MarkerNode(
                 marker = marker,
                 markerState = state,
+                density = density,
                 onMarkerClick = onClick,
                 onInfoWindowClick = onInfoWindowClick,
                 onInfoWindowClose = onInfoWindowClose,
@@ -399,6 +608,9 @@ private fun MarkerImpl(
             )
         },
         update = {
+            // The node holds density so that the updater blocks can be non-capturing,
+            // allowing the compiler to turn them into singletons
+            update(density) { this.density = it }
             update(onClick) { this.onMarkerClick = it }
             update(onInfoWindowClick) { this.onInfoWindowClick = it }
             update(onInfoWindowClose) { this.onInfoWindowClose = it }
@@ -406,28 +618,60 @@ private fun MarkerImpl(
             update(infoContent) { this.infoContent = it }
             update(infoWindow) { this.infoWindow = it }
 
+            set(width) {
+                this.marker.width = with(this.density) { it.roundToPx() }
+            }
+            set(height) {
+                this.marker.height = with(this.density) { it.roundToPx() }
+            }
             set(alpha) { this.marker.alpha = it }
             set(anchor) { this.marker.anchor = PointF(it.x, it.y) }
-            set(flat) { this.marker.isFlat = it }
+            set(isFlat) { this.marker.isFlat = it }
             set(icon) { this.marker.icon = it }
+            set(iconTintColor) { this.marker.iconTintColor = it.toArgb() }
             set(infoWindowAnchor) { this.marker.infoWindow?.anchor = PointF(it.x, it.y) }
             set(state.position) { this.marker.position = it }
-            set(rotation) { this.marker.angle = it }
-            set(snippet) {
+            set(angle) { this.marker.angle = it }
+            set(minZoom) { this.marker.minZoom = it }
+            set(isMinZoomInclusive) { this.marker.isMinZoomInclusive = it }
+            set(maxZoom) { this.marker.maxZoom = it }
+            set(isMaxZoomInclusive) { this.marker.isMaxZoomInclusive = it }
+            set(subCaptionText) {
                 this.marker.subCaptionText = it.orEmpty()
                 if (this.marker.isInfoWindowShown) {
                     this.marker.showInfoWindow()
                 }
             }
+            set(subCaptionColor) { this.marker.subCaptionColor = it.toArgb() }
+            set(subCaptionTextSize) { this.marker.subCaptionTextSize = it.value }
+            set(subCaptionMinZoom) { this.marker.subCaptionMinZoom = it }
+            set(subCaptionMaxZoom) { this.marker.subCaptionMaxZoom = it }
+            set(subCaptionHaloColor) { this.marker.subCaptionHaloColor = it.toArgb() }
+            set(subCaptionRequestedWidth) {
+                this.marker.subCaptionRequestedWidth = with(this.density) { it.roundToPx() }
+            }
+            set(isHideCollidedSymbols) { this.marker.isHideCollidedSymbols = it }
+            set(isHideCollidedMarkers) { this.marker.isHideCollidedMarkers = it }
+            set(isHideCollidedCaptions) { this.marker.isHideCollidedCaptions = it }
+            set(isForceShowIcon) { this.marker.isForceShowIcon = it }
+            set(isForceShowCaption) { this.marker.isForceShowCaption = it }
             set(tag) { this.marker.tag = it }
-            set(title) {
+            set(captionText) {
                 this.marker.captionText = it.orEmpty()
                 if (this.marker.isInfoWindowShown) {
                     this.marker.showInfoWindow()
                 }
             }
+            set(captionColor) { this.marker.captionColor = it.toArgb() }
+            set(captionTextSize) { this.marker.captionTextSize = it.value }
+            set(captionMinZoom) { this.marker.captionMinZoom = it }
+            set(captionMaxZoom) { this.marker.captionMaxZoom = it }
+            set(captionAligns) {
+                this.marker.setCaptionAligns(*it.map { it.value }.toTypedArray())
+            }
             set(visible) { this.marker.isVisible = it }
             set(zIndex) { this.marker.zIndex = it }
+            set(globalZIndex) { this.marker.globalZIndex = it }
         }
     )
 }

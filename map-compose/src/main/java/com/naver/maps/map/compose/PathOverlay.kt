@@ -38,6 +38,10 @@ internal class PathOverlayNode(
     }
 }
 
+public object PathOverlayDefaults {
+    public const val DefaultGlobalZIndex: Int = PathOverlay.DEFAULT_GLOBAL_Z_INDEX
+}
+
 /**
  * A composable for a path overlay on the map.
  *
@@ -69,6 +73,7 @@ public fun PathOverlay(
     visible: Boolean = true,
     width: Dp = 10.dp,
     zIndex: Int = 0,
+    globalZIndex: Int = PathOverlayDefaults.DefaultGlobalZIndex,
     onClick: (PathOverlay) -> Boolean = { false }
 ) {
     val mapApplier = currentComposer.applier as MapApplier?
@@ -92,6 +97,7 @@ public fun PathOverlay(
                 this.isVisible = visible
                 this.width = with(density) { width.roundToPx() }
                 this.zIndex = zIndex
+                this.globalZIndex = globalZIndex
             }
             pathOverlay.tag = tag
             pathOverlay.map = map
@@ -130,6 +136,7 @@ public fun PathOverlay(
             set(visible) { this.pathOverlay.isVisible = it }
             set(width) { this.pathOverlay.width = with(this.density) { it.roundToPx() } }
             set(zIndex) { this.pathOverlay.zIndex = it }
+            set(globalZIndex) { this.pathOverlay.globalZIndex = it }
         }
     )
 }

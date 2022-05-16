@@ -31,6 +31,10 @@ internal class GroundOverlayNode(
     }
 }
 
+public object GroundOverlayDefaults {
+    public const val DefaultGlobalZIndex: Int = GroundOverlay.DEFAULT_GLOBAL_Z_INDEX
+}
+
 /**
  * The position of a [GroundOverlay].
  *
@@ -70,6 +74,7 @@ public fun GroundOverlay(
     alpha: Float = 1f,
     visible: Boolean = true,
     zIndex: Int = 0,
+    globalZIndex: Int = GroundOverlayDefaults.DefaultGlobalZIndex,
     onClick: (GroundOverlay) -> Boolean = { false },
 ) {
     val mapApplier = currentComposer.applier as? MapApplier
@@ -82,6 +87,7 @@ public fun GroundOverlay(
                 this.alpha = alpha
                 this.isVisible = visible
                 this.zIndex = zIndex
+                this.globalZIndex = globalZIndex
             }
             groundOverlay.tag = tag
             groundOverlay.map = map
@@ -103,6 +109,7 @@ public fun GroundOverlay(
             set(alpha) { this.groundOverlay.alpha = it }
             set(visible) { this.groundOverlay.isVisible = it }
             set(zIndex) { this.groundOverlay.zIndex = it }
+            set(globalZIndex) { this.groundOverlay.globalZIndex = it }
         }
     )
 }

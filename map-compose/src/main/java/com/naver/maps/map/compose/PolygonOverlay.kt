@@ -20,26 +20,35 @@ import androidx.compose.runtime.ComposeNode
 import androidx.compose.runtime.currentComposer
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.overlay.PolygonOverlay
 
 internal class PolygonOverlayNode(
     val polygonOverlay: PolygonOverlay,
-    var onPolygonOverlayClick: (PolygonOverlay) -> Boolean
+    var onPolygonOverlayClick: (PolygonOverlay) -> Boolean,
+    var density: Density,
 ) : MapNode {
     override fun onRemoved() {
         polygonOverlay.remove()
     }
 }
 
+public object PolygonOverlayDefaults {
+    public const val DefaultGlobalZIndex: Int = PolygonOverlay.DEFAULT_GLOBAL_Z_INDEX
+}
+
 /**
  * A composable for a polygon overlay on the map.
  *
- * @param points the points comprising the vertices of the polygon
- * @param fillColor the fill color of the polygon
+ * @param coords the points comprising the vertices of the polygon
+ * @param color the fill color of the polygon
  * @param holes the holes for the polygon
- * @param strokeColor the stroke color of the polygon
- * @param strokeWidth specifies the polygon's stroke width, in display pixels
+ * @param outlineColor the stroke color of the polygon
+ * @param outlineWidth specifies the polygon's stroke width, in display pixels
  * @param tag optional tag to associate wiht the polygon
  * @param visible the visibility of the polygon
  * @param zIndex the z-index of the polygon
@@ -48,28 +57,31 @@ internal class PolygonOverlayNode(
 @ExperimentalNaverMapApi
 @Composable
 public fun PolygonOverlay(
-    points: List<LatLng>,
-    fillColor: Color = Color.Black,
+    coords: List<LatLng>,
+    color: Color = Color.Black,
     holes: List<List<LatLng>> = emptyList(),
-    strokeColor: Color = Color.Black,
-    strokeWidth: Int = 10,
+    outlineColor: Color = Color.Black,
+    outlineWidth: Dp = 10.dp,
     tag: Any? = null,
     visible: Boolean = true,
     zIndex: Int = 0,
-    onClick: (PolygonOverlay) -> Boolean = { false }
+    globalZIndex: Int = PolygonOverlayDefaults.DefaultGlobalZIndex,
+    onClick: (PolygonOverlay) -> Boolean = { false },
 ) {
     val mapApplier = currentComposer.applier as MapApplier?
+    val density = LocalDensity.current
     ComposeNode<PolygonOverlayNode, MapApplier>(
         factory = {
             val map = mapApplier?.map ?: error("Error adding polygon")
             val polygonOverlay = PolygonOverlay().apply {
-                this.coords = points
-                this.color = fillColor.toArgb()
+                this.coords = coords
+                this.color = color.toArgb()
                 this.holes = holes
-                this.outlineColor = strokeColor.toArgb()
-                this.outlineWidth = strokeWidth
+                this.outlineColor = outlineColor.toArgb()
+                this.outlineWidth = with(density) { outlineWidth.roundToPx() }
                 this.isVisible = visible
                 this.zIndex = zIndex
+                this.globalZIndex = globalZIndex
             }
             polygonOverlay.tag = tag
             polygonOverlay.map = map
@@ -80,19 +92,25 @@ public fun PolygonOverlay(
                     ?.invoke(polygonOverlay)
                     ?: false
             }
-            PolygonOverlayNode(polygonOverlay, onClick)
+            PolygonOverlayNode(polygonOverlay, onClick, density)
         },
         update = {
+            // The node holds density so that the updater blocks can be non-capturing,
+            // allowing the compiler to turn them into singletons
+            update(density) { this.density = it }
             update(onClick) { this.onPolygonOverlayClick = it }
 
-            set(points) { this.polygonOverlay.coords = it }
-            set(fillColor) { this.polygonOverlay.color = it.toArgb() }
+            set(coords) { this.polygonOverlay.coords = it }
+            set(color) { this.polygonOverlay.color = it.toArgb() }
             set(holes) { this.polygonOverlay.holes = it }
-            set(strokeColor) { this.polygonOverlay.outlineColor = it.toArgb() }
-            set(strokeWidth) { this.polygonOverlay.outlineWidth = it }
+            set(outlineColor) { this.polygonOverlay.outlineColor = it.toArgb() }
+            set(outlineWidth) {
+                this.polygonOverlay.outlineWidth = with(this.density) { it.roundToPx() }
+            }
             set(tag) { this.polygonOverlay.tag = it }
             set(visible) { this.polygonOverlay.isVisible = it }
             set(zIndex) { this.polygonOverlay.zIndex = it }
+            set(globalZIndex) { this.polygonOverlay.globalZIndex = it }
         }
     )
 }

@@ -15,8 +15,14 @@
  */
 package com.naver.maps.map.compose
 
+import com.naver.maps.map.NaverMap
 import com.naver.maps.map.overlay.Overlay
 
 internal fun Overlay.remove() {
     this.map = null
+}
+
+public object OverlayDefaults {
+    public const val DefaultMinZoom: Double = NaverMap.MINIMUM_ZOOM.toDouble()
+    public const val DefaultMaxZoom: Double = NaverMap.MAXIMUM_ZOOM.toDouble()
 }

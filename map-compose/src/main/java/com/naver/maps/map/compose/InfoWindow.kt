@@ -39,6 +39,10 @@ internal class InfoWindowNode(
     }
 }
 
+public object InfoWindowDefaults {
+    public const val DefaultGlobalZIndex: Int = InfoWindow.DEFAULT_GLOBAL_Z_INDEX
+}
+
 @ExperimentalNaverMapApi
 @Composable
 public inline fun rememberInfoWindowState(
@@ -126,6 +130,7 @@ public fun InfoWindow(
     tag: Any? = null,
     visible: Boolean = true,
     zIndex: Int = 0,
+    globalZIndex: Int = InfoWindowDefaults.DefaultGlobalZIndex,
     onClick: (InfoWindow) -> Boolean = { false },
 ) {
     val mapApplier = currentComposer.applier as MapApplier?
@@ -140,6 +145,7 @@ public fun InfoWindow(
                 this.offsetY = offsetY
                 this.isVisible = visible
                 this.zIndex = zIndex
+                this.globalZIndex = globalZIndex
             }
             infoWindow.tag = tag
             infoWindow.position(state.position, map)
@@ -164,6 +170,7 @@ public fun InfoWindow(
             set(tag) { this.infoWindow.tag = it }
             set(visible) { this.infoWindow.isVisible = it }
             set(zIndex) { this.infoWindow.zIndex = it }
+            set(globalZIndex) { this.infoWindow.globalZIndex = it }
         }
     )
 }

@@ -38,6 +38,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.LocationSource
 import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
@@ -48,6 +49,10 @@ import kotlinx.coroutines.awaitCancellation
 import java.util.Locale
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
+
+public object NaverMapDefaults {
+    public val DefaultCameraPosition: CameraPosition = NaverMap.DEFAULT_CAMERA_POSITION
+}
 
 @ExperimentalNaverMapApi
 @Composable

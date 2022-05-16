@@ -13,14 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.naver.maps.map.compose
+package com.naver.maps.map.compose.demo
 
-import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
+import com.naver.maps.map.LocationSource
 
-@Immutable
-public enum class LocationTrackingMode(public val value: com.naver.maps.map.LocationTrackingMode) {
-    None(com.naver.maps.map.LocationTrackingMode.None),
-    NoFollow(com.naver.maps.map.LocationTrackingMode.NoFollow),
-    Follow(com.naver.maps.map.LocationTrackingMode.Follow),
-    Face(com.naver.maps.map.LocationTrackingMode.Face)
+val LocalLocationSource = staticCompositionLocalOf<LocationSource> {
+    error("CompositionLocal LocalLocationSource not present")
+}
+
+@Composable
+fun ProvideLocationSource(locationSource: LocationSource, content: @Composable () -> Unit) {
+    CompositionLocalProvider(LocalLocationSource provides locationSource, content = content)
 }

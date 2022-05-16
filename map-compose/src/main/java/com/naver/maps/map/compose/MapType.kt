@@ -22,10 +22,10 @@ import androidx.compose.runtime.Immutable
  */
 @Immutable
 public enum class MapType(public val value: com.naver.maps.map.NaverMap.MapType) {
-    BASIC(com.naver.maps.map.NaverMap.MapType.Basic),
-    NAVI(com.naver.maps.map.NaverMap.MapType.Navi),
-    SATELLITE(com.naver.maps.map.NaverMap.MapType.Satellite),
-    HYBRID(com.naver.maps.map.NaverMap.MapType.Hybrid),
-    TERRAIN(com.naver.maps.map.NaverMap.MapType.Terrain),
-    NONE(com.naver.maps.map.NaverMap.MapType.None)
+    Basic(com.naver.maps.map.NaverMap.MapType.Basic),
+    Navi(com.naver.maps.map.NaverMap.MapType.Navi),
+    Satellite(com.naver.maps.map.NaverMap.MapType.Satellite),
+    Hybrid(com.naver.maps.map.NaverMap.MapType.Hybrid),
+    Terrain(com.naver.maps.map.NaverMap.MapType.Terrain),
+    None(com.naver.maps.map.NaverMap.MapType.None)
 }

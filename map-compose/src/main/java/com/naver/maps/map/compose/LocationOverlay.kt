@@ -32,8 +32,12 @@ import com.naver.maps.map.overlay.OverlayImage
 internal class LocationOverlayNode(
     val locationOverlay: LocationOverlay,
     var onLocationOverlayClick: (LocationOverlay) -> Boolean,
-    var density: Density
+    var density: Density,
 ) : MapNode
+
+public object LocationOverlayDefaults {
+    public const val DefaultGlobalZIndex: Int = LocationOverlay.DEFAULT_GLOBAL_Z_INDEX
+}
 
 /**
  * A composable for a location overlay on the map.
@@ -62,6 +66,7 @@ public fun LocationOverlay(
     tag: Any? = null,
     visible: Boolean = true,
     zIndex: Int = 0,
+    globalZIndex: Int = LocationOverlayDefaults.DefaultGlobalZIndex,
     onClick: (LocationOverlay) -> Boolean = { false },
 ) {
     val mapApplier = currentComposer.applier as MapApplier?
@@ -86,6 +91,7 @@ public fun LocationOverlay(
                 this.circleOutlineColor = circleOutlineColor.toArgb()
                 this.isVisible = visible
                 this.zIndex = zIndex
+                this.globalZIndex = globalZIndex
             }
             locationOverlay.tag = tag
             locationOverlay.setOnClickListener {
@@ -122,6 +128,7 @@ public fun LocationOverlay(
             set(visible) { this.locationOverlay.isVisible = it }
             set(tag) { this.locationOverlay.tag = it }
             set(zIndex) { this.locationOverlay.zIndex = it }
+            set(globalZIndex) { this.locationOverlay.globalZIndex = it }
         }
     )
 }

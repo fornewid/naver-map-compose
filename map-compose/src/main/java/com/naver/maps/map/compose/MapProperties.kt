@@ -29,7 +29,7 @@ internal object MapPropertiesDefaults {
     const val DefaultCameraAnimationDuration: Int =
         NaverMap.DEFAULT_DEFAULT_CAMERA_ANIMATION_DURATION
     val DefaultIndoorFocusRadius: Dp = NaverMap.DEFAULT_INDOOR_FOCUS_RADIUS_DP.dp
-    val DefaultLocationTrackingMode: LocationTrackingMode = LocationTrackingMode.NONE
+    val DefaultLocationTrackingMode: LocationTrackingMode = LocationTrackingMode.None
 }
 
 /**
@@ -40,7 +40,7 @@ internal object MapPropertiesDefaults {
  * See: https://jakewharton.com/public-api-challenges-in-kotlin/
  */
 public data class MapProperties(
-    public val mapType: MapType = MapType.BASIC,
+    public val mapType: MapType = MapType.Basic,
     public val extent: LatLngBounds? = null,
     public val minZoom: Double = MapPropertiesDefaults.DefaultMinZoom,
     public val maxZoom: Double = MapPropertiesDefaults.DefaultMaxZoom,

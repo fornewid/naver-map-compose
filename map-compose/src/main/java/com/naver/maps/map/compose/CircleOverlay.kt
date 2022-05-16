@@ -37,6 +37,10 @@ internal class CircleOverlayNode(
     }
 }
 
+public object CircleOverlayDefaults {
+    public const val DefaultGlobalZIndex: Int = CircleOverlay.DEFAULT_GLOBAL_Z_INDEX
+}
+
 /**
  * A composable for a circle overlay on the map.
  *
@@ -61,6 +65,7 @@ public fun CircleOverlay(
     tag: Any? = null,
     visible: Boolean = true,
     zIndex: Int = 0,
+    globalZIndex: Int = CircleOverlayDefaults.DefaultGlobalZIndex,
     onClick: (CircleOverlay) -> Boolean = { false },
 ) {
     val mapApplier = currentComposer.applier as? MapApplier
@@ -76,6 +81,7 @@ public fun CircleOverlay(
                 this.outlineWidth = with(density) { outlineWidth.roundToPx() }
                 this.isVisible = visible
                 this.zIndex = zIndex
+                this.globalZIndex = globalZIndex
             }
             circleOverlay.tag = tag
             circleOverlay.map = map
@@ -104,6 +110,7 @@ public fun CircleOverlay(
             set(tag) { this.circleOverlay.tag = it }
             set(visible) { this.circleOverlay.isVisible = it }
             set(zIndex) { this.circleOverlay.zIndex = it }
+            set(globalZIndex) { this.circleOverlay.globalZIndex = it }
         }
     )
 }
