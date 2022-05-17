@@ -101,10 +101,10 @@ package com.naver.maps.map.compose {
   }
 
   public final class InfoWindowPosition {
-    method public com.naver.maps.map.overlay.Align? getAlign();
+    method public com.naver.maps.map.compose.Align? getAlign();
     method public com.naver.maps.map.overlay.Marker? getMarker();
     method public com.naver.maps.geometry.LatLng? getPosition();
-    property public final com.naver.maps.map.overlay.Align? align;
+    property public final com.naver.maps.map.compose.Align? align;
     property public final com.naver.maps.map.overlay.Marker? marker;
     property public final com.naver.maps.geometry.LatLng? position;
     field public static final com.naver.maps.map.compose.InfoWindowPosition.Companion Companion;
@@ -113,7 +113,7 @@ package com.naver.maps.map.compose {
   public static final class InfoWindowPosition.Companion {
     method public com.naver.maps.map.compose.InfoWindowPosition close();
     method public com.naver.maps.map.compose.InfoWindowPosition open(com.naver.maps.map.overlay.Marker marker);
-    method public com.naver.maps.map.compose.InfoWindowPosition open(com.naver.maps.map.overlay.Marker marker, com.naver.maps.map.overlay.Align align);
+    method public com.naver.maps.map.compose.InfoWindowPosition open(com.naver.maps.map.overlay.Marker marker, com.naver.maps.map.compose.Align align);
     method public com.naver.maps.map.compose.InfoWindowPosition open(com.naver.maps.geometry.LatLng position);
   }
 
@@ -121,8 +121,19 @@ package com.naver.maps.map.compose {
     ctor public InfoWindowState(optional com.naver.maps.map.compose.InfoWindowPosition position);
     method @UiThread public void close();
     method @UiThread public void open(com.naver.maps.map.overlay.Marker marker);
-    method @UiThread public void open(com.naver.maps.map.overlay.Marker marker, com.naver.maps.map.overlay.Align align);
+    method @UiThread public void open(com.naver.maps.map.overlay.Marker marker, com.naver.maps.map.compose.Align align);
     method @UiThread public void open(com.naver.maps.geometry.LatLng position);
+  }
+
+  @androidx.compose.runtime.Immutable public enum LayerGroup {
+    method public final String! getValue();
+    property public final String! value;
+    enum_constant public static final com.naver.maps.map.compose.LayerGroup Bicycle;
+    enum_constant public static final com.naver.maps.map.compose.LayerGroup Building;
+    enum_constant public static final com.naver.maps.map.compose.LayerGroup Cadastral;
+    enum_constant public static final com.naver.maps.map.compose.LayerGroup Mountain;
+    enum_constant public static final com.naver.maps.map.compose.LayerGroup Traffic;
+    enum_constant public static final com.naver.maps.map.compose.LayerGroup Transit;
   }
 
   public final class LocationOverlayDefaults {
@@ -144,26 +155,32 @@ package com.naver.maps.map.compose {
   }
 
   public final class MapProperties {
-    ctor public MapProperties(optional com.naver.maps.map.compose.MapType mapType, optional com.naver.maps.geometry.LatLngBounds? extent, optional double minZoom, optional double maxZoom, optional double maxTilt, optional int defaultCameraAnimationDuration, optional int fpsLimit, optional boolean isLiteModeEnabled, optional boolean isNightModeEnabled, optional boolean isIndoorEnabled, optional float indoorFocusRadius, optional float buildingHeight, optional float lightness, optional float symbolScale, optional float symbolPerspectiveRatio, optional com.naver.maps.map.compose.LocationTrackingMode locationTrackingMode);
+    ctor public MapProperties(optional com.naver.maps.map.compose.MapType mapType, optional com.naver.maps.geometry.LatLngBounds? extent, optional double minZoom, optional double maxZoom, optional double maxTilt, optional int defaultCameraAnimationDuration, optional int fpsLimit, optional java.util.Set<? extends com.naver.maps.map.compose.LayerGroup> enabledLayerGroupSet, optional boolean isLiteModeEnabled, optional boolean isNightModeEnabled, optional boolean isIndoorEnabled, optional float indoorFocusRadius, optional float buildingHeight, optional float lightness, optional float symbolScale, optional float symbolPerspectiveRatio, optional long backgroundColor, optional @DrawableRes int backgroundResource, optional com.naver.maps.map.compose.LocationTrackingMode locationTrackingMode);
     method public com.naver.maps.map.compose.MapType component1();
     method public boolean component10();
-    method public float component11-D9Ej5fM();
-    method public float component12();
+    method public boolean component11();
+    method public float component12-D9Ej5fM();
     method public float component13();
     method public float component14();
     method public float component15();
-    method public com.naver.maps.map.compose.LocationTrackingMode component16();
+    method public float component16();
+    method public long component17-0d7_KjU();
+    method public int component18();
+    method public com.naver.maps.map.compose.LocationTrackingMode component19();
     method public com.naver.maps.geometry.LatLngBounds? component2();
     method public double component3();
     method public double component4();
     method public double component5();
     method public int component6();
     method public int component7();
-    method public boolean component8();
+    method public java.util.Set<com.naver.maps.map.compose.LayerGroup> component8();
     method public boolean component9();
-    method public com.naver.maps.map.compose.MapProperties copy-gKLzdoI(com.naver.maps.map.compose.MapType mapType, com.naver.maps.geometry.LatLngBounds? extent, double minZoom, double maxZoom, double maxTilt, int defaultCameraAnimationDuration, int fpsLimit, boolean isLiteModeEnabled, boolean isNightModeEnabled, boolean isIndoorEnabled, float indoorFocusRadius, float buildingHeight, float lightness, float symbolScale, float symbolPerspectiveRatio, com.naver.maps.map.compose.LocationTrackingMode locationTrackingMode);
+    method public com.naver.maps.map.compose.MapProperties copy-9Mn6NVQ(com.naver.maps.map.compose.MapType mapType, com.naver.maps.geometry.LatLngBounds? extent, double minZoom, double maxZoom, double maxTilt, int defaultCameraAnimationDuration, int fpsLimit, java.util.Set<? extends com.naver.maps.map.compose.LayerGroup> enabledLayerGroupSet, boolean isLiteModeEnabled, boolean isNightModeEnabled, boolean isIndoorEnabled, float indoorFocusRadius, float buildingHeight, float lightness, float symbolScale, float symbolPerspectiveRatio, long backgroundColor, @DrawableRes int backgroundResource, com.naver.maps.map.compose.LocationTrackingMode locationTrackingMode);
+    method public long getBackgroundColor();
+    method public int getBackgroundResource();
     method public float getBuildingHeight();
     method public int getDefaultCameraAnimationDuration();
+    method public java.util.Set<com.naver.maps.map.compose.LayerGroup> getEnabledLayerGroupSet();
     method public com.naver.maps.geometry.LatLngBounds? getExtent();
     method public int getFpsLimit();
     method public float getIndoorFocusRadius();
@@ -178,8 +195,11 @@ package com.naver.maps.map.compose {
     method public boolean isIndoorEnabled();
     method public boolean isLiteModeEnabled();
     method public boolean isNightModeEnabled();
+    property public final long backgroundColor;
+    property public final int backgroundResource;
     property public final float buildingHeight;
     property public final int defaultCameraAnimationDuration;
+    property public final java.util.Set<com.naver.maps.map.compose.LayerGroup> enabledLayerGroupSet;
     property public final com.naver.maps.geometry.LatLngBounds? extent;
     property public final int fpsLimit;
     property public final float indoorFocusRadius;
@@ -194,6 +214,26 @@ package com.naver.maps.map.compose {
     property public final double minZoom;
     property public final float symbolPerspectiveRatio;
     property public final float symbolScale;
+  }
+
+  public final class MapPropertiesDefaults {
+    method public long getDefaultBackgroundColorDark();
+    method public long getDefaultBackgroundColorLight();
+    method public int getDefaultBackgroundDrawableDark();
+    method public int getDefaultBackgroundDrawableLight();
+    method public float getDefaultIndoorFocusRadius();
+    method public com.naver.maps.map.compose.LocationTrackingMode getDefaultLocationTrackingMode();
+    property public final long DefaultBackgroundColorDark;
+    property public final long DefaultBackgroundColorLight;
+    property public final int DefaultBackgroundDrawableDark;
+    property public final int DefaultBackgroundDrawableLight;
+    property public final float DefaultIndoorFocusRadius;
+    property public final com.naver.maps.map.compose.LocationTrackingMode DefaultLocationTrackingMode;
+    field public static final int DefaultCameraAnimationDuration = 200; // 0xc8
+    field public static final double DefaultMaxTilt = 63.0;
+    field public static final double DefaultMaxZoom = 21.0;
+    field public static final double DefaultMinZoom = 0.0;
+    field public static final com.naver.maps.map.compose.MapPropertiesDefaults INSTANCE;
   }
 
   public final class MapPropertiesKt {
@@ -273,11 +313,15 @@ package com.naver.maps.map.compose {
   }
 
   public final class MarkerDefaults {
+    method public android.graphics.PointF getDefaultAnchor();
     method public com.naver.maps.map.compose.Align![] getDefaultCaptionAligns();
     method public long getDefaultCaptionTextSize();
+    method public com.naver.maps.map.overlay.OverlayImage getDefaultIcon();
     method public float getSizeAuto();
+    property public final android.graphics.PointF DefaultAnchor;
     property public final com.naver.maps.map.compose.Align![] DefaultCaptionAligns;
     property public final long DefaultCaptionTextSize;
+    property public final com.naver.maps.map.overlay.OverlayImage DefaultIcon;
     property public final float SizeAuto;
     field public static final double DefaultCaptionMaxZoom = 21.0;
     field public static final double DefaultCaptionMinZoom = 0.0;

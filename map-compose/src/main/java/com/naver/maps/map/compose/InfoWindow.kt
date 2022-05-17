@@ -26,7 +26,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.NaverMap
-import com.naver.maps.map.overlay.Align
 import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
 
@@ -178,7 +177,7 @@ public fun InfoWindow(
 private fun InfoWindow.position(position: InfoWindowPosition, map: NaverMap?) {
     if (position.marker != null) {
         if (position.align != null) {
-            open(position.marker, position.align)
+            open(position.marker, position.align.value)
         } else {
             open(position.marker)
         }

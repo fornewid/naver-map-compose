@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ComposeNode
 import androidx.compose.runtime.currentComposer
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Density
@@ -164,7 +165,9 @@ internal inline fun MapUpdater(
                 )
             }
         }
-        set(mapProperties.defaultCameraAnimationDuration) { map.defaultCameraAnimationDuration = it }
+        set(mapProperties.defaultCameraAnimationDuration) {
+            map.defaultCameraAnimationDuration = it
+        }
         update(cameraPositionState) { this.cameraPositionState = it }
 
         set(mapUiSettings.pickTolerance) {
@@ -183,7 +186,9 @@ internal inline fun MapUpdater(
         set(mapUiSettings.compassEnabled) { map.uiSettings.isCompassEnabled = it }
         set(mapUiSettings.scaleBarEnabled) { map.uiSettings.isScaleBarEnabled = it }
         set(mapUiSettings.zoomControlEnabled) { map.uiSettings.isZoomControlEnabled = it }
-        set(mapUiSettings.indoorLevelPickerEnabled) { map.uiSettings.isIndoorLevelPickerEnabled = it }
+        set(mapUiSettings.indoorLevelPickerEnabled) {
+            map.uiSettings.isIndoorLevelPickerEnabled = it
+        }
         set(mapUiSettings.locationButtonEnabled) { map.uiSettings.isLocationButtonEnabled = it }
         set(mapUiSettings.logoClickEnabled) { map.uiSettings.isLogoClickEnabled = it }
         set(mapUiSettings.logoGravity) { map.uiSettings.logoGravity = it }
@@ -202,7 +207,11 @@ internal inline fun MapUpdater(
 
         set(mapProperties.isIndoorEnabled) { map.isIndoorEnabled = it }
         set(mapProperties.mapType) { map.mapType = it.value }
-        // TODO: (sungyong.an) setLayerGroupEnabled()
+        set(mapProperties.enabledLayerGroupSet) {
+            LayerGroup.values().forEach { layerGroup ->
+                map.setLayerGroupEnabled(layerGroup.value, layerGroup in it)
+            }
+        }
         set(mapProperties.isLiteModeEnabled) { map.isLiteModeEnabled = it }
         set(mapProperties.isNightModeEnabled) { map.isNightModeEnabled = it }
         set(mapProperties.buildingHeight) { map.buildingHeight = it }
@@ -214,9 +223,8 @@ internal inline fun MapUpdater(
                 map.indoorFocusRadius = it.roundToPx()
             }
         }
-        // TODO: (sungyong.an) setBackgroundColor()
-        // TODO: (sungyong.an) setBackgroundResource()
-
+        set(mapProperties.backgroundColor) { map.backgroundColor = it.toArgb() }
+        set(mapProperties.backgroundResource) { map.setBackgroundResource(it) }
         set(locationSource) { map.locationSource = it }
         set(mapProperties.locationTrackingMode) { map.locationTrackingMode = it.value }
 

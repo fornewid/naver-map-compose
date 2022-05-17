@@ -132,5 +132,13 @@ private val Destination.description: String
         Destination.Pivot -> "PivotScreen"
         Destination.CameraEvent -> "CameraEventScreen"
 
+        // MAP
+        Destination.MapTypesAndLayerGroups -> "MapTypesAndLayerGroupsScreen"
+        Destination.DisplayOptions -> "DisplayOptionsScreen"
+        Destination.IndoorMap -> "IndoorMapScreen"
+        Destination.LiteMode -> "LiteModeScreen"
+        Destination.NightMode -> "NightModeScreen"
+        Destination.Locale -> "LocaleScreen"
+
         Destination.Demo -> "DemoScreen"
     }

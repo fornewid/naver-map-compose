@@ -68,10 +68,12 @@ internal class MarkerNode(
 public object MarkerDefaults {
     public const val DefaultGlobalZIndex: Int = Marker.DEFAULT_GLOBAL_Z_INDEX
     public val SizeAuto: Dp = Marker.SIZE_AUTO.dp
+    public val DefaultIcon: OverlayImage = Marker.DEFAULT_ICON
+    public val DefaultAnchor: PointF = Marker.DEFAULT_ANCHOR
     public val DefaultCaptionTextSize: TextUnit = Marker.DEFAULT_CAPTION_TEXT_SIZE.sp
+    public val DefaultCaptionAligns: Array<Align> = arrayOf(Align.Bottom)
     public const val DefaultCaptionMinZoom: Double = NaverMap.MINIMUM_ZOOM.toDouble()
     public const val DefaultCaptionMaxZoom: Double = NaverMap.MAXIMUM_ZOOM.toDouble()
-    public val DefaultCaptionAligns: Array<Align> = arrayOf(Align.Bottom)
 }
 
 /**
@@ -161,7 +163,7 @@ public fun Marker(
     alpha: Float = 1.0f,
     anchor: Offset = Offset(0.5f, 1.0f),
     isFlat: Boolean = false,
-    icon: OverlayImage = Marker.DEFAULT_ICON,
+    icon: OverlayImage = MarkerDefaults.DefaultIcon,
     iconTintColor: Color = Color.Transparent,
     infoWindowAnchor: Offset = Offset(0.5f, 0.0f),
     angle: Float = 0.0f,
@@ -274,7 +276,7 @@ public fun MarkerInfoWindow(
     alpha: Float = 1.0f,
     anchor: Offset = Offset(0.5f, 1.0f),
     isFlat: Boolean = false,
-    icon: OverlayImage = Marker.DEFAULT_ICON,
+    icon: OverlayImage = MarkerDefaults.DefaultIcon,
     iconTintColor: Color = Color.Transparent,
     infoWindowAnchor: Offset = Offset(0.5f, 0.0f),
     angle: Float = 0.0f,
@@ -389,7 +391,7 @@ public fun MarkerInfoWindowContent(
     alpha: Float = 1.0f,
     anchor: Offset = Offset(0.5f, 1.0f),
     isFlat: Boolean = false,
-    icon: OverlayImage = Marker.DEFAULT_ICON,
+    icon: OverlayImage = MarkerDefaults.DefaultIcon,
     iconTintColor: Color = Color.Transparent,
     infoWindowAnchor: Offset = Offset(0.5f, 0.0f),
     angle: Float = 0.0f,
@@ -505,7 +507,7 @@ private fun MarkerImpl(
     alpha: Float = 1.0f,
     anchor: Offset = Offset(0.5f, 1.0f),
     isFlat: Boolean = false,
-    icon: OverlayImage = Marker.DEFAULT_ICON,
+    icon: OverlayImage = MarkerDefaults.DefaultIcon,
     iconTintColor: Color = Color.Transparent,
     infoWindowAnchor: Offset = Offset(0.5f, 0.0f),
     angle: Float = 0.0f,
