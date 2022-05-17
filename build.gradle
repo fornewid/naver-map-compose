@@ -1,0 +1,70 @@
+buildscript {
+    ext.buildConfig = [
+            'minSdk'    : 21,
+            'targetSdk' : 32,
+            'compileSdk': 32
+    ]
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath libs.android.pluginGradle
+        classpath libs.kotlin.pluginGradle
+        classpath libs.mavenPublish.pluginGradle
+        classpath libs.metalava.pluginGradle
+    }
+}
+
+plugins {
+    id 'com.diffplug.spotless' version '5.12.4'
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url 'https://naver.jfrog.io/artifactory/maven/'
+        }
+    }
+
+    plugins.withId("com.vanniktech.maven.publish") {
+        mavenPublish {
+            sonatypeHost = "S01"
+        }
+    }
+}
+
+subprojects {
+    apply plugin: 'com.diffplug.spotless'
+    spotless {
+        kotlin {
+            target '**/*.kt'
+            targetExclude("$buildDir/**/*.kt")
+            targetExclude('bin/**/*.kt')
+
+            ktlint("0.42.1")
+            licenseHeaderFile rootProject.file('spotless/copyright.kt')
+        }
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach { compile ->
+        kotlinOptions {
+            // Set JVM target to 1.8
+            jvmTarget = "1.8"
+            // Allow use of @OptIn
+            freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+        }
+    }
+
+    // If we have a POM Artifact ID, we should generate API files
+    if (project.hasProperty('POM_ARTIFACT_ID')) {
+        apply plugin: 'me.tylerbwong.gradle.metalava'
+
+        metalava {
+            filename = "api/current.api"
+            reportLintsAsErrors = true
+        }
+    }
+}

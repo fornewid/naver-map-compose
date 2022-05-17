@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NAVER Map Compose</string>
+
+    <!-- main menu -->
+    <string name="flush_cache">캐시 초기화</string>
+    <string name="cache_flushed">캐시 초기화 완료</string>
+    <string name="open_source_notice">오픈소스 라이선스</string>
+    <string name="info">정보</string>
+    <string name="sdk_info_title">NAVER Map Android SDK</string>
+    <string name="sdk_info_body_format">Version %1$s\n\n%2$s</string>
+    <string name="ok">확인</string>
+
+    <!-- basic demo -->
+    <string name="category_basic">Basic</string>
+
+    <string name="name_map_fragment">Map Fragment</string>
+    <string name="description_map_fragment">MapFragment를 사용한 지도 디스플레이</string>
+
+    <string name="name_map_fragment_in_layout">Map Fragment in Layout</string>
+    <string name="description_map_fragment_in_layout">레이아웃에서 &lt;fragment&gt;로 MapFragment를 사용한 지도 디스플레이</string>
+
+    <string name="name_map_view">Map View</string>
+    <string name="description_map_view">MapView를 사용한 지도 디스플레이</string>
+
+    <string name="name_retained_map_fragment">Retained Map Fragment</string>
+    <string name="description_retained_map_fragment">MapFragment에 setRetainInstance(true)를 적용한 지도 디스플레이</string>
+
+    <string name="name_retained_map_fragment_in_layout">Retained Map Fragment in Layout</string>
+    <string name="description_retained_map_fragment_in_layout">&lt;fragment&gt; + setRetainInstance(true)를 적용한 지도 디스플레이</string>
+
+    <!-- overlay demo -->
+    <string name="category_overlay">Overlay</string>
+
+    <string name="name_marker">Marker</string>
+    <string name="description_marker">마커</string>
+    <string name="marker_caption_1">☀캡션이 있는 마커🎉</string>
+    <string name="marker_caption_2">서브 캡션이 있는 마커</string>
+    <string name="marker_sub_caption_2">🇰🇷서브 캡션👩🏿‍🍳</string>
+
+    <string name="name_info_window">Info Window</string>
+    <string name="description_info_window">정보 창</string>
+    <string name="format_info_window_on_marker">마커: %s</string>
+    <string name="format_info_window_on_map">좌표: (%1$.5f, %2$.5f)</string>
+
+    <string name="name_custom_info_window">Custom Info Window</string>
+    <string name="description_custom_info_window">커스텀 어댑터를 사용하는 정보 창</string>
+    <string name="content_description_icon">아이콘</string>
+    <string name="format_coord">(%1$.5f, %2$.5f)</string>
+
+    <string name="name_polygon_overlay">Polygon</string>
+    <string name="description_polygon_overlay">폴리곤 오버레이</string>
+
+    <string name="name_polyline_overlay">Polyline</string>
+    <string name="description_polyline_overlay">폴리라인 오버레이</string>
+
+    <string name="name_circle_overlay">Circle</string>
+    <string name="description_circle_overlay">서클 오버레이</string>
+
+    <string name="name_location_overlay">Location Overlay</string>
+    <string name="description_location_overlay">로케이션(현위치) 오버레이</string>
+    <string name="label_bearing">베어링:</string>
+    <string name="default_bearing">0°</string>
+    <string name="format_bearing">%d°</string>
+
+    <string name="name_ground_overlay">Ground Overlay</string>
+    <string name="description_ground_overlay">그라운드 오버레이</string>
+
+    <string name="name_path_overlay">Path</string>
+    <string name="description_path_overlay">경로선 오버레이</string>
+    <string name="label_progress">진척률:</string>
+    <string name="default_progress">30%</string>
+    <string name="format_progress">%d%%</string>
+
+    <string name="name_multipart_path_overlay">Multipart Path</string>
+    <string name="description_multipart_path_overlay">멀티파트 경로선 오버레이</string>
+
+    <string name="name_arrowhead_path_overlay">Arrowhead Path</string>
+    <string name="description_arrowhead_path_overlay">화살표 오버레이</string>
+
+    <string name="name_overlay_min_max_zoom">Overlay Min/Max Zoom</string>
+    <string name="description_overlay_min_max_zoom">오버레이의 최소/최대 줌레벨 제한</string>
+    <string name="content_description_reset">초기화</string>
+    <string name="format_double">%.2f</string>
+    <string name="caption_marker_1">[15, 17]</string>
+    <string name="caption_marker_2">(15, 17]</string>
+    <string name="caption_marker_3">[15, 17)</string>
+    <string name="caption_marker_4">(15, 17)</string>
+
+    <string name="name_global_z_index">Global Z-Index</string>
+    <string name="description_global_z_index">오버레이간 계층 지정</string>
+    <string name="marker_over_path">경로선 위에 위치한 마커</string>
+    <string name="marker_under_path">경로선 아래에 위치한 마커</string>
+
+    <string name="name_overlay_collision">Overlay &amp; Symbol Collision</string>
+    <string name="description_overlay_collision">오버레이 &amp; 심벌 충돌 옵션</string>
+    <string name="hide_collided_symbols">겹치는 심벌 숨김</string>
+    <string name="hide_collided_markers">겹치는 마커 숨김</string>
+    <string name="hide_collided_captions">겹치는 캡션 숨김</string>
+    <string name="force_show_icon">녹색 마커는 겹쳐도 아이콘 표시</string>
+    <string name="force_show_caption">녹색 마커는 겹쳐도 캡션 표시</string>
+    <string name="label_caption_aligns">캡션 방향:</string>
+    <string name="bottom">아래</string>
+    <string name="edges">모서리</string>
+    <string name="apexes">꼭지점</string>
+    <string name="outsides">바깥쪽</string>
+
+    <!-- camera demo -->
+    <string name="category_camera">Camera</string>
+
+    <string name="name_camera_move">Camera Move</string>
+    <string name="description_camera_move">간단한 카메라 이동</string>
+    <string name="content_description_run">실행</string>
+
+    <string name="name_camera_animation">Camera Animations</string>
+    <string name="description_camera_animation">카메라 이동시 애니메이션 적용</string>
+
+    <string name="name_camera_update_params">Camera Update With Parameters</string>
+    <string name="description_camera_update_params">다양한 파라메터를 이용한 카메라 이동</string>
+
+    <string name="name_fit_bounds">Fit Camera to Bounds</string>
+    <string name="description_fit_bounds">영역이 보이는 위치로 카메라 이동</string>
+
+    <string name="name_pivot">Pivot</string>
+    <string name="description_pivot">카메라 이동시 피봇 지점 사용</string>
+
+    <string name="name_camera_event">Camera Event</string>
+    <string name="description_camera_event">카메라 이벤트 사용</string>
+    <string name="label_camera_change">이동:</string>
+    <string name="label_camera_idle">대기:</string>
+    <string name="content_description_center_marker">중심 마커</string>
+    <string name="content_description_center_crosshair">중심점</string>
+    <string name="content_description_move_camera">카메라 이동</string>
+    <string name="format_camera_event">[%1$d] (%2$.5f, %3$.5f) / %4$.2f / %5$.1f / %6$.1f</string>
+    <string name="camera_update_finished">카메라 이동 완료</string>
+    <string name="camera_update_cancelled">카메라 이동 취소</string>
+
+    <!-- map demo -->
+    <string name="category_map">Map</string>
+
+    <string name="name_map_types_and_layer_groups">Map Types &amp; Layer Groups</string>
+    <string name="description_map_types_and_layer_groups">지도 유형 및 레이어 그룹 지정</string>
+    <string name="label_map_type">지도 유형:</string>
+    <string name="layer_groups">레이어 그룹…</string>
+    <string name="building">건물</string>
+    <string name="traffic">실시간 교통정보</string>
+    <string name="transit">대중교통</string>
+    <string name="bicycle">자전거</string>
+    <string name="cadastral">지적도</string>
+    <string name="mountain">등산로</string>
+    <string name="name_display_options">Display Options</string>
+
+    <string name="description_display_options">건물 높이 등 디스플레이 옵션 지정</string>
+    <string name="label_map_lightness">지도 밝기:</string>
+    <string name="default_map_lightness">0.00</string>
+    <string name="label_building_height">건물 높이:</string>
+    <string name="default_building_height">1.00</string>
+    <string name="label_symbol_scale">심벌 크기:</string>
+    <string name="default_symbol_scale">1.00</string>
+    <string name="label_symbol_perspective_ratio">심벌 원근감:</string>
+    <string name="default_symbol_perspective_ratio">1.00</string>
+    <string name="format_display_option_value">%.02f</string>F
+    <string name="name_indoor_map">Indoor Map</string>
+
+    <string name="description_indoor_map">실내지도 사용</string>
+    <string name="name_lite_mode">Lite Mode</string>
+
+    <string name="description_lite_mode">라이트 모드 사용</string>
+    <string name="name_night_mode">Night Mode</string>
+    <string name="description_night_mode">내비게이션 야간 모드 사용</string>
+
+    <string name="night_mode">야간 모드</string>
+    <string name="name_locale">Locale</string>
+    <string name="description_locale">심벌 로케일 지정</string>
+
+    <string name="label_locale">로케일:</string>
+    <string name="category_option">Map Options</string>
+    <string name="name_min_max_zoom">Min/Max Zoom</string>
+    <string name="description_min_max_zoom">최소/최대 줌레벨 제한</string>
+
+    <!-- option demo -->
+    <string name="name_max_tilt">Max Tilt</string>
+
+    <string name="description_max_tilt">최대 기울기 제한</string>
+    <string name="name_extent">Map Extent</string>
+
+    <string name="description_extent">지도 영역 제한</string>
+    <string name="name_content_padding">Content Padding</string>
+
+    <string name="description_content_padding">콘텐츠 패딩 사용</string>
+    <string name="label_content_bounds">콘텐츠 영역:</string>
+
+    <string name="label_covering_bounds">전체 영역:</string>
+    <string name="format_bounds">(%1$.4f, %2$.4f) (%3$.4f, %4$.4f)</string>
+    <string name="name_control_settings">Control Settings</string>
+    <string name="description_control_settings">지도 컨트롤 설정</string>
+    <string name="compass">나침반</string>
+
+    <string name="scale_bar">축척 바</string>
+    <string name="zoom_control">확대/축소 컨트롤</string>
+    <string name="indoor_level_picker">실내지도 층 피커</string>
+    <string name="location_button">현위치 버튼</string>
+    <string name="logo_click">로고 클릭</string>
+    <string name="name_custom_control_layout">Custom Control Layout</string>
+    <string name="description_custom_control_layout">기본 지도 컨트롤을 비활성화하고 별도로 배치</string>
+    <string name="content_description_relayout">재배치</string>
+
+    <string name="name_gesture_settings">Gesture Settings</string>
+    <string name="description_gesture_settings">제스처 설정</string>
+    <string name="scroll">스크롤</string>
+
+    <string name="zoom">줌</string>
+    <string name="tilt">틸트</string>
+    <string name="rotate">회전</string>
+    <string name="stop">스톱</string>
+    <string name="name_xml_attributes">XML Attributes</string>
+    <string name="description_xml_attributes">레이아웃 XML 속성을 사용해 옵션 지정</string>
+    <string name="name_map_view_options">MapView &amp; NaverMapOptions</string>
+
+    <string name="description_map_view_options">MapView를 동적으로 생성하고 NaverMapOptions 적용</string>
+    <string name="category_event">Map Event</string>
+
+    <string name="name_map_click_event">Map Click Event</string>
+    <string name="description_map_click_event">클릭 &amp; 롱 클릭 이벤트 처리</string>
+
+    <!-- event demo -->
+    <string name="format_map_click">지도 클릭\n(%1$.5f, %2$.5f)</string>
+
+    <string name="format_map_long_click">지도 롱 클릭\n(%1$.5f, %2$.5f)</string>
+    <string name="name_overlay_click_event">Overlay Click Event</string>
+    <string name="description_overlay_click_event">오버레이 클릭 이벤트 처리 및 소비</string>
+    <string name="consume_event">이벤트 소비</string>
+
+    <string name="propagate_event">이벤트 전파</string>
+    <string name="no_event_listener">이벤트 리스너 없음</string>
+    <string name="name_symbol_click_event">Symbol Click Event</string>
+    <string name="description_symbol_click_event">심벌 클릭 이벤트 처리</string>
+    <string name="format_symbol_click">%1$s 클릭\n(%2$.5f, %3$.5f)</string>
+
+    <string name="name_zoom_gestures_event">Zoom Gestures Event</string>
+    <string name="description_zoom_gestures_event">더블 탭 &amp; 투 핑거 탭 이벤트 처리 및 소비</string>
+    <string name="label_consume_event">이벤트 소비:</string>
+
+    <string name="double_tap">더블 탭</string>
+    <string name="two_finger_tap">투 핑거 탭</string>
+    <string name="format_map_double_tap">지도 더블 탭\n(%1$.5f, %2$.5f)</string>
+    <string name="format_map_two_finger_tap">지도 투 핑거 탭\n(%1$.5f, %2$.5f)</string>
+    <string name="category_location">Location</string>
+    <string name="name_location_tracking">Location Tracking</string>
+    <string name="description_location_tracking">위치 트래킹 기능 사용</string>
+
+    <!-- location demo -->
+    <string name="location_tracking_mode_none">None</string>
+
+    <string name="location_tracking_mode_no_follow">NoFollow</string>
+    <string name="location_tracking_mode_follow">Follow</string>
+    <string name="location_tracking_mode_face">Face</string>
+    <string name="name_location_activation_hook">Location Activation Hook</string>
+    <string name="description_location_activation_hook">위치 활성화시 사용자에게 확인 창 노출</string>
+    <string name="location_activation_confirm">지도에 현재 위치를 표시하시겠습니까?</string>
+
+    <string name="yes">네</string>
+    <string name="no">아니요</string>
+    <string name="name_custom_location_source">Custom Location Source</string>
+    <string name="description_custom_location_source">커스텀 위치 소스 지정</string>
+    <string name="format_location_changed">위치 변경\n(%1$.5f, %2$.5f)</string>
+
+    <string name="name_custom_location_tracking">Custom Location Tracking</string>
+    <string name="description_custom_location_tracking">내장 위치 트래킹 기능을 사용하지 않고 위치 사용</string>
+    <string name="category_misc">Misc</string>
+
+    <string name="name_pick_all">Pick All Overlays &amp; Symbols</string>
+    <string name="description_pick_all">특정 지점 주변의 모든 오버레이와 심벌을 피킹</string>
+
+    <!-- misc demo -->
+    <string name="format_pickable_symbol">Symbol(%s)</string>
+
+    <string name="format_pickable_marker">Marker(%s)</string>
+    <string name="pickable_overlay">Overlay</string>
+    <string name="name_projection">Projection</string>
+    <string name="description_projection">지도 좌표와 화면 좌표 간 변환</string>
+    <string name="content_description_target_crosshair">기준점</string>
+
+    <string name="format_point_coord">화면 좌표: (%1$.1f, %2$.1f)\n지도 좌표: (%3$.5f, %4$.5f)</string>
+    <string name="name_snapshot">Snapshot</string>
+    <string name="description_snapshot">지도 화면에 대한 스냅숏 촬영</string>
+    <string name="show_controls">지도 컨트롤 포함</string>
+
+    <string name="snapshot">스냅숏</string>
+    <string name="content_description_take_snapshot">스냅숏 촬영</string>
+    <string name="name_tile_cover_helper">Tile Cover Helper</string>
+    <string name="description_tile_cover_helper">타일 커버 헬퍼 사용</string>
+    <string-array name="map_types">
+        <item>Basic</item>
+        <item>Navi</item>
+        <item>Satellite</item>
+        <item>Hybrid</item>
+        <item>Terrain</item>
+        <item>None</item>
+    </string-array>
+
+    <string-array name="map_types_without_navi">
+        <item>Basic</item>
+        <item>Satellite</item>
+        <item>Hybrid</item>
+        <item>Terrain</item>
+    </string-array>
+    <string-array name="locales">
+        <item>시스템 설정 사용</item>
+        <item>한국어(ko-KR)</item>
+        <item>영어(en-US)</item>
+        <item>일본어(ja-JP)</item>
+        <item>중국어(zh-CN)</item>
+    </string-array>
+</resources>

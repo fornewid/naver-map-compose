@@ -1,0 +1,38 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'com.vanniktech.maven.publish'
+}
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+    defaultConfig {
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion "${libs.versions.compose.get()}"
+    }
+    buildFeatures {
+        buildConfig false
+        compose true
+    }
+    kotlinOptions {
+        freeCompilerArgs += '-Xexplicit-api=warning'
+    }
+}
+
+dependencies {
+    implementation libs.naver.map
+
+    implementation libs.compose.foundation
+    implementation libs.kotlin.stdlib
+    androidTestImplementation libs.androidx.test.ext.junit
+    androidTestImplementation libs.androidx.test.espresso.core
+}
