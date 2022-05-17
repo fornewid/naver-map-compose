@@ -107,8 +107,11 @@ private val Destination.title: String
 private val Destination.description: String
     get() = when (this) {
         Destination.Home -> "HomeScreen"
-        Destination.Demo -> "DemoScreen"
+
+        // BASIC
         Destination.Map -> "MapScreen"
+
+        // OVERLAY
         Destination.Marker -> "MarkerScreen"
         Destination.PolygonOverlay -> "PolygonOverlayScreen"
         Destination.PolylineOverlay -> "PolylineOverlayScreen"
@@ -120,4 +123,14 @@ private val Destination.description: String
         Destination.OverlayMinMaxZoom -> "OverlayMinMaxZoomScreen"
         Destination.GlobalZIndex -> "GlobalZIndexScreen"
         Destination.OverlayCollision -> "OverlayCollisionScreen"
+
+        // CAMERA
+        Destination.CameraMove -> "CameraMoveScreen"
+        Destination.CameraAnimation -> "CameraAnimationScreen"
+        Destination.CameraUpdateParams -> "CameraUpdateParamsScreen"
+        Destination.FitBounds -> "FitBoundsScreen"
+        Destination.Pivot -> "PivotScreen"
+        Destination.CameraEvent -> "CameraEventScreen"
+
+        Destination.Demo -> "DemoScreen"
     }

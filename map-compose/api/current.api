@@ -42,6 +42,7 @@ package com.naver.maps.map.compose {
     method public boolean isMoving();
     method @UiThread public void move(com.naver.maps.map.CameraUpdate update);
     method public void setPosition(com.naver.maps.map.CameraPosition value);
+    method @UiThread public void stop();
     property public final boolean isMoving;
     property public final com.naver.maps.map.CameraPosition position;
     property public final com.naver.maps.map.Projection? projection;

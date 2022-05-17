@@ -150,7 +150,7 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
                     coroutineScope.launch {
                         cameraPositionState.animate(
                             CameraUpdate.toCameraPosition(DEFAULT_CAMERA_POSITION),
-                            CameraAnimation.Easing
+                            animation = CameraAnimation.Easing
                         )
                     }
                 }
