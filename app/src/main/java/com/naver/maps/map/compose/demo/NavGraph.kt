@@ -55,6 +55,12 @@ import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.PathOverlay
 import com.naver.maps.map.compose.demo.basic.MapScreen
+import com.naver.maps.map.compose.demo.camera.CameraAnimationScreen
+import com.naver.maps.map.compose.demo.camera.CameraEventScreen
+import com.naver.maps.map.compose.demo.camera.CameraMoveScreen
+import com.naver.maps.map.compose.demo.camera.CameraUpdateParamsScreen
+import com.naver.maps.map.compose.demo.camera.FitBoundsScreen
+import com.naver.maps.map.compose.demo.camera.PivotScreen
 import com.naver.maps.map.compose.demo.overlay.ArrowheadPathOverlayScreen
 import com.naver.maps.map.compose.demo.overlay.CircleOverlayScreen
 import com.naver.maps.map.compose.demo.overlay.GlobalZIndexScreen
@@ -76,7 +82,11 @@ import com.naver.maps.map.util.MarkerIcons
 
 enum class Destination(val route: String) {
     Home("Home"),
+
+    // BASIC
     Map("Map"),
+
+    // OVERLAY
     Marker("Marker"),
     PolygonOverlay("PolygonOverlay"),
     PolylineOverlay("PolylineOverlay"),
@@ -88,6 +98,15 @@ enum class Destination(val route: String) {
     OverlayMinMaxZoom("OverlayMinMaxZoom"),
     GlobalZIndex("GlobalZIndex"),
     OverlayCollision("OverlayCollision"),
+
+    // CAMERA
+    CameraMove("CameraMove"),
+    CameraAnimation("CameraAnimation"),
+    CameraUpdateParams("CameraUpdateParams"),
+    FitBounds("FitBounds"),
+    Pivot("Pivot"),
+    CameraEvent("CameraEvent"),
+
     Demo("Demo"),
     ;
 
@@ -160,8 +179,23 @@ fun NavGraph(
         }
 
         // CAMERA
-        composable(Destination.Demo.route) {
-            MainScreen()
+        composable(Destination.CameraMove.route) {
+            CameraMoveScreen(upPress = upPress)
+        }
+        composable(Destination.CameraAnimation.route) {
+            CameraAnimationScreen(upPress = upPress)
+        }
+        composable(Destination.CameraUpdateParams.route) {
+            CameraUpdateParamsScreen(upPress = upPress)
+        }
+        composable(Destination.FitBounds.route) {
+            FitBoundsScreen(upPress = upPress)
+        }
+        composable(Destination.Pivot.route) {
+            PivotScreen(upPress = upPress)
+        }
+        composable(Destination.CameraEvent.route) {
+            CameraEventScreen(upPress = upPress)
         }
 
         // MAP

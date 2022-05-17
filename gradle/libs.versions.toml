@@ -35,6 +35,7 @@ compose-ui-testJunit4 = { module = "androidx.compose.ui:ui-test-junit4", version
 compose-ui-testManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
+compose-materialIconsExtended = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
 compose-animation = { module = "androidx.compose.animation:animation", version.ref = "compose" }
 
 androidx-core = "androidx.core:core-ktx:1.7.0"

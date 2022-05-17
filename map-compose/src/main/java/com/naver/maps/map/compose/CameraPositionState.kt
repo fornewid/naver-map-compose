@@ -309,6 +309,20 @@ public class CameraPositionState(
         }
     }
 
+    @UiThread
+    public fun stop() {
+        synchronized(lock) {
+            val map = map
+            movementOwner = null
+            if (map == null) {
+                // Do it when we have a map available
+                doOnMapChangedLocked { it?.cancelTransitions() }
+            } else {
+                map.cancelTransitions()
+            }
+        }
+    }
+
     public companion object {
         /**
          * The default saver implementation for [CameraPositionState]
