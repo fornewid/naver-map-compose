@@ -42,6 +42,7 @@ import androidx.navigation.compose.rememberNavController
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.LocationSource
+import com.naver.maps.map.compose.Align
 import com.naver.maps.map.compose.CameraPositionState
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.GroundOverlay
@@ -61,6 +62,12 @@ import com.naver.maps.map.compose.demo.camera.CameraMoveScreen
 import com.naver.maps.map.compose.demo.camera.CameraUpdateParamsScreen
 import com.naver.maps.map.compose.demo.camera.FitBoundsScreen
 import com.naver.maps.map.compose.demo.camera.PivotScreen
+import com.naver.maps.map.compose.demo.map.DisplayOptionsScreen
+import com.naver.maps.map.compose.demo.map.IndoorMapScreen
+import com.naver.maps.map.compose.demo.map.LiteModeScreen
+import com.naver.maps.map.compose.demo.map.LocaleScreen
+import com.naver.maps.map.compose.demo.map.MapTypesAndLayerGroupsScreen
+import com.naver.maps.map.compose.demo.map.NightModeScreen
 import com.naver.maps.map.compose.demo.overlay.ArrowheadPathOverlayScreen
 import com.naver.maps.map.compose.demo.overlay.CircleOverlayScreen
 import com.naver.maps.map.compose.demo.overlay.GlobalZIndexScreen
@@ -75,7 +82,6 @@ import com.naver.maps.map.compose.demo.overlay.PolylineOverlayScreen
 import com.naver.maps.map.compose.rememberCameraPositionState
 import com.naver.maps.map.compose.rememberInfoWindowState
 import com.naver.maps.map.compose.rememberMarkerState
-import com.naver.maps.map.overlay.Align
 import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.MarkerIcons
@@ -106,6 +112,14 @@ enum class Destination(val route: String) {
     FitBounds("FitBounds"),
     Pivot("Pivot"),
     CameraEvent("CameraEvent"),
+
+    // MAP
+    MapTypesAndLayerGroups("MapTypesAndLayerGroups"),
+    DisplayOptions("DisplayOptions"),
+    IndoorMap("IndoorMap"),
+    LiteMode("LiteMode"),
+    NightMode("NightMode"),
+    Locale("Locale"),
 
     Demo("Demo"),
     ;
@@ -199,8 +213,23 @@ fun NavGraph(
         }
 
         // MAP
-        composable(Destination.Demo.route) {
-            MainScreen()
+        composable(Destination.MapTypesAndLayerGroups.route) {
+            MapTypesAndLayerGroupsScreen(upPress = upPress)
+        }
+        composable(Destination.DisplayOptions.route) {
+            DisplayOptionsScreen(upPress = upPress)
+        }
+        composable(Destination.IndoorMap.route) {
+            IndoorMapScreen(upPress = upPress)
+        }
+        composable(Destination.LiteMode.route) {
+            LiteModeScreen(upPress = upPress)
+        }
+        composable(Destination.NightMode.route) {
+            NightModeScreen(upPress = upPress)
+        }
+        composable(Destination.Locale.route) {
+            LocaleScreen(upPress = upPress)
         }
 
         // MAP OPTIONS

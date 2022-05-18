@@ -24,7 +24,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
-import com.naver.maps.map.NaverMapOptions
 import com.naver.maps.map.compose.Align
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.Marker
@@ -32,6 +31,7 @@ import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.NaverMapDefaults
 import com.naver.maps.map.compose.demo.DefaultTopAppBar
 import com.naver.maps.map.compose.demo.R
+import com.naver.maps.map.compose.rememberCameraPositionState
 import com.naver.maps.map.compose.rememberMarkerState
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.MarkerIcons
@@ -47,18 +47,17 @@ fun MarkerScreen(upPress: () -> Unit) {
             )
         }
     ) { contentPadding ->
+        val cameraPositionState = rememberCameraPositionState {
+            this.position = CameraPosition(
+                NaverMapDefaults.DefaultCameraPosition.target,
+                NaverMapDefaults.DefaultCameraPosition.zoom,
+                30.0,
+                45.0
+            )
+        }
         NaverMap(
+            cameraPositionState = cameraPositionState,
             contentPadding = contentPadding,
-            naverMapOptionsFactory = {
-                NaverMapOptions().camera(
-                    CameraPosition(
-                        NaverMapDefaults.DefaultCameraPosition.target,
-                        NaverMapDefaults.DefaultCameraPosition.zoom,
-                        30.0,
-                        45.0
-                    )
-                )
-            }
         ) {
             Marker(
                 state = rememberMarkerState(

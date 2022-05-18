@@ -159,7 +159,7 @@
     <string name="default_symbol_scale">1.00</string>
     <string name="label_symbol_perspective_ratio">심벌 원근감:</string>
     <string name="default_symbol_perspective_ratio">1.00</string>
-    <string name="format_display_option_value">%.02f</string>F
+    <string name="format_display_option_value">%.02f</string>
     <string name="name_indoor_map">Indoor Map</string>
 
     <string name="description_indoor_map">실내지도 사용</string>

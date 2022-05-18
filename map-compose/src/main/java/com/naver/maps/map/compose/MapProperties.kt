@@ -15,6 +15,8 @@
  */
 package com.naver.maps.map.compose
 
+import androidx.annotation.DrawableRes
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.naver.maps.geometry.LatLngBounds
@@ -22,14 +24,30 @@ import com.naver.maps.map.NaverMap
 
 internal val DefaultMapProperties = MapProperties()
 
-internal object MapPropertiesDefaults {
-    const val DefaultMaxZoom: Double = NaverMap.MAXIMUM_ZOOM.toDouble()
-    const val DefaultMinZoom: Double = NaverMap.MINIMUM_ZOOM.toDouble()
-    const val DefaultMaxTilt: Double = NaverMap.MAXIMUM_TILT.toDouble()
-    const val DefaultCameraAnimationDuration: Int =
+public object MapPropertiesDefaults {
+
+    public const val DefaultMaxZoom: Double = NaverMap.MAXIMUM_ZOOM.toDouble()
+
+    public const val DefaultMinZoom: Double = NaverMap.MINIMUM_ZOOM.toDouble()
+
+    public const val DefaultMaxTilt: Double = NaverMap.MAXIMUM_TILT.toDouble()
+
+    public const val DefaultCameraAnimationDuration: Int =
         NaverMap.DEFAULT_DEFAULT_CAMERA_ANIMATION_DURATION
-    val DefaultIndoorFocusRadius: Dp = NaverMap.DEFAULT_INDOOR_FOCUS_RADIUS_DP.dp
-    val DefaultLocationTrackingMode: LocationTrackingMode = LocationTrackingMode.None
+
+    public val DefaultIndoorFocusRadius: Dp = NaverMap.DEFAULT_INDOOR_FOCUS_RADIUS_DP.dp
+
+    public val DefaultBackgroundColorLight: Color = Color(NaverMap.DEFAULT_BACKGROUND_COLOR_LIGHT)
+
+    public val DefaultBackgroundColorDark: Color = Color(NaverMap.DEFAULT_BACKGROUND_COLOR_DARK)
+
+    @DrawableRes
+    public val DefaultBackgroundDrawableLight: Int = NaverMap.DEFAULT_BACKGROUND_DRWABLE_LIGHT
+
+    @DrawableRes
+    public val DefaultBackgroundDrawableDark: Int = NaverMap.DEFAULT_BACKGROUND_DRWABLE_DARK
+
+    public val DefaultLocationTrackingMode: LocationTrackingMode = LocationTrackingMode.None
 }
 
 /**
@@ -47,6 +65,7 @@ public data class MapProperties(
     public val maxTilt: Double = MapPropertiesDefaults.DefaultMaxTilt,
     public val defaultCameraAnimationDuration: Int = MapPropertiesDefaults.DefaultCameraAnimationDuration,
     public val fpsLimit: Int = 0,
+    public val enabledLayerGroupSet: Set<LayerGroup> = hashSetOf(LayerGroup.Building),
     public val isLiteModeEnabled: Boolean = false,
     public val isNightModeEnabled: Boolean = false,
     public val isIndoorEnabled: Boolean = false,
@@ -55,6 +74,8 @@ public data class MapProperties(
     public val lightness: Float = 0f,
     public val symbolScale: Float = 1f,
     public val symbolPerspectiveRatio: Float = 1f,
+    public val backgroundColor: Color = MapPropertiesDefaults.DefaultBackgroundColorLight,
+    @DrawableRes public val backgroundResource: Int = MapPropertiesDefaults.DefaultBackgroundDrawableLight,
     public val locationTrackingMode: LocationTrackingMode = MapPropertiesDefaults.DefaultLocationTrackingMode,
 ) {
     init {
