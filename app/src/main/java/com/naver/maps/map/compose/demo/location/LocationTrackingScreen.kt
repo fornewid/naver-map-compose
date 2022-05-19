@@ -114,7 +114,7 @@ fun LocationTrackingScreen(upPress: () -> Unit) {
                         locationTrackingMode == LocationTrackingMode.Face
                 ),
                 onOptionChange = {
-                    //TODO: 변경된 locationTrackingMode를 확인할 수 있을까?
+                    // TODO: 변경된 locationTrackingMode를 확인할 수 있을까?
                 }
             )
         }

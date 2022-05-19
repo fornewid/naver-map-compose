@@ -81,11 +81,13 @@ private class CustomLocationSource : LocationSource {
     }
 
     fun onMapClick(point: PointF, coord: LatLng) {
-        listener?.onLocationChanged(Location("CustomLocationSource").apply {
-            latitude = coord.latitude
-            longitude = coord.longitude
-            accuracy = 100f
-        })
+        listener?.onLocationChanged(
+            Location("CustomLocationSource").apply {
+                latitude = coord.latitude
+                longitude = coord.longitude
+                accuracy = 100f
+            }
+        )
     }
 }
 
