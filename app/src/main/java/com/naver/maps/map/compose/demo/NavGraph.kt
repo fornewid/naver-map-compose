@@ -62,6 +62,10 @@ import com.naver.maps.map.compose.demo.camera.CameraMoveScreen
 import com.naver.maps.map.compose.demo.camera.CameraUpdateParamsScreen
 import com.naver.maps.map.compose.demo.camera.FitBoundsScreen
 import com.naver.maps.map.compose.demo.camera.PivotScreen
+import com.naver.maps.map.compose.demo.event.MapClickEventScreen
+import com.naver.maps.map.compose.demo.event.OverlayClickEventScreen
+import com.naver.maps.map.compose.demo.event.SymbolClickEventScreen
+import com.naver.maps.map.compose.demo.event.ZoomGesturesEventScreen
 import com.naver.maps.map.compose.demo.map.DisplayOptionsScreen
 import com.naver.maps.map.compose.demo.map.IndoorMapScreen
 import com.naver.maps.map.compose.demo.map.LiteModeScreen
@@ -134,6 +138,12 @@ enum class Destination(val route: String) {
     ContentPadding("ContentPadding"),
     ControlSettings("ControlSettings"),
     GestureSettings("GestureSettings"),
+
+    // MAP EVENT
+    MapClickEvent("MapClickEvent"),
+    OverlayClickEvent("OverlayClickEvent"),
+    SymbolClickEvent("SymbolClickEvent"),
+    ZoomGesturesEvent("ZoomGesturesEvent"),
 
     Demo("Demo"),
     ;
@@ -267,8 +277,17 @@ fun NavGraph(
         }
 
         // MAP EVENT
-        composable(Destination.Demo.route) {
-            MainScreen()
+        composable(Destination.MapClickEvent.route) {
+            MapClickEventScreen(upPress = upPress)
+        }
+        composable(Destination.OverlayClickEvent.route) {
+            OverlayClickEventScreen(upPress = upPress)
+        }
+        composable(Destination.SymbolClickEvent.route) {
+            SymbolClickEventScreen(upPress = upPress)
+        }
+        composable(Destination.ZoomGesturesEvent.route) {
+            ZoomGesturesEventScreen(upPress = upPress)
         }
 
         // LOCATION

@@ -148,5 +148,11 @@ private val Destination.description: String
         Destination.ControlSettings -> "ControlSettingsScreen"
         Destination.GestureSettings -> "GestureSettingsScreen"
 
+        // MAP EVENT
+        Destination.MapClickEvent -> "MapClickEventScreen"
+        Destination.OverlayClickEvent -> "OverlayClickEventScreen"
+        Destination.SymbolClickEvent -> "SymbolClickEventScreen"
+        Destination.ZoomGesturesEvent -> "ZoomGesturesEventScreen"
+
         Destination.Demo -> "DemoScreen"
     }
