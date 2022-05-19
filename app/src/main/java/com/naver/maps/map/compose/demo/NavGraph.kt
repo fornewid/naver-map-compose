@@ -66,6 +66,8 @@ import com.naver.maps.map.compose.demo.event.MapClickEventScreen
 import com.naver.maps.map.compose.demo.event.OverlayClickEventScreen
 import com.naver.maps.map.compose.demo.event.SymbolClickEventScreen
 import com.naver.maps.map.compose.demo.event.ZoomGesturesEventScreen
+import com.naver.maps.map.compose.demo.location.CustomLocationSourceScreen
+import com.naver.maps.map.compose.demo.location.LocationTrackingScreen
 import com.naver.maps.map.compose.demo.map.DisplayOptionsScreen
 import com.naver.maps.map.compose.demo.map.IndoorMapScreen
 import com.naver.maps.map.compose.demo.map.LiteModeScreen
@@ -144,6 +146,10 @@ enum class Destination(val route: String) {
     OverlayClickEvent("OverlayClickEvent"),
     SymbolClickEvent("SymbolClickEvent"),
     ZoomGesturesEvent("ZoomGesturesEvent"),
+
+    // LOCATION
+    LocationTracking("LocationTracking"),
+    CustomLocationSource("CustomLocationSource"),
 
     Demo("Demo"),
     ;
@@ -291,8 +297,11 @@ fun NavGraph(
         }
 
         // LOCATION
-        composable(Destination.Demo.route) {
-            MainScreen()
+        composable(Destination.LocationTracking.route) {
+            LocationTrackingScreen(upPress = upPress)
+        }
+        composable(Destination.CustomLocationSource.route) {
+            CustomLocationSourceScreen(upPress = upPress)
         }
 
         // MISC

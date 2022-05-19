@@ -154,5 +154,9 @@ private val Destination.description: String
         Destination.SymbolClickEvent -> "SymbolClickEventScreen"
         Destination.ZoomGesturesEvent -> "ZoomGesturesEventScreen"
 
+        // LOCATION
+        Destination.LocationTracking -> "LocationTrackingScreen"
+        Destination.CustomLocationSource -> "CustomLocationSourceScreen"
+
         Destination.Demo -> "DemoScreen"
     }
