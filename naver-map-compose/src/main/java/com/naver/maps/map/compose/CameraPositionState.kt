@@ -22,6 +22,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.CameraAnimation
 import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.CameraUpdate
@@ -74,6 +75,12 @@ public class CameraPositionState(
      */
     public val projection: Projection?
         get() = map?.projection
+
+    public val contentBounds: LatLngBounds?
+        get() = map?.contentBounds
+
+    public val coveringBounds: LatLngBounds?
+        get() = map?.coveringBounds
 
     /**
      * Local source of truth for the current camera position.

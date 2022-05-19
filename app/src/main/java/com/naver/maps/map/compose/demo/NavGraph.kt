@@ -62,12 +62,24 @@ import com.naver.maps.map.compose.demo.camera.CameraMoveScreen
 import com.naver.maps.map.compose.demo.camera.CameraUpdateParamsScreen
 import com.naver.maps.map.compose.demo.camera.FitBoundsScreen
 import com.naver.maps.map.compose.demo.camera.PivotScreen
+import com.naver.maps.map.compose.demo.event.MapClickEventScreen
+import com.naver.maps.map.compose.demo.event.OverlayClickEventScreen
+import com.naver.maps.map.compose.demo.event.SymbolClickEventScreen
+import com.naver.maps.map.compose.demo.event.ZoomGesturesEventScreen
+import com.naver.maps.map.compose.demo.location.CustomLocationSourceScreen
+import com.naver.maps.map.compose.demo.location.LocationTrackingScreen
 import com.naver.maps.map.compose.demo.map.DisplayOptionsScreen
 import com.naver.maps.map.compose.demo.map.IndoorMapScreen
 import com.naver.maps.map.compose.demo.map.LiteModeScreen
 import com.naver.maps.map.compose.demo.map.LocaleScreen
 import com.naver.maps.map.compose.demo.map.MapTypesAndLayerGroupsScreen
 import com.naver.maps.map.compose.demo.map.NightModeScreen
+import com.naver.maps.map.compose.demo.option.ContentPaddingScreen
+import com.naver.maps.map.compose.demo.option.ControlSettingsScreen
+import com.naver.maps.map.compose.demo.option.ExtentScreen
+import com.naver.maps.map.compose.demo.option.GestureSettingsScreen
+import com.naver.maps.map.compose.demo.option.MaxTiltScreen
+import com.naver.maps.map.compose.demo.option.MinMaxZoomScreen
 import com.naver.maps.map.compose.demo.overlay.ArrowheadPathOverlayScreen
 import com.naver.maps.map.compose.demo.overlay.CircleOverlayScreen
 import com.naver.maps.map.compose.demo.overlay.GlobalZIndexScreen
@@ -120,6 +132,24 @@ enum class Destination(val route: String) {
     LiteMode("LiteMode"),
     NightMode("NightMode"),
     Locale("Locale"),
+
+    // MAP OPTIONS
+    MinMaxZoom("MinMaxZoom"),
+    MaxTilt("MaxTilt"),
+    Extent("Extent"),
+    ContentPadding("ContentPadding"),
+    ControlSettings("ControlSettings"),
+    GestureSettings("GestureSettings"),
+
+    // MAP EVENT
+    MapClickEvent("MapClickEvent"),
+    OverlayClickEvent("OverlayClickEvent"),
+    SymbolClickEvent("SymbolClickEvent"),
+    ZoomGesturesEvent("ZoomGesturesEvent"),
+
+    // LOCATION
+    LocationTracking("LocationTracking"),
+    CustomLocationSource("CustomLocationSource"),
 
     Demo("Demo"),
     ;
@@ -233,18 +263,45 @@ fun NavGraph(
         }
 
         // MAP OPTIONS
-        composable(Destination.Demo.route) {
-            MainScreen()
+        composable(Destination.MinMaxZoom.route) {
+            MinMaxZoomScreen(upPress = upPress)
+        }
+        composable(Destination.MaxTilt.route) {
+            MaxTiltScreen(upPress = upPress)
+        }
+        composable(Destination.Extent.route) {
+            ExtentScreen(upPress = upPress)
+        }
+        composable(Destination.ContentPadding.route) {
+            ContentPaddingScreen(upPress = upPress)
+        }
+        composable(Destination.ControlSettings.route) {
+            ControlSettingsScreen(upPress = upPress)
+        }
+        composable(Destination.GestureSettings.route) {
+            GestureSettingsScreen(upPress = upPress)
         }
 
         // MAP EVENT
-        composable(Destination.Demo.route) {
-            MainScreen()
+        composable(Destination.MapClickEvent.route) {
+            MapClickEventScreen(upPress = upPress)
+        }
+        composable(Destination.OverlayClickEvent.route) {
+            OverlayClickEventScreen(upPress = upPress)
+        }
+        composable(Destination.SymbolClickEvent.route) {
+            SymbolClickEventScreen(upPress = upPress)
+        }
+        composable(Destination.ZoomGesturesEvent.route) {
+            ZoomGesturesEventScreen(upPress = upPress)
         }
 
         // LOCATION
-        composable(Destination.Demo.route) {
-            MainScreen()
+        composable(Destination.LocationTracking.route) {
+            LocationTrackingScreen(upPress = upPress)
+        }
+        composable(Destination.CustomLocationSource.route) {
+            CustomLocationSourceScreen(upPress = upPress)
         }
 
         // MISC

@@ -140,5 +140,23 @@ private val Destination.description: String
         Destination.NightMode -> "NightModeScreen"
         Destination.Locale -> "LocaleScreen"
 
+        // MAP OPTIONS
+        Destination.MinMaxZoom -> "MinMaxZoomScreen"
+        Destination.MaxTilt -> "MaxTiltScreen"
+        Destination.Extent -> "ExtentScreen"
+        Destination.ContentPadding -> "ContentPaddingScreen"
+        Destination.ControlSettings -> "ControlSettingsScreen"
+        Destination.GestureSettings -> "GestureSettingsScreen"
+
+        // MAP EVENT
+        Destination.MapClickEvent -> "MapClickEventScreen"
+        Destination.OverlayClickEvent -> "OverlayClickEventScreen"
+        Destination.SymbolClickEvent -> "SymbolClickEventScreen"
+        Destination.ZoomGesturesEvent -> "ZoomGesturesEventScreen"
+
+        // LOCATION
+        Destination.LocationTracking -> "LocationTrackingScreen"
+        Destination.CustomLocationSource -> "CustomLocationSourceScreen"
+
         Destination.Demo -> "DemoScreen"
     }
