@@ -52,7 +52,7 @@ android {
 }
 
 dependencies {
-    implementation project(':map-compose')
+    implementation project(':naver-map-compose')
     implementation libs.naver.map
     implementation libs.google.play.services.location
 
