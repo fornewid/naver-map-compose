@@ -18,7 +18,7 @@ package com.naver.maps.map.compose.demo
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material.MaterialTheme
+import com.google.android.material.composethemeadapter.MdcTheme
 import com.naver.maps.map.util.FusedLocationSource
 
 class MapSampleActivity : AppCompatActivity() {
@@ -31,7 +31,7 @@ class MapSampleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ProvideLocationSource(locationSource) {
-                MaterialTheme {
+                MdcTheme {
                     NavGraph()
                 }
             }

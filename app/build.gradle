@@ -63,7 +63,8 @@ dependencies {
     implementation libs.compose.navigation
     implementation libs.compose.activity
     implementation libs.androidx.core
-    implementation libs.material
+    implementation libs.material.material
+    implementation libs.material.composeThemeAdapter
     androidTestImplementation libs.androidx.test.ext.junit
     androidTestImplementation libs.androidx.test.espresso.core
 }
