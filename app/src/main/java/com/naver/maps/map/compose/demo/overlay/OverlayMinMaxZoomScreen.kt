@@ -59,7 +59,7 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
     Scaffold(
         topBar = {
             DefaultTopAppBar(
-                text = "OverlayMinMaxZoomScreen",
+                text = stringResource(R.string.name_overlay_min_max_zoom),
                 upPress = upPress
             )
         }

@@ -51,7 +51,7 @@ fun PathOverlayScreen(upPress: () -> Unit) {
     Scaffold(
         topBar = {
             DefaultTopAppBar(
-                text = "PathOverlayScreen",
+                text = stringResource(R.string.name_path_overlay),
                 upPress = upPress
             )
         }
