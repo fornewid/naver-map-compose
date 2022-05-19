@@ -15,8 +15,6 @@
  */
 package com.naver.maps.map.compose.demo
 
-import android.content.Context
-import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -55,6 +53,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.naver.maps.map.NaverMapSdk
+import com.naver.maps.map.compose.demo.common.showToast
 
 private data class Demo(
     @StringRes val titleResId: Int,
@@ -439,8 +438,4 @@ private fun HomeDemoItem(
             fontSize = 14.sp,
         )
     }
-}
-
-private fun Context.showToast(@StringRes resId: Int) {
-    Toast.makeText(this, getString(resId), Toast.LENGTH_SHORT).show()
 }

@@ -38,8 +38,8 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.MultipartPathOverlay
 import com.naver.maps.map.compose.NaverMap
-import com.naver.maps.map.compose.demo.DefaultTopAppBar
 import com.naver.maps.map.compose.demo.R
+import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.GeometryUtils
 

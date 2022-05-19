@@ -94,41 +94,6 @@ package com.naver.maps.map.compose {
     method public com.naver.maps.map.compose.GroundOverlayPosition create(com.naver.maps.geometry.LatLngBounds bounds);
   }
 
-  public final class InfoWindowDefaults {
-    field public static final int DefaultGlobalZIndex = 400000; // 0x61a80
-    field public static final com.naver.maps.map.compose.InfoWindowDefaults INSTANCE;
-  }
-
-  public final class InfoWindowKt {
-    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void InfoWindow(com.naver.maps.map.compose.InfoWindowState state, optional com.naver.maps.map.overlay.InfoWindow.Adapter adapter, optional android.graphics.PointF anchor, optional int offsetX, optional int offsetY, optional float alpha, optional Object? tag, optional boolean visible, optional int zIndex, optional int globalZIndex, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.InfoWindow,java.lang.Boolean> onClick);
-    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static inline com.naver.maps.map.compose.InfoWindowState rememberInfoWindowState(optional Object? key, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.compose.InfoWindowState,kotlin.Unit> init);
-  }
-
-  public final class InfoWindowPosition {
-    method public com.naver.maps.map.compose.Align? getAlign();
-    method public com.naver.maps.map.overlay.Marker? getMarker();
-    method public com.naver.maps.geometry.LatLng? getPosition();
-    property public final com.naver.maps.map.compose.Align? align;
-    property public final com.naver.maps.map.overlay.Marker? marker;
-    property public final com.naver.maps.geometry.LatLng? position;
-    field public static final com.naver.maps.map.compose.InfoWindowPosition.Companion Companion;
-  }
-
-  public static final class InfoWindowPosition.Companion {
-    method public com.naver.maps.map.compose.InfoWindowPosition close();
-    method public com.naver.maps.map.compose.InfoWindowPosition open(com.naver.maps.map.overlay.Marker marker);
-    method public com.naver.maps.map.compose.InfoWindowPosition open(com.naver.maps.map.overlay.Marker marker, com.naver.maps.map.compose.Align align);
-    method public com.naver.maps.map.compose.InfoWindowPosition open(com.naver.maps.geometry.LatLng position);
-  }
-
-  @com.naver.maps.map.compose.ExperimentalNaverMapApi public final class InfoWindowState {
-    ctor public InfoWindowState(optional com.naver.maps.map.compose.InfoWindowPosition position);
-    method @UiThread public void close();
-    method @UiThread public void open(com.naver.maps.map.overlay.Marker marker);
-    method @UiThread public void open(com.naver.maps.map.overlay.Marker marker, com.naver.maps.map.compose.Align align);
-    method @UiThread public void open(com.naver.maps.geometry.LatLng position);
-  }
-
   @androidx.compose.runtime.Immutable public enum LayerGroup {
     method public final String! getValue();
     property public final String! value;
@@ -138,15 +103,6 @@ package com.naver.maps.map.compose {
     enum_constant public static final com.naver.maps.map.compose.LayerGroup Mountain;
     enum_constant public static final com.naver.maps.map.compose.LayerGroup Traffic;
     enum_constant public static final com.naver.maps.map.compose.LayerGroup Transit;
-  }
-
-  public final class LocationOverlayDefaults {
-    field public static final int DefaultGlobalZIndex = 300000; // 0x493e0
-    field public static final com.naver.maps.map.compose.LocationOverlayDefaults INSTANCE;
-  }
-
-  public final class LocationOverlayKt {
-    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void LocationOverlay(com.naver.maps.geometry.LatLng position, optional float bearing, optional com.naver.maps.map.overlay.OverlayImage icon, optional int iconWidth, optional int iconHeight, optional android.graphics.PointF anchor, optional com.naver.maps.map.overlay.OverlayImage? subIcon, optional int subIconWidth, optional int subIconHeight, optional android.graphics.PointF subAnchor, optional float circleRadius, optional long circleColor, optional int circleOutlineWidth, optional long circleOutlineColor, optional Object? tag, optional boolean visible, optional int zIndex, optional int globalZIndex, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.LocationOverlay,java.lang.Boolean> onClick);
   }
 
   @androidx.compose.runtime.Immutable public enum LocationTrackingMode {
@@ -334,18 +290,14 @@ package com.naver.maps.map.compose {
   }
 
   public final class MarkerKt {
-    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void Marker(optional com.naver.maps.map.compose.MarkerState state, optional float width, optional float height, optional float alpha, optional long anchor, optional boolean isFlat, optional com.naver.maps.map.overlay.OverlayImage icon, optional long iconTintColor, optional long infoWindowAnchor, optional float angle, optional double minZoom, optional boolean isMinZoomInclusive, optional double maxZoom, optional boolean isMaxZoomInclusive, optional String? subCaptionText, optional long subCaptionColor, optional long subCaptionTextSize, optional double subCaptionMinZoom, optional double subCaptionMaxZoom, optional long subCaptionHaloColor, optional float subCaptionRequestedWidth, optional boolean isHideCollidedSymbols, optional boolean isHideCollidedMarkers, optional boolean isHideCollidedCaptions, optional boolean isForceShowIcon, optional boolean isForceShowCaption, optional Object? tag, optional String? captionText, optional long captionColor, optional long captionTextSize, optional double captionMinZoom, optional double captionMaxZoom, optional com.naver.maps.map.compose.Align![] captionAligns, optional boolean visible, optional int zIndex, optional int globalZIndex, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.Marker,java.lang.Boolean> onClick, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.Marker,kotlin.Unit> onInfoWindowClick, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.Marker,kotlin.Unit> onInfoWindowClose, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.Marker,kotlin.Unit> onInfoWindowLongClick);
-    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void MarkerInfoWindow(optional com.naver.maps.map.compose.MarkerState state, optional float width, optional float height, optional float alpha, optional long anchor, optional boolean isFlat, optional com.naver.maps.map.overlay.OverlayImage icon, optional long iconTintColor, optional long infoWindowAnchor, optional float angle, optional double minZoom, optional boolean isMinZoomInclusive, optional double maxZoom, optional boolean isMaxZoomInclusive, optional String? subCaptionText, optional long subCaptionColor, optional long subCaptionTextSize, optional double subCaptionMinZoom, optional double subCaptionMaxZoom, optional long subCaptionHaloColor, optional float subCaptionRequestedWidth, optional boolean isHideCollidedSymbols, optional boolean isHideCollidedMarkers, optional boolean isHideCollidedCaptions, optional boolean isForceShowIcon, optional boolean isForceShowCaption, optional Object? tag, optional String? captionText, optional long captionColor, optional long captionTextSize, optional double captionMinZoom, optional double captionMaxZoom, optional com.naver.maps.map.compose.Align![] captionAligns, optional boolean visible, optional int zIndex, optional int globalZIndex, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.Marker,java.lang.Boolean> onClick, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.Marker,kotlin.Unit> onInfoWindowClick, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.Marker,kotlin.Unit> onInfoWindowClose, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.Marker,kotlin.Unit> onInfoWindowLongClick, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.Marker,kotlin.Unit>? content);
-    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void MarkerInfoWindowContent(optional com.naver.maps.map.compose.MarkerState state, optional float width, optional float height, optional float alpha, optional long anchor, optional boolean isFlat, optional com.naver.maps.map.overlay.OverlayImage icon, optional long iconTintColor, optional long infoWindowAnchor, optional float angle, optional double minZoom, optional boolean isMinZoomInclusive, optional double maxZoom, optional boolean isMaxZoomInclusive, optional String? subCaptionText, optional long subCaptionColor, optional long subCaptionTextSize, optional double subCaptionMinZoom, optional double subCaptionMaxZoom, optional long subCaptionHaloColor, optional float subCaptionRequestedWidth, optional boolean isHideCollidedSymbols, optional boolean isHideCollidedMarkers, optional boolean isHideCollidedCaptions, optional boolean isForceShowIcon, optional boolean isForceShowCaption, optional Object? tag, optional String? captionText, optional long captionColor, optional long captionTextSize, optional double captionMinZoom, optional double captionMaxZoom, optional com.naver.maps.map.compose.Align![] captionAligns, optional boolean visible, optional int zIndex, optional int globalZIndex, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.Marker,java.lang.Boolean> onClick, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.Marker,kotlin.Unit> onInfoWindowClick, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.Marker,kotlin.Unit> onInfoWindowClose, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.Marker,kotlin.Unit> onInfoWindowLongClick, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.Marker,kotlin.Unit>? content);
+    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void Marker(optional com.naver.maps.map.compose.MarkerState state, optional float width, optional float height, optional float alpha, optional long anchor, optional boolean isFlat, optional com.naver.maps.map.overlay.OverlayImage icon, optional long iconTintColor, optional float angle, optional double minZoom, optional boolean isMinZoomInclusive, optional double maxZoom, optional boolean isMaxZoomInclusive, optional String? subCaptionText, optional long subCaptionColor, optional long subCaptionTextSize, optional double subCaptionMinZoom, optional double subCaptionMaxZoom, optional long subCaptionHaloColor, optional float subCaptionRequestedWidth, optional boolean isHideCollidedSymbols, optional boolean isHideCollidedMarkers, optional boolean isHideCollidedCaptions, optional boolean isForceShowIcon, optional boolean isForceShowCaption, optional Object? tag, optional String? captionText, optional long captionColor, optional long captionTextSize, optional double captionMinZoom, optional double captionMaxZoom, optional com.naver.maps.map.compose.Align![] captionAligns, optional boolean visible, optional int zIndex, optional int globalZIndex, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.Marker,java.lang.Boolean> onClick);
     method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static com.naver.maps.map.compose.MarkerState rememberMarkerState(optional String? key, optional com.naver.maps.geometry.LatLng position);
   }
 
   public final class MarkerState {
     ctor public MarkerState(optional com.naver.maps.geometry.LatLng position);
     method public com.naver.maps.geometry.LatLng getPosition();
-    method public void hideInfoWindow();
     method public void setPosition(com.naver.maps.geometry.LatLng position);
-    method public void showInfoWindow();
     property public final com.naver.maps.geometry.LatLng position;
     field public static final com.naver.maps.map.compose.MarkerState.Companion Companion;
   }
@@ -367,20 +319,13 @@ package com.naver.maps.map.compose {
   public final class NaverMapDefaults {
     method public com.naver.maps.map.CameraPosition getDefaultCameraPosition();
     property public final com.naver.maps.map.CameraPosition DefaultCameraPosition;
+    field public static final double DefaultMaxZoom = 21.0;
+    field public static final double DefaultMinZoom = 0.0;
     field public static final com.naver.maps.map.compose.NaverMapDefaults INSTANCE;
   }
 
   public final class NaverMapKt {
-    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void NaverMap(optional androidx.compose.ui.Modifier modifier, optional com.naver.maps.map.compose.CameraPositionState cameraPositionState, optional kotlin.jvm.functions.Function0<com.naver.maps.map.NaverMapOptions> naverMapOptionsFactory, optional com.naver.maps.map.compose.MapProperties properties, optional com.naver.maps.map.LocationSource? locationSource, optional java.util.Locale? locale, optional com.naver.maps.map.compose.MapUiSettings uiSettings, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,kotlin.Unit> onMapClick, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,kotlin.Unit> onMapLongClick, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,java.lang.Boolean> onMapDoubleTab, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,java.lang.Boolean> onMapTwoFingerTap, optional kotlin.jvm.functions.Function0<kotlin.Unit> onMapLoaded, optional kotlin.jvm.functions.Function1<? super android.location.Location,kotlin.Unit> onLocationChange, optional kotlin.jvm.functions.Function0<kotlin.Unit> onOptionChange, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.Symbol,java.lang.Boolean> onSymbolClick, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.indoor.IndoorSelection,kotlin.Unit> onIndoorSelectionChange, optional androidx.compose.foundation.layout.PaddingValues contentPadding, optional kotlin.jvm.functions.Function0<kotlin.Unit>? content);
-  }
-
-  public final class OverlayDefaults {
-    field public static final double DefaultMaxZoom = 21.0;
-    field public static final double DefaultMinZoom = 0.0;
-    field public static final com.naver.maps.map.compose.OverlayDefaults INSTANCE;
-  }
-
-  public final class OverlayKt {
+    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void NaverMap(optional androidx.compose.ui.Modifier modifier, optional com.naver.maps.map.compose.CameraPositionState cameraPositionState, optional com.naver.maps.map.compose.MapProperties properties, optional com.naver.maps.map.LocationSource? locationSource, optional java.util.Locale? locale, optional com.naver.maps.map.compose.MapUiSettings uiSettings, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,kotlin.Unit> onMapClick, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,kotlin.Unit> onMapLongClick, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,java.lang.Boolean> onMapDoubleTab, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,java.lang.Boolean> onMapTwoFingerTap, optional kotlin.jvm.functions.Function0<kotlin.Unit> onMapLoaded, optional kotlin.jvm.functions.Function1<? super android.location.Location,kotlin.Unit> onLocationChange, optional kotlin.jvm.functions.Function0<kotlin.Unit> onOptionChange, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.Symbol,java.lang.Boolean> onSymbolClick, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.indoor.IndoorSelection,kotlin.Unit> onIndoorSelectionChange, optional androidx.compose.foundation.layout.PaddingValues contentPadding, optional kotlin.jvm.functions.Function0<kotlin.Unit>? content);
   }
 
   public final class PathOverlayDefaults {

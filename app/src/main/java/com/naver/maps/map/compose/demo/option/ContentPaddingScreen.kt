@@ -53,8 +53,8 @@ import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.NaverMapDefaults
-import com.naver.maps.map.compose.demo.DefaultTopAppBar
 import com.naver.maps.map.compose.demo.R
+import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
 import com.naver.maps.map.compose.rememberMarkerState
 import kotlinx.coroutines.launch

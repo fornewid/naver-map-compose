@@ -52,6 +52,9 @@ import kotlin.coroutines.suspendCoroutine
 
 public object NaverMapDefaults {
     public val DefaultCameraPosition: CameraPosition = NaverMap.DEFAULT_CAMERA_POSITION
+
+    public const val DefaultMinZoom: Double = NaverMap.MINIMUM_ZOOM.toDouble()
+    public const val DefaultMaxZoom: Double = NaverMap.MAXIMUM_ZOOM.toDouble()
 }
 
 @ExperimentalNaverMapApi
@@ -59,7 +62,6 @@ public object NaverMapDefaults {
 public fun NaverMap(
     modifier: Modifier = Modifier,
     cameraPositionState: CameraPositionState = rememberCameraPositionState(),
-    naverMapOptionsFactory: () -> NaverMapOptions = { NaverMapOptions() },
     properties: MapProperties = DefaultMapProperties,
     locationSource: LocationSource? = null,
     locale: Locale? = null,
@@ -77,7 +79,7 @@ public fun NaverMap(
     content: (@Composable () -> Unit)? = null,
 ) {
     val context = LocalContext.current
-    val mapView = remember { MapView(context, naverMapOptionsFactory()) }
+    val mapView = remember { MapView(context, NaverMapOptions()) }
 
     AndroidView(modifier = modifier, factory = { mapView })
     MapLifecycle(mapView)
@@ -135,7 +137,7 @@ private suspend inline fun disposingComposition(factory: () -> Composition) {
 
 private suspend inline fun MapView.newComposition(
     parent: CompositionContext,
-    noinline content: @Composable () -> Unit
+    noinline content: @Composable () -> Unit,
 ): Composition {
     val map = awaitMap()
     return Composition(
@@ -190,7 +192,7 @@ private fun rememberSavedInstanceState(): Bundle {
 }
 
 private fun MapView.lifecycleObserver(
-    savedInstanceState: Bundle?
+    savedInstanceState: Bundle?,
 ): LifecycleEventObserver {
     return LifecycleEventObserver { _, event ->
         when (event) {

@@ -15,10 +15,6 @@
  */
 package com.naver.maps.map.compose.demo.camera
 
-import android.content.Context
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
-import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -55,8 +51,9 @@ import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.NaverMap
-import com.naver.maps.map.compose.demo.DefaultTopAppBar
 import com.naver.maps.map.compose.demo.R
+import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
+import com.naver.maps.map.compose.demo.common.showToast
 import com.naver.maps.map.compose.rememberCameraPositionState
 import com.naver.maps.map.compose.rememberMarkerState
 
@@ -200,10 +197,6 @@ fun CameraEventScreen(upPress: () -> Unit) {
             }
         }
     }
-}
-
-private fun Context.showToast(@StringRes msgId: Int) {
-    Toast.makeText(this, msgId, LENGTH_SHORT).show()
 }
 
 private val COORD_1 = LatLng(35.1798159, 129.0750222)

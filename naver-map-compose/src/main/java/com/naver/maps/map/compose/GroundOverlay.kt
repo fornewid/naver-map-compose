@@ -27,7 +27,7 @@ internal class GroundOverlayNode(
     var onGroundOverlayClick: (GroundOverlay) -> Boolean
 ) : MapNode {
     override fun onRemoved() {
-        groundOverlay.remove()
+        groundOverlay.map = null
     }
 }
 

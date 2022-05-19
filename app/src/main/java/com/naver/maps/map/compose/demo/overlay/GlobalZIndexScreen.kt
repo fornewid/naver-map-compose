@@ -27,8 +27,8 @@ import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.PathOverlay
 import com.naver.maps.map.compose.PathOverlayDefaults
-import com.naver.maps.map.compose.demo.DefaultTopAppBar
 import com.naver.maps.map.compose.demo.R
+import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberMarkerState
 import com.naver.maps.map.util.MarkerIcons
 

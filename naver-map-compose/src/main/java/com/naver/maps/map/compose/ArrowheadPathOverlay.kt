@@ -33,7 +33,7 @@ internal class ArrowheadPathOverlayNode(
     var density: Density,
 ) : MapNode {
     override fun onRemoved() {
-        arrowheadPathOverlay.remove()
+        arrowheadPathOverlay.map = null
     }
 }
 
