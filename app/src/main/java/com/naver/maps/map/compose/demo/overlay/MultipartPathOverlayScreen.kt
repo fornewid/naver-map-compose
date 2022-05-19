@@ -49,7 +49,7 @@ fun MultipartPathOverlayScreen(upPress: () -> Unit) {
     Scaffold(
         topBar = {
             DefaultTopAppBar(
-                text = "MultipartPathOverlayScreen",
+                text = stringResource(R.string.name_multipart_path_overlay),
                 upPress = upPress
             )
         }

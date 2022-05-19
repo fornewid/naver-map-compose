@@ -42,7 +42,7 @@ fun MarkerScreen(upPress: () -> Unit) {
     Scaffold(
         topBar = {
             DefaultTopAppBar(
-                text = "MarkerScreen",
+                text = stringResource(R.string.name_marker),
                 upPress = upPress
             )
         }

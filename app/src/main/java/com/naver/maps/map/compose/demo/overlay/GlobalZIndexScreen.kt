@@ -38,7 +38,7 @@ fun GlobalZIndexScreen(upPress: () -> Unit) {
     Scaffold(
         topBar = {
             DefaultTopAppBar(
-                text = "GlobalZIndexScreen",
+                text = stringResource(R.string.name_global_z_index),
                 upPress = upPress
             )
         }

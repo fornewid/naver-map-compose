@@ -17,6 +17,7 @@ package com.naver.maps.map.compose.demo.overlay
 
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
@@ -33,7 +34,7 @@ fun GroundOverlayScreen(upPress: () -> Unit) {
     Scaffold(
         topBar = {
             DefaultTopAppBar(
-                text = "GroundOverlayScreen",
+                text = stringResource(R.string.name_ground_overlay),
                 upPress = upPress
             )
         }

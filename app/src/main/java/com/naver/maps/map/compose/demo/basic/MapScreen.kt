@@ -17,9 +17,11 @@ package com.naver.maps.map.compose.demo.basic
 
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.DefaultTopAppBar
+import com.naver.maps.map.compose.demo.R
 
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable
@@ -27,7 +29,7 @@ fun MapScreen(upPress: () -> Unit) {
     Scaffold(
         topBar = {
             DefaultTopAppBar(
-                text = "MapScreen",
+                text = stringResource(R.string.name_map),
                 upPress = upPress
             )
         }

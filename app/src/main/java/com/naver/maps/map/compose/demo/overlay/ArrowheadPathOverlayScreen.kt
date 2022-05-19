@@ -20,6 +20,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.compose.ArrowheadPathOverlay
@@ -35,7 +36,7 @@ fun ArrowheadPathOverlayScreen(upPress: () -> Unit) {
     Scaffold(
         topBar = {
             DefaultTopAppBar(
-                text = "ArrowheadPathOverlayScreen",
+                text = stringResource(R.string.name_arrowhead_path_overlay),
                 upPress = upPress
             )
         }
