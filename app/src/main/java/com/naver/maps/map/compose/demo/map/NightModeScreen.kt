@@ -62,7 +62,7 @@ fun NightModeScreen(upPress: () -> Unit) {
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
             var isNightModeEnabled by remember { mutableStateOf(true) }
-            CheckedTextView(
+            CheckedText(
                 text = stringResource(R.string.night_mode),
                 checked = isNightModeEnabled,
                 onCheckedChange = { isNightModeEnabled = it }
@@ -107,7 +107,7 @@ fun NightModeScreen(upPress: () -> Unit) {
 }
 
 @Composable
-private fun CheckedTextView(
+private fun CheckedText(
     text: String,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,

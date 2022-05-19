@@ -123,7 +123,7 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
             Text(
                 text = stringResource(
                     R.string.format_double,
-                    cameraPositionState.position.zoom.toFloat()
+                    cameraPositionState.position.zoom
                 ),
                 modifier = Modifier
                     .align(Alignment.TopEnd)

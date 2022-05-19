@@ -68,6 +68,12 @@ import com.naver.maps.map.compose.demo.map.LiteModeScreen
 import com.naver.maps.map.compose.demo.map.LocaleScreen
 import com.naver.maps.map.compose.demo.map.MapTypesAndLayerGroupsScreen
 import com.naver.maps.map.compose.demo.map.NightModeScreen
+import com.naver.maps.map.compose.demo.option.ContentPaddingScreen
+import com.naver.maps.map.compose.demo.option.ControlSettingsScreen
+import com.naver.maps.map.compose.demo.option.ExtentScreen
+import com.naver.maps.map.compose.demo.option.GestureSettingsScreen
+import com.naver.maps.map.compose.demo.option.MaxTiltScreen
+import com.naver.maps.map.compose.demo.option.MinMaxZoomScreen
 import com.naver.maps.map.compose.demo.overlay.ArrowheadPathOverlayScreen
 import com.naver.maps.map.compose.demo.overlay.CircleOverlayScreen
 import com.naver.maps.map.compose.demo.overlay.GlobalZIndexScreen
@@ -120,6 +126,14 @@ enum class Destination(val route: String) {
     LiteMode("LiteMode"),
     NightMode("NightMode"),
     Locale("Locale"),
+
+    // MAP OPTIONS
+    MinMaxZoom("MinMaxZoom"),
+    MaxTilt("MaxTilt"),
+    Extent("Extent"),
+    ContentPadding("ContentPadding"),
+    ControlSettings("ControlSettings"),
+    GestureSettings("GestureSettings"),
 
     Demo("Demo"),
     ;
@@ -233,8 +247,23 @@ fun NavGraph(
         }
 
         // MAP OPTIONS
-        composable(Destination.Demo.route) {
-            MainScreen()
+        composable(Destination.MinMaxZoom.route) {
+            MinMaxZoomScreen(upPress = upPress)
+        }
+        composable(Destination.MaxTilt.route) {
+            MaxTiltScreen(upPress = upPress)
+        }
+        composable(Destination.Extent.route) {
+            ExtentScreen(upPress = upPress)
+        }
+        composable(Destination.ContentPadding.route) {
+            ContentPaddingScreen(upPress = upPress)
+        }
+        composable(Destination.ControlSettings.route) {
+            ControlSettingsScreen(upPress = upPress)
+        }
+        composable(Destination.GestureSettings.route) {
+            GestureSettingsScreen(upPress = upPress)
         }
 
         // MAP EVENT

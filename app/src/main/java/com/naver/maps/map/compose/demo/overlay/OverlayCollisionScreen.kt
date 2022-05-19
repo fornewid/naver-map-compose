@@ -76,27 +76,27 @@ fun OverlayCollisionScreen(upPress: () -> Unit) {
             Row(
                 modifier = Modifier.horizontalScroll(rememberScrollState())
             ) {
-                CheckedTextView(
+                CheckedText(
                     text = stringResource(R.string.hide_collided_symbols),
                     checked = isHideCollidedSymbols.value,
                     onCheckedChange = { isHideCollidedSymbols.value = it }
                 )
-                CheckedTextView(
+                CheckedText(
                     text = stringResource(R.string.hide_collided_markers),
                     checked = isHideCollidedMarkers.value,
                     onCheckedChange = { isHideCollidedMarkers.value = it }
                 )
-                CheckedTextView(
+                CheckedText(
                     text = stringResource(R.string.hide_collided_captions),
                     checked = isHideCollidedCaptions.value,
                     onCheckedChange = { isHideCollidedCaptions.value = it }
                 )
-                CheckedTextView(
+                CheckedText(
                     text = stringResource(R.string.force_show_icon),
                     checked = forceShowIcon.value,
                     onCheckedChange = { forceShowIcon.value = it }
                 )
-                CheckedTextView(
+                CheckedText(
                     text = stringResource(R.string.force_show_caption),
                     checked = forceShowCaption.value,
                     onCheckedChange = { forceShowCaption.value = it }
@@ -197,7 +197,7 @@ fun OverlayCollisionScreen(upPress: () -> Unit) {
 }
 
 @Composable
-private fun CheckedTextView(
+private fun CheckedText(
     text: String,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,

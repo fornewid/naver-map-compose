@@ -37,12 +37,16 @@ package com.naver.maps.map.compose {
   @com.naver.maps.map.compose.ExperimentalNaverMapApi public final class CameraPositionState {
     ctor public CameraPositionState(optional com.naver.maps.map.CameraPosition position);
     method @UiThread public suspend Object? animate(com.naver.maps.map.CameraUpdate update, optional com.naver.maps.map.CameraAnimation animation, optional int durationMs, optional kotlin.coroutines.Continuation<? super kotlin.Unit> p);
+    method public com.naver.maps.geometry.LatLngBounds? getContentBounds();
+    method public com.naver.maps.geometry.LatLngBounds? getCoveringBounds();
     method public com.naver.maps.map.CameraPosition getPosition();
     method public com.naver.maps.map.Projection? getProjection();
     method public boolean isMoving();
     method @UiThread public void move(com.naver.maps.map.CameraUpdate update);
     method public void setPosition(com.naver.maps.map.CameraPosition value);
     method @UiThread public void stop();
+    property public final com.naver.maps.geometry.LatLngBounds? contentBounds;
+    property public final com.naver.maps.geometry.LatLngBounds? coveringBounds;
     property public final boolean isMoving;
     property public final com.naver.maps.map.CameraPosition position;
     property public final com.naver.maps.map.Projection? projection;
