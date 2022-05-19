@@ -1,2 +1,2 @@
 include ':app'
-include ':map-compose'
+include ':naver-map-compose'
