@@ -16,12 +16,12 @@
 package com.naver.maps.map.compose.demo
 
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.composethemeadapter.MdcTheme
 import com.naver.maps.map.util.FusedLocationSource
 
-class MapSampleActivity : AppCompatActivity() {
+class MapSampleActivity : ComponentActivity() {
 
     private val locationSource: FusedLocationSource by lazy {
         FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)

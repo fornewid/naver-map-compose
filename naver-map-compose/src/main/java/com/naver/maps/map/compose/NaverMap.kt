@@ -20,6 +20,7 @@ import android.content.res.Configuration
 import android.graphics.PointF
 import android.location.Location
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Composition
@@ -81,7 +82,7 @@ public fun NaverMap(
     val context = LocalContext.current
     val mapView = remember { MapView(context, NaverMapOptions()) }
 
-    AndroidView(modifier = modifier, factory = { mapView })
+    AndroidView(modifier = modifier, factory = { unwrapAppCompat(mapView) })
     MapLifecycle(mapView)
 
     // rememberUpdatedState and friends are used here to make these values observable to
@@ -215,4 +216,26 @@ private fun MapView.componentCallbacks(): ComponentCallbacks {
             this@componentCallbacks.onLowMemory()
         }
     }
+}
+
+/**
+ * 네이버지도 SDK 내부에는 AppCompat의 [srcCompat] 속성으로 이미지를 설정하는 부분이 있다.
+ * 이 부분이 있는 Widget은 AppCompat Widget으로 생성되어야 해서 반드시 AppCompat Theme를 사용해야 한다.
+ *
+ * Jetpack Compose는 minSdk가 21이므로 AppCompat 없이도 이미지를 참조하는데 문제가 없다.
+ * AppCompat Theme를 사용하지 않더라도 아이콘이 적절히 보여질 수 있도록
+ * 네이버지도 SDK 내부에서 생성되는 Widget 중 [srcCompat] 속성으로 이미지가 설정되는 부분을 직접 설정한다.
+ */
+private fun unwrapAppCompat(mapView: MapView): MapView = mapView.apply {
+    val compassIcon: ImageView = findViewById(com.naver.maps.map.R.id.navermap_compass_icon)
+    compassIcon.setImageResource(com.naver.maps.map.R.drawable.navermap_compass)
+
+    val locationIcon: ImageView = findViewById(com.naver.maps.map.R.id.navermap_location_icon)
+    locationIcon.setImageResource(com.naver.maps.map.R.drawable.navermap_location_none_normal)
+
+    val zoomInIcon: ImageView = findViewById(com.naver.maps.map.R.id.navermap_zoom_in)
+    zoomInIcon.setImageResource(com.naver.maps.map.R.drawable.navermap_zoom_in)
+
+    val zoomOutIcon: ImageView = findViewById(com.naver.maps.map.R.id.navermap_zoom_out)
+    zoomOutIcon.setImageResource(com.naver.maps.map.R.drawable.navermap_zoom_out)
 }
