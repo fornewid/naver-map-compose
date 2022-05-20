@@ -49,8 +49,8 @@ fun MarkerScreen(upPress: () -> Unit) {
     ) { contentPadding ->
         val cameraPositionState = rememberCameraPositionState {
             this.position = CameraPosition(
-                NaverMapDefaults.DefaultCameraPosition.target,
-                NaverMapDefaults.DefaultCameraPosition.zoom,
+                NaverMapDefaults.CameraPosition.target,
+                NaverMapDefaults.CameraPosition.zoom,
                 30.0,
                 45.0
             )

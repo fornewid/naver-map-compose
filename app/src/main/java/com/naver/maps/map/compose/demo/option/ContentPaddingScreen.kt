@@ -75,7 +75,7 @@ fun ContentPaddingScreen(upPress: () -> Unit) {
             val cameraPositionState = rememberCameraPositionState {
                 this.position = CameraPosition(
                     COORD_1,
-                    NaverMapDefaults.DefaultCameraPosition.zoom
+                    NaverMapDefaults.CameraPosition.zoom
                 )
             }
 

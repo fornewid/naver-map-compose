@@ -112,7 +112,7 @@ fun DisplayOptionsScreen(upPress: () -> Unit) {
             }
             val cameraPositionState = rememberCameraPositionState {
                 this.position = CameraPosition(
-                    NaverMapDefaults.DefaultCameraPosition.target,
+                    NaverMapDefaults.CameraPosition.target,
                     16.0,
                     40.0,
                     0.0

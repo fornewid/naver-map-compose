@@ -67,7 +67,7 @@ fun GlobalZIndexScreen(upPress: () -> Unit) {
                 ),
                 icon = MarkerIcons.BLUE,
                 captionText = stringResource(R.string.marker_under_path),
-                globalZIndex = PathOverlayDefaults.DefaultGlobalZIndex - 1,
+                globalZIndex = PathOverlayDefaults.GlobalZIndex - 1,
             )
         }
     }

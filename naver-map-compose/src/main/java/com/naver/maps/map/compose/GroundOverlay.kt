@@ -32,7 +32,7 @@ internal class GroundOverlayNode(
 }
 
 public object GroundOverlayDefaults {
-    public const val DefaultGlobalZIndex: Int = GroundOverlay.DEFAULT_GLOBAL_Z_INDEX
+    public const val GlobalZIndex: Int = GroundOverlay.DEFAULT_GLOBAL_Z_INDEX
 }
 
 /**
@@ -74,7 +74,7 @@ public fun GroundOverlay(
     alpha: Float = 1f,
     visible: Boolean = true,
     zIndex: Int = 0,
-    globalZIndex: Int = GroundOverlayDefaults.DefaultGlobalZIndex,
+    globalZIndex: Int = GroundOverlayDefaults.GlobalZIndex,
     onClick: (GroundOverlay) -> Boolean = { false },
 ) {
     val mapApplier = currentComposer.applier as? MapApplier

@@ -39,7 +39,7 @@ internal class PathOverlayNode(
 }
 
 public object PathOverlayDefaults {
-    public const val DefaultGlobalZIndex: Int = PathOverlay.DEFAULT_GLOBAL_Z_INDEX
+    public const val GlobalZIndex: Int = PathOverlay.DEFAULT_GLOBAL_Z_INDEX
 }
 
 /**
@@ -73,7 +73,7 @@ public fun PathOverlay(
     visible: Boolean = true,
     width: Dp = 10.dp,
     zIndex: Int = 0,
-    globalZIndex: Int = PathOverlayDefaults.DefaultGlobalZIndex,
+    globalZIndex: Int = PathOverlayDefaults.GlobalZIndex,
     onClick: (PathOverlay) -> Boolean = { false }
 ) {
     val mapApplier = currentComposer.applier as MapApplier?

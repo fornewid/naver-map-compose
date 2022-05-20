@@ -61,14 +61,14 @@ internal class MarkerNode(
 }
 
 public object MarkerDefaults {
-    public const val DefaultGlobalZIndex: Int = Marker.DEFAULT_GLOBAL_Z_INDEX
+    public const val GlobalZIndex: Int = Marker.DEFAULT_GLOBAL_Z_INDEX
     public val SizeAuto: Dp = Marker.SIZE_AUTO.dp
-    public val DefaultIcon: OverlayImage = Marker.DEFAULT_ICON
-    public val DefaultAnchor: PointF = Marker.DEFAULT_ANCHOR
-    public val DefaultCaptionTextSize: TextUnit = Marker.DEFAULT_CAPTION_TEXT_SIZE.sp
-    public val DefaultCaptionAligns: Array<Align> = arrayOf(Align.Bottom)
-    public const val DefaultCaptionMinZoom: Double = NaverMap.MINIMUM_ZOOM.toDouble()
-    public const val DefaultCaptionMaxZoom: Double = NaverMap.MAXIMUM_ZOOM.toDouble()
+    public val Icon: OverlayImage = Marker.DEFAULT_ICON
+    public val Anchor: PointF = Marker.DEFAULT_ANCHOR
+    public val CaptionTextSize: TextUnit = Marker.DEFAULT_CAPTION_TEXT_SIZE.sp
+    public val CaptionAligns: Array<Align> = arrayOf(Align.Bottom)
+    public const val CaptionMinZoom: Double = NaverMap.MINIMUM_ZOOM.toDouble()
+    public const val CaptionMaxZoom: Double = NaverMap.MAXIMUM_ZOOM.toDouble()
 }
 
 /**
@@ -140,18 +140,18 @@ public fun Marker(
     alpha: Float = 1.0f,
     anchor: Offset = Offset(0.5f, 1.0f),
     isFlat: Boolean = false,
-    icon: OverlayImage = MarkerDefaults.DefaultIcon,
+    icon: OverlayImage = MarkerDefaults.Icon,
     iconTintColor: Color = Color.Transparent,
     angle: Float = 0.0f,
-    minZoom: Double = NaverMapDefaults.DefaultMinZoom,
+    minZoom: Double = NaverMapDefaults.MinZoom,
     isMinZoomInclusive: Boolean = true,
-    maxZoom: Double = NaverMapDefaults.DefaultMaxZoom,
+    maxZoom: Double = NaverMapDefaults.MaxZoom,
     isMaxZoomInclusive: Boolean = true,
     subCaptionText: String? = null,
     subCaptionColor: Color = Color.Black,
-    subCaptionTextSize: TextUnit = MarkerDefaults.DefaultCaptionTextSize,
-    subCaptionMinZoom: Double = MarkerDefaults.DefaultCaptionMinZoom,
-    subCaptionMaxZoom: Double = MarkerDefaults.DefaultCaptionMaxZoom,
+    subCaptionTextSize: TextUnit = MarkerDefaults.CaptionTextSize,
+    subCaptionMinZoom: Double = MarkerDefaults.CaptionMinZoom,
+    subCaptionMaxZoom: Double = MarkerDefaults.CaptionMaxZoom,
     subCaptionHaloColor: Color = Color.White,
     subCaptionRequestedWidth: Dp = 0.dp,
     isHideCollidedSymbols: Boolean = false,
@@ -162,13 +162,13 @@ public fun Marker(
     tag: Any? = null,
     captionText: String? = null,
     captionColor: Color = Color.Black,
-    captionTextSize: TextUnit = MarkerDefaults.DefaultCaptionTextSize,
-    captionMinZoom: Double = MarkerDefaults.DefaultCaptionMinZoom,
-    captionMaxZoom: Double = MarkerDefaults.DefaultCaptionMaxZoom,
-    captionAligns: Array<Align> = MarkerDefaults.DefaultCaptionAligns,
+    captionTextSize: TextUnit = MarkerDefaults.CaptionTextSize,
+    captionMinZoom: Double = MarkerDefaults.CaptionMinZoom,
+    captionMaxZoom: Double = MarkerDefaults.CaptionMaxZoom,
+    captionAligns: Array<Align> = MarkerDefaults.CaptionAligns,
     visible: Boolean = true,
     zIndex: Int = 0,
-    globalZIndex: Int = MarkerDefaults.DefaultGlobalZIndex,
+    globalZIndex: Int = MarkerDefaults.GlobalZIndex,
     onClick: (Marker) -> Boolean = { false },
 ) {
     MarkerImpl(
@@ -237,18 +237,18 @@ private fun MarkerImpl(
     alpha: Float = 1.0f,
     anchor: Offset = Offset(0.5f, 1.0f),
     isFlat: Boolean = false,
-    icon: OverlayImage = MarkerDefaults.DefaultIcon,
+    icon: OverlayImage = MarkerDefaults.Icon,
     iconTintColor: Color = Color.Transparent,
     angle: Float = 0.0f,
-    minZoom: Double = NaverMapDefaults.DefaultMinZoom,
+    minZoom: Double = NaverMapDefaults.MinZoom,
     isMinZoomInclusive: Boolean = true,
-    maxZoom: Double = NaverMapDefaults.DefaultMaxZoom,
+    maxZoom: Double = NaverMapDefaults.MaxZoom,
     isMaxZoomInclusive: Boolean = true,
     subCaptionText: String? = null,
     subCaptionColor: Color = Color.Black,
-    subCaptionTextSize: TextUnit = MarkerDefaults.DefaultCaptionTextSize,
-    subCaptionMinZoom: Double = MarkerDefaults.DefaultCaptionMinZoom,
-    subCaptionMaxZoom: Double = MarkerDefaults.DefaultCaptionMaxZoom,
+    subCaptionTextSize: TextUnit = MarkerDefaults.CaptionTextSize,
+    subCaptionMinZoom: Double = MarkerDefaults.CaptionMinZoom,
+    subCaptionMaxZoom: Double = MarkerDefaults.CaptionMaxZoom,
     subCaptionHaloColor: Color = Color.White,
     subCaptionRequestedWidth: Dp = 0.dp,
     isHideCollidedSymbols: Boolean = false,
@@ -259,13 +259,13 @@ private fun MarkerImpl(
     tag: Any? = null,
     captionText: String? = null,
     captionColor: Color = Color.Black,
-    captionTextSize: TextUnit = MarkerDefaults.DefaultCaptionTextSize,
-    captionMinZoom: Double = MarkerDefaults.DefaultCaptionMinZoom,
-    captionMaxZoom: Double = MarkerDefaults.DefaultCaptionMaxZoom,
-    captionAligns: Array<Align> = MarkerDefaults.DefaultCaptionAligns,
+    captionTextSize: TextUnit = MarkerDefaults.CaptionTextSize,
+    captionMinZoom: Double = MarkerDefaults.CaptionMinZoom,
+    captionMaxZoom: Double = MarkerDefaults.CaptionMaxZoom,
+    captionAligns: Array<Align> = MarkerDefaults.CaptionAligns,
     visible: Boolean = true,
     zIndex: Int = 0,
-    globalZIndex: Int = MarkerDefaults.DefaultGlobalZIndex,
+    globalZIndex: Int = MarkerDefaults.GlobalZIndex,
     onClick: (Marker) -> Boolean = { false },
 ) {
     val mapApplier = currentComposer.applier as? MapApplier

@@ -40,7 +40,7 @@ internal class PolylineOverlayNode(
 }
 
 public object PolylineOverlayDefaults {
-    public const val DefaultGlobalZIndex: Int = PolylineOverlay.DEFAULT_GLOBAL_Z_INDEX
+    public const val GlobalZIndex: Int = PolylineOverlay.DEFAULT_GLOBAL_Z_INDEX
 }
 
 /**
@@ -68,7 +68,7 @@ public fun PolylineOverlay(
     visible: Boolean = true,
     width: Dp = 10.dp,
     zIndex: Int = 0,
-    globalZIndex: Int = PolygonOverlayDefaults.DefaultGlobalZIndex,
+    globalZIndex: Int = PolygonOverlayDefaults.GlobalZIndex,
     onClick: (PolylineOverlay) -> Boolean = { false },
 ) {
     val mapApplier = currentComposer.applier as MapApplier?

@@ -152,7 +152,7 @@ fun OverlayCollisionScreen(upPress: () -> Unit) {
             }
 
             val captionAligns: Array<Align> = when (selectedOption) {
-                0 -> MarkerDefaults.DefaultCaptionAligns
+                0 -> MarkerDefaults.CaptionAligns
                 1 -> Align.EDGES
                 2 -> Align.APEXES
                 3 -> Align.OUTSIDES
