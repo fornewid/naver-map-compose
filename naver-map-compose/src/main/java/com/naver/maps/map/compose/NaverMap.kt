@@ -39,7 +39,6 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.naver.maps.geometry.LatLng
-import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.LocationSource
 import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
@@ -51,22 +50,18 @@ import java.util.Locale
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-public object NaverMapDefaults {
-    public val CameraPosition: CameraPosition = NaverMap.DEFAULT_CAMERA_POSITION
-
-    public const val MinZoom: Double = NaverMap.MINIMUM_ZOOM.toDouble()
-    public const val MaxZoom: Double = NaverMap.MAXIMUM_ZOOM.toDouble()
-}
-
+/**
+ * 네이버 지도를 그리는 [Composable]입니다.
+ */
 @ExperimentalNaverMapApi
 @Composable
 public fun NaverMap(
     modifier: Modifier = Modifier,
     cameraPositionState: CameraPositionState = rememberCameraPositionState(),
     properties: MapProperties = DefaultMapProperties,
+    uiSettings: MapUiSettings = DefaultMapUiSettings,
     locationSource: LocationSource? = null,
     locale: Locale? = null,
-    uiSettings: MapUiSettings = DefaultMapUiSettings,
     onMapClick: (PointF, LatLng) -> Unit = { _, _ -> },
     onMapLongClick: (PointF, LatLng) -> Unit = { _, _ -> },
     onMapDoubleTab: (point: PointF, coord: LatLng) -> Boolean = { _, _ -> false },

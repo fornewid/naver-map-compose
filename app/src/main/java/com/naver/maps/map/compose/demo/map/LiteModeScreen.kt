@@ -46,7 +46,7 @@ import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.MapProperties
 import com.naver.maps.map.compose.MapType
 import com.naver.maps.map.compose.NaverMap
-import com.naver.maps.map.compose.NaverMapDefaults
+import com.naver.maps.map.compose.NaverMapConstants
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
@@ -114,7 +114,7 @@ fun LiteModeScreen(upPress: () -> Unit) {
             }
             val cameraPositionState = rememberCameraPositionState {
                 this.position = CameraPosition(
-                    NaverMapDefaults.CameraPosition.target,
+                    NaverMapConstants.DefaultCameraPosition.target,
                     16.0,
                     40.0,
                     0.0

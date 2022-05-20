@@ -30,11 +30,11 @@ import androidx.compose.ui.res.stringResource
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.MapProperties
-import com.naver.maps.map.compose.MapPropertiesDefaults
 import com.naver.maps.map.compose.MapType
 import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.MarkerDefaults
 import com.naver.maps.map.compose.NaverMap
+import com.naver.maps.map.compose.NaverMapConstants
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.CheckedText
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
@@ -68,14 +68,14 @@ fun NightModeScreen(upPress: () -> Unit) {
                         mapType = MapType.Navi,
                         minZoom = 4.0,
                         backgroundColor = if (isNightModeEnabled) {
-                            MapPropertiesDefaults.BackgroundColorDark
+                            NaverMapConstants.DefaultBackgroundColorDark
                         } else {
-                            MapPropertiesDefaults.BackgroundColorLight
+                            NaverMapConstants.DefaultBackgroundColorLight
                         },
                         backgroundResource = if (isNightModeEnabled) {
-                            MapPropertiesDefaults.BackgroundDrawableDark
+                            NaverMapConstants.DefaultBackgroundDrawableDark
                         } else {
-                            MapPropertiesDefaults.BackgroundDrawableLight
+                            NaverMapConstants.DefaultBackgroundDrawableLight
                         },
                     )
                 }

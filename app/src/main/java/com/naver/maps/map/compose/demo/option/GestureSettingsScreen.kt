@@ -91,11 +91,11 @@ fun GestureSettingsScreen(upPress: () -> Unit) {
             NaverMap(
                 properties = MapProperties(isIndoorEnabled = true),
                 uiSettings = MapUiSettings(
-                    scrollGesturesEnabled = isScrollGesturesEnabled.value,
-                    zoomGesturesEnabled = isZoomGesturesEnabled.value,
-                    tiltGesturesEnabled = isTiltGesturesEnabled.value,
-                    rotateGesturesEnabled = isRotateGesturesEnabled.value,
-                    stopGesturesEnabled = isStopGesturesEnabled.value,
+                    isScrollGesturesEnabled = isScrollGesturesEnabled.value,
+                    isZoomGesturesEnabled = isZoomGesturesEnabled.value,
+                    isTiltGesturesEnabled = isTiltGesturesEnabled.value,
+                    isRotateGesturesEnabled = isRotateGesturesEnabled.value,
+                    isStopGesturesEnabled = isStopGesturesEnabled.value,
                 )
             )
         }

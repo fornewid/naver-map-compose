@@ -28,7 +28,6 @@ import com.naver.maps.map.LocationSource
 import com.naver.maps.map.NaverMap
 import java.util.Locale
 
-@OptIn(ExperimentalNaverMapApi::class)
 internal class MapPropertiesNode(
     val map: NaverMap,
     cameraPositionState: CameraPositionState,
@@ -118,7 +117,6 @@ internal val NoPadding = PaddingValues()
 /**
  * Used to keep the primary map properties up to date. This should never leave the map composition.
  */
-@OptIn(ExperimentalNaverMapApi::class)
 @Suppress("NOTHING_TO_INLINE")
 @Composable
 internal inline fun MapUpdater(
@@ -175,22 +173,22 @@ internal inline fun MapUpdater(
                 map.uiSettings.pickTolerance = it.roundToPx()
             }
         }
-        set(mapUiSettings.scrollGesturesEnabled) { map.uiSettings.isScrollGesturesEnabled = it }
-        set(mapUiSettings.zoomGesturesEnabled) { map.uiSettings.isZoomGesturesEnabled = it }
-        set(mapUiSettings.tiltGesturesEnabled) { map.uiSettings.isTiltGesturesEnabled = it }
-        set(mapUiSettings.rotateGesturesEnabled) { map.uiSettings.isRotateGesturesEnabled = it }
-        set(mapUiSettings.stopGesturesEnabled) { map.uiSettings.isStopGesturesEnabled = it }
+        set(mapUiSettings.isScrollGesturesEnabled) { map.uiSettings.isScrollGesturesEnabled = it }
+        set(mapUiSettings.isZoomGesturesEnabled) { map.uiSettings.isZoomGesturesEnabled = it }
+        set(mapUiSettings.isTiltGesturesEnabled) { map.uiSettings.isTiltGesturesEnabled = it }
+        set(mapUiSettings.isRotateGesturesEnabled) { map.uiSettings.isRotateGesturesEnabled = it }
+        set(mapUiSettings.isStopGesturesEnabled) { map.uiSettings.isStopGesturesEnabled = it }
         set(mapUiSettings.scrollGesturesFriction) { map.uiSettings.scrollGesturesFriction = it }
         set(mapUiSettings.zoomGesturesFriction) { map.uiSettings.zoomGesturesFriction = it }
         set(mapUiSettings.rotateGesturesFriction) { map.uiSettings.rotateGesturesFriction = it }
-        set(mapUiSettings.compassEnabled) { map.uiSettings.isCompassEnabled = it }
-        set(mapUiSettings.scaleBarEnabled) { map.uiSettings.isScaleBarEnabled = it }
-        set(mapUiSettings.zoomControlEnabled) { map.uiSettings.isZoomControlEnabled = it }
-        set(mapUiSettings.indoorLevelPickerEnabled) {
+        set(mapUiSettings.isCompassEnabled) { map.uiSettings.isCompassEnabled = it }
+        set(mapUiSettings.isScaleBarEnabled) { map.uiSettings.isScaleBarEnabled = it }
+        set(mapUiSettings.isZoomControlEnabled) { map.uiSettings.isZoomControlEnabled = it }
+        set(mapUiSettings.isIndoorLevelPickerEnabled) {
             map.uiSettings.isIndoorLevelPickerEnabled = it
         }
-        set(mapUiSettings.locationButtonEnabled) { map.uiSettings.isLocationButtonEnabled = it }
-        set(mapUiSettings.logoClickEnabled) { map.uiSettings.isLogoClickEnabled = it }
+        set(mapUiSettings.isLocationButtonEnabled) { map.uiSettings.isLocationButtonEnabled = it }
+        set(mapUiSettings.isLogoClickEnabled) { map.uiSettings.isLogoClickEnabled = it }
         set(mapUiSettings.logoGravity) { map.uiSettings.logoGravity = it }
         set(mapUiSettings.logoMargin) {
             val node = this
@@ -207,10 +205,23 @@ internal inline fun MapUpdater(
 
         set(mapProperties.isIndoorEnabled) { map.isIndoorEnabled = it }
         set(mapProperties.mapType) { map.mapType = it.value }
-        set(mapProperties.enabledLayerGroupSet) {
-            LayerGroup.values().forEach { layerGroup ->
-                map.setLayerGroupEnabled(layerGroup.value, layerGroup in it)
-            }
+        set(mapProperties.isBuildingLayerGroupEnabled) {
+            map.setLayerGroupEnabled(NaverMap.LAYER_GROUP_BUILDING, it)
+        }
+        set(mapProperties.isTransitLayerGroupEnabled) {
+            map.setLayerGroupEnabled(NaverMap.LAYER_GROUP_TRANSIT, it)
+        }
+        set(mapProperties.isBicycleLayerGroupEnabled) {
+            map.setLayerGroupEnabled(NaverMap.LAYER_GROUP_BICYCLE, it)
+        }
+        set(mapProperties.isTrafficLayerGroupEnabled) {
+            map.setLayerGroupEnabled(NaverMap.LAYER_GROUP_TRAFFIC, it)
+        }
+        set(mapProperties.isCadastralLayerGroupEnabled) {
+            map.setLayerGroupEnabled(NaverMap.LAYER_GROUP_CADASTRAL, it)
+        }
+        set(mapProperties.isMountainLayerGroupEnabled) {
+            map.setLayerGroupEnabled(NaverMap.LAYER_GROUP_MOUNTAIN, it)
         }
         set(mapProperties.isLiteModeEnabled) { map.isLiteModeEnabled = it }
         set(mapProperties.isNightModeEnabled) { map.isNightModeEnabled = it }

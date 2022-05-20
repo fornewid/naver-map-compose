@@ -24,9 +24,6 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.Symbol
 import com.naver.maps.map.indoor.IndoorSelection
 
-/**
- * Holder class for top-level click listeners.
- */
 internal class MapClickListeners {
     var onMapClick: (PointF, LatLng) -> Unit by mutableStateOf({ _, _ -> })
     var onMapLongClick: (PointF, LatLng) -> Unit by mutableStateOf({ _, _ -> })
