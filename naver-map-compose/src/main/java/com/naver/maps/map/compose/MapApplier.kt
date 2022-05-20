@@ -69,7 +69,7 @@ internal class MapApplier(
         circleOverlay: CircleOverlay,
     ): CircleOverlayNode? {
         return decorations.firstOrNull {
-            it is CircleOverlayNode && it.circleOverlay == circleOverlay
+            it is CircleOverlayNode && it.overlay == circleOverlay
         } as? CircleOverlayNode
     }
 
@@ -77,7 +77,7 @@ internal class MapApplier(
         polygonOverlay: PolygonOverlay,
     ): PolygonOverlayNode? {
         return decorations.firstOrNull {
-            it is PolygonOverlayNode && it.polygonOverlay == polygonOverlay
+            it is PolygonOverlayNode && it.overlay == polygonOverlay
         } as? PolygonOverlayNode
     }
 
@@ -85,7 +85,7 @@ internal class MapApplier(
         polylineOverlay: PolylineOverlay,
     ): PolylineOverlayNode? {
         return decorations.firstOrNull {
-            it is PolylineOverlayNode && it.polylineOverlay == polylineOverlay
+            it is PolylineOverlayNode && it.overlay == polylineOverlay
         } as? PolylineOverlayNode
     }
 
@@ -93,7 +93,7 @@ internal class MapApplier(
         pathOverlay: PathOverlay,
     ): PathOverlayNode? {
         return decorations.firstOrNull {
-            it is PathOverlayNode && it.pathOverlay == pathOverlay
+            it is PathOverlayNode && it.overlay == pathOverlay
         } as? PathOverlayNode
     }
 
@@ -101,7 +101,7 @@ internal class MapApplier(
         multipartPathOverlay: MultipartPathOverlay,
     ): MultipartPathOverlayNode? {
         return decorations.firstOrNull {
-            it is MultipartPathOverlayNode && it.multipartPathOverlay == multipartPathOverlay
+            it is MultipartPathOverlayNode && it.overlay == multipartPathOverlay
         } as? MultipartPathOverlayNode
     }
 
@@ -109,7 +109,7 @@ internal class MapApplier(
         arrowheadPathOverlay: ArrowheadPathOverlay,
     ): ArrowheadPathOverlayNode? {
         return decorations.firstOrNull {
-            it is ArrowheadPathOverlayNode && it.arrowheadPathOverlay == arrowheadPathOverlay
+            it is ArrowheadPathOverlayNode && it.overlay == arrowheadPathOverlay
         } as? ArrowheadPathOverlayNode
     }
 
@@ -117,7 +117,7 @@ internal class MapApplier(
         groundOverlay: GroundOverlay,
     ): GroundOverlayNode? {
         return decorations.firstOrNull {
-            it is GroundOverlayNode && it.groundOverlay == groundOverlay
+            it is GroundOverlayNode && it.overlay == groundOverlay
         } as? GroundOverlayNode
     }
 
@@ -125,7 +125,7 @@ internal class MapApplier(
         marker: Marker,
     ): MarkerNode? {
         return decorations.firstOrNull {
-            it is MarkerNode && it.marker == marker
+            it is MarkerNode && it.overlay == marker
         } as? MarkerNode
     }
 }

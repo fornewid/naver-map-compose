@@ -28,12 +28,12 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.overlay.ArrowheadPathOverlay
 
 internal class ArrowheadPathOverlayNode(
-    val arrowheadPathOverlay: ArrowheadPathOverlay,
+    val overlay: ArrowheadPathOverlay,
     var onArrowheadPathOverlayClick: (ArrowheadPathOverlay) -> Boolean,
     var density: Density,
 ) : MapNode {
     override fun onRemoved() {
-        arrowheadPathOverlay.map = null
+        overlay.map = null
     }
 }
 
@@ -61,9 +61,13 @@ public fun ArrowheadPathOverlay(
     outlineWidth: Dp = 10.dp,
     headSizeRatio: Float = 1f,
     elevation: Dp = 0.dp,
+    width: Dp = 10.dp,
     tag: Any? = null,
     visible: Boolean = true,
-    width: Dp = 10.dp,
+    minZoom: Double = NaverMapDefaults.MinZoom,
+    minZoomInclusive: Boolean = true,
+    maxZoom: Double = NaverMapDefaults.MaxZoom,
+    maxZoomInclusive: Boolean = true,
     zIndex: Int = 0,
     globalZIndex: Int = ArrowheadPathOverlayDefaults.GlobalZIndex,
     onClick: (ArrowheadPathOverlay) -> Boolean = { false },
@@ -73,28 +77,34 @@ public fun ArrowheadPathOverlay(
     ComposeNode<ArrowheadPathOverlayNode, MapApplier>(
         factory = {
             val map = mapApplier?.map ?: error("Error adding ArrowheadPathOverlay")
-            val arrowheadPathOverlay = ArrowheadPathOverlay().apply {
+            val overlay = ArrowheadPathOverlay().apply {
                 this.coords = coords
                 this.color = color.toArgb()
                 this.outlineColor = outlineColor.toArgb()
                 this.outlineWidth = with(density) { outlineWidth.roundToPx() }
                 this.headSizeRatio = headSizeRatio
                 this.elevation = with(density) { elevation.roundToPx() }
-                this.isVisible = visible
                 this.width = with(density) { width.roundToPx() }
+
+                // Overlay
+                this.tag = tag
+                this.isVisible = visible
+                this.minZoom = minZoom
+                this.isMinZoomInclusive = minZoomInclusive
+                this.maxZoom = maxZoom
+                this.isMaxZoomInclusive = maxZoomInclusive
                 this.zIndex = zIndex
                 this.globalZIndex = globalZIndex
             }
-            arrowheadPathOverlay.tag = tag
-            arrowheadPathOverlay.map = map
-            arrowheadPathOverlay.setOnClickListener {
+            overlay.map = map
+            overlay.setOnClickListener {
                 mapApplier
-                    .nodeForArrowheadPathOverlay(arrowheadPathOverlay)
+                    .nodeForArrowheadPathOverlay(overlay)
                     ?.onArrowheadPathOverlayClick
-                    ?.invoke(arrowheadPathOverlay)
+                    ?.invoke(overlay)
                     ?: false
             }
-            ArrowheadPathOverlayNode(arrowheadPathOverlay, onClick, density)
+            ArrowheadPathOverlayNode(overlay, onClick, density)
         },
         update = {
             // The node holds density so that the updater blocks can be non-capturing,
@@ -102,23 +112,29 @@ public fun ArrowheadPathOverlay(
             update(density) { this.density = it }
             update(onClick) { this.onArrowheadPathOverlayClick = it }
 
-            set(coords) { this.arrowheadPathOverlay.coords = it }
-            set(color) { this.arrowheadPathOverlay.color = it.toArgb() }
-            set(outlineColor) { this.arrowheadPathOverlay.outlineColor = it.toArgb() }
+            set(coords) { this.overlay.coords = it }
+            set(color) { this.overlay.color = it.toArgb() }
+            set(outlineColor) { this.overlay.outlineColor = it.toArgb() }
             set(outlineWidth) {
-                this.arrowheadPathOverlay.outlineWidth = with(this.density) { it.roundToPx() }
+                this.overlay.outlineWidth = with(this.density) { it.roundToPx() }
             }
-            set(headSizeRatio) { this.arrowheadPathOverlay.headSizeRatio = it }
+            set(headSizeRatio) { this.overlay.headSizeRatio = it }
             set(elevation) {
-                this.arrowheadPathOverlay.elevation = with(density) { it.roundToPx() }
+                this.overlay.elevation = with(this.density) { it.roundToPx() }
             }
-            set(tag) { this.arrowheadPathOverlay.tag = it }
-            set(visible) { this.arrowheadPathOverlay.isVisible = it }
             set(width) {
-                this.arrowheadPathOverlay.width = with(this.density) { it.roundToPx() }
+                this.overlay.width = with(this.density) { it.roundToPx() }
             }
-            set(zIndex) { this.arrowheadPathOverlay.zIndex = it }
-            set(globalZIndex) { this.arrowheadPathOverlay.globalZIndex = it }
+
+            // Overlay
+            set(tag) { this.overlay.tag = it }
+            set(visible) { this.overlay.isVisible = it }
+            set(minZoom) { this.overlay.minZoom = it }
+            set(minZoomInclusive) { this.overlay.isMinZoomInclusive = it }
+            set(maxZoom) { this.overlay.maxZoom = it }
+            set(maxZoomInclusive) { this.overlay.isMaxZoomInclusive = it }
+            set(zIndex) { this.overlay.zIndex = it }
+            set(globalZIndex) { this.overlay.globalZIndex = it }
         }
     )
 }

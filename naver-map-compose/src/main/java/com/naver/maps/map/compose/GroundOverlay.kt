@@ -19,15 +19,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ComposeNode
 import androidx.compose.runtime.currentComposer
 import com.naver.maps.geometry.LatLngBounds
+import com.naver.maps.map.compose.GroundOverlayPosition.Companion.create
 import com.naver.maps.map.overlay.GroundOverlay
 import com.naver.maps.map.overlay.OverlayImage
 
 internal class GroundOverlayNode(
-    val groundOverlay: GroundOverlay,
+    val overlay: GroundOverlay,
     var onGroundOverlayClick: (GroundOverlay) -> Boolean
 ) : MapNode {
     override fun onRemoved() {
-        groundOverlay.map = null
+        overlay.map = null
     }
 }
 
@@ -70,9 +71,13 @@ public class GroundOverlayPosition private constructor(
 public fun GroundOverlay(
     position: GroundOverlayPosition = GroundOverlayPosition.create(),
     image: OverlayImage = GroundOverlay.DEFAULT_IMAGE,
-    tag: Any? = null,
     alpha: Float = 1f,
+    tag: Any? = null,
     visible: Boolean = true,
+    minZoom: Double = NaverMapDefaults.MinZoom,
+    minZoomInclusive: Boolean = true,
+    maxZoom: Double = NaverMapDefaults.MaxZoom,
+    maxZoomInclusive: Boolean = true,
     zIndex: Int = 0,
     globalZIndex: Int = GroundOverlayDefaults.GlobalZIndex,
     onClick: (GroundOverlay) -> Boolean = { false },
@@ -80,36 +85,48 @@ public fun GroundOverlay(
     val mapApplier = currentComposer.applier as? MapApplier
     ComposeNode<GroundOverlayNode, MapApplier>(
         factory = {
-            val map = mapApplier?.map ?: error("Error adding ground overlay")
-            val groundOverlay = GroundOverlay().apply {
+            val map = mapApplier?.map ?: error("Error adding GroundOverlay")
+            val overlay = GroundOverlay().apply {
                 this.position(position)
                 this.image = image
                 this.alpha = alpha
+
+                // Overlay
+                this.tag = tag
                 this.isVisible = visible
+                this.minZoom = minZoom
+                this.isMinZoomInclusive = minZoomInclusive
+                this.maxZoom = maxZoom
+                this.isMaxZoomInclusive = maxZoomInclusive
                 this.zIndex = zIndex
                 this.globalZIndex = globalZIndex
             }
-            groundOverlay.tag = tag
-            groundOverlay.map = map
-            groundOverlay.setOnClickListener {
+            overlay.map = map
+            overlay.setOnClickListener {
                 mapApplier
-                    .nodeForGroundOverlay(groundOverlay)
+                    .nodeForGroundOverlay(overlay)
                     ?.onGroundOverlayClick
-                    ?.invoke(groundOverlay)
+                    ?.invoke(overlay)
                     ?: false
             }
-            GroundOverlayNode(groundOverlay, onClick)
+            GroundOverlayNode(overlay, onClick)
         },
         update = {
             update(onClick) { this.onGroundOverlayClick = it }
 
-            set(position) { this.groundOverlay.position(it) }
-            set(image) { this.groundOverlay.image = it }
-            set(tag) { this.groundOverlay.tag = it }
-            set(alpha) { this.groundOverlay.alpha = it }
-            set(visible) { this.groundOverlay.isVisible = it }
-            set(zIndex) { this.groundOverlay.zIndex = it }
-            set(globalZIndex) { this.groundOverlay.globalZIndex = it }
+            set(position) { this.overlay.position(it) }
+            set(image) { this.overlay.image = it }
+            set(alpha) { this.overlay.alpha = it }
+
+            // Overlay
+            set(tag) { this.overlay.tag = it }
+            set(visible) { this.overlay.isVisible = it }
+            set(minZoom) { this.overlay.minZoom = it }
+            set(minZoomInclusive) { this.overlay.isMinZoomInclusive = it }
+            set(maxZoom) { this.overlay.maxZoom = it }
+            set(maxZoomInclusive) { this.overlay.isMaxZoomInclusive = it }
+            set(zIndex) { this.overlay.zIndex = it }
+            set(globalZIndex) { this.overlay.globalZIndex = it }
         }
     )
 }
