@@ -66,7 +66,7 @@ fun OverlayClickEventScreen(upPress: () -> Unit) {
                     ),
                     captionText = stringResource(R.string.consume_event),
                     icon = if (enabled1) {
-                        MarkerDefaults.DefaultIcon
+                        MarkerDefaults.Icon
                     } else {
                         MarkerIcons.GRAY
                     },
@@ -83,7 +83,7 @@ fun OverlayClickEventScreen(upPress: () -> Unit) {
                     ),
                     captionText = stringResource(R.string.propagate_event),
                     icon = if (enabled2) {
-                        MarkerDefaults.DefaultIcon
+                        MarkerDefaults.Icon
                     } else {
                         MarkerIcons.GRAY
                     },

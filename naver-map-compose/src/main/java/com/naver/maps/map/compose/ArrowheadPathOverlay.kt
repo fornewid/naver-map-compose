@@ -38,7 +38,7 @@ internal class ArrowheadPathOverlayNode(
 }
 
 public object ArrowheadPathOverlayDefaults {
-    public const val DefaultGlobalZIndex: Int = ArrowheadPathOverlay.DEFAULT_GLOBAL_Z_INDEX
+    public const val GlobalZIndex: Int = ArrowheadPathOverlay.DEFAULT_GLOBAL_Z_INDEX
 }
 
 /**
@@ -65,7 +65,7 @@ public fun ArrowheadPathOverlay(
     visible: Boolean = true,
     width: Dp = 10.dp,
     zIndex: Int = 0,
-    globalZIndex: Int = ArrowheadPathOverlayDefaults.DefaultGlobalZIndex,
+    globalZIndex: Int = ArrowheadPathOverlayDefaults.GlobalZIndex,
     onClick: (ArrowheadPathOverlay) -> Boolean = { false },
 ) {
     val mapApplier = currentComposer.applier as MapApplier?

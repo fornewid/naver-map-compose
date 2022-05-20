@@ -37,7 +37,7 @@ internal class MultipartPathOverlayNode(
 }
 
 public object MultipartPathOverlayDefaults {
-    public const val DefaultGlobalZIndex: Int = MultipartPathOverlay.DEFAULT_GLOBAL_Z_INDEX
+    public const val GlobalZIndex: Int = MultipartPathOverlay.DEFAULT_GLOBAL_Z_INDEX
 }
 
 /**
@@ -67,7 +67,7 @@ public fun MultipartPathOverlay(
     visible: Boolean = true,
     width: Dp = 10.dp,
     zIndex: Int = 0,
-    globalZIndex: Int = MultipartPathOverlayDefaults.DefaultGlobalZIndex,
+    globalZIndex: Int = MultipartPathOverlayDefaults.GlobalZIndex,
     onClick: (MultipartPathOverlay) -> Boolean = { false },
 ) {
     val mapApplier = currentComposer.applier as MapApplier?

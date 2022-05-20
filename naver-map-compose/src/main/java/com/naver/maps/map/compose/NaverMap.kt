@@ -52,10 +52,10 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 public object NaverMapDefaults {
-    public val DefaultCameraPosition: CameraPosition = NaverMap.DEFAULT_CAMERA_POSITION
+    public val CameraPosition: CameraPosition = NaverMap.DEFAULT_CAMERA_POSITION
 
-    public const val DefaultMinZoom: Double = NaverMap.MINIMUM_ZOOM.toDouble()
-    public const val DefaultMaxZoom: Double = NaverMap.MAXIMUM_ZOOM.toDouble()
+    public const val MinZoom: Double = NaverMap.MINIMUM_ZOOM.toDouble()
+    public const val MaxZoom: Double = NaverMap.MAXIMUM_ZOOM.toDouble()
 }
 
 @ExperimentalNaverMapApi

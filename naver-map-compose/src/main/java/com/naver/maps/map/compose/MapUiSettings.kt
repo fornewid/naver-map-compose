@@ -24,12 +24,12 @@ import com.naver.maps.map.NaverMap
 internal val DefaultMapUiSettings = MapUiSettings()
 
 internal object MapUiSettingsDefaults {
-    val DefaultPickTolerance: Dp = NaverMap.DEFAULT_PICK_TOLERANCE_DP.dp
-    const val DEFAULT_SCROLL_GESTURES_FRICTION: Float = 0.08799999952316284f
-    const val DEFAULT_ZOOM_GESTURES_FRICTION: Float = 0.1237500011920929f
-    const val DEFAULT_ROTATE_GESTURES_FRICTION: Float = 0.19333000481128693f
-    const val DefaultLogoGravity: Int = Gravity.BOTTOM or Gravity.START
-    val DefaultLogoMargin: PaddingValues = PaddingValues(horizontal = 12.dp, vertical = 16.dp)
+    val PickTolerance: Dp = NaverMap.DEFAULT_PICK_TOLERANCE_DP.dp
+    const val ScrollGesturesFriction: Float = 0.08799999952316284f
+    const val ZoomGesturesFriction: Float = 0.1237500011920929f
+    const val RotateGesturesFriction: Float = 0.19333000481128693f
+    const val LogoGravity: Int = Gravity.BOTTOM or Gravity.START
+    val LogoMargin: PaddingValues = PaddingValues(horizontal = 12.dp, vertical = 16.dp)
 }
 
 /**
@@ -40,23 +40,23 @@ internal object MapUiSettingsDefaults {
  * See: https://jakewharton.com/public-api-challenges-in-kotlin/
  */
 public data class MapUiSettings(
-    public val pickTolerance: Dp = MapUiSettingsDefaults.DefaultPickTolerance,
+    public val pickTolerance: Dp = MapUiSettingsDefaults.PickTolerance,
     public val scrollGesturesEnabled: Boolean = true,
     public val zoomGesturesEnabled: Boolean = true,
     public val tiltGesturesEnabled: Boolean = true,
     public val rotateGesturesEnabled: Boolean = true,
     public val stopGesturesEnabled: Boolean = true,
-    public val scrollGesturesFriction: Float = MapUiSettingsDefaults.DEFAULT_SCROLL_GESTURES_FRICTION,
-    public val zoomGesturesFriction: Float = MapUiSettingsDefaults.DEFAULT_ZOOM_GESTURES_FRICTION,
-    public val rotateGesturesFriction: Float = MapUiSettingsDefaults.DEFAULT_ROTATE_GESTURES_FRICTION,
+    public val scrollGesturesFriction: Float = MapUiSettingsDefaults.ScrollGesturesFriction,
+    public val zoomGesturesFriction: Float = MapUiSettingsDefaults.ZoomGesturesFriction,
+    public val rotateGesturesFriction: Float = MapUiSettingsDefaults.RotateGesturesFriction,
     public val compassEnabled: Boolean = true,
     public val scaleBarEnabled: Boolean = true,
     public val zoomControlEnabled: Boolean = true,
     public val indoorLevelPickerEnabled: Boolean = false,
     public val locationButtonEnabled: Boolean = false,
     public val logoClickEnabled: Boolean = true,
-    public val logoGravity: Int = MapUiSettingsDefaults.DefaultLogoGravity,
-    public val logoMargin: PaddingValues = MapUiSettingsDefaults.DefaultLogoMargin,
+    public val logoGravity: Int = MapUiSettingsDefaults.LogoGravity,
+    public val logoMargin: PaddingValues = MapUiSettingsDefaults.LogoMargin,
 ) {
     init {
         require(scrollGesturesFriction in 0f..1f) { "scrollGesturesFriction must be between 0f and 1f." }

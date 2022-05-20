@@ -26,7 +26,7 @@ package com.naver.maps.map.compose {
   }
 
   public final class ArrowheadPathOverlayDefaults {
-    field public static final int DefaultGlobalZIndex = 100000; // 0x186a0
+    field public static final int GlobalZIndex = 100000; // 0x186a0
     field public static final com.naver.maps.map.compose.ArrowheadPathOverlayDefaults INSTANCE;
   }
 
@@ -63,7 +63,7 @@ package com.naver.maps.map.compose {
   }
 
   public final class CircleOverlayDefaults {
-    field public static final int DefaultGlobalZIndex = -200000; // 0xfffcf2c0
+    field public static final int GlobalZIndex = -200000; // 0xfffcf2c0
     field public static final com.naver.maps.map.compose.CircleOverlayDefaults INSTANCE;
   }
 
@@ -75,7 +75,7 @@ package com.naver.maps.map.compose {
   }
 
   public final class GroundOverlayDefaults {
-    field public static final int DefaultGlobalZIndex = -300000; // 0xfffb6c20
+    field public static final int GlobalZIndex = -300000; // 0xfffb6c20
     field public static final com.naver.maps.map.compose.GroundOverlayDefaults INSTANCE;
   }
 
@@ -177,23 +177,21 @@ package com.naver.maps.map.compose {
   }
 
   public final class MapPropertiesDefaults {
-    method public long getDefaultBackgroundColorDark();
-    method public long getDefaultBackgroundColorLight();
-    method public int getDefaultBackgroundDrawableDark();
-    method public int getDefaultBackgroundDrawableLight();
-    method public float getDefaultIndoorFocusRadius();
-    method public com.naver.maps.map.compose.LocationTrackingMode getDefaultLocationTrackingMode();
-    property public final long DefaultBackgroundColorDark;
-    property public final long DefaultBackgroundColorLight;
-    property public final int DefaultBackgroundDrawableDark;
-    property public final int DefaultBackgroundDrawableLight;
-    property public final float DefaultIndoorFocusRadius;
-    property public final com.naver.maps.map.compose.LocationTrackingMode DefaultLocationTrackingMode;
-    field public static final int DefaultCameraAnimationDuration = 200; // 0xc8
-    field public static final double DefaultMaxTilt = 63.0;
-    field public static final double DefaultMaxZoom = 21.0;
-    field public static final double DefaultMinZoom = 0.0;
+    method public long getBackgroundColorDark();
+    method public long getBackgroundColorLight();
+    method public int getBackgroundDrawableDark();
+    method public int getBackgroundDrawableLight();
+    method public float getIndoorFocusRadius();
+    property public final long BackgroundColorDark;
+    property public final long BackgroundColorLight;
+    property public final int BackgroundDrawableDark;
+    property public final int BackgroundDrawableLight;
+    property public final float IndoorFocusRadius;
+    field public static final int CameraAnimationDuration = 200; // 0xc8
     field public static final com.naver.maps.map.compose.MapPropertiesDefaults INSTANCE;
+    field public static final double MaxTilt = 63.0;
+    field public static final double MaxZoom = 21.0;
+    field public static final double MinZoom = 0.0;
   }
 
   public final class MapPropertiesKt {
@@ -273,19 +271,19 @@ package com.naver.maps.map.compose {
   }
 
   public final class MarkerDefaults {
-    method public android.graphics.PointF getDefaultAnchor();
-    method public com.naver.maps.map.compose.Align![] getDefaultCaptionAligns();
-    method public long getDefaultCaptionTextSize();
-    method public com.naver.maps.map.overlay.OverlayImage getDefaultIcon();
+    method public android.graphics.PointF getAnchor();
+    method public com.naver.maps.map.compose.Align![] getCaptionAligns();
+    method public long getCaptionTextSize();
+    method public com.naver.maps.map.overlay.OverlayImage getIcon();
     method public float getSizeAuto();
-    property public final android.graphics.PointF DefaultAnchor;
-    property public final com.naver.maps.map.compose.Align![] DefaultCaptionAligns;
-    property public final long DefaultCaptionTextSize;
-    property public final com.naver.maps.map.overlay.OverlayImage DefaultIcon;
+    property public final android.graphics.PointF Anchor;
+    property public final com.naver.maps.map.compose.Align![] CaptionAligns;
+    property public final long CaptionTextSize;
+    property public final com.naver.maps.map.overlay.OverlayImage Icon;
     property public final float SizeAuto;
-    field public static final double DefaultCaptionMaxZoom = 21.0;
-    field public static final double DefaultCaptionMinZoom = 0.0;
-    field public static final int DefaultGlobalZIndex = 200000; // 0x30d40
+    field public static final double CaptionMaxZoom = 21.0;
+    field public static final double CaptionMinZoom = 0.0;
+    field public static final int GlobalZIndex = 200000; // 0x30d40
     field public static final com.naver.maps.map.compose.MarkerDefaults INSTANCE;
   }
 
@@ -308,7 +306,7 @@ package com.naver.maps.map.compose {
   }
 
   public final class MultipartPathOverlayDefaults {
-    field public static final int DefaultGlobalZIndex = -100000; // 0xfffe7960
+    field public static final int GlobalZIndex = -100000; // 0xfffe7960
     field public static final com.naver.maps.map.compose.MultipartPathOverlayDefaults INSTANCE;
   }
 
@@ -317,11 +315,11 @@ package com.naver.maps.map.compose {
   }
 
   public final class NaverMapDefaults {
-    method public com.naver.maps.map.CameraPosition getDefaultCameraPosition();
-    property public final com.naver.maps.map.CameraPosition DefaultCameraPosition;
-    field public static final double DefaultMaxZoom = 21.0;
-    field public static final double DefaultMinZoom = 0.0;
+    method public com.naver.maps.map.CameraPosition getCameraPosition();
+    property public final com.naver.maps.map.CameraPosition CameraPosition;
     field public static final com.naver.maps.map.compose.NaverMapDefaults INSTANCE;
+    field public static final double MaxZoom = 21.0;
+    field public static final double MinZoom = 0.0;
   }
 
   public final class NaverMapKt {
@@ -329,7 +327,7 @@ package com.naver.maps.map.compose {
   }
 
   public final class PathOverlayDefaults {
-    field public static final int DefaultGlobalZIndex = -100000; // 0xfffe7960
+    field public static final int GlobalZIndex = -100000; // 0xfffe7960
     field public static final com.naver.maps.map.compose.PathOverlayDefaults INSTANCE;
   }
 
@@ -338,7 +336,7 @@ package com.naver.maps.map.compose {
   }
 
   public final class PolygonOverlayDefaults {
-    field public static final int DefaultGlobalZIndex = -200000; // 0xfffcf2c0
+    field public static final int GlobalZIndex = -200000; // 0xfffcf2c0
     field public static final com.naver.maps.map.compose.PolygonOverlayDefaults INSTANCE;
   }
 
@@ -347,7 +345,7 @@ package com.naver.maps.map.compose {
   }
 
   public final class PolylineOverlayDefaults {
-    field public static final int DefaultGlobalZIndex = -200000; // 0xfffcf2c0
+    field public static final int GlobalZIndex = -200000; // 0xfffcf2c0
     field public static final com.naver.maps.map.compose.PolylineOverlayDefaults INSTANCE;
   }
 

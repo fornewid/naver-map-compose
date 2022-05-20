@@ -38,7 +38,7 @@ internal class CircleOverlayNode(
 }
 
 public object CircleOverlayDefaults {
-    public const val DefaultGlobalZIndex: Int = CircleOverlay.DEFAULT_GLOBAL_Z_INDEX
+    public const val GlobalZIndex: Int = CircleOverlay.DEFAULT_GLOBAL_Z_INDEX
 }
 
 /**
@@ -65,7 +65,7 @@ public fun CircleOverlay(
     tag: Any? = null,
     visible: Boolean = true,
     zIndex: Int = 0,
-    globalZIndex: Int = CircleOverlayDefaults.DefaultGlobalZIndex,
+    globalZIndex: Int = CircleOverlayDefaults.GlobalZIndex,
     onClick: (CircleOverlay) -> Boolean = { false },
 ) {
     val mapApplier = currentComposer.applier as? MapApplier

@@ -68,14 +68,14 @@ fun NightModeScreen(upPress: () -> Unit) {
                         mapType = MapType.Navi,
                         minZoom = 4.0,
                         backgroundColor = if (isNightModeEnabled) {
-                            MapPropertiesDefaults.DefaultBackgroundColorDark
+                            MapPropertiesDefaults.BackgroundColorDark
                         } else {
-                            MapPropertiesDefaults.DefaultBackgroundColorLight
+                            MapPropertiesDefaults.BackgroundColorLight
                         },
                         backgroundResource = if (isNightModeEnabled) {
-                            MapPropertiesDefaults.DefaultBackgroundDrawableDark
+                            MapPropertiesDefaults.BackgroundDrawableDark
                         } else {
-                            MapPropertiesDefaults.DefaultBackgroundDrawableLight
+                            MapPropertiesDefaults.BackgroundDrawableLight
                         },
                     )
                 }
@@ -90,7 +90,7 @@ fun NightModeScreen(upPress: () -> Unit) {
                         icon = if (isNightModeEnabled) {
                             MarkerIcons.GRAY
                         } else {
-                            MarkerDefaults.DefaultIcon
+                            MarkerDefaults.Icon
                         },
                     )
                 }

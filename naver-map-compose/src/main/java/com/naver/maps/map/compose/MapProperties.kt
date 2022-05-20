@@ -26,28 +26,26 @@ internal val DefaultMapProperties = MapProperties()
 
 public object MapPropertiesDefaults {
 
-    public const val DefaultMaxZoom: Double = NaverMap.MAXIMUM_ZOOM.toDouble()
+    public const val MaxZoom: Double = NaverMap.MAXIMUM_ZOOM.toDouble()
 
-    public const val DefaultMinZoom: Double = NaverMap.MINIMUM_ZOOM.toDouble()
+    public const val MinZoom: Double = NaverMap.MINIMUM_ZOOM.toDouble()
 
-    public const val DefaultMaxTilt: Double = NaverMap.MAXIMUM_TILT.toDouble()
+    public const val MaxTilt: Double = NaverMap.MAXIMUM_TILT.toDouble()
 
-    public const val DefaultCameraAnimationDuration: Int =
+    public const val CameraAnimationDuration: Int =
         NaverMap.DEFAULT_DEFAULT_CAMERA_ANIMATION_DURATION
 
-    public val DefaultIndoorFocusRadius: Dp = NaverMap.DEFAULT_INDOOR_FOCUS_RADIUS_DP.dp
+    public val IndoorFocusRadius: Dp = NaverMap.DEFAULT_INDOOR_FOCUS_RADIUS_DP.dp
 
-    public val DefaultBackgroundColorLight: Color = Color(NaverMap.DEFAULT_BACKGROUND_COLOR_LIGHT)
+    public val BackgroundColorLight: Color = Color(NaverMap.DEFAULT_BACKGROUND_COLOR_LIGHT)
 
-    public val DefaultBackgroundColorDark: Color = Color(NaverMap.DEFAULT_BACKGROUND_COLOR_DARK)
-
-    @DrawableRes
-    public val DefaultBackgroundDrawableLight: Int = NaverMap.DEFAULT_BACKGROUND_DRWABLE_LIGHT
+    public val BackgroundColorDark: Color = Color(NaverMap.DEFAULT_BACKGROUND_COLOR_DARK)
 
     @DrawableRes
-    public val DefaultBackgroundDrawableDark: Int = NaverMap.DEFAULT_BACKGROUND_DRWABLE_DARK
+    public val BackgroundDrawableLight: Int = NaverMap.DEFAULT_BACKGROUND_DRWABLE_LIGHT
 
-    public val DefaultLocationTrackingMode: LocationTrackingMode = LocationTrackingMode.None
+    @DrawableRes
+    public val BackgroundDrawableDark: Int = NaverMap.DEFAULT_BACKGROUND_DRWABLE_DARK
 }
 
 /**
@@ -60,23 +58,23 @@ public object MapPropertiesDefaults {
 public data class MapProperties(
     public val mapType: MapType = MapType.Basic,
     public val extent: LatLngBounds? = null,
-    public val minZoom: Double = MapPropertiesDefaults.DefaultMinZoom,
-    public val maxZoom: Double = MapPropertiesDefaults.DefaultMaxZoom,
-    public val maxTilt: Double = MapPropertiesDefaults.DefaultMaxTilt,
-    public val defaultCameraAnimationDuration: Int = MapPropertiesDefaults.DefaultCameraAnimationDuration,
+    public val minZoom: Double = MapPropertiesDefaults.MinZoom,
+    public val maxZoom: Double = MapPropertiesDefaults.MaxZoom,
+    public val maxTilt: Double = MapPropertiesDefaults.MaxTilt,
+    public val defaultCameraAnimationDuration: Int = MapPropertiesDefaults.CameraAnimationDuration,
     public val fpsLimit: Int = 0,
     public val enabledLayerGroupSet: Set<LayerGroup> = hashSetOf(LayerGroup.Building),
     public val isLiteModeEnabled: Boolean = false,
     public val isNightModeEnabled: Boolean = false,
     public val isIndoorEnabled: Boolean = false,
-    public val indoorFocusRadius: Dp = MapPropertiesDefaults.DefaultIndoorFocusRadius,
+    public val indoorFocusRadius: Dp = MapPropertiesDefaults.IndoorFocusRadius,
     public val buildingHeight: Float = 1f,
     public val lightness: Float = 0f,
     public val symbolScale: Float = 1f,
     public val symbolPerspectiveRatio: Float = 1f,
-    public val backgroundColor: Color = MapPropertiesDefaults.DefaultBackgroundColorLight,
-    @DrawableRes public val backgroundResource: Int = MapPropertiesDefaults.DefaultBackgroundDrawableLight,
-    public val locationTrackingMode: LocationTrackingMode = MapPropertiesDefaults.DefaultLocationTrackingMode,
+    public val backgroundColor: Color = MapPropertiesDefaults.BackgroundColorLight,
+    @DrawableRes public val backgroundResource: Int = MapPropertiesDefaults.BackgroundDrawableLight,
+    public val locationTrackingMode: LocationTrackingMode = LocationTrackingMode.None,
 ) {
     init {
         require(fpsLimit >= 0) { "fpsLimit must be greater than 0." }
