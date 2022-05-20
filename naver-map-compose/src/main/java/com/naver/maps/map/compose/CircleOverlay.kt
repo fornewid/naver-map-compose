@@ -28,12 +28,12 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.overlay.CircleOverlay
 
 internal class CircleOverlayNode(
-    val circleOverlay: CircleOverlay,
+    val overlay: CircleOverlay,
     var onCircleOverlayClick: (CircleOverlay) -> Boolean,
     var density: Density
 ) : MapNode {
     override fun onRemoved() {
-        circleOverlay.map = null
+        overlay.map = null
     }
 }
 
@@ -64,6 +64,10 @@ public fun CircleOverlay(
     outlineWidth: Dp = 10.dp,
     tag: Any? = null,
     visible: Boolean = true,
+    minZoom: Double = NaverMapDefaults.MinZoom,
+    minZoomInclusive: Boolean = true,
+    maxZoom: Double = NaverMapDefaults.MaxZoom,
+    maxZoomInclusive: Boolean = true,
     zIndex: Int = 0,
     globalZIndex: Int = CircleOverlayDefaults.GlobalZIndex,
     onClick: (CircleOverlay) -> Boolean = { false },
@@ -72,27 +76,33 @@ public fun CircleOverlay(
     val density = LocalDensity.current
     ComposeNode<CircleOverlayNode, MapApplier>(
         factory = {
-            val map = mapApplier?.map ?: error("Error adding circle")
-            val circleOverlay = CircleOverlay().apply {
+            val map = mapApplier?.map ?: error("Error adding CircleOverlay")
+            val overlay = CircleOverlay().apply {
                 this.center = center
                 this.color = color.toArgb()
                 this.radius = radius
                 this.outlineColor = outlineColor.toArgb()
                 this.outlineWidth = with(density) { outlineWidth.roundToPx() }
+
+                // Overlay
+                this.tag = tag
                 this.isVisible = visible
+                this.minZoom = minZoom
+                this.isMinZoomInclusive = minZoomInclusive
+                this.maxZoom = maxZoom
+                this.isMaxZoomInclusive = maxZoomInclusive
                 this.zIndex = zIndex
                 this.globalZIndex = globalZIndex
             }
-            circleOverlay.tag = tag
-            circleOverlay.map = map
-            circleOverlay.setOnClickListener {
+            overlay.map = map
+            overlay.setOnClickListener {
                 mapApplier
-                    .nodeForCircleOverlay(circleOverlay)
+                    .nodeForCircleOverlay(overlay)
                     ?.onCircleOverlayClick
-                    ?.invoke(circleOverlay)
+                    ?.invoke(overlay)
                     ?: false
             }
-            CircleOverlayNode(circleOverlay, onClick, density)
+            CircleOverlayNode(overlay, onClick, density)
         },
         update = {
             // The node holds density so that the updater blocks can be non-capturing,
@@ -100,17 +110,23 @@ public fun CircleOverlay(
             update(density) { this.density = it }
             update(onClick) { this.onCircleOverlayClick = it }
 
-            set(center) { this.circleOverlay.center = it }
-            set(color) { this.circleOverlay.color = it.toArgb() }
-            set(radius) { this.circleOverlay.radius = it }
-            set(outlineColor) { this.circleOverlay.outlineColor = it.toArgb() }
+            set(center) { this.overlay.center = it }
+            set(color) { this.overlay.color = it.toArgb() }
+            set(radius) { this.overlay.radius = it }
+            set(outlineColor) { this.overlay.outlineColor = it.toArgb() }
             set(outlineWidth) {
-                this.circleOverlay.outlineWidth = with(this.density) { it.roundToPx() }
+                this.overlay.outlineWidth = with(this.density) { it.roundToPx() }
             }
-            set(tag) { this.circleOverlay.tag = it }
-            set(visible) { this.circleOverlay.isVisible = it }
-            set(zIndex) { this.circleOverlay.zIndex = it }
-            set(globalZIndex) { this.circleOverlay.globalZIndex = it }
+
+            // Overlay
+            set(tag) { this.overlay.tag = it }
+            set(visible) { this.overlay.isVisible = it }
+            set(minZoom) { this.overlay.minZoom = it }
+            set(minZoomInclusive) { this.overlay.isMinZoomInclusive = it }
+            set(maxZoom) { this.overlay.maxZoom = it }
+            set(maxZoomInclusive) { this.overlay.isMaxZoomInclusive = it }
+            set(zIndex) { this.overlay.zIndex = it }
+            set(globalZIndex) { this.overlay.globalZIndex = it }
         }
     )
 }

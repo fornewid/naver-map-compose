@@ -27,12 +27,12 @@ import com.naver.maps.map.overlay.MultipartPathOverlay
 import com.naver.maps.map.overlay.OverlayImage
 
 internal class MultipartPathOverlayNode(
-    val multipartPathOverlay: MultipartPathOverlay,
+    val overlay: MultipartPathOverlay,
     var onMultipartPathOverlayClick: (MultipartPathOverlay) -> Boolean,
     var density: Density,
 ) : MapNode {
     override fun onRemoved() {
-        multipartPathOverlay.map = null
+        overlay.map = null
     }
 }
 
@@ -63,9 +63,13 @@ public fun MultipartPathOverlay(
     isHideCollidedSymbols: Boolean = false,
     isHideCollidedMarkers: Boolean = false,
     isHideCollidedCaptions: Boolean = false,
+    width: Dp = 10.dp,
     tag: Any? = null,
     visible: Boolean = true,
-    width: Dp = 10.dp,
+    minZoom: Double = NaverMapDefaults.MinZoom,
+    minZoomInclusive: Boolean = true,
+    maxZoom: Double = NaverMapDefaults.MaxZoom,
+    maxZoomInclusive: Boolean = true,
     zIndex: Int = 0,
     globalZIndex: Int = MultipartPathOverlayDefaults.GlobalZIndex,
     onClick: (MultipartPathOverlay) -> Boolean = { false },
@@ -75,7 +79,7 @@ public fun MultipartPathOverlay(
     ComposeNode<MultipartPathOverlayNode, MapApplier>(
         factory = {
             val map = mapApplier?.map ?: error("Error adding MultipartPathOverlay")
-            val multipartPathOverlay = MultipartPathOverlay().apply {
+            val overlay = MultipartPathOverlay().apply {
                 this.coordParts = coordParts
                 this.colorParts = colorParts
                 this.progress = progress
@@ -85,21 +89,27 @@ public fun MultipartPathOverlay(
                 this.isHideCollidedSymbols = isHideCollidedSymbols
                 this.isHideCollidedMarkers = isHideCollidedMarkers
                 this.isHideCollidedCaptions = isHideCollidedCaptions
-                this.isVisible = visible
                 this.width = with(density) { width.roundToPx() }
+
+                // Overlay
+                this.tag = tag
+                this.isVisible = visible
+                this.minZoom = minZoom
+                this.isMinZoomInclusive = minZoomInclusive
+                this.maxZoom = maxZoom
+                this.isMaxZoomInclusive = maxZoomInclusive
                 this.zIndex = zIndex
                 this.globalZIndex = globalZIndex
             }
-            multipartPathOverlay.tag = tag
-            multipartPathOverlay.map = map
-            multipartPathOverlay.setOnClickListener {
+            overlay.map = map
+            overlay.setOnClickListener {
                 mapApplier
-                    .nodeForMultipartPathOverlay(multipartPathOverlay)
+                    .nodeForMultipartPathOverlay(overlay)
                     ?.onMultipartPathOverlayClick
-                    ?.invoke(multipartPathOverlay)
+                    ?.invoke(overlay)
                     ?: false
             }
-            MultipartPathOverlayNode(multipartPathOverlay, onClick, density)
+            MultipartPathOverlayNode(overlay, onClick, density)
         },
         update = {
             // The node holds density so that the updater blocks can be non-capturing,
@@ -107,26 +117,32 @@ public fun MultipartPathOverlay(
             update(density) { this.density = it }
             update(onClick) { this.onMultipartPathOverlayClick = it }
 
-            set(coordParts) { this.multipartPathOverlay.coordParts = it }
-            set(colorParts) { this.multipartPathOverlay.colorParts = it }
-            set(progress) { this.multipartPathOverlay.progress = it }
+            set(coordParts) { this.overlay.coordParts = it }
+            set(colorParts) { this.overlay.colorParts = it }
+            set(progress) { this.overlay.progress = it }
             set(outlineWidth) {
-                this.multipartPathOverlay.outlineWidth = with(this.density) { it.roundToPx() }
+                this.overlay.outlineWidth = with(this.density) { it.roundToPx() }
             }
-            set(patternImage) { this.multipartPathOverlay.patternImage = it }
+            set(patternImage) { this.overlay.patternImage = it }
             set(patternInterval) {
-                this.multipartPathOverlay.patternInterval = with(this.density) { it.roundToPx() }
+                this.overlay.patternInterval = with(this.density) { it.roundToPx() }
             }
-            set(isHideCollidedSymbols) { this.multipartPathOverlay.isHideCollidedSymbols = it }
-            set(isHideCollidedMarkers) { this.multipartPathOverlay.isHideCollidedMarkers = it }
-            set(isHideCollidedCaptions) { this.multipartPathOverlay.isHideCollidedCaptions = it }
-            set(tag) { this.multipartPathOverlay.tag = it }
-            set(visible) { this.multipartPathOverlay.isVisible = it }
+            set(isHideCollidedSymbols) { this.overlay.isHideCollidedSymbols = it }
+            set(isHideCollidedMarkers) { this.overlay.isHideCollidedMarkers = it }
+            set(isHideCollidedCaptions) { this.overlay.isHideCollidedCaptions = it }
             set(width) {
-                this.multipartPathOverlay.width = with(this.density) { it.roundToPx() }
+                this.overlay.width = with(this.density) { it.roundToPx() }
             }
-            set(zIndex) { this.multipartPathOverlay.zIndex = it }
-            set(globalZIndex) { this.multipartPathOverlay.globalZIndex = it }
+
+            // Overlay
+            set(tag) { this.overlay.tag = it }
+            set(visible) { this.overlay.isVisible = it }
+            set(minZoom) { this.overlay.minZoom = it }
+            set(minZoomInclusive) { this.overlay.isMinZoomInclusive = it }
+            set(maxZoom) { this.overlay.maxZoom = it }
+            set(maxZoomInclusive) { this.overlay.isMaxZoomInclusive = it }
+            set(zIndex) { this.overlay.zIndex = it }
+            set(globalZIndex) { this.overlay.globalZIndex = it }
         }
     )
 }

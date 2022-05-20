@@ -39,24 +39,24 @@ import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 
 internal class MarkerNode(
-    val marker: Marker,
+    val overlay: Marker,
     val markerState: MarkerState,
     var density: Density,
     var onMarkerClick: (Marker) -> Boolean,
 ) : MapNode {
 
     override fun onAttached() {
-        markerState.marker = marker
+        markerState.marker = overlay
     }
 
     override fun onRemoved() {
         markerState.marker = null
-        marker.map = null
+        overlay.map = null
     }
 
     override fun onCleared() {
         markerState.marker = null
-        marker.map = null
+        overlay.map = null
     }
 }
 
@@ -143,10 +143,6 @@ public fun Marker(
     icon: OverlayImage = MarkerDefaults.Icon,
     iconTintColor: Color = Color.Transparent,
     angle: Float = 0.0f,
-    minZoom: Double = NaverMapDefaults.MinZoom,
-    isMinZoomInclusive: Boolean = true,
-    maxZoom: Double = NaverMapDefaults.MaxZoom,
-    isMaxZoomInclusive: Boolean = true,
     subCaptionText: String? = null,
     subCaptionColor: Color = Color.Black,
     subCaptionTextSize: TextUnit = MarkerDefaults.CaptionTextSize,
@@ -159,14 +155,18 @@ public fun Marker(
     isHideCollidedCaptions: Boolean = false,
     isForceShowIcon: Boolean = false,
     isForceShowCaption: Boolean = false,
-    tag: Any? = null,
     captionText: String? = null,
     captionColor: Color = Color.Black,
     captionTextSize: TextUnit = MarkerDefaults.CaptionTextSize,
     captionMinZoom: Double = MarkerDefaults.CaptionMinZoom,
     captionMaxZoom: Double = MarkerDefaults.CaptionMaxZoom,
     captionAligns: Array<Align> = MarkerDefaults.CaptionAligns,
+    tag: Any? = null,
     visible: Boolean = true,
+    minZoom: Double = NaverMapDefaults.MinZoom,
+    minZoomInclusive: Boolean = true,
+    maxZoom: Double = NaverMapDefaults.MaxZoom,
+    maxZoomInclusive: Boolean = true,
     zIndex: Int = 0,
     globalZIndex: Int = MarkerDefaults.GlobalZIndex,
     onClick: (Marker) -> Boolean = { false },
@@ -181,10 +181,6 @@ public fun Marker(
         icon = icon,
         iconTintColor = iconTintColor,
         angle = angle,
-        minZoom = minZoom,
-        isMinZoomInclusive = isMinZoomInclusive,
-        maxZoom = maxZoom,
-        isMaxZoomInclusive = isMaxZoomInclusive,
         subCaptionText = subCaptionText,
         subCaptionColor = subCaptionColor,
         subCaptionTextSize = subCaptionTextSize,
@@ -197,14 +193,18 @@ public fun Marker(
         isHideCollidedCaptions = isHideCollidedCaptions,
         isForceShowIcon = isForceShowIcon,
         isForceShowCaption = isForceShowCaption,
-        tag = tag,
         captionText = captionText,
         captionColor = captionColor,
         captionTextSize = captionTextSize,
         captionMinZoom = captionMinZoom,
         captionMaxZoom = captionMaxZoom,
         captionAligns = captionAligns,
+        tag = tag,
         visible = visible,
+        minZoom = minZoom,
+        minZoomInclusive = minZoomInclusive,
+        maxZoom = maxZoom,
+        maxZoomInclusive = maxZoomInclusive,
         zIndex = zIndex,
         globalZIndex = globalZIndex,
         onClick = onClick,
@@ -240,10 +240,6 @@ private fun MarkerImpl(
     icon: OverlayImage = MarkerDefaults.Icon,
     iconTintColor: Color = Color.Transparent,
     angle: Float = 0.0f,
-    minZoom: Double = NaverMapDefaults.MinZoom,
-    isMinZoomInclusive: Boolean = true,
-    maxZoom: Double = NaverMapDefaults.MaxZoom,
-    isMaxZoomInclusive: Boolean = true,
     subCaptionText: String? = null,
     subCaptionColor: Color = Color.Black,
     subCaptionTextSize: TextUnit = MarkerDefaults.CaptionTextSize,
@@ -256,14 +252,18 @@ private fun MarkerImpl(
     isHideCollidedCaptions: Boolean = false,
     isForceShowIcon: Boolean = false,
     isForceShowCaption: Boolean = false,
-    tag: Any? = null,
     captionText: String? = null,
     captionColor: Color = Color.Black,
     captionTextSize: TextUnit = MarkerDefaults.CaptionTextSize,
     captionMinZoom: Double = MarkerDefaults.CaptionMinZoom,
     captionMaxZoom: Double = MarkerDefaults.CaptionMaxZoom,
     captionAligns: Array<Align> = MarkerDefaults.CaptionAligns,
+    tag: Any? = null,
     visible: Boolean = true,
+    minZoom: Double = NaverMapDefaults.MinZoom,
+    minZoomInclusive: Boolean = true,
+    maxZoom: Double = NaverMapDefaults.MaxZoom,
+    maxZoomInclusive: Boolean = true,
     zIndex: Int = 0,
     globalZIndex: Int = MarkerDefaults.GlobalZIndex,
     onClick: (Marker) -> Boolean = { false },
@@ -272,8 +272,8 @@ private fun MarkerImpl(
     val density = LocalDensity.current
     ComposeNode<MarkerNode, MapApplier>(
         factory = {
-            val map = mapApplier?.map ?: error("Error adding marker")
-            val marker: Marker = Marker().apply {
+            val map = mapApplier?.map ?: error("Error adding Marker")
+            val overlay: Marker = Marker().apply {
                 this.width = with(density) { width.roundToPx() }
                 this.height = with(density) { height.roundToPx() }
                 this.alpha = alpha
@@ -283,10 +283,6 @@ private fun MarkerImpl(
                 this.iconTintColor = iconTintColor.toArgb()
                 this.position = state.position
                 this.angle = angle
-                this.minZoom = minZoom
-                this.isMinZoomInclusive = isMinZoomInclusive
-                this.maxZoom = maxZoom
-                this.isMaxZoomInclusive = isMaxZoomInclusive
                 this.subCaptionText = subCaptionText.orEmpty()
                 this.subCaptionColor = subCaptionColor.toArgb()
                 this.subCaptionTextSize = subCaptionTextSize.value
@@ -307,21 +303,27 @@ private fun MarkerImpl(
                 this.captionMinZoom = captionMinZoom
                 this.captionMaxZoom = captionMaxZoom
                 this.setCaptionAligns(*captionAligns.map { it.value }.toTypedArray())
+
+                // Overlay
+                this.tag = tag
                 this.isVisible = visible
+                this.minZoom = minZoom
+                this.isMinZoomInclusive = minZoomInclusive
+                this.maxZoom = maxZoom
+                this.isMaxZoomInclusive = maxZoomInclusive
                 this.zIndex = zIndex
                 this.globalZIndex = globalZIndex
             }
-            marker.map = map
-            marker.tag = tag
-            marker.setOnClickListener {
+            overlay.map = map
+            overlay.setOnClickListener {
                 mapApplier
-                    .nodeForMarker(marker)
+                    .nodeForMarker(overlay)
                     ?.onMarkerClick
-                    ?.invoke(marker)
+                    ?.invoke(overlay)
                     ?: false
             }
             MarkerNode(
-                marker = marker,
+                overlay = overlay,
                 markerState = state,
                 density = density,
                 onMarkerClick = onClick,
@@ -334,52 +336,54 @@ private fun MarkerImpl(
             update(onClick) { this.onMarkerClick = it }
 
             set(width) {
-                this.marker.width = with(this.density) { it.roundToPx() }
+                this.overlay.width = with(this.density) { it.roundToPx() }
             }
             set(height) {
-                this.marker.height = with(this.density) { it.roundToPx() }
+                this.overlay.height = with(this.density) { it.roundToPx() }
             }
-            set(alpha) { this.marker.alpha = it }
-            set(anchor) { this.marker.anchor = PointF(it.x, it.y) }
-            set(isFlat) { this.marker.isFlat = it }
-            set(icon) { this.marker.icon = it }
-            set(iconTintColor) { this.marker.iconTintColor = it.toArgb() }
-            set(state.position) { this.marker.position = it }
-            set(angle) { this.marker.angle = it }
-            set(minZoom) { this.marker.minZoom = it }
-            set(isMinZoomInclusive) { this.marker.isMinZoomInclusive = it }
-            set(maxZoom) { this.marker.maxZoom = it }
-            set(isMaxZoomInclusive) { this.marker.isMaxZoomInclusive = it }
+            set(alpha) { this.overlay.alpha = it }
+            set(anchor) { this.overlay.anchor = PointF(it.x, it.y) }
+            set(isFlat) { this.overlay.isFlat = it }
+            set(icon) { this.overlay.icon = it }
+            set(iconTintColor) { this.overlay.iconTintColor = it.toArgb() }
+            set(state.position) { this.overlay.position = it }
+            set(angle) { this.overlay.angle = it }
             set(subCaptionText) {
-                this.marker.subCaptionText = it.orEmpty()
+                this.overlay.subCaptionText = it.orEmpty()
             }
-            set(subCaptionColor) { this.marker.subCaptionColor = it.toArgb() }
-            set(subCaptionTextSize) { this.marker.subCaptionTextSize = it.value }
-            set(subCaptionMinZoom) { this.marker.subCaptionMinZoom = it }
-            set(subCaptionMaxZoom) { this.marker.subCaptionMaxZoom = it }
-            set(subCaptionHaloColor) { this.marker.subCaptionHaloColor = it.toArgb() }
+            set(subCaptionColor) { this.overlay.subCaptionColor = it.toArgb() }
+            set(subCaptionTextSize) { this.overlay.subCaptionTextSize = it.value }
+            set(subCaptionMinZoom) { this.overlay.subCaptionMinZoom = it }
+            set(subCaptionMaxZoom) { this.overlay.subCaptionMaxZoom = it }
+            set(subCaptionHaloColor) { this.overlay.subCaptionHaloColor = it.toArgb() }
             set(subCaptionRequestedWidth) {
-                this.marker.subCaptionRequestedWidth = with(this.density) { it.roundToPx() }
+                this.overlay.subCaptionRequestedWidth = with(this.density) { it.roundToPx() }
             }
-            set(isHideCollidedSymbols) { this.marker.isHideCollidedSymbols = it }
-            set(isHideCollidedMarkers) { this.marker.isHideCollidedMarkers = it }
-            set(isHideCollidedCaptions) { this.marker.isHideCollidedCaptions = it }
-            set(isForceShowIcon) { this.marker.isForceShowIcon = it }
-            set(isForceShowCaption) { this.marker.isForceShowCaption = it }
-            set(tag) { this.marker.tag = it }
+            set(isHideCollidedSymbols) { this.overlay.isHideCollidedSymbols = it }
+            set(isHideCollidedMarkers) { this.overlay.isHideCollidedMarkers = it }
+            set(isHideCollidedCaptions) { this.overlay.isHideCollidedCaptions = it }
+            set(isForceShowIcon) { this.overlay.isForceShowIcon = it }
+            set(isForceShowCaption) { this.overlay.isForceShowCaption = it }
             set(captionText) {
-                this.marker.captionText = it.orEmpty()
+                this.overlay.captionText = it.orEmpty()
             }
-            set(captionColor) { this.marker.captionColor = it.toArgb() }
-            set(captionTextSize) { this.marker.captionTextSize = it.value }
-            set(captionMinZoom) { this.marker.captionMinZoom = it }
-            set(captionMaxZoom) { this.marker.captionMaxZoom = it }
+            set(captionColor) { this.overlay.captionColor = it.toArgb() }
+            set(captionTextSize) { this.overlay.captionTextSize = it.value }
+            set(captionMinZoom) { this.overlay.captionMinZoom = it }
+            set(captionMaxZoom) { this.overlay.captionMaxZoom = it }
             set(captionAligns) { aligns ->
-                this.marker.setCaptionAligns(*aligns.map { it.value }.toTypedArray())
+                this.overlay.setCaptionAligns(*aligns.map { it.value }.toTypedArray())
             }
-            set(visible) { this.marker.isVisible = it }
-            set(zIndex) { this.marker.zIndex = it }
-            set(globalZIndex) { this.marker.globalZIndex = it }
+
+            // Overlay
+            set(tag) { this.overlay.tag = it }
+            set(visible) { this.overlay.isVisible = it }
+            set(minZoom) { this.overlay.minZoom = it }
+            set(minZoomInclusive) { this.overlay.isMinZoomInclusive = it }
+            set(maxZoom) { this.overlay.maxZoom = it }
+            set(maxZoomInclusive) { this.overlay.isMaxZoomInclusive = it }
+            set(zIndex) { this.overlay.zIndex = it }
+            set(globalZIndex) { this.overlay.globalZIndex = it }
         }
     )
 }

@@ -29,12 +29,12 @@ import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.overlay.PathOverlay
 
 internal class PathOverlayNode(
-    val pathOverlay: PathOverlay,
+    val overlay: PathOverlay,
     var onPathOverlayClick: (PathOverlay) -> Boolean,
-    var density: Density
+    var density: Density,
 ) : MapNode {
     override fun onRemoved() {
-        pathOverlay.map = null
+        overlay.map = null
     }
 }
 
@@ -69,19 +69,23 @@ public fun PathOverlay(
     isHideCollidedSymbols: Boolean = false,
     isHideCollidedMarkers: Boolean = false,
     isHideCollidedCaptions: Boolean = false,
+    width: Dp = 10.dp,
     tag: Any? = null,
     visible: Boolean = true,
-    width: Dp = 10.dp,
+    minZoom: Double = NaverMapDefaults.MinZoom,
+    minZoomInclusive: Boolean = true,
+    maxZoom: Double = NaverMapDefaults.MaxZoom,
+    maxZoomInclusive: Boolean = true,
     zIndex: Int = 0,
     globalZIndex: Int = PathOverlayDefaults.GlobalZIndex,
-    onClick: (PathOverlay) -> Boolean = { false }
+    onClick: (PathOverlay) -> Boolean = { false },
 ) {
     val mapApplier = currentComposer.applier as MapApplier?
     val density = LocalDensity.current
     ComposeNode<PathOverlayNode, MapApplier>(
         factory = {
             val map = mapApplier?.map ?: error("Error adding PathOverlay")
-            val pathOverlay = PathOverlay().apply {
+            val overlay = PathOverlay().apply {
                 this.coords = coords
                 this.progress = progress
                 this.color = color.toArgb()
@@ -94,21 +98,27 @@ public fun PathOverlay(
                 this.isHideCollidedSymbols = isHideCollidedSymbols
                 this.isHideCollidedMarkers = isHideCollidedMarkers
                 this.isHideCollidedCaptions = isHideCollidedCaptions
-                this.isVisible = visible
                 this.width = with(density) { width.roundToPx() }
+
+                // Overlay
+                this.tag = tag
+                this.isVisible = visible
+                this.minZoom = minZoom
+                this.isMinZoomInclusive = minZoomInclusive
+                this.maxZoom = maxZoom
+                this.isMaxZoomInclusive = maxZoomInclusive
                 this.zIndex = zIndex
                 this.globalZIndex = globalZIndex
             }
-            pathOverlay.tag = tag
-            pathOverlay.map = map
-            pathOverlay.setOnClickListener {
+            overlay.map = map
+            overlay.setOnClickListener {
                 mapApplier
-                    .nodeForPathOverlay(pathOverlay)
+                    .nodeForPathOverlay(overlay)
                     ?.onPathOverlayClick
-                    ?.invoke(pathOverlay)
+                    ?.invoke(overlay)
                     ?: false
             }
-            PathOverlayNode(pathOverlay, onClick, density)
+            PathOverlayNode(overlay, onClick, density)
         },
         update = {
             // The node holds density so that the updater blocks can be non-capturing,
@@ -116,27 +126,33 @@ public fun PathOverlay(
             update(density) { this.density = it }
             update(onClick) { this.onPathOverlayClick = it }
 
-            set(coords) { this.pathOverlay.coords = it }
-            set(progress) { this.pathOverlay.progress = it }
-            set(color) { this.pathOverlay.color = it.toArgb() }
-            set(outlineColor) { this.pathOverlay.outlineColor = it.toArgb() }
+            set(coords) { this.overlay.coords = it }
+            set(progress) { this.overlay.progress = it }
+            set(color) { this.overlay.color = it.toArgb() }
+            set(outlineColor) { this.overlay.outlineColor = it.toArgb() }
             set(outlineWidth) {
-                this.pathOverlay.outlineWidth = with(this.density) { it.roundToPx() }
+                this.overlay.outlineWidth = with(this.density) { it.roundToPx() }
             }
-            set(passedColor) { this.pathOverlay.passedColor = it.toArgb() }
-            set(passedOutlineColor) { this.pathOverlay.passedOutlineColor = it.toArgb() }
-            set(patternImage) { this.pathOverlay.patternImage = it }
+            set(passedColor) { this.overlay.passedColor = it.toArgb() }
+            set(passedOutlineColor) { this.overlay.passedOutlineColor = it.toArgb() }
+            set(patternImage) { this.overlay.patternImage = it }
             set(patternInterval) {
-                this.pathOverlay.patternInterval = with(this.density) { it.roundToPx() }
+                this.overlay.patternInterval = with(this.density) { it.roundToPx() }
             }
-            set(isHideCollidedSymbols) { this.pathOverlay.isHideCollidedSymbols = it }
-            set(isHideCollidedMarkers) { this.pathOverlay.isHideCollidedMarkers = it }
-            set(isHideCollidedCaptions) { this.pathOverlay.isHideCollidedCaptions = it }
-            set(tag) { this.pathOverlay.tag = it }
-            set(visible) { this.pathOverlay.isVisible = it }
-            set(width) { this.pathOverlay.width = with(this.density) { it.roundToPx() } }
-            set(zIndex) { this.pathOverlay.zIndex = it }
-            set(globalZIndex) { this.pathOverlay.globalZIndex = it }
+            set(isHideCollidedSymbols) { this.overlay.isHideCollidedSymbols = it }
+            set(isHideCollidedMarkers) { this.overlay.isHideCollidedMarkers = it }
+            set(isHideCollidedCaptions) { this.overlay.isHideCollidedCaptions = it }
+            set(width) { this.overlay.width = with(this.density) { it.roundToPx() } }
+
+            // Overlay
+            set(tag) { this.overlay.tag = it }
+            set(visible) { this.overlay.isVisible = it }
+            set(minZoom) { this.overlay.minZoom = it }
+            set(minZoomInclusive) { this.overlay.isMinZoomInclusive = it }
+            set(maxZoom) { this.overlay.maxZoom = it }
+            set(maxZoomInclusive) { this.overlay.isMaxZoomInclusive = it }
+            set(zIndex) { this.overlay.zIndex = it }
+            set(globalZIndex) { this.overlay.globalZIndex = it }
         }
     )
 }

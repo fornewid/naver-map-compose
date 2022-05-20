@@ -30,12 +30,12 @@ import com.naver.maps.map.overlay.PolylineOverlay.LineCap
 import com.naver.maps.map.overlay.PolylineOverlay.LineJoin
 
 internal class PolylineOverlayNode(
-    val polylineOverlay: PolylineOverlay,
+    val overlay: PolylineOverlay,
     var onPolylineOverlayClick: (PolylineOverlay) -> Boolean,
     var density: Density,
 ) : MapNode {
     override fun onRemoved() {
-        polylineOverlay.map = null
+        overlay.map = null
     }
 }
 
@@ -64,9 +64,13 @@ public fun PolylineOverlay(
     capType: LineCap = LineCap.Round,
     joinType: LineJoin = LineJoin.Miter,
     pattern: Array<Dp> = emptyArray(),
+    width: Dp = 10.dp,
     tag: Any? = null,
     visible: Boolean = true,
-    width: Dp = 10.dp,
+    minZoom: Double = NaverMapDefaults.MinZoom,
+    minZoomInclusive: Boolean = true,
+    maxZoom: Double = NaverMapDefaults.MaxZoom,
+    maxZoomInclusive: Boolean = true,
     zIndex: Int = 0,
     globalZIndex: Int = PolygonOverlayDefaults.GlobalZIndex,
     onClick: (PolylineOverlay) -> Boolean = { false },
@@ -75,28 +79,34 @@ public fun PolylineOverlay(
     val density = LocalDensity.current
     ComposeNode<PolylineOverlayNode, MapApplier>(
         factory = {
-            val map = mapApplier?.map ?: error("Error adding Polyline")
-            val polylineOverlay = PolylineOverlay().apply {
+            val map = mapApplier?.map ?: error("Error adding PolylineOverlay")
+            val overlay = PolylineOverlay().apply {
                 this.coords = coords
                 this.color = color.toArgb()
                 this.capType = capType
                 this.joinType = joinType
                 this.setPattern(*pattern.map { with(density) { it.roundToPx() } }.toIntArray())
-                this.isVisible = visible
                 this.width = with(density) { width.roundToPx() }
+
+                // Overlay
+                this.tag = tag
+                this.isVisible = visible
+                this.minZoom = minZoom
+                this.isMinZoomInclusive = minZoomInclusive
+                this.maxZoom = maxZoom
+                this.isMaxZoomInclusive = maxZoomInclusive
                 this.zIndex = zIndex
                 this.globalZIndex = globalZIndex
             }
-            polylineOverlay.tag = tag
-            polylineOverlay.map = map
-            polylineOverlay.setOnClickListener {
+            overlay.map = map
+            overlay.setOnClickListener {
                 mapApplier
-                    .nodeForPolylineOverlay(polylineOverlay)
+                    .nodeForPolylineOverlay(overlay)
                     ?.onPolylineOverlayClick
-                    ?.invoke(polylineOverlay)
+                    ?.invoke(overlay)
                     ?: false
             }
-            PolylineOverlayNode(polylineOverlay, onClick, density)
+            PolylineOverlayNode(overlay, onClick, density)
         },
         update = {
             // The node holds density so that the updater blocks can be non-capturing,
@@ -104,22 +114,28 @@ public fun PolylineOverlay(
             update(density) { this.density = it }
             update(onClick) { this.onPolylineOverlayClick = it }
 
-            set(coords) { this.polylineOverlay.coords = it }
-            set(color) { this.polylineOverlay.color = it.toArgb() }
-            set(capType) { this.polylineOverlay.capType = it }
-            set(joinType) { this.polylineOverlay.joinType = it }
+            set(coords) { this.overlay.coords = it }
+            set(color) { this.overlay.color = it.toArgb() }
+            set(capType) { this.overlay.capType = it }
+            set(joinType) { this.overlay.joinType = it }
             set(pattern) {
-                this.polylineOverlay.setPattern(
-                    *it.map { with(density) { it.roundToPx() } }.toIntArray()
+                this.overlay.setPattern(
+                    *it.map { with(this.density) { it.roundToPx() } }.toIntArray()
                 )
             }
-            set(tag) { this.polylineOverlay.tag = it }
-            set(visible) { this.polylineOverlay.isVisible = it }
             set(width) {
-                this.polylineOverlay.width = with(this.density) { it.roundToPx() }
+                this.overlay.width = with(this.density) { it.roundToPx() }
             }
-            set(zIndex) { this.polylineOverlay.zIndex = it }
-            set(globalZIndex) { this.polylineOverlay.globalZIndex = it }
+
+            // Overlay
+            set(tag) { this.overlay.tag = it }
+            set(visible) { this.overlay.isVisible = it }
+            set(minZoom) { this.overlay.minZoom = it }
+            set(minZoomInclusive) { this.overlay.isMinZoomInclusive = it }
+            set(maxZoom) { this.overlay.maxZoom = it }
+            set(maxZoomInclusive) { this.overlay.isMaxZoomInclusive = it }
+            set(zIndex) { this.overlay.zIndex = it }
+            set(globalZIndex) { this.overlay.globalZIndex = it }
         }
     )
 }

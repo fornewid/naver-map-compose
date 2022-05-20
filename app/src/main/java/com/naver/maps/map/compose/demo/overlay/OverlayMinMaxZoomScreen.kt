@@ -78,9 +78,9 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
                     ),
                     captionText = stringResource(R.string.caption_marker_1),
                     minZoom = 15.0,
-                    isMinZoomInclusive = true,
+                    minZoomInclusive = true,
                     maxZoom = 17.0,
-                    isMaxZoomInclusive = true,
+                    maxZoomInclusive = true,
                 )
 
                 Marker(
@@ -90,9 +90,9 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
                     ),
                     captionText = stringResource(R.string.caption_marker_2),
                     minZoom = 15.0,
-                    isMinZoomInclusive = false,
+                    minZoomInclusive = false,
                     maxZoom = 17.0,
-                    isMaxZoomInclusive = true,
+                    maxZoomInclusive = true,
                 )
 
                 Marker(
@@ -102,9 +102,9 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
                     ),
                     captionText = stringResource(R.string.caption_marker_3),
                     minZoom = 15.0,
-                    isMinZoomInclusive = true,
+                    minZoomInclusive = true,
                     maxZoom = 17.0,
-                    isMaxZoomInclusive = false,
+                    maxZoomInclusive = false,
                 )
 
                 Marker(
@@ -115,8 +115,8 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
                     captionText = stringResource(R.string.caption_marker_4),
                     minZoom = 15.0,
                     maxZoom = 17.0,
-                    isMinZoomInclusive = false,
-                    isMaxZoomInclusive = false,
+                    minZoomInclusive = false,
+                    maxZoomInclusive = false,
                 )
             }
 
