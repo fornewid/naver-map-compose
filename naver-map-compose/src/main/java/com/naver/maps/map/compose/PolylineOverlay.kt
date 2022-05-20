@@ -35,7 +35,7 @@ internal class PolylineOverlayNode(
     var density: Density,
 ) : MapNode {
     override fun onRemoved() {
-        polylineOverlay.remove()
+        polylineOverlay.map = null
     }
 }
 

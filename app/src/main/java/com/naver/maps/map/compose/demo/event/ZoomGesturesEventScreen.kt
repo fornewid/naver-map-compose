@@ -15,18 +15,11 @@
  */
 package com.naver.maps.map.compose.demo.event
 
-import android.content.Context
-import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.selection.toggleable
-import androidx.compose.material.Checkbox
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -36,13 +29,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.NaverMap
-import com.naver.maps.map.compose.demo.DefaultTopAppBar
 import com.naver.maps.map.compose.demo.R
+import com.naver.maps.map.compose.demo.common.CheckedText
+import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
+import com.naver.maps.map.compose.demo.common.showToast
 
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable
@@ -70,12 +64,14 @@ fun ZoomGesturesEventScreen(upPress: () -> Unit) {
                 CheckedText(
                     text = stringResource(R.string.double_tap),
                     checked = consumeDoubleTap.value,
-                    onCheckedChange = { consumeDoubleTap.value = it }
+                    onCheckedChange = { consumeDoubleTap.value = it },
+                    modifier = Modifier.wrapContentWidth()
                 )
                 CheckedText(
                     text = stringResource(R.string.two_finger_tap),
                     checked = consumeTwoFingerTap.value,
-                    onCheckedChange = { consumeTwoFingerTap.value = it }
+                    onCheckedChange = { consumeTwoFingerTap.value = it },
+                    modifier = Modifier.wrapContentWidth()
                 )
             }
 
@@ -100,38 +96,4 @@ fun ZoomGesturesEventScreen(upPress: () -> Unit) {
             )
         }
     }
-}
-
-@Composable
-private fun CheckedText(
-    text: String,
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit,
-) {
-    Row(
-        Modifier
-            .wrapContentWidth()
-            .height(42.dp)
-            .toggleable(
-                value = checked,
-                onValueChange = { onCheckedChange(it) },
-                role = Role.Checkbox
-            )
-            .padding(horizontal = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Checkbox(
-            checked = checked,
-            onCheckedChange = null
-        )
-        Text(
-            text = text,
-            style = MaterialTheme.typography.body1.merge(),
-            modifier = Modifier.padding(start = 8.dp)
-        )
-    }
-}
-
-private fun Context.showToast(@StringRes resId: Int, vararg formatArgs: Any) {
-    Toast.makeText(this, getString(resId, *formatArgs), Toast.LENGTH_SHORT).show()
 }

@@ -15,9 +15,6 @@
  */
 package com.naver.maps.map.compose.demo.event
 
-import android.content.Context
-import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
@@ -34,8 +31,9 @@ import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.MarkerDefaults
 import com.naver.maps.map.compose.NaverMap
-import com.naver.maps.map.compose.demo.DefaultTopAppBar
 import com.naver.maps.map.compose.demo.R
+import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
+import com.naver.maps.map.compose.demo.common.showToast
 import com.naver.maps.map.compose.rememberMarkerState
 import com.naver.maps.map.util.MarkerIcons
 
@@ -104,8 +102,4 @@ fun OverlayClickEventScreen(upPress: () -> Unit) {
             }
         }
     }
-}
-
-private fun Context.showToast(@StringRes resId: Int, vararg formatArgs: Any) {
-    Toast.makeText(this, getString(resId, *formatArgs), Toast.LENGTH_SHORT).show()
 }

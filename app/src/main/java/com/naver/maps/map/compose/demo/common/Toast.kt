@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.naver.maps.map.compose
+package com.naver.maps.map.compose.demo.common
 
-import com.naver.maps.map.NaverMap
-import com.naver.maps.map.overlay.Overlay
+import android.content.Context
+import android.widget.Toast
+import androidx.annotation.StringRes
 
-internal fun Overlay.remove() {
-    this.map = null
+fun Context.showToast(@StringRes resId: Int) {
+    Toast.makeText(this, getString(resId), Toast.LENGTH_SHORT).show()
 }
 
-public object OverlayDefaults {
-    public const val DefaultMinZoom: Double = NaverMap.MINIMUM_ZOOM.toDouble()
-    public const val DefaultMaxZoom: Double = NaverMap.MAXIMUM_ZOOM.toDouble()
+fun Context.showToast(@StringRes resId: Int, vararg formatArgs: Any) {
+    Toast.makeText(this, getString(resId, *formatArgs), Toast.LENGTH_SHORT).show()
 }

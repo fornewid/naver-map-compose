@@ -47,8 +47,8 @@ import com.naver.maps.map.compose.MapProperties
 import com.naver.maps.map.compose.MapType
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.NaverMapDefaults
-import com.naver.maps.map.compose.demo.DefaultTopAppBar
 import com.naver.maps.map.compose.demo.R
+import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
 
 @OptIn(ExperimentalNaverMapApi::class)

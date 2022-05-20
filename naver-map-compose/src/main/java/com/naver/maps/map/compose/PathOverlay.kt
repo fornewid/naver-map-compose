@@ -34,7 +34,7 @@ internal class PathOverlayNode(
     var density: Density
 ) : MapNode {
     override fun onRemoved() {
-        pathOverlay.remove()
+        pathOverlay.map = null
     }
 }
 

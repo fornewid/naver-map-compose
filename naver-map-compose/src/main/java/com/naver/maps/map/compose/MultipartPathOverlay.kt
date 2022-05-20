@@ -32,7 +32,7 @@ internal class MultipartPathOverlayNode(
     var density: Density,
 ) : MapNode {
     override fun onRemoved() {
-        multipartPathOverlay.remove()
+        multipartPathOverlay.map = null
     }
 }
 

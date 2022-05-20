@@ -33,7 +33,7 @@ internal class CircleOverlayNode(
     var density: Density
 ) : MapNode {
     override fun onRemoved() {
-        circleOverlay.remove()
+        circleOverlay.map = null
     }
 }
 

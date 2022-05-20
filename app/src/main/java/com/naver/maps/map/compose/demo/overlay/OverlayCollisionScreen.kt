@@ -24,8 +24,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.foundation.selection.toggleable
-import androidx.compose.material.Checkbox
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.RadioButton
 import androidx.compose.material.Scaffold
@@ -50,8 +48,9 @@ import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.MarkerDefaults
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.PathOverlay
-import com.naver.maps.map.compose.demo.DefaultTopAppBar
 import com.naver.maps.map.compose.demo.R
+import com.naver.maps.map.compose.demo.common.CheckedText
+import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberMarkerState
 import com.naver.maps.map.util.MarkerIcons
 
@@ -79,27 +78,32 @@ fun OverlayCollisionScreen(upPress: () -> Unit) {
                 CheckedText(
                     text = stringResource(R.string.hide_collided_symbols),
                     checked = isHideCollidedSymbols.value,
-                    onCheckedChange = { isHideCollidedSymbols.value = it }
+                    onCheckedChange = { isHideCollidedSymbols.value = it },
+                    modifier = Modifier.fillMaxWidth()
                 )
                 CheckedText(
                     text = stringResource(R.string.hide_collided_markers),
                     checked = isHideCollidedMarkers.value,
-                    onCheckedChange = { isHideCollidedMarkers.value = it }
+                    onCheckedChange = { isHideCollidedMarkers.value = it },
+                    modifier = Modifier.fillMaxWidth()
                 )
                 CheckedText(
                     text = stringResource(R.string.hide_collided_captions),
                     checked = isHideCollidedCaptions.value,
-                    onCheckedChange = { isHideCollidedCaptions.value = it }
+                    onCheckedChange = { isHideCollidedCaptions.value = it },
+                    modifier = Modifier.fillMaxWidth()
                 )
                 CheckedText(
                     text = stringResource(R.string.force_show_icon),
                     checked = forceShowIcon.value,
-                    onCheckedChange = { forceShowIcon.value = it }
+                    onCheckedChange = { forceShowIcon.value = it },
+                    modifier = Modifier.fillMaxWidth()
                 )
                 CheckedText(
                     text = stringResource(R.string.force_show_caption),
                     checked = forceShowCaption.value,
-                    onCheckedChange = { forceShowCaption.value = it }
+                    onCheckedChange = { forceShowCaption.value = it },
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
 
@@ -193,36 +197,6 @@ fun OverlayCollisionScreen(upPress: () -> Unit) {
                 }
             }
         }
-    }
-}
-
-@Composable
-private fun CheckedText(
-    text: String,
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit,
-) {
-    Row(
-        Modifier
-            .fillMaxWidth()
-            .height(42.dp)
-            .toggleable(
-                value = checked,
-                onValueChange = { onCheckedChange(it) },
-                role = Role.Checkbox
-            )
-            .padding(horizontal = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Checkbox(
-            checked = checked,
-            onCheckedChange = null
-        )
-        Text(
-            text = text,
-            style = MaterialTheme.typography.body1.merge(),
-            modifier = Modifier.padding(start = 8.dp)
-        )
     }
 }
 
