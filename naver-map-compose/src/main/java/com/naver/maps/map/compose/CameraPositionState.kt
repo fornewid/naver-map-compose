@@ -22,10 +22,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.CameraAnimation
 import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.Projection
 import kotlinx.coroutines.CancellableContinuation
@@ -38,49 +40,37 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 /**
- * Create and [rememberSaveable] a [CameraPositionState] using [CameraPositionState.Saver].
- * [init] will be called when the [CameraPositionState] is first created to configure its
- * initial state.
+ * [CameraPositionState]를 만들고 [CameraPositionState.Saver]를 사용하여 [rememberSaveable]합니다.
+ * [init]은 초기 상태를 구성하기 위해 [CameraPositionState]가 처음 생성될 때 호출됩니다.
  */
-@ExperimentalNaverMapApi
 @Composable
 public inline fun rememberCameraPositionState(
     key: String? = null,
-    crossinline init: CameraPositionState.() -> Unit = {}
+    crossinline init: CameraPositionState.() -> Unit = {},
 ): CameraPositionState = rememberSaveable(key = key, saver = CameraPositionState.Saver) {
     CameraPositionState().apply(init)
 }
 
 /**
- * A state object that can be hoisted to control and observe the map's camera state.
- * A [CameraPositionState] may only be used by a single [NaverMap] composable at a time
- * as it reflects instance state for a single view of a map.
+ * 지도의 카메라 상태를 제어하고 관찰할 수 있는 상태 개체입니다.
+ * [CameraPositionState]는 단일 [MapView]의 상태를 반영하므로 한 번에 하나의 [NaverMap] composable에서만 사용할 수 있습니다.
  *
- * @param position the initial camera position
+ * @param position 초기 좌표를 지정합니다.
  */
-@ExperimentalNaverMapApi
 public class CameraPositionState(
-    position: CameraPosition = NaverMap.DEFAULT_CAMERA_POSITION
+    position: CameraPosition = NaverMap.DEFAULT_CAMERA_POSITION,
 ) {
     /**
-     * Whether the camera is currently moving or not. This includes any kind of movement:
-     * panning, zooming, or rotation.
+     * 카메라가 현재 움직이고 있는지 여부입니다. 여기에는 이동, 확대/축소 또는 회전과 같은 모든 종류의 이동이 포함됩니다.
      */
     public var isMoving: Boolean by mutableStateOf(false)
         internal set
 
     /**
-     * Returns the current [Projection] to be used for converting between screen
-     * coordinates and lat/lng.
+     * 이 지도의 화면 좌표와 위도/경도 간의 변환에 사용할 [Projection] 객체를 반환합니다. 항상 같은 객체가 반환됩니다.
      */
     public val projection: Projection?
         get() = map?.projection
-
-    public val contentBounds: LatLngBounds?
-        get() = map?.contentBounds
-
-    public val coveringBounds: LatLngBounds?
-        get() = map?.coveringBounds
 
     /**
      * Local source of truth for the current camera position.
@@ -91,7 +81,7 @@ public class CameraPositionState(
     internal var rawPosition by mutableStateOf(position)
 
     /**
-     * Current position of the camera on the map.
+     * 지도에서 카메라의 현재 위치입니다.
      */
     public var position: CameraPosition
         get() = rawPosition
@@ -104,6 +94,61 @@ public class CameraPositionState(
                     map.moveCamera(CameraUpdate.toCameraPosition(value))
                 }
             }
+        }
+
+    /**
+     * 지도의 콘텐츠 영역에 대한 [LatLngBounds]를 반환합니다.
+     * 콘텐츠 패딩이 모두 0이면 [coveringBounds]와 동일한 영역이,
+     * 콘텐츠 패딩이 지정되어 있으면 [coveringBounds]에서 콘텐츠 패딩을 제외한 영역이 반환됩니다.
+     */
+    public val contentBounds: LatLngBounds?
+        get() = map?.contentBounds
+
+    /**
+     * 지도의 콘텐츠 영역에 대한 좌표열을 반환합니다. 좌표열은 네 개의 좌표로 구성된 사각형으로 표현됩니다.
+     * 단, 반환되는 배열의 크기는 5이며, 첫 번째 원소와 마지막 원소가 동일한 지점을 가리킵니다.
+     * 콘텐츠 패딩이 모두 0이면 [coveringRegion]과 동일한 사각형이,
+     * 콘텐츠 패딩이 지정되어 있으면 [coveringRegion]에서 콘텐츠 패딩을 제외한 사각형이 반환됩니다.
+     */
+    public val contentRegion: Array<LatLng>?
+        get() = map?.contentRegion
+
+    /**
+     * 콘텐츠 패딩을 포함한 지도의 뷰 전체 영역에 대한 [LatLngBounds]를 반환합니다.
+     */
+    public val coveringBounds: LatLngBounds?
+        get() = map?.coveringBounds
+
+    /**
+     * 콘텐츠 패딩을 포함한 지도의 뷰 전체 영역에 대한 좌표열을 반환합니다. 좌표열은 네 개의 좌표로 구성된 사각형으로 표현됩니다.
+     * 단, 반환되는 배열의 크기는 5이며, 첫 번째 원소와 마지막 원소가 동일한 지점을 가리킵니다.
+     */
+    public val coveringRegion: Array<LatLng>?
+        get() = map?.coveringRegion
+
+    /**
+     * 콘텐츠 패딩을 포함한 지도의 뷰 전체를 완전히 덮는 타일 ID의 목록을 반환합니다.
+     */
+    public val coveringTileIds: LongArray?
+        get() = map?.coveringTileIds
+
+    /**
+     * 콘텐츠 패딩을 포함한 지도의 뷰 전체를 완전히 덮는 zoom 레벨 타일 ID의 목록을 반환합니다.
+     */
+    public fun getCoveringTileIdsAtZoom(zoom: Int): LongArray? {
+        return map?.getCoveringTileIdsAtZoom(zoom)
+    }
+
+    /**
+     * 위치 추적 모드를 반환합니다. 기본값은 [LocationTrackingMode.None]입니다.
+     */
+    public val locationTrackingMode: LocationTrackingMode?
+        get() = when (map?.locationTrackingMode) {
+            com.naver.maps.map.LocationTrackingMode.None -> LocationTrackingMode.None
+            com.naver.maps.map.LocationTrackingMode.NoFollow -> LocationTrackingMode.NoFollow
+            com.naver.maps.map.LocationTrackingMode.Follow -> LocationTrackingMode.Follow
+            com.naver.maps.map.LocationTrackingMode.Face -> LocationTrackingMode.Face
+            null -> null
         }
 
     // Used to perform side effects thread-safely.
@@ -189,11 +234,12 @@ public class CameraPositionState(
      * provided, the default animation duration will be used. Otherwise, the value provided must be
      * strictly positive, otherwise an [IllegalArgumentException] will be thrown.
      */
+    @ExperimentalNaverMapApi
     @UiThread
     public suspend fun animate(
         update: CameraUpdate,
         animation: CameraAnimation = CameraAnimation.Easing,
-        durationMs: Int = MAX_VALUE
+        durationMs: Int = MAX_VALUE,
     ) {
         val myJob = currentCoroutineContext()[Job]
         try {
@@ -261,7 +307,7 @@ public class CameraPositionState(
         update: CameraUpdate,
         animation: CameraAnimation,
         durationMs: Int,
-        continuation: CancellableContinuation<Unit>
+        continuation: CancellableContinuation<Unit>,
     ) {
         val cancelableCallback = object : CameraUpdate.CancelCallback, CameraUpdate.FinishCallback {
             override fun onCameraUpdateCancel() {
@@ -302,6 +348,7 @@ public class CameraPositionState(
      *
      * This method must be called from the map's UI thread.
      */
+    @ExperimentalNaverMapApi
     @UiThread
     public fun move(update: CameraUpdate) {
         synchronized(lock) {
@@ -316,6 +363,7 @@ public class CameraPositionState(
         }
     }
 
+    @ExperimentalNaverMapApi
     @UiThread
     public fun stop() {
         synchronized(lock) {
@@ -332,7 +380,7 @@ public class CameraPositionState(
 
     public companion object {
         /**
-         * The default saver implementation for [CameraPositionState]
+         * [CameraPositionState]의 기본 [Saver]입니다.
          */
         public val Saver: Saver<CameraPositionState, CameraPosition> = Saver(
             save = { it.position },

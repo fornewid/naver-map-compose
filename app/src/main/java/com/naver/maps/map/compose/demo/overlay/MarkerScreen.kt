@@ -28,7 +28,7 @@ import com.naver.maps.map.compose.Align
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.NaverMap
-import com.naver.maps.map.compose.NaverMapDefaults
+import com.naver.maps.map.compose.NaverMapConstants
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
@@ -49,8 +49,8 @@ fun MarkerScreen(upPress: () -> Unit) {
     ) { contentPadding ->
         val cameraPositionState = rememberCameraPositionState {
             this.position = CameraPosition(
-                NaverMapDefaults.CameraPosition.target,
-                NaverMapDefaults.CameraPosition.zoom,
+                NaverMapConstants.DefaultCameraPosition.target,
+                NaverMapConstants.DefaultCameraPosition.zoom,
                 30.0,
                 45.0
             )

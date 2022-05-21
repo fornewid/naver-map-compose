@@ -49,7 +49,7 @@ fun IndoorMapScreen(upPress: () -> Unit) {
             NaverMap(
                 cameraPositionState = cameraPositionState,
                 properties = MapProperties(isIndoorEnabled = true),
-                uiSettings = MapUiSettings(indoorLevelPickerEnabled = true),
+                uiSettings = MapUiSettings(isIndoorLevelPickerEnabled = true),
             )
         }
     }

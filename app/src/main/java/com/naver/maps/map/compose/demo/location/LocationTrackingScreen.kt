@@ -44,6 +44,7 @@ import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.LocalLocationSource
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
+import com.naver.maps.map.compose.rememberCameraPositionState
 
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable
@@ -103,18 +104,22 @@ fun LocationTrackingScreen(upPress: () -> Unit) {
                 3 -> LocationTrackingMode.Face
                 else -> throw IllegalStateException()
             }
+            val cameraPositionState = rememberCameraPositionState()
             NaverMap(
+                cameraPositionState = cameraPositionState,
                 locationSource = LocalLocationSource.current,
                 properties = MapProperties(
-                    locationTrackingMode = locationTrackingMode
+                    locationTrackingMode = locationTrackingMode,
                 ),
                 uiSettings = MapUiSettings(
-                    locationButtonEnabled = true,
-                    compassEnabled = locationTrackingMode == LocationTrackingMode.Follow ||
+                    isLocationButtonEnabled = true,
+                    isCompassEnabled = locationTrackingMode == LocationTrackingMode.Follow ||
                         locationTrackingMode == LocationTrackingMode.Face
                 ),
                 onOptionChange = {
-                    // TODO: 변경된 locationTrackingMode를 확인할 수 있을까?
+                    cameraPositionState.locationTrackingMode?.let {
+                        onOptionSelected(it.ordinal)
+                    }
                 }
             )
         }

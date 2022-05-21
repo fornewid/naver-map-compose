@@ -38,10 +38,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
-import com.naver.maps.map.compose.LayerGroup
 import com.naver.maps.map.compose.MapProperties
 import com.naver.maps.map.compose.NaverMap
-import com.naver.maps.map.compose.NaverMapDefaults
+import com.naver.maps.map.compose.NaverMapConstants
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
@@ -106,13 +105,13 @@ fun DisplayOptionsScreen(upPress: () -> Unit) {
                         buildingHeight = buildingHeightProgress / 100,
                         symbolScale = symbolScaleProgress / 100,
                         symbolPerspectiveRatio = symbolPerspectiveRatioProgress / 100,
-                        enabledLayerGroupSet = hashSetOf(LayerGroup.Building)
+                        isBuildingLayerGroupEnabled = true,
                     )
                 }
             }
             val cameraPositionState = rememberCameraPositionState {
                 this.position = CameraPosition(
-                    NaverMapDefaults.CameraPosition.target,
+                    NaverMapConstants.DefaultCameraPosition.target,
                     16.0,
                     40.0,
                     0.0

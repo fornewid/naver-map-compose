@@ -31,10 +31,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.compose.ColorPart
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.MultipartPathOverlay
 import com.naver.maps.map.compose.NaverMap
@@ -217,35 +219,35 @@ private val COORDS_1 = listOf(
 )
 
 private val COLORS_1 = listOf(
-    com.naver.maps.map.overlay.MultipartPathOverlay.ColorPart(
-        android.graphics.Color.RED,
-        android.graphics.Color.WHITE,
-        android.graphics.Color.GRAY,
-        android.graphics.Color.WHITE
+    ColorPart(
+        Color.Red,
+        Color.White,
+        Color.Gray,
+        Color.White
     ),
-    com.naver.maps.map.overlay.MultipartPathOverlay.ColorPart(
-        android.graphics.Color.YELLOW,
-        android.graphics.Color.WHITE,
-        android.graphics.Color.GRAY,
-        android.graphics.Color.WHITE
+    ColorPart(
+        Color.Yellow,
+        Color.White,
+        Color.Gray,
+        Color.White
     ),
-    com.naver.maps.map.overlay.MultipartPathOverlay.ColorPart(
-        android.graphics.Color.GREEN,
-        android.graphics.Color.WHITE,
-        android.graphics.Color.GRAY,
-        android.graphics.Color.WHITE
+    ColorPart(
+        Color.Green,
+        Color.White,
+        Color.Gray,
+        Color.White
     ),
-    com.naver.maps.map.overlay.MultipartPathOverlay.ColorPart(
-        android.graphics.Color.RED,
-        android.graphics.Color.WHITE,
-        android.graphics.Color.GRAY,
-        android.graphics.Color.WHITE
+    ColorPart(
+        Color.Red,
+        Color.White,
+        Color.Gray,
+        Color.White
     ),
-    com.naver.maps.map.overlay.MultipartPathOverlay.ColorPart(
-        android.graphics.Color.YELLOW,
-        android.graphics.Color.WHITE,
-        android.graphics.Color.GRAY,
-        android.graphics.Color.WHITE
+    ColorPart(
+        Color.Yellow,
+        Color.White,
+        Color.Gray,
+        Color.White
     ),
 )
 
@@ -311,22 +313,22 @@ private val COORDS_2 = listOf(
 )
 
 private val COLORS_2 = listOf(
-    com.naver.maps.map.overlay.MultipartPathOverlay.ColorPart(
-        android.graphics.Color.LTGRAY,
-        android.graphics.Color.WHITE,
-        android.graphics.Color.LTGRAY,
-        android.graphics.Color.WHITE
+    ColorPart(
+        Color.LightGray,
+        Color.White,
+        Color.LightGray,
+        Color.White
     ),
-    com.naver.maps.map.overlay.MultipartPathOverlay.ColorPart(
-        android.graphics.Color.GRAY,
-        android.graphics.Color.WHITE,
-        android.graphics.Color.GRAY,
-        android.graphics.Color.WHITE
+    ColorPart(
+        Color.Gray,
+        Color.White,
+        Color.Gray,
+        Color.White
     ),
-    com.naver.maps.map.overlay.MultipartPathOverlay.ColorPart(
-        android.graphics.Color.DKGRAY,
-        android.graphics.Color.WHITE,
-        android.graphics.Color.DKGRAY,
-        android.graphics.Color.WHITE
+    ColorPart(
+        Color.DarkGray,
+        Color.White,
+        Color.DarkGray,
+        Color.White
     ),
 )

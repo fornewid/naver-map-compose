@@ -45,7 +45,7 @@ import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.NaverMap
-import com.naver.maps.map.compose.NaverMapDefaults
+import com.naver.maps.map.compose.NaverMapConstants
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
@@ -165,4 +165,7 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
     }
 }
 
-private val DEFAULT_CAMERA_POSITION = CameraPosition(NaverMapDefaults.CameraPosition.target, 16.0)
+private val DEFAULT_CAMERA_POSITION = CameraPosition(
+    NaverMapConstants.DefaultCameraPosition.target,
+    16.0
+)

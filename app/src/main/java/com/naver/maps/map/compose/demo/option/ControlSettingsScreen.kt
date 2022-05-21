@@ -105,12 +105,12 @@ fun ControlSettingsScreen(upPress: () -> Unit) {
                 cameraPositionState = cameraPositionState,
                 properties = MapProperties(isIndoorEnabled = true),
                 uiSettings = MapUiSettings(
-                    compassEnabled = isCompassEnabled.value,
-                    scaleBarEnabled = isScaleBarEnabled.value,
-                    zoomControlEnabled = isZoomControlEnabled.value,
-                    indoorLevelPickerEnabled = isIndoorLevelPickerEnabled.value,
-                    locationButtonEnabled = isLocationButtonEnabled.value,
-                    logoClickEnabled = isLogoClickEnabled.value,
+                    isCompassEnabled = isCompassEnabled.value,
+                    isScaleBarEnabled = isScaleBarEnabled.value,
+                    isZoomControlEnabled = isZoomControlEnabled.value,
+                    isIndoorLevelPickerEnabled = isIndoorLevelPickerEnabled.value,
+                    isLocationButtonEnabled = isLocationButtonEnabled.value,
+                    isLogoClickEnabled = isLogoClickEnabled.value,
                 )
             )
         }

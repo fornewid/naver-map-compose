@@ -22,7 +22,6 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.GroundOverlay
-import com.naver.maps.map.compose.GroundOverlayPosition
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
@@ -43,21 +42,17 @@ fun GroundOverlayScreen(upPress: () -> Unit) {
             contentPadding = contentPadding,
         ) {
             GroundOverlay(
-                position = GroundOverlayPosition.create(
-                    bounds = LatLngBounds(
-                        LatLng(37.57023, 126.97672),
-                        LatLng(37.57545, 126.98323)
-                    )
+                bounds = LatLngBounds(
+                    LatLng(37.57023, 126.97672),
+                    LatLng(37.57545, 126.98323)
                 ),
                 alpha = 0.8f
             )
 
             GroundOverlay(
-                position = GroundOverlayPosition.create(
-                    bounds = LatLngBounds(
-                        LatLng(37.566351, 126.977234),
-                        LatLng(37.568528, 126.97998)
-                    )
+                bounds = LatLngBounds(
+                    LatLng(37.566351, 126.977234),
+                    LatLng(37.568528, 126.97998)
                 ),
                 image = OverlayImage.fromResource(R.drawable.ground_overlay)
             )
