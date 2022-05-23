@@ -22,6 +22,8 @@ google-play-services-location = "com.google.android.gms:play-services-location:1
 kotlin-pluginGradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk7", version.ref = "kotlin" }
 
+dokka-pluginGradle = "org.jetbrains.dokka:dokka-gradle-plugin:1.5.0"
+
 # Material Design
 
 material-material = "com.google.android.material:material:1.4.0"
