@@ -82,16 +82,28 @@ public fun NaverMap(
 
     // rememberUpdatedState and friends are used here to make these values observable to
     // the subcomposition without providing a new content function each recomposition
-    val mapClickListeners = remember { MapClickListeners() }.also {
-        it.onMapClick = onMapClick
-        it.onMapLongClick = onMapLongClick
-        it.onMapDoubleTab = onMapDoubleTab
-        it.onMapTwoFingerTap = onMapTwoFingerTap
-        it.onMapLoaded = onMapLoaded
-        it.onLocationChange = onLocationChange
-        it.onOptionChange = onOptionChange
-        it.onSymbolClick = onSymbolClick
-        it.onIndoorSelectionChange = onIndoorSelectionChange
+    val mapClickListeners = remember(
+        onMapClick,
+        onMapLongClick,
+        onMapDoubleTab,
+        onMapTwoFingerTap,
+        onMapLoaded,
+        onLocationChange,
+        onOptionChange,
+        onSymbolClick,
+        onIndoorSelectionChange
+    ) {
+        MapClickListeners().also {
+            it.onMapClick = onMapClick
+            it.onMapLongClick = onMapLongClick
+            it.onMapDoubleTab = onMapDoubleTab
+            it.onMapTwoFingerTap = onMapTwoFingerTap
+            it.onMapLoaded = onMapLoaded
+            it.onLocationChange = onLocationChange
+            it.onOptionChange = onOptionChange
+            it.onSymbolClick = onSymbolClick
+            it.onIndoorSelectionChange = onIndoorSelectionChange
+        }
     }
     val currentLocationSource by rememberUpdatedState(locationSource)
     val currentLocale by rememberUpdatedState(locale)
