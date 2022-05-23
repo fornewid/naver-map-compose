@@ -48,13 +48,8 @@ dependencies {
 ### 지도 추가하기
 
 ```kotlin
-val seoul = LatLng(37.532600, 127.024612)
-val cameraPositionState = rememberCameraPositionState {
-    position = CameraPosition(seoul, 14.0)
-}
 NaverMap(
-    modifier = Modifier.fillMaxSize(),
-    cameraPositionState = cameraPositionState
+    modifier = Modifier.fillMaxSize()
 )
 ```
 
@@ -100,6 +95,7 @@ Box(Modifier.fillMaxSize()) {
 ```kotlin
 val seoul = LatLng(37.532600, 127.024612)
 val cameraPositionState: CameraPositionState = rememberCameraPositionState {
+    // 카메라 초기 위치를 설정합니다.
     position = CameraPosition(seoul, 11.0)
 }
 Box(Modifier.fillMaxSize()) {
