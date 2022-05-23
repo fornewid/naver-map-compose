@@ -1,0 +1,648 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A library that provides NAVER Map APIs for Jetpack Compose.">
+      
+      
+        <meta name="author" content="fornewid">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.15">
+    
+    
+      
+        <title>NAVER Map Compose</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.c382b1dc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.cc9b2e1e.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4cae4f">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#naver-map-compose" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="NAVER Map Compose" class="md-header__button md-logo" aria-label="NAVER Map Compose" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NAVER Map Compose
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/fornewid/naver-map-compose" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fornewid/naver-map-compose
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="NAVER Map Compose" class="md-nav__button md-logo" aria-label="NAVER Map Compose" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    NAVER Map Compose
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/fornewid/naver-map-compose" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fornewid/naver-map-compose
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        Overview
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sample-app" class="md-nav__link">
+    Sample App
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download" class="md-nav__link">
+    Download
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    지도 추가하기
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    지도 구성하기
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    지도의 카메라 제어하기
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    지도에 그리기
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributions" class="md-nav__link">
+    Contributions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    License
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/" class="md-nav__link">
+        API Docs
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sample-app" class="md-nav__link">
+    Sample App
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download" class="md-nav__link">
+    Download
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    지도 추가하기
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    지도 구성하기
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    지도의 카메라 제어하기
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    지도에 그리기
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributions" class="md-nav__link">
+    Contributions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    License
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/fornewid/naver-map-compose/edit/master/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="naver-map-compose">NAVER Map Compose 🗺<a class="headerlink" href="#naver-map-compose" title="Permanent link">&para;</a></h1>
+<p><a href="https://github.com/fornewid/naver-map-compose/actions/workflows/build.yaml"><img src="https://github.com/fornewid/naver-map-compose/actions/workflows/build.yaml/badge.svg"/></a>
+<a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
+<a href='https://developer.android.com'><img src='http://img.shields.io/badge/platform-android-green.svg'/></a>
+<a href='https://developer.android.com/studio/releases/platforms#5.0'><img src="https://img.shields.io/badge/API%20Level-21+-green.svg"/></a></p>
+<p>이 라이브러리는 <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a>에서 사용할 수 있는 <a href="https://navermaps.github.io/android-map-sdk/guide-ko/">네이버 지도</a> API를 제공합니다.</p>
+<h2 id="sample-app">Sample App<a class="headerlink" href="#sample-app" title="Permanent link">&para;</a></h2>
+<p>이 저장소에는 샘플 앱이 포함되어 있습니다.
+실행하려면 다음을 수행해야 합니다.</p>
+<ol>
+<li><a href="https://github.com/navermaps/android-map-sdk">NAVER Map Android SDK Demo</a> 레포지터리의 <a href="https://github.com/navermaps/android-map-sdk#how-to-run">How To Run</a>을 참고하여, 클라이언트 ID를 발급받습니다.</li>
+<li><a href="app/src/main/res/values/client_id.xml"><code>client_id.xml</code></a>의 <code>naver_map_sdk_client_id</code>에 발급받은 클라이언트 ID를 입력합니다.</li>
+<li>빌드하고 실행합니다.</li>
+</ol>
+<h2 id="download">Download<a class="headerlink" href="#download" title="Permanent link">&para;</a></h2>
+<table>
+ <tr>
+  <td>Compose 1.1 (1.1.x)</td><td><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.fornewid/naver-map-compose"/></td>
+ </tr>
+ <tr>
+  <td>Compose 1.2 (1.2.x)</td><td>-</td>
+ </tr>
+</table>
+
+<div class="highlight"><pre><span></span><code><span class="n">repositories</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">mavenCentral</span><span class="o">()</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+
+<span class="n">dependencies</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s1">&#39;io.github.fornewid:naver-map-compose:&lt;version&gt;&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// NAVER Map Android SDK 최신 버전도 포함해야 합니다.</span><span class="w"></span>
+<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s1">&#39;com.naver.maps:map-sdk:3.15.0&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// FusedLocationSource를 사용하려면 play-services-location 의존성도 추가해야 합니다.</span><span class="w"></span>
+<span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s1">&#39;com.google.android.gms:play-services-location:16.0.0&#39;</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<h3 id="_1">지도 추가하기<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">NaverMap</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<h3 id="_2">지도 구성하기<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>지도는 <code>MapProperties</code>와 <code>MapUiSettings</code> 객체를 <code>NaverMap</code> composable에 전달하여 구성할 수 있습니다.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nv">mapProperties</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">MapProperties</span><span class="p">(</span><span class="n">maxZoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10.0</span><span class="p">,</span><span class="w"> </span><span class="n">minZoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5.0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nv">mapUiSettings</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">MapUiSettings</span><span class="p">(</span><span class="n">isLocationButtonEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">Box</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">NaverMap</span><span class="p">(</span><span class="n">properties</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapProperties</span><span class="p">,</span><span class="w"> </span><span class="n">uiSettings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapUiSettings</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Column</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Button</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">mapProperties</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapProperties</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">isBuildingLayerGroupEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">mapProperties</span><span class="p">.</span><span class="na">isBuildingLayerGroupEnabled</span><span class="w"></span>
+<span class="w">            </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">})</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Toggle isBuildingLayerGroupEnabled&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">Button</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">mapUiSettings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapUiSettings</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="n">isLocationButtonEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">mapUiSettings</span><span class="p">.</span><span class="na">isLocationButtonEnabled</span><span class="w"></span>
+<span class="w">            </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">})</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Toggle isLocationButtonEnabled&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="_3">지도의 카메라 제어하기<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p><code>CameraPositionState</code>를 통해 카메라 변경을 관찰하고 제어할 수 있습니다.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">seoul</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LatLng</span><span class="p">(</span><span class="m">37.532600</span><span class="p">,</span><span class="w"> </span><span class="m">127.024612</span><span class="p">)</span><span class="w"></span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">cameraPositionState</span><span class="p">:</span><span class="w"> </span><span class="n">CameraPositionState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberCameraPositionState</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 카메라 초기 위치를 설정합니다.</span><span class="w"></span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CameraPosition</span><span class="p">(</span><span class="n">seoul</span><span class="p">,</span><span class="w"> </span><span class="m">11.0</span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">Box</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">NaverMap</span><span class="p">(</span><span class="n">cameraPositionState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cameraPositionState</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Button</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// 카메라를 새로운 줌 레벨로 이동합니다.</span><span class="w"></span>
+<span class="w">        </span><span class="n">cameraPositionState</span><span class="p">.</span><span class="na">move</span><span class="p">(</span><span class="n">CameraUpdate</span><span class="p">.</span><span class="na">zoomIn</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">})</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Zoom In&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="_4">지도에 그리기<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>지도에 <code>Marker</code>처럼 Overlay를 추가하려면, <code>NaverMap</code>의 content에 child composable을 추가하면 됩니다.</p>
+<div class="highlight"><pre><span></span><code><span class="n">NaverMap</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Marker</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MarkerState</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LatLng</span><span class="p">(</span><span class="m">37.532600</span><span class="p">,</span><span class="w"> </span><span class="m">127.024612</span><span class="p">)),</span><span class="w"></span>
+<span class="w">        </span><span class="n">captionText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Marker in Seoul&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Marker</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MarkerState</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LatLng</span><span class="p">(</span><span class="m">37.390791</span><span class="p">,</span><span class="w"> </span><span class="m">127.096306</span><span class="p">)),</span><span class="w"></span>
+<span class="w">        </span><span class="n">captionText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Marker in Pangyo&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>제공되는 Overlay는 다음과 같습니다.</p>
+<ul>
+<li><code>ArrowheadPathOverlay</code></li>
+<li><code>CircleOverlay</code></li>
+<li><code>GroundOverlay</code></li>
+<li><code>Marker</code></li>
+<li><code>MultipartPathOverlay</code></li>
+<li><code>PathOverlay</code></li>
+<li><code>PolygonOverlay</code></li>
+<li><code>PolylineOverlay</code></li>
+</ul>
+<h2 id="contributions">Contributions<a class="headerlink" href="#contributions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>오류를 발견하거나 궁금한 점이 있다면 <a href="https://github.com/fornewid/naver-map-compose/issues/new">이슈를 등록해주세요.</a></li>
+<li>새로운 기능을 추가하고 싶다면 <a href="https://github.com/fornewid/naver-map-compose/issues">GitHub Issues</a>를 통해 지원 가능 여부를 확인해야 합니다.</li>
+</ul>
+<h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Copyright 2022 SOUP
+
+Licensed to the Apache Software Foundation (ASF) under one or more contributor
+license agreements. See the NOTICE file distributed with this work for
+additional information regarding copyright ownership. The ASF licenses this
+file to you under the Apache License, Version 2.0 (the &quot;License&quot;); you may not
+use this file except in compliance with the License. You may obtain a copy of
+the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+License for the specific language governing permissions and limitations under
+the License.
+</code></pre></div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+      
+        
+        <a href="api/" class="md-footer__link md-footer__link--next" aria-label="Next: API Docs" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              API Docs
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a6c66575.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,5 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+module:naver-map-compose
+com.naver.maps.map.compose
