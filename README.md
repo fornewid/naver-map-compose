@@ -56,6 +56,7 @@ NaverMap(
 ### 지도 구성하기
 
 지도는 `MapProperties`와 `MapUiSettings` 객체를 `NaverMap` composable에 전달하여 구성할 수 있습니다.
+
 ```kotlin
 var mapProperties by remember {
     mutableStateOf(
