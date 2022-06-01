@@ -309,12 +309,16 @@ fun HomeScreen(onItemClick: (Destination) -> Unit) {
                 contentPadding = contentPadding
             ) {
                 Category.items.forEachIndexed { index, category ->
-                    item(key = index) {
+                    item(
+                        key = index,
+                        contentType = { "Category" }
+                    ) {
                         HomeCategoryItem(title = stringResource(category.titleResId))
                     }
                     items(
                         items = category.items,
-                        key = { it.destination.route }
+                        key = { it.destination.route },
+                        contentType = { "Demo" }
                     ) { demo ->
                         HomeDemoItem(demo, onItemClick = onItemClick)
                     }
