@@ -20,10 +20,10 @@
 
 <table>
  <tr>
-  <td>Compose 1.1 (1.1.x)</td><td><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.fornewid/naver-map-compose"/></td>
+  <td>Compose 1.1 (1.1.x)</td><td><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.fornewid/naver-map-compose?versionPrefix=1.0"/></td>
  </tr>
  <tr>
-  <td>Compose 1.2 (1.2.x)</td><td>-</td>
+  <td>Compose 1.2 (1.2.x)</td><td><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.fornewid/naver-map-compose"></td>
  </tr>
 </table>
 
