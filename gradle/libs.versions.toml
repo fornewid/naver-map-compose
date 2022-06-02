@@ -27,7 +27,6 @@ dokka-pluginGradle = "org.jetbrains.dokka:dokka-gradle-plugin:1.5.0"
 # Material Design
 
 material-material = "com.google.android.material:material:1.4.0"
-material-composeThemeAdapter = "com.google.android.material:compose-theme-adapter:1.1.10"
 
 # Compose
 
