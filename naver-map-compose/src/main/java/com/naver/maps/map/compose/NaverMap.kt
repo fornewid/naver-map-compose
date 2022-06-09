@@ -27,7 +27,9 @@ import androidx.compose.runtime.Composition
 import androidx.compose.runtime.CompositionContext
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCompositionContext
 import androidx.compose.runtime.rememberUpdatedState
@@ -164,10 +166,12 @@ private suspend inline fun MapView.awaitMap(): NaverMap {
 private fun MapLifecycle(mapView: MapView) {
     val context = LocalContext.current
     val lifecycle = LocalLifecycleOwner.current.lifecycle
+    val previousState = remember { mutableStateOf(Lifecycle.Event.ON_CREATE) }
     val savedInstanceState = rememberSavedInstanceState()
     DisposableEffect(context, lifecycle, mapView, savedInstanceState) {
         val mapLifecycleObserver = mapView.lifecycleObserver(
-            savedInstanceState.takeUnless { it.isEmpty }
+            savedInstanceState.takeUnless { it.isEmpty },
+            previousState,
         )
         val callbacks = mapView.componentCallbacks()
 
@@ -178,6 +182,24 @@ private fun MapLifecycle(mapView: MapView) {
             mapView.onSaveInstanceState(savedInstanceState)
             lifecycle.removeObserver(mapLifecycleObserver)
             context.unregisterComponentCallbacks(callbacks)
+
+            // dispose 시점에 Lifecycle.Event가 끝까지 진행되지 않아 발생되는
+            // MapView Memory Leak 수정합니다.
+            when (previousState.value) {
+                Lifecycle.Event.ON_CREATE, Lifecycle.Event.ON_STOP -> {
+                    mapView.onDestroy()
+                }
+                Lifecycle.Event.ON_START, Lifecycle.Event.ON_PAUSE -> {
+                    mapView.onStop()
+                    mapView.onDestroy()
+                }
+                Lifecycle.Event.ON_RESUME -> {
+                    mapView.onPause()
+                    mapView.onStop()
+                    mapView.onDestroy()
+                }
+                else -> {}
+            }
         }
     }
 }
@@ -189,6 +211,7 @@ private fun rememberSavedInstanceState(): Bundle {
 
 private fun MapView.lifecycleObserver(
     savedInstanceState: Bundle?,
+    previousState: MutableState<Lifecycle.Event>,
 ): LifecycleEventObserver {
     return LifecycleEventObserver { _, event ->
         when (event) {
@@ -200,6 +223,7 @@ private fun MapView.lifecycleObserver(
             Lifecycle.Event.ON_DESTROY -> this.onDestroy()
             else -> throw IllegalStateException()
         }
+        previousState.value = event
     }
 }
 
