@@ -179,16 +179,26 @@ private fun MapLifecycle(mapView: MapView) {
         onDispose {
             mapView.onSaveInstanceState(savedInstanceState)
             lifecycle.removeObserver(mapLifecycleObserver)
-            if (mapLifecycleObserver.receivedEvents.contains(Lifecycle.Event.ON_PAUSE).not()) {
-                mapView.onPause()
-            }
-            if (mapLifecycleObserver.receivedEvents.contains(Lifecycle.Event.ON_STOP).not()) {
-                mapView.onStop()
-            }
-            if (mapLifecycleObserver.receivedEvents.contains(Lifecycle.Event.ON_DESTROY).not()) {
-                mapView.onDestroy()
-            }
             context.unregisterComponentCallbacks(callbacks)
+            
+            // workaround:
+            // dispose 시점에 Lifecycle.Event가 끝까지 진행되지 않아 발생되는
+            // MapView Memory Leak 수정합니다.
+            when (previousState.value) {
+                Lifecycle.Event.ON_CREATE -> {
+                    mapView.onDestroy()
+                }
+                Lifecycle.Event.ON_START -> {
+                    mapView.onStop()
+                    mapView.onDestroy()
+                }
+                Lifecycle.Event.ON_RESUME -> {
+                    mapView.onPause()
+                    mapView.onStop()
+                    mapView.onDestroy()
+                }
+                else -> {}
+            }
         }
     }
 }
