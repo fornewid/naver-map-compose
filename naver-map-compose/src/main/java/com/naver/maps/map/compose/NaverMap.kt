@@ -21,6 +21,7 @@ import android.graphics.PointF
 import android.location.Location
 import android.os.Bundle
 import android.widget.ImageView
+import androidx.annotation.CallSuper
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Composition
@@ -38,6 +39,7 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.LocationSource
 import com.naver.maps.map.MapView
@@ -177,6 +179,15 @@ private fun MapLifecycle(mapView: MapView) {
         onDispose {
             mapView.onSaveInstanceState(savedInstanceState)
             lifecycle.removeObserver(mapLifecycleObserver)
+            if (mapLifecycleObserver.receivedEvents.contains(Lifecycle.Event.ON_PAUSE).not()) {
+                mapView.onPause()
+            }
+            if (mapLifecycleObserver.receivedEvents.contains(Lifecycle.Event.ON_STOP).not()) {
+                mapView.onStop()
+            }
+            if (mapLifecycleObserver.receivedEvents.contains(Lifecycle.Event.ON_DESTROY).not()) {
+                mapView.onDestroy()
+            }
             context.unregisterComponentCallbacks(callbacks)
         }
     }
@@ -189,17 +200,31 @@ private fun rememberSavedInstanceState(): Bundle {
 
 private fun MapView.lifecycleObserver(
     savedInstanceState: Bundle?,
-): LifecycleEventObserver {
-    return LifecycleEventObserver { _, event ->
-        when (event) {
-            Lifecycle.Event.ON_CREATE -> this.onCreate(savedInstanceState)
-            Lifecycle.Event.ON_START -> this.onStart()
-            Lifecycle.Event.ON_RESUME -> this.onResume()
-            Lifecycle.Event.ON_PAUSE -> this.onPause()
-            Lifecycle.Event.ON_STOP -> this.onStop()
-            Lifecycle.Event.ON_DESTROY -> this.onDestroy()
-            else -> throw IllegalStateException()
+): ReceiveLogLifecycleEventObserver {
+    return object : ReceiveLogLifecycleEventObserver() {
+        override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+            super.onStateChanged(source, event)
+            when (event) {
+                Lifecycle.Event.ON_CREATE -> this@lifecycleObserver.onCreate(savedInstanceState)
+                Lifecycle.Event.ON_START -> this@lifecycleObserver.onStart()
+                Lifecycle.Event.ON_RESUME -> this@lifecycleObserver.onResume()
+                Lifecycle.Event.ON_PAUSE -> this@lifecycleObserver.onPause()
+                Lifecycle.Event.ON_STOP -> this@lifecycleObserver.onStop()
+                Lifecycle.Event.ON_DESTROY -> this@lifecycleObserver.onDestroy()
+                else -> throw IllegalStateException()
+            }
         }
+    }
+}
+
+private abstract class ReceiveLogLifecycleEventObserver : LifecycleEventObserver {
+
+    private val _receivedEvents = mutableSetOf<Lifecycle.Event>()
+    val receivedEvents: Set<Lifecycle.Event> = _receivedEvents
+
+    @CallSuper
+    override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+        _receivedEvents.add(event)
     }
 }
 
