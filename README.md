@@ -138,6 +138,23 @@ NaverMap {
 - `PolygonOverlay`
 - `PolylineOverlay`
 
+## Snapshots
+
+현재 개발 중인 버전을 확인하고 싶다면 [SNAPSHOT 버전](https://s01.oss.sonatype.org/content/repositories/snapshots/io/github/fornewid/naver-map-compose/)을 사용할 수 있습니다.
+
+Snapshot은 `main` branch에 커밋이 추가될 때마다 업데이트됩니다.
+
+```groovy
+repositories {
+    maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots' }
+}
+
+dependencies {
+    // 위 링크에서 최신 SNAPSHOT 버전을 확인하세요.
+    classpath 'io.github.fornewid:naver-map-compose:XXX-SNAPSHOT'
+}
+```
+
 ## Contributions
 
 - 오류를 발견하거나 궁금한 점이 있다면 [이슈를 등록해주세요.](https://github.com/fornewid/naver-map-compose/issues/new)
