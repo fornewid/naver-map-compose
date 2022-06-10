@@ -9,8 +9,8 @@ android {
         applicationId "com.naver.maps.map.compose.demo"
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
-        versionCode 1_01_03
-        versionName "1.1.3"
+        versionCode 1_01_04
+        versionName "1.1.4-SNAPSHOT"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
