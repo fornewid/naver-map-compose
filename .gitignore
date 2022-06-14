@@ -43,6 +43,7 @@ captures/
 .idea/tasks.xml
 .idea/gradle.xml
 .idea/assetWizardSettings.xml
+.idea/deploymentTargetDropDown.xml
 .idea/libraries
 .idea/dictionaries
 .idea/moduless

@@ -25,6 +25,11 @@ android {
         debug {
             signingConfig signingConfigs.debug
         }
+        benchmark {
+            signingConfig signingConfigs.debug
+            matchingFallbacks = ['release']
+            debuggable false
+        }
         release {
             signingConfig signingConfigs.debug
             minifyEnabled true
@@ -53,6 +58,7 @@ dependencies {
     implementation libs.naver.map
 
     implementation libs.androidx.core
+    implementation libs.androidx.profileinstaller
     implementation libs.compose.activity
     implementation libs.compose.foundation
     implementation libs.compose.material

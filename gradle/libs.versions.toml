@@ -45,8 +45,11 @@ compose-animation = { module = "androidx.compose.animation:animation", version.r
 # AndroidX
 
 androidx-core = "androidx.core:core-ktx:1.7.0"
+androidx-benchmark-macro-junit4 = "androidx.benchmark:benchmark-macro-junit4:1.1.0-rc03"
+androidx-profileinstaller = "androidx.profileinstaller:profileinstaller:1.2.0-beta03"
 
 # Test
 
 androidx-test-ext-junit = "androidx.test.ext:junit:1.1.3"
 androidx-test-espresso-core = "androidx.test.espresso:espresso-core:3.4.0"
+androidx-test-uiautomator = "androidx.test.uiautomator:uiautomator:2.2.0"
