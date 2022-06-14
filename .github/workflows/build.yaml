@@ -99,10 +99,13 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
-          profile: Nexus 5X
+          arch: x86_64
+          disable-animations: true
+          disk-size: 1500M
+          heap-size: 512M
           script: |
             adb logcat > logcat.txt &
-            ./gradlew --scan connectedCheck
+            ./gradlew connectedCheck -x :macrobenchmark-navermap:connectedBenchmarkAndroidTest
 
       - name: Clean secrets
         if: always()

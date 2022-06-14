@@ -1,2 +1,4 @@
 include ':app'
 include ':naver-map-compose'
+include ':macrobenchmark-navermap'
+include ':macrobenchmark-navermap-app'

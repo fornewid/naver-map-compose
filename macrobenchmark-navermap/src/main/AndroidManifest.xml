@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="soup.map.compose.macrobenchmark.navermap">
+
+    <queries>
+        <package android:name="com.naver.maps.map.compose.demo" />
+    </queries>
+</manifest>
