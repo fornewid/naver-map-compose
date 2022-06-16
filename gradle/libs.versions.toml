@@ -6,7 +6,7 @@ kotlin = "1.6.21"
 # Compose
 activity = "1.4.0"
 navigation = "2.4.2"
-compose = "1.2.0-beta03"
+compose = "1.2.0-rc01"
 
 [libraries]
 
@@ -45,8 +45,8 @@ compose-animation = { module = "androidx.compose.animation:animation", version.r
 # AndroidX
 
 androidx-core = "androidx.core:core-ktx:1.7.0"
-androidx-benchmark-macro-junit4 = "androidx.benchmark:benchmark-macro-junit4:1.1.0-rc03"
-androidx-profileinstaller = "androidx.profileinstaller:profileinstaller:1.2.0-beta03"
+androidx-benchmark-macro-junit4 = "androidx.benchmark:benchmark-macro-junit4:1.1.0"
+androidx-profileinstaller = "androidx.profileinstaller:profileinstaller:1.2.0-rc01"
 
 # Test
 
