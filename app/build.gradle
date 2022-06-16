@@ -10,7 +10,7 @@ android {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
         versionCode 1_01_04
-        versionName "1.1.4"
+        versionName "1.1.5-SNAPSHOT"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
