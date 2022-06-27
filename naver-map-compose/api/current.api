@@ -37,6 +37,7 @@ package com.naver.maps.map.compose {
   public final class CameraPositionState {
     ctor public CameraPositionState(optional com.naver.maps.map.CameraPosition position);
     method @UiThread @com.naver.maps.map.compose.ExperimentalNaverMapApi public suspend Object? animate(com.naver.maps.map.CameraUpdate update, optional com.naver.maps.map.CameraAnimation animation, optional int durationMs, optional kotlin.coroutines.Continuation<? super kotlin.Unit> p);
+    method public com.naver.maps.map.compose.CameraUpdateReason getCameraUpdateReason();
     method public com.naver.maps.geometry.LatLngBounds? getContentBounds();
     method public com.naver.maps.geometry.LatLng![]? getContentRegion();
     method public com.naver.maps.geometry.LatLngBounds? getCoveringBounds();
@@ -50,6 +51,7 @@ package com.naver.maps.map.compose {
     method @UiThread @com.naver.maps.map.compose.ExperimentalNaverMapApi public void move(com.naver.maps.map.CameraUpdate update);
     method public void setPosition(com.naver.maps.map.CameraPosition value);
     method @UiThread @com.naver.maps.map.compose.ExperimentalNaverMapApi public void stop();
+    property public final com.naver.maps.map.compose.CameraUpdateReason cameraUpdateReason;
     property public final com.naver.maps.geometry.LatLngBounds? contentBounds;
     property public final com.naver.maps.geometry.LatLng![]? contentRegion;
     property public final com.naver.maps.geometry.LatLngBounds? coveringBounds;
@@ -69,6 +71,22 @@ package com.naver.maps.map.compose {
 
   public final class CameraPositionStateKt {
     method @androidx.compose.runtime.Composable public static inline com.naver.maps.map.compose.CameraPositionState rememberCameraPositionState(optional String? key, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.compose.CameraPositionState,kotlin.Unit> init);
+  }
+
+  @androidx.compose.runtime.Immutable public enum CameraUpdateReason {
+    method public final int getValue();
+    property public final int value;
+    enum_constant public static final com.naver.maps.map.compose.CameraUpdateReason CONTROL;
+    enum_constant public static final com.naver.maps.map.compose.CameraUpdateReason DEVELOPER;
+    enum_constant public static final com.naver.maps.map.compose.CameraUpdateReason GESTURE;
+    enum_constant public static final com.naver.maps.map.compose.CameraUpdateReason LOCATION;
+    enum_constant public static final com.naver.maps.map.compose.CameraUpdateReason NO_MOVEMENT_YET;
+    enum_constant public static final com.naver.maps.map.compose.CameraUpdateReason UNKNOWN;
+    field public static final com.naver.maps.map.compose.CameraUpdateReason.Companion Companion;
+  }
+
+  public static final class CameraUpdateReason.Companion {
+    method public com.naver.maps.map.compose.CameraUpdateReason fromInt(int reason);
   }
 
   public final class CircleOverlayDefaults {

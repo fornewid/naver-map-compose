@@ -56,6 +56,7 @@ internal class MapPropertiesNode(
         this.cameraPositionState.rawPosition = map.cameraPosition
     }
     private val cameraChangeListener = NaverMap.OnCameraChangeListener { reason, animated ->
+        cameraPositionState.cameraUpdateReason = CameraUpdateReason.fromInt(reason)
         cameraPositionState.isMoving = true
         cameraPositionState.rawPosition = map.cameraPosition
     }
