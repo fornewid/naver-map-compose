@@ -15,6 +15,7 @@
  */
 package com.naver.maps.map.compose.demo.camera
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,6 +33,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Stop
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -76,6 +78,15 @@ fun CameraEventScreen(upPress: () -> Unit) {
                 }
             }
             var isMovingByAnimation by remember { mutableStateOf(false) }
+
+            LaunchedEffect(cameraPositionState.isMoving) {
+                if (cameraPositionState.isMoving) {
+                    Log.d(
+                        "CameraEventScreen",
+                        "Map camera updated due to ${cameraPositionState.cameraUpdateReason.name}"
+                    )
+                }
+            }
 
             // TODO: How to improve this performance?
             Row(verticalAlignment = Alignment.CenterVertically) {

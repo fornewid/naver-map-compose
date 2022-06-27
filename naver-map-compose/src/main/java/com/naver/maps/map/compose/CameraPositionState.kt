@@ -67,6 +67,14 @@ public class CameraPositionState(
         internal set
 
     /**
+     * 가장 최근에 카메라가 변경된 이유를 반환합니다.
+     * 카메라가 아직 움직이지 않은 경우에는 [CameraUpdateReason.NO_MOVEMENT_YET]를,
+     * Map SDK에서 알 수 없는 상수가 수신된 경우 [CameraUpdateReason.UNKNOWN]를 반환합니다.
+     */
+    public var cameraUpdateReason: CameraUpdateReason by mutableStateOf(CameraUpdateReason.NO_MOVEMENT_YET)
+        internal set
+
+    /**
      * 이 지도의 화면 좌표와 위도/경도 간의 변환에 사용할 [Projection] 객체를 반환합니다. 항상 같은 객체가 반환됩니다.
      */
     public val projection: Projection?
