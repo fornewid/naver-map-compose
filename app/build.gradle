@@ -53,7 +53,6 @@ android {
 
 dependencies {
     implementation project(':naver-map-compose')
-    implementation libs.naver.map
     implementation libs.google.play.services.location
 
     implementation libs.compose.foundation
