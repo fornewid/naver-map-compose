@@ -30,7 +30,7 @@ android {
 }
 
 dependencies {
-    implementation libs.naver.map
+    api libs.naver.map
 
     implementation libs.compose.foundation
     implementation libs.kotlin.stdlib
