@@ -22,11 +22,13 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.MarkerDefaults
+import com.naver.maps.map.compose.NaverMapComposable
 import com.naver.maps.map.compose.NaverMapConstants
 import com.naver.maps.map.compose.rememberMarkerState
 
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable
+@NaverMapComposable
 fun MarkerProfiles() {
     Marker(
         state = rememberMarkerState(

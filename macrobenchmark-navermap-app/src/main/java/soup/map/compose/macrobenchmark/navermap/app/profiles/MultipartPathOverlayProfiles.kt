@@ -22,9 +22,11 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.compose.ColorPart
 import com.naver.maps.map.compose.MultipartPathOverlay
 import com.naver.maps.map.compose.MultipartPathOverlayDefaults
+import com.naver.maps.map.compose.NaverMapComposable
 import com.naver.maps.map.compose.NaverMapConstants
 
 @Composable
+@NaverMapComposable
 fun MultipartPathOverlaySample() {
     MultipartPathOverlay(
         coordParts = COORDS,

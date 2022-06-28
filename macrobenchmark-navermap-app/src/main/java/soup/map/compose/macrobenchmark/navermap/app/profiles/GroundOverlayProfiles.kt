@@ -20,9 +20,11 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.compose.GroundOverlay
 import com.naver.maps.map.compose.GroundOverlayDefaults
+import com.naver.maps.map.compose.NaverMapComposable
 import com.naver.maps.map.compose.NaverMapConstants
 
 @Composable
+@NaverMapComposable
 fun GroundOverlaySample() {
     GroundOverlay(
         bounds = BOUNDS,

@@ -19,11 +19,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.compose.NaverMapComposable
 import com.naver.maps.map.compose.NaverMapConstants
 import com.naver.maps.map.compose.PathOverlay
 import com.naver.maps.map.compose.PathOverlayDefaults
 
 @Composable
+@NaverMapComposable
 fun PathOverlaySample() {
     PathOverlay(
         coords = COORDS,

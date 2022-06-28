@@ -19,11 +19,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.compose.NaverMapComposable
 import com.naver.maps.map.compose.NaverMapConstants
 import com.naver.maps.map.compose.PolygonOverlay
 import com.naver.maps.map.compose.PolygonOverlayDefaults
 
 @Composable
+@NaverMapComposable
 fun PolygonOverlaySample() {
     PolygonOverlay(
         coords = COORDS,
