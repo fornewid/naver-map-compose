@@ -21,11 +21,13 @@ import androidx.compose.ui.unit.dp
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.compose.LineCap
 import com.naver.maps.map.compose.LineJoin
+import com.naver.maps.map.compose.NaverMapComposable
 import com.naver.maps.map.compose.NaverMapConstants
 import com.naver.maps.map.compose.PolylineOverlay
 import com.naver.maps.map.compose.PolylineOverlayDefaults
 
 @Composable
+@NaverMapComposable
 fun PolylineOverlaySample() {
     PolylineOverlay(
         coords = COORDS,

@@ -132,6 +132,7 @@ public class MarkerState(
 
 @ExperimentalNaverMapApi
 @Composable
+@NaverMapComposable
 public fun rememberMarkerState(
     key: String? = null,
     position: LatLng = LatLng(0.0, 0.0),
@@ -220,6 +221,7 @@ public fun rememberMarkerState(
  */
 @ExperimentalNaverMapApi
 @Composable
+@NaverMapComposable
 public fun Marker(
     state: MarkerState = rememberMarkerState(),
     icon: OverlayImage = MarkerDefaults.Icon,
@@ -389,6 +391,7 @@ public fun Marker(
  */
 @ExperimentalNaverMapApi
 @Composable
+@NaverMapComposable
 private fun MarkerImpl(
     state: MarkerState = rememberMarkerState(),
     icon: OverlayImage = MarkerDefaults.Icon,

@@ -21,9 +21,11 @@ import androidx.compose.ui.unit.dp
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.compose.ArrowheadPathOverlay
 import com.naver.maps.map.compose.ArrowheadPathOverlayDefaults
+import com.naver.maps.map.compose.NaverMapComposable
 import com.naver.maps.map.compose.NaverMapConstants
 
 @Composable
+@NaverMapComposable
 fun ArrowheadPathOverlayProfiles() {
     ArrowheadPathOverlay(
         coords = COORDS,

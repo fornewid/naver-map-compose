@@ -21,9 +21,11 @@ import androidx.compose.ui.unit.dp
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.compose.CircleOverlay
 import com.naver.maps.map.compose.CircleOverlayDefaults
+import com.naver.maps.map.compose.NaverMapComposable
 import com.naver.maps.map.compose.NaverMapConstants
 
 @Composable
+@NaverMapComposable
 fun CircleOverlayProfiles() {
     CircleOverlay(
         center = LatLng(37.5666102, 126.9783881),
