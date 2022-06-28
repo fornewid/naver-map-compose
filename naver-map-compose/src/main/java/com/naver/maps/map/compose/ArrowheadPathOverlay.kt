@@ -78,6 +78,7 @@ public object ArrowheadPathOverlayDefaults {
  * 리스너가 지정된 경우, 사용자가 마커를 클릭하더라도 지상 오버레이가 클릭 이벤트를 받습니다.
  */
 @Composable
+@NaverMapComposable
 public fun ArrowheadPathOverlay(
     coords: List<LatLng>,
     width: Dp = 10.dp,

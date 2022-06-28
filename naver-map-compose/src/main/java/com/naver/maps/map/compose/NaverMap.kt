@@ -74,7 +74,7 @@ public fun NaverMap(
     onSymbolClick: (Symbol) -> Boolean = { false },
     onIndoorSelectionChange: (IndoorSelection?) -> Unit = {},
     contentPadding: PaddingValues = NoPadding,
-    content: (@Composable () -> Unit)? = null,
+    content: (@Composable @NaverMapComposable () -> Unit)? = null,
 ) {
     val context = LocalContext.current
     val mapView = remember { MapView(context, NaverMapOptions()) }
