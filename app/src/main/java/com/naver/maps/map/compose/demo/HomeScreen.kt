@@ -75,6 +75,11 @@ private data class Category(
                         titleResId = R.string.name_map,
                         descriptionResId = R.string.description_map,
                         destination = Destination.Map
+                    ),
+                    Demo(
+                        titleResId = R.string.name_map_in_column,
+                        descriptionResId = R.string.description_map_in_column,
+                        destination = Destination.MapInColumn
                     )
                 )
             ),
