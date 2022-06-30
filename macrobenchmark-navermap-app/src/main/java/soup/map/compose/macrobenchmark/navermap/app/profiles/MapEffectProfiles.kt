@@ -13,14 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.naver.maps.map.compose
+package soup.map.compose.macrobenchmark.navermap.app.profiles
 
-/**
- * Marks declarations that are still **experimental**.
- */
-@MustBeDocumented
-@Retention(value = AnnotationRetention.BINARY)
-@RequiresOptIn(
-    message = "This API is experimental and is likely to change or to be removed in the future."
-)
-public annotation class ExperimentalNaverMapApi
+import androidx.compose.runtime.Composable
+import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.MapEffect
+
+@OptIn(ExperimentalNaverMapApi::class)
+@Composable
+fun MapEffectProfiles() {
+    MapEffect(Unit) {}
+    MapEffect(Unit, Unit) {}
+    MapEffect(Unit, Unit, Unit) {}
+    MapEffect(Unit, Unit, Unit, Unit) {}
+}

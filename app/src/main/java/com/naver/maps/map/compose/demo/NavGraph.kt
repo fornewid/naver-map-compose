@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.naver.maps.map.compose.demo.basic.MapClusteringScreen
 import com.naver.maps.map.compose.demo.basic.MapInColumnScreen
 import com.naver.maps.map.compose.demo.basic.MapScreen
 import com.naver.maps.map.compose.demo.camera.CameraAnimationScreen
@@ -65,6 +66,7 @@ enum class Destination(val route: String) {
     // BASIC
     Map("Map"),
     MapInColumn("MapInColumn"),
+    MapClustering("MapClustering"),
 
     // OVERLAY
     Marker("Marker"),
@@ -141,6 +143,9 @@ fun NavGraph(
         }
         composable(Destination.MapInColumn.route) {
             MapInColumnScreen(upPress = upPress)
+        }
+        composable(Destination.MapClustering.route) {
+            MapClusteringScreen(upPress = upPress)
         }
 
         // OVERLAY
