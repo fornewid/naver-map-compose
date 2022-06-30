@@ -115,7 +115,7 @@ package com.naver.maps.map.compose {
     property public final long passedOutlineColor;
   }
 
-  @kotlin.RequiresOptIn(message="This API is experimental and is likely to change or to be removed in the future.") public @interface ExperimentalNaverMapApi {
+  @kotlin.RequiresOptIn(message="This API is experimental and is likely to change or to be removed in the future.") @kotlin.annotation.MustBeDocumented @kotlin.annotation.Retention(kotlin.annotation.AnnotationRetention) public @interface ExperimentalNaverMapApi {
   }
 
   public final class GroundOverlayDefaults {
@@ -152,6 +152,13 @@ package com.naver.maps.map.compose {
     enum_constant public static final com.naver.maps.map.compose.LocationTrackingMode Follow;
     enum_constant public static final com.naver.maps.map.compose.LocationTrackingMode NoFollow;
     enum_constant public static final com.naver.maps.map.compose.LocationTrackingMode None;
+  }
+
+  public final class MapEffectKt {
+    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi @com.naver.maps.map.compose.NaverMapComposable public static void MapEffect(Object? key1, kotlin.jvm.functions.Function3<? super kotlinx.coroutines.CoroutineScope,? super com.naver.maps.map.NaverMap,? super kotlin.coroutines.Continuation<? super kotlin.Unit>,?> block);
+    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi @com.naver.maps.map.compose.NaverMapComposable public static void MapEffect(Object? key1, Object? key2, kotlin.jvm.functions.Function3<? super kotlinx.coroutines.CoroutineScope,? super com.naver.maps.map.NaverMap,? super kotlin.coroutines.Continuation<? super kotlin.Unit>,?> block);
+    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi @com.naver.maps.map.compose.NaverMapComposable public static void MapEffect(Object? key1, Object? key2, Object? key3, kotlin.jvm.functions.Function3<? super kotlinx.coroutines.CoroutineScope,? super com.naver.maps.map.NaverMap,? super kotlin.coroutines.Continuation<? super kotlin.Unit>,?> block);
+    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi @com.naver.maps.map.compose.NaverMapComposable public static void MapEffect(Object![]? keys, kotlin.jvm.functions.Function3<? super kotlinx.coroutines.CoroutineScope,? super com.naver.maps.map.NaverMap,? super kotlin.coroutines.Continuation<? super kotlin.Unit>,?> block);
   }
 
   public final class MapProperties {
