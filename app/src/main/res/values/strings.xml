@@ -16,6 +16,9 @@
     <string name="name_map">Map</string>
     <string name="description_map">Map을 사용한 지도 디스플레이</string>
 
+    <string name="name_map_in_column">Map In Column</string>
+    <string name="description_map_in_column">Column 안에 Map 표시</string>
+
     <!-- overlay demo -->
     <string name="category_overlay">Overlay</string>
 
