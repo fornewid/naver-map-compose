@@ -24,6 +24,7 @@ import soup.map.compose.macrobenchmark.navermap.app.profiles.ArrowheadPathOverla
 import soup.map.compose.macrobenchmark.navermap.app.profiles.CameraPositionStateProfiles
 import soup.map.compose.macrobenchmark.navermap.app.profiles.CircleOverlayProfiles
 import soup.map.compose.macrobenchmark.navermap.app.profiles.GroundOverlaySample
+import soup.map.compose.macrobenchmark.navermap.app.profiles.MapEffectProfiles
 import soup.map.compose.macrobenchmark.navermap.app.profiles.MapPropertiesProfiles
 import soup.map.compose.macrobenchmark.navermap.app.profiles.MapUiSettingsProfiles
 import soup.map.compose.macrobenchmark.navermap.app.profiles.MarkerProfiles
@@ -53,6 +54,7 @@ class MainActivity : ComponentActivity() {
                 MapUiSettingsProfiles()
                 MapPropertiesProfiles()
                 NaverMapConstantsSample()
+                MapEffectProfiles()
             }
         }
     }
