@@ -47,7 +47,7 @@ fun MapClusteringScreen(upPress: () -> Unit) {
     Scaffold(
         topBar = {
             DefaultTopAppBar(
-                text = stringResource(R.string.name_map),
+                text = stringResource(R.string.name_map_clustering),
                 upPress = upPress
             )
         }
