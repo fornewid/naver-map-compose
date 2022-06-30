@@ -19,6 +19,9 @@
     <string name="name_map_in_column">Map In Column</string>
     <string name="description_map_in_column">Column 안에 Map 표시</string>
 
+    <string name="name_map_clustering">Map Clustering</string>
+    <string name="description_map_clustering">MapEffect을 이용한 지도 클러스터링</string>
+
     <!-- overlay demo -->
     <string name="category_overlay">Overlay</string>
 

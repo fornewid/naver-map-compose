@@ -80,6 +80,11 @@ private data class Category(
                         titleResId = R.string.name_map_in_column,
                         descriptionResId = R.string.description_map_in_column,
                         destination = Destination.MapInColumn
+                    ),
+                    Demo(
+                        titleResId = R.string.name_map_clustering,
+                        descriptionResId = R.string.description_map_clustering,
+                        destination = Destination.MapClustering
                     )
                 )
             ),

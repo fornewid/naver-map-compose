@@ -16,6 +16,7 @@ mavenPublish-pluginGradle = "com.vanniktech:gradle-maven-publish-plugin:0.17.0"
 metalava-pluginGradle = "me.tylerbwong.gradle:metalava-gradle:0.2.0"
 
 naver-map = "com.naver.maps:map-sdk:3.15.0"
+naver-map-clustering = "io.github.ParkSangGwon:tedclustering-naver:1.0.2"
 google-play-services-location = "com.google.android.gms:play-services-location:16.0.0"
 
 # Kotlin
