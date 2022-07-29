@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.naver.maps.map.compose.demo">
+    package="soup.korea.map.compose.demo">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -12,7 +12,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.NaverMapCompose"
+        android:theme="@style/Theme.KoreaMapCompose"
+        android:usesCleartextTraffic="true"
         tools:ignore="DataExtractionRules"
         tools:targetApi="31">
 
@@ -20,8 +21,12 @@
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="@string/naver_map_sdk_client_id" />
 
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_map_sdk_client_id" />
+
         <activity
-            android:name=".MapSampleActivity"
+            android:name=".KoreaMapSampleActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +34,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.naver.maps.map.compose.demo.NaverMapSampleActivity"
+            android:label="@string/naver_map_demo_title"
+            android:theme="@style/Theme.NaverMapCompose" />
+        <activity
+            android:name="net.daum.mf.map.api.compose.demo.DaumMapSampleActivity"
+            android:label="@string/daum_map_demo_title"
+            android:theme="@style/Theme.DaumMapCompose" />
     </application>
 
 </manifest>

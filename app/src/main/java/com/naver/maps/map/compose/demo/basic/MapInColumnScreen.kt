@@ -50,10 +50,10 @@ import com.naver.maps.map.compose.MapType
 import com.naver.maps.map.compose.MapUiSettings
 import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.NaverMap
-import com.naver.maps.map.compose.demo.R
-import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
 import com.naver.maps.map.compose.rememberMarkerState
+import soup.korea.map.compose.demo.R
+import soup.korea.map.compose.demo.common.DefaultTopAppBar
 
 @Composable
 fun MapInColumnScreen(upPress: () -> Unit) {

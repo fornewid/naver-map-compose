@@ -48,11 +48,11 @@ import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.MarkerDefaults
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.PathOverlay
-import com.naver.maps.map.compose.demo.R
-import com.naver.maps.map.compose.demo.common.CheckedText
-import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberMarkerState
 import com.naver.maps.map.util.MarkerIcons
+import soup.korea.map.compose.demo.R
+import soup.korea.map.compose.demo.common.CheckedText
+import soup.korea.map.compose.demo.common.DefaultTopAppBar
 
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable

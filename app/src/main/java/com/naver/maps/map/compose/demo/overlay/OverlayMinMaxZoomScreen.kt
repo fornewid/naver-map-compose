@@ -46,12 +46,12 @@ import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.NaverMapConstants
-import com.naver.maps.map.compose.demo.R
-import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
 import com.naver.maps.map.compose.rememberMarkerState
 import com.naver.maps.map.util.MarkerIcons
 import kotlinx.coroutines.launch
+import soup.korea.map.compose.demo.R
+import soup.korea.map.compose.demo.common.DefaultTopAppBar
 
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable

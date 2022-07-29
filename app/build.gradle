@@ -6,7 +6,7 @@ plugins {
 android {
     compileSdkVersion buildConfig.compileSdk
     defaultConfig {
-        applicationId "com.naver.maps.map.compose.demo"
+        applicationId "soup.korea.map.compose.demo"
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
         versionCode 1_02_01
@@ -55,6 +55,8 @@ dependencies {
     implementation project(':naver-map-compose')
     implementation libs.google.play.services.location
     implementation libs.naver.map.clustering
+
+    implementation project(':kakao-map-compose')
 
     implementation libs.compose.foundation
     implementation libs.compose.material

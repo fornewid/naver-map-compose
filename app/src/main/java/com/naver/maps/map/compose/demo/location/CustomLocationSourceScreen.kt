@@ -31,9 +31,9 @@ import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.LocationTrackingMode
 import com.naver.maps.map.compose.MapProperties
 import com.naver.maps.map.compose.NaverMap
-import com.naver.maps.map.compose.demo.R
-import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
-import com.naver.maps.map.compose.demo.common.showToast
+import soup.korea.map.compose.demo.R
+import soup.korea.map.compose.demo.common.DefaultTopAppBar
+import soup.korea.map.compose.demo.common.showToast
 
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable

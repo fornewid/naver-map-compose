@@ -23,9 +23,9 @@ import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.GroundOverlay
 import com.naver.maps.map.compose.NaverMap
-import com.naver.maps.map.compose.demo.R
-import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.overlay.OverlayImage
+import soup.korea.map.compose.demo.R
+import soup.korea.map.compose.demo.common.DefaultTopAppBar
 
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable

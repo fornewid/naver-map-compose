@@ -53,7 +53,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.naver.maps.map.NaverMapSdk
-import com.naver.maps.map.compose.demo.common.showToast
+import soup.korea.map.compose.demo.BuildConfig
+import soup.korea.map.compose.demo.R
+import soup.korea.map.compose.demo.common.showToast
 
 private data class Demo(
     @StringRes val titleResId: Int,
@@ -305,7 +307,7 @@ fun HomeScreen(onItemClick: (Destination) -> Unit) {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(text = stringResource(R.string.app_name)) },
+                    title = { Text(text = stringResource(R.string.naver_map_demo_title)) },
                     actions = {
                         IconButton(onClick = { openDropdownMenu = true }) {
                             Icon(Icons.Default.MoreVert, contentDescription = null)

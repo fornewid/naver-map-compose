@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="daum_map_demo_title">Daum Map Compose Demo</string>
+    <string name="daum_map_demo_desc">다음 지도 데모</string>
+
+    <string name="map_view_demo_title">Map</string>
+    <string name="map_view_demo_desc">기본 맵, 타일 종류</string>
+
+    <string name="marker_demo_title">Markers</string>
+    <string name="marker_demo_desc">기본 마커, 커스텀 마커, 마커 동작</string>
+
+    <string name="polygon_demo_title">Polyline, Polygon</string>
+    <string name="polygon_demo_desc">지도 위 그래픽 요소 그리기</string>
+
+    <string name="location_demo_title">Location</string>
+    <string name="location_demo_desc">위치 관련 API</string>
+
+    <string name="camera_demo_title">Camera</string>
+    <string name="camera_demo_desc">카메라 관련 API</string>
+
+    <string name="events_demo_title">Events</string>
+    <string name="events_demo_desc">지도 이벤트</string>
+
+    <string name="search_demo_title">Search</string>
+    <string name="search_demo_desc">키워드 장소검색</string>
+
+    <string name="no_demos">No demos</string>
+
+    <string name="press_menu">Menu 버튼을 누르세요.</string>
+
+    <string name="demo_events_help">지도를 탭, 길게 탭, 드래그 하세요.</string>
+
+    <string name="go_to_hannam">Go to Hannam</string>
+    <string name="go_to_pangyo">Go to Pangyo</string>
+</resources>

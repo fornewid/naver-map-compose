@@ -34,9 +34,9 @@ import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.MapEffect
 import com.naver.maps.map.compose.NaverMap
-import com.naver.maps.map.compose.demo.R
-import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
+import soup.korea.map.compose.demo.R
+import soup.korea.map.compose.demo.common.DefaultTopAppBar
 import ted.gun0912.clustering.clustering.TedClusterItem
 import ted.gun0912.clustering.geometry.TedLatLng
 import ted.gun0912.clustering.naver.TedNaverClustering

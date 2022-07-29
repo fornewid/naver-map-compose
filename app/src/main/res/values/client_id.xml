@@ -2,4 +2,5 @@
 <resources>
     <!-- Use your Client ID here! -->
     <string name="naver_map_sdk_client_id" translatable="false">hepyljgft5</string>
+    <string name="kakao_map_sdk_client_id" translatable="false">6f504f9b73ad280372b2aff0036b6f32</string>
 </resources>
