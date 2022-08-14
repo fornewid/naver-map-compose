@@ -19,8 +19,8 @@ import androidx.annotation.UiThread
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.CancellationException
@@ -40,7 +40,7 @@ import kotlin.coroutines.resumeWithException
 public inline fun rememberCameraPositionState(
     key: String? = null,
     crossinline init: CameraPositionState.() -> Unit = {},
-): CameraPositionState = remember(key1 = key) {
+): CameraPositionState = rememberSaveable(key = key, saver = CameraPositionState.Saver) {
     CameraPositionState().apply(init)
 }
 
@@ -244,9 +244,16 @@ public class CameraPositionState(
         /**
          * [CameraPositionState]의 기본 [Saver]입니다.
          */
-        public val Saver: Saver<CameraPositionState, CameraPosition> = Saver(
-            save = { it.position },
-            restore = { CameraPositionState(it) }
+        public val Saver: Saver<CameraPositionState, SaveableCameraPosition> = Saver(
+            save = {
+                val mapPointGeoCoord = it.position.target.mapPointGeoCoord
+                SaveableCameraPosition(
+                    latitude = mapPointGeoCoord.latitude,
+                    longitude = mapPointGeoCoord.longitude,
+                    zoomLevel = it.position.zoomLevel,
+                )
+            },
+            restore = { CameraPositionState(it.asModel()) }
         )
     }
 }
