@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+    namespace 'com.naver.maps.map.compose.demo'
     compileSdkVersion buildConfig.compileSdk
     defaultConfig {
         applicationId "com.naver.maps.map.compose.demo"

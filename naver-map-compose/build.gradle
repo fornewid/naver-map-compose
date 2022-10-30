@@ -6,6 +6,7 @@ plugins {
 }
 
 android {
+    namespace 'com.naver.maps.map.compose'
     compileSdkVersion buildConfig.compileSdk
     defaultConfig {
         minSdkVersion buildConfig.minSdk
