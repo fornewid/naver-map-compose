@@ -158,7 +158,7 @@ private fun NaverMapInColumn(
     NaverMap(
         modifier = modifier,
         cameraPositionState = cameraPositionState,
-        properties = MapProperties(mapType = MapType.None),
+        properties = MapProperties(mapType = MapType.Basic),
         uiSettings = MapUiSettings(isCompassEnabled = false),
     ) {
         Marker(state = rememberMarkerState(position = POSITION.target))
