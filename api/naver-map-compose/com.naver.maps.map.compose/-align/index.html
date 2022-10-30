@@ -4,10 +4,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>Align</title>
 <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
 <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -18,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer></script>
-<script type="text/javascript" src="../../../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -38,13 +47,13 @@ if(savedDarkMode === true){
     </div>
     <div id="main">
 <div class="main-content" id="content" pageids="naver-map-compose::com.naver.maps.map.compose/Align///PointingToDeclaration//-535117375">
-  <div class="breadcrumbs"><a href="../../index.html">naver-map-compose</a><span class="delimiter">/</span><a href="../index.html">com.naver.maps.map.compose</a><span class="delimiter">/</span><a href="index.html">Align</a></div>
+  <div class="breadcrumbs"><a href="../../index.html">naver-map-compose</a><span class="delimiter">/</span><a href="../index.html">com.naver.maps.map.compose</a><span class="delimiter">/</span><span class="current">Align</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Align</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation">Immutable</span></a></div></div><span class="token keyword">enum </span><a href="index.html">Align</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">Align</a><span class="token operator">&gt; </span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">오버레이를 어느 방향으로 정렬할지를 나타내는 열거형.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">enum </span><a href="index.html">Align</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">Align</a><span class="token operator">&gt; </span></div><p class="paragraph">오버레이를 어느 방향으로 정렬할지를 나타내는 열거형.</p></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Entries">Entries</button><button class="section-tab" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Sources">Sources</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Entries">Entries</button><button class="section-tab" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
     <div class="tabs-section-body">
       <h2 class="tabbedcontent">Entries</h2>
       <div class="table" data-togglable="Entries"><a data-name="-1343865523%2FClasslikes%2F-535117375" anchor-label="Center" id="-1343865523%2FClasslikes%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a>
@@ -57,7 +66,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-center/index.html">Center</a></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">가운데.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-center/index.html">Center</a></div></div><div class="brief "><p class="paragraph">가운데.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -72,7 +81,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-left/index.html">Left</a></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">왼쪽.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-left/index.html">Left</a></div></div><div class="brief "><p class="paragraph">왼쪽.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -87,7 +96,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-right/index.html">Right</a></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">오른쪽.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-right/index.html">Right</a></div></div><div class="brief "><p class="paragraph">오른쪽.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -102,7 +111,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-top/index.html">Top</a></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">위.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-top/index.html">Top</a></div></div><div class="brief "><p class="paragraph">위.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -117,7 +126,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-bottom/index.html">Bottom</a></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">아래.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-bottom/index.html">Bottom</a></div></div><div class="brief "><p class="paragraph">아래.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -132,7 +141,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-top-left/index.html">TopLeft</a></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">왼쪽 위.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-top-left/index.html">TopLeft</a></div></div><div class="brief "><p class="paragraph">왼쪽 위.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -147,7 +156,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-top-right/index.html">TopRight</a></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">오른쪽 위.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-top-right/index.html">TopRight</a></div></div><div class="brief "><p class="paragraph">오른쪽 위.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -162,7 +171,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-bottom-right/index.html">BottomRight</a></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">오른쪽 아래.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-bottom-right/index.html">BottomRight</a></div></div><div class="brief "><p class="paragraph">오른쪽 아래.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -177,7 +186,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-bottom-left/index.html">BottomLeft</a></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">왼쪽 아래.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><a href="-bottom-left/index.html">BottomLeft</a></div></div><div class="brief "><p class="paragraph">왼쪽 아래.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -194,7 +203,39 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Functions</h2>
+      <div class="table" data-togglable="Functions"><a data-name="2079601578%2FFunctions%2F-535117375" anchor-label="valueOf" id="2079601578%2FFunctions%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="value-of.html"><span>value</span><wbr><span><span>Of</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2079601578%2FFunctions%2F-535117375"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="value-of.html"><span class="token function">valueOf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Align</a></div><div class="brief "><p class="paragraph">Returns the enum constant of this type with the specified name. The string must match exactly an identifier used to declare an enum constant in this type. (Extraneous whitespace characters are not permitted.)</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="774853174%2FFunctions%2F-535117375" anchor-label="values" id="774853174%2FFunctions%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="values.html"><span><span>values</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="774853174%2FFunctions%2F-535117375"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="values.html"><span class="token function">values</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">Align</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns an array containing the constants of this enum type, in the order they're declared.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -211,7 +252,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><a data-name="-372974862%2FProperties%2F-535117375" anchor-label="name" id="-372974862%2FProperties%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="../-line-join/-round/index.html#-372974862%2FProperties%2F-535117375">name</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><a data-name="-372974862%2FProperties%2F-535117375" anchor-label="name" id="-372974862%2FProperties%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="../-line-join/-round/index.html#-372974862%2FProperties%2F-535117375">name</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
               </div>
             </div>
           </div>
@@ -226,7 +267,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><a data-name="-739389684%2FProperties%2F-535117375" anchor-label="ordinal" id="-739389684%2FProperties%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="../-line-join/-round/index.html#-739389684%2FProperties%2F-535117375">ordinal</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><a data-name="-739389684%2FProperties%2F-535117375" anchor-label="ordinal" id="-739389684%2FProperties%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="../-line-join/-round/index.html#-739389684%2FProperties%2F-535117375">ordinal</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
               </div>
             </div>
           </div>
@@ -241,22 +282,9 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><a data-name="1498491569%2FProperties%2F-535117375" anchor-label="value" id="1498491569%2FProperties%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="value.html">value</a><span class="token operator">: </span><span data-unresolved-link="com.naver.maps.map.overlay/Align///PointingToDeclaration/">Align</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><a data-name="1498491569%2FProperties%2F-535117375" anchor-label="value" id="1498491569%2FProperties%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="value.html">value</a><span class="token operator">: </span><span data-unresolved-link="com.naver.maps.map.overlay/Align///PointingToDeclaration/">Align</span></div></div></div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <h2 class="">Sources</h2>
-      <div class="table" data-togglable="Sources"><a data-name="427004423%2FSource%2F-1184305677" anchor-label="https://github.com/fornewid/naver-map-compose/blob/main/naver-map-compose/src/main/java/com/naver/maps/map/compose/Marker.kt#L576" id="427004423%2FSource%2F-1184305677" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/main" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="https://github.com/fornewid/naver-map-compose/blob/main/naver-map-compose/src/main/java/com/naver/maps/map/compose/Marker.kt#L576">androidJvm source</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="427004423%2FSource%2F-1184305677"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
           </div>
         </div>
       </div>
