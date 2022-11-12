@@ -146,7 +146,7 @@ NaverMap {
 특정 UseCase에서는 `NaverMap` 객체가 필요합니다.
 예를 들어, 이 라이브러리에서 마커 클러스터링은 아직 지원되지 않지만([Issue #14](https://github.com/fornewid/naver-map-compose/issues/14) 참조),
 [외부 라이브러리](https://github.com/ParkSangGwon/TedNaverMapClustering) 를 이용하여 클러스터링을 구현할 수 있습니다.
-이렇게 구현하려면 `MapEffect` composable을 사용하여 네이버지도 SDK의 raw `NaverMap` 객체에 접근해야 합니다.
+이렇게 구현하려면 `MapEffect` 혹은 `DisposableMapEffect` composable을 사용하여 네이버지도 SDK의 raw `NaverMap` 객체에 접근해야 합니다.
 
 ```kt
 NaverMap(
@@ -154,11 +154,14 @@ NaverMap(
 ) {
     val context = LocalContext.current
     var clusterManager by remember { mutableStateOf<TedNaverClustering<MyItem>?>(null) }
-    MapEffect(items) { map ->
+    DisposableMapEffect(items) { map ->
         if (clusterManager == null) {
             clusterManager = TedNaverClustering.with<MyItem>(context, map).make()
         }
         clusterManager?.addItems(items)
+        onDispose {
+            clusterManager?.clearItems()
+        }
     }
 }
 ```

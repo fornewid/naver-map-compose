@@ -31,8 +31,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
+import com.naver.maps.map.compose.DisposableMapEffect
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
-import com.naver.maps.map.compose.MapEffect
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
@@ -85,11 +85,14 @@ private fun NaverMapClustering(items: List<MyItem>) {
     ) {
         val context = LocalContext.current
         var clusterManager by remember { mutableStateOf<TedNaverClustering<MyItem>?>(null) }
-        MapEffect(items) { map ->
+        DisposableMapEffect(items) { map ->
             if (clusterManager == null) {
                 clusterManager = TedNaverClustering.with<MyItem>(context, map).make()
             }
             clusterManager?.addItems(items)
+            onDispose {
+                clusterManager?.clearItems()
+            }
         }
     }
 }
