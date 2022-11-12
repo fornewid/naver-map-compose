@@ -1,13 +1,13 @@
 [versions]
 
 # Kotlin
-kotlin = "1.7.20"
+kotlin = "1.7.21"
 
 # Compose
 activity = "1.6.1"
 navigation = "2.5.3"
-compose = "1.4.0-alpha01"
-composeCompiler = "1.3.2"
+compose = "1.4.0-alpha02"
+composeCompiler = "1.4.0-alpha02"
 
 [libraries]
 
