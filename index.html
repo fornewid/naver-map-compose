@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
@@ -21,10 +21,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.20d9efc8.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.472b142f.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.cbb835fc.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.08040f6c.min.css">
         
           
           
@@ -60,7 +60,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="green" data-md-color-accent="green">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
   
     
     
@@ -617,17 +617,20 @@
 <p>특정 UseCase에서는 <code>NaverMap</code> 객체가 필요합니다.
 예를 들어, 이 라이브러리에서 마커 클러스터링은 아직 지원되지 않지만(<a href="https://github.com/fornewid/naver-map-compose/issues/14">Issue #14</a> 참조),
 <a href="https://github.com/ParkSangGwon/TedNaverMapClustering">외부 라이브러리</a> 를 이용하여 클러스터링을 구현할 수 있습니다.
-이렇게 구현하려면 <code>MapEffect</code> composable을 사용하여 네이버지도 SDK의 raw <code>NaverMap</code> 객체에 접근해야 합니다.</p>
+이렇게 구현하려면 <code>MapEffect</code> 혹은 <code>DisposableMapEffect</code> composable을 사용하여 네이버지도 SDK의 raw <code>NaverMap</code> 객체에 접근해야 합니다.</p>
 <div class="highlight"><pre><span></span><code>NaverMap(
     // ...
 ) {
     val context = LocalContext.current
     var clusterManager by remember { mutableStateOf&lt;TedNaverClustering&lt;MyItem&gt;?&gt;(null) }
-    MapEffect(items) { map -&gt;
+    DisposableMapEffect(items) { map -&gt;
         if (clusterManager == null) {
             clusterManager = TedNaverClustering.with&lt;MyItem&gt;(context, map).make()
         }
         clusterManager?.addItems(items)
+        onDispose {
+            clusterManager?.clearItems()
+        }
     }
 }
 </code></pre></div>
@@ -727,7 +730,7 @@ the License.
     <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.8492ddcf.min.js"></script>
+      <script src="assets/javascripts/bundle.d6c3db9e.min.js"></script>
       
     
   </body>
