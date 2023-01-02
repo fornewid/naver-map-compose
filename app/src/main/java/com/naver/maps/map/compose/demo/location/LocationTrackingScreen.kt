@@ -41,10 +41,10 @@ import com.naver.maps.map.compose.LocationTrackingMode
 import com.naver.maps.map.compose.MapProperties
 import com.naver.maps.map.compose.MapUiSettings
 import com.naver.maps.map.compose.NaverMap
-import com.naver.maps.map.compose.demo.LocalLocationSource
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
+import com.naver.maps.map.compose.rememberFusedLocationSourceState
 
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable
@@ -105,9 +105,10 @@ fun LocationTrackingScreen(upPress: () -> Unit) {
                 else -> throw IllegalStateException()
             }
             val cameraPositionState = rememberCameraPositionState()
+            val locationSourceState = rememberFusedLocationSourceState()
             NaverMap(
                 cameraPositionState = cameraPositionState,
-                locationSource = LocalLocationSource.current,
+                locationSource = locationSourceState.value,
                 properties = MapProperties(
                     locationTrackingMode = locationTrackingMode,
                 ),
@@ -120,7 +121,7 @@ fun LocationTrackingScreen(upPress: () -> Unit) {
                     cameraPositionState.locationTrackingMode?.let {
                         onOptionSelected(it.ordinal)
                     }
-                }
+                },
             )
         }
     }

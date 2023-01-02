@@ -35,6 +35,11 @@ dependencies {
 
     implementation libs.compose.foundation
     implementation libs.kotlin.stdlib
+
+    // To provide FusedLocationSource
+    implementation libs.google.play.services.location
+    implementation libs.accompanist.permissions
+
     androidTestImplementation libs.androidx.test.ext.junit
     androidTestImplementation libs.androidx.test.espresso.core
 }
