@@ -22,11 +22,7 @@ import android.location.Location
 import android.os.Bundle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.Stable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
@@ -40,11 +36,7 @@ import com.naver.maps.map.LocationSource
 @ExperimentalNaverMapApi
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-public fun rememberFusedLocationSourceState(): FusedLocationSourceState {
-    val locationSourceState = remember {
-        MutableFusedLocationSourceState(locationSource = null)
-    }
-
+public fun rememberFusedLocationSource(): LocationSource {
     val permissionsState = rememberMultiplePermissionsState(
         listOf(
             Manifest.permission.ACCESS_FINE_LOCATION,
@@ -52,41 +44,29 @@ public fun rememberFusedLocationSourceState(): FusedLocationSourceState {
         )
     )
     val context = LocalContext.current
+    val locationSource = remember {
+        object : FusedLocationSource(context) {
+
+            override fun hasPermissions(): Boolean {
+                return permissionsState.allPermissionsGranted
+            }
+
+            override fun onPermissionRequest() {
+                permissionsState.launchMultiplePermissionRequest()
+            }
+        }
+    }
+
     val allGranted = permissionsState.allPermissionsGranted
     LaunchedEffect(allGranted) {
         if (allGranted) {
-            locationSourceState.updateLocationSource(FusedLocationSource(context))
-        } else {
-            locationSourceState.updateLocationSource(null)
-            permissionsState.launchMultiplePermissionRequest()
+            locationSource.onPermissionGranted()
         }
     }
-    return locationSourceState
+    return locationSource
 }
 
-/**
- * A state object that can be hoisted to observe [FusedLocationSource] object after [permissions].
- */
-@ExperimentalNaverMapApi
-@Stable
-public interface FusedLocationSourceState {
-    public val value: LocationSource?
-}
-
-@ExperimentalNaverMapApi
-private class MutableFusedLocationSourceState(
-    locationSource: LocationSource?,
-) : FusedLocationSourceState {
-
-    override var value: LocationSource? by mutableStateOf(locationSource)
-        private set
-
-    fun updateLocationSource(locationSource: FusedLocationSource?) {
-        value = locationSource
-    }
-}
-
-private class FusedLocationSource(context: Context) : LocationSource {
+private abstract class FusedLocationSource(context: Context) : LocationSource {
 
     private val callback = object : FusedLocationCallback(context.applicationContext) {
         override fun onLocationChanged(location: Location?) {
@@ -95,7 +75,7 @@ private class FusedLocationSource(context: Context) : LocationSource {
     }
 
     private var listener: LocationSource.OnLocationChangedListener? = null
-    private var isActivated: Boolean = false
+    private var isListening: Boolean = false
     private var lastLocation: Location? = null
         set(value) {
             field = value
@@ -104,20 +84,38 @@ private class FusedLocationSource(context: Context) : LocationSource {
             }
         }
 
+    abstract fun hasPermissions(): Boolean
+    abstract fun onPermissionRequest()
+
+    fun onPermissionGranted() {
+        setListening(true)
+    }
+
     override fun activate(listener: LocationSource.OnLocationChangedListener) {
         this.listener = listener
-        if (this.isActivated.not()) {
-            this.callback.startListening()
-            this.isActivated = true
+        if (isListening.not()) {
+            if (hasPermissions()) {
+                setListening(true)
+            } else {
+                onPermissionRequest()
+            }
         }
     }
 
     override fun deactivate() {
-        if (this.isActivated) {
-            this.callback.stopListening()
-            this.isActivated = false
+        if (isListening) {
+            setListening(false)
         }
         this.listener = null
+    }
+
+    private fun setListening(listening: Boolean) {
+        if (listening) {
+            callback.startListening()
+        } else {
+            callback.stopListening()
+        }
+        isListening = listening
     }
 
     private abstract class FusedLocationCallback(private val context: Context) {
