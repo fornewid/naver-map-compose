@@ -18,37 +18,15 @@ package com.naver.maps.map.compose.demo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.naver.maps.map.util.FusedLocationSource
 
 class MapSampleActivity : ComponentActivity() {
-
-    private val locationSource: FusedLocationSource by lazy {
-        FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ProvideLocationSource(locationSource) {
-                NaverMapTheme {
-                    NavGraph()
-                }
+            NaverMapTheme {
+                NavGraph()
             }
         }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray,
-    ) {
-        if (locationSource.onRequestPermissionsResult(requestCode, permissions, grantResults)) {
-            return
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    }
-
-    companion object {
-        private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
     }
 }
