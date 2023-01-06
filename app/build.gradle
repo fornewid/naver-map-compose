@@ -54,7 +54,6 @@ android {
 
 dependencies {
     implementation project(':naver-map-compose')
-    implementation libs.google.play.services.location
     implementation libs.naver.map.clustering
 
     implementation libs.compose.foundation
@@ -62,8 +61,6 @@ dependencies {
     implementation libs.compose.materialIconsExtended
     implementation libs.compose.navigation
     implementation libs.compose.activity
-    implementation libs.androidx.core
-    implementation libs.material.material
     androidTestImplementation libs.androidx.test.ext.junit
     androidTestImplementation libs.androidx.test.espresso.core
 }
