@@ -27,10 +27,6 @@ kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk7", version.re
 
 dokka-pluginGradle = "org.jetbrains.dokka:dokka-gradle-plugin:1.7.20"
 
-# Material Design
-
-material-material = "com.google.android.material:material:1.4.0"
-
 # Compose
 
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "activity" }
@@ -49,7 +45,6 @@ accompanist-permissions = { module = "com.google.accompanist:accompanist-permiss
 
 # AndroidX
 
-androidx-core = "androidx.core:core-ktx:1.7.0"
 androidx-benchmark-macro-junit4 = "androidx.benchmark:benchmark-macro-junit4:1.1.0"
 androidx-profileinstaller = "androidx.profileinstaller:profileinstaller:1.2.0"
 

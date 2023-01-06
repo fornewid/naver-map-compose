@@ -1,12 +1,9 @@
 <resources>
-
-    <style name="Theme.NaverMapCompose" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/brand</item>
-        <item name="colorPrimaryVariant">@color/brand</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/brand</item>
-        <item name="colorSecondaryVariant">@color/brand</item>
-        <item name="colorOnSecondary">@color/white</item>
+    <style name="Theme.NaverMapCompose" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/brand</item>
+        <item name="android:colorAccent">@color/brand</item>
         <item name="android:statusBarColor">@color/brand</item>
     </style>
+
+    <color name="brand">#00C42E</color>
 </resources>
