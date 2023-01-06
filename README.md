@@ -40,12 +40,6 @@ repositories {
 
 dependencies {
     implementation 'io.github.fornewid:naver-map-compose:<version>'
-    
-    // NAVER Map Android SDK 최신 버전도 포함해야 합니다.
-    implementation 'com.naver.maps:map-sdk:3.15.0'
-
-    // FusedLocationSource를 사용하려면 play-services-location 의존성도 추가해야 합니다.
-    implementation 'com.google.android.gms:play-services-location:16.0.0'
 }
 ```
 
