@@ -5,10 +5,6 @@
     <!-- main menu -->
     <string name="flush_cache">캐시 초기화</string>
     <string name="cache_flushed">캐시 초기화 완료</string>
-    <string name="info">정보</string>
-    <string name="sdk_info_title">NAVER Map for Jetpack Compose</string>
-    <string name="sdk_info_body_format">Version %1$s</string>
-    <string name="ok">확인</string>
 
     <!-- basic demo -->
     <string name="category_basic">Basic</string>

@@ -26,17 +26,13 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Divider
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.TextButton
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
@@ -300,7 +296,6 @@ private data class Category(
 @Composable
 fun HomeScreen(onItemClick: (Destination) -> Unit) {
     var openDropdownMenu by remember { mutableStateOf(false) }
-    var openInfoDialog by remember { mutableStateOf(false) }
     Box {
         Scaffold(
             topBar = {
@@ -354,51 +349,7 @@ fun HomeScreen(onItemClick: (Destination) -> Unit) {
                 }) {
                     Text(stringResource(R.string.flush_cache))
                 }
-                DropdownMenuItem(onClick = {
-                    openDropdownMenu = false
-                    openInfoDialog = true
-                }) {
-                    Text(stringResource(R.string.info))
-                }
             }
-        }
-
-        if (openInfoDialog) {
-            AlertDialog(
-                onDismissRequest = {
-                    openInfoDialog = false
-                },
-                title = {
-                    Text(text = stringResource(R.string.sdk_info_title))
-                },
-                text = {
-                    Text(
-                        text = stringResource(
-                            R.string.sdk_info_body_format,
-                            BuildConfig.VERSION_NAME
-                        )
-                    )
-                },
-                buttons = {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 8.dp, vertical = 2.dp),
-                        contentAlignment = Alignment.TopEnd
-                    ) {
-                        TextButton(
-                            colors = ButtonDefaults.textButtonColors(
-                                contentColor = MaterialTheme.colors.onSurface
-                            ),
-                            onClick = {
-                                openInfoDialog = false
-                            }
-                        ) {
-                            Text(stringResource(R.string.ok))
-                        }
-                    }
-                }
-            )
         }
     }
 }
