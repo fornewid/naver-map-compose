@@ -163,6 +163,24 @@ NaverMap(
 }
 ```
 
+### 위치 추적하기
+
+구글에서 제공하는 [FusedLocationProviderClient](https://developers.google.com/android/reference/com/google/android/gms/location/FusedLocationProviderClient)을 이용하여, 위치를 추적하는 기능을 제공합니다.
+
+`MapProperties`의 `locationTrackingMode`를 설정하여 위치 추적 모드를 지정할 수 있습니다.
+
+```kotlin
+NaverMap(
+    locationSource = rememberFusedLocationSource(),
+    properties = MapProperties(
+        locationTrackingMode = LocationTrackingMode.Follow,
+    ),
+    uiSettings = MapUiSettings(
+        isLocationButtonEnabled = true,
+    )
+)
+```
+
 ## Snapshots
 
 현재 개발 중인 버전을 확인하고 싶다면 [SNAPSHOT 버전](https://s01.oss.sonatype.org/content/repositories/snapshots/io/github/fornewid/naver-map-compose/)을 사용할 수 있습니다.
