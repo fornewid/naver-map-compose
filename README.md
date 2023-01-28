@@ -43,6 +43,23 @@ dependencies {
 }
 ```
 
+### :warning: 주의사항
+
+이 라이브러리는 내부적으로 네이버 지도 SDK를 사용하고 있고, 네이버 지도 SDK는 https://naver.jfrog.io/artifactory/maven/ Maven 저장소에서 배포됩니다.
+따라서 루트 프로젝트의 `build.gradle`에 저장소 설정을 추가해야 합니다.
+
+```diff
+  allprojects {
+      repositories {
+          google()
+          mavenCentral()
++         maven {
++             url 'https://naver.jfrog.io/artifactory/maven/'
++         }
+      }
+  }
+```
+
 ## Usage
 
 ### 지도 추가하기
