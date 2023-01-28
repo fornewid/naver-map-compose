@@ -45,9 +45,12 @@ dependencies {
 
 ### :warning: 주의사항
 
-이 라이브러리는 내부적으로 네이버 지도 SDK를 사용하고 있고, 네이버 지도 SDK는 https://naver.jfrog.io/artifactory/maven/ Maven 저장소에서 배포됩니다.
-따라서 루트 프로젝트의 `build.gradle`에 저장소 설정을 추가해야 합니다.
+이 라이브러리는 내부적으로 네이버 지도 SDK를 사용하고 있습니다.
 
+이에 따라오는 몇 가지 주의사항이 있습니다. (참고: [네이버 지도 안드로이드 SDK - 시작하기 - 의존성 추가](https://navermaps.github.io/android-map-sdk/guide-ko/1.html))
+
+1. 네이버 지도 SDK는 https://naver.jfrog.io/artifactory/maven/ Maven 저장소에서 배포됩니다.
+   따라서 루트 프로젝트의 `build.gradle`에 저장소 설정을 추가해야 합니다.
 ```diff
   allprojects {
       repositories {
@@ -58,6 +61,13 @@ dependencies {
 +         }
       }
   }
+```
+
+2. 네이버 지도 SDK는 [appcompat-v7](https://developer.android.com/topic/libraries/support-library/packages#v7-appcompat) 28 버전을 사용합니다.
+   요즘에는 보통 AndroidX 의존성을 갖고 있으므로, `gradle.properties`에 Jetifier 옵션을 추가해줘야 합니다.
+```properties
+android.useAndroidX=true
+android.enableJetifier=true
 ```
 
 ## Usage
