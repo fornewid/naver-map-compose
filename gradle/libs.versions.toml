@@ -18,7 +18,7 @@ metalava-pluginGradle = "me.tylerbwong.gradle:metalava-gradle:0.2.0"
 
 naver-map = "com.naver.maps:map-sdk:3.16.1"
 naver-map-clustering = "io.github.ParkSangGwon:tedclustering-naver:1.0.2"
-google-play-services-location = "com.google.android.gms:play-services-location:16.0.0"
+google-play-services-location = "com.google.android.gms:play-services-location:21.0.1"
 
 # Kotlin
 
