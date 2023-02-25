@@ -20,6 +20,7 @@ import com.naver.maps.map.NaverMap
 import com.naver.maps.map.overlay.ArrowheadPathOverlay
 import com.naver.maps.map.overlay.CircleOverlay
 import com.naver.maps.map.overlay.GroundOverlay
+import com.naver.maps.map.overlay.LocationOverlay
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.MultipartPathOverlay
 import com.naver.maps.map.overlay.PathOverlay
@@ -127,5 +128,13 @@ internal class MapApplier(
         return decorations.firstOrNull {
             it is MarkerNode && it.overlay == marker
         } as? MarkerNode
+    }
+
+    internal fun nodeForLocationOverlay(
+        locationOverlay: LocationOverlay,
+    ): LocationOverlayNode? {
+        return decorations.firstOrNull {
+            it is LocationOverlayNode && it.overlay == locationOverlay
+        } as? LocationOverlayNode
     }
 }

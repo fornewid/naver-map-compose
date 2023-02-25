@@ -149,6 +149,30 @@ package com.naver.maps.map.compose {
     enum_constant public static final com.naver.maps.map.compose.LineJoin Round;
   }
 
+  public final class LocationOverlayDefaults {
+    method public android.graphics.PointF getDefaultAnchor();
+    method public long getDefaultCircleColor();
+    method public float getDefaultCircleRadius();
+    method public com.naver.maps.map.overlay.OverlayImage getDefaultIcon();
+    method public android.graphics.PointF getDefaultSubAnchor();
+    method public com.naver.maps.map.overlay.OverlayImage getDefaultSubIconArrow();
+    method public com.naver.maps.map.overlay.OverlayImage getDefaultSubIconCone();
+    property public final android.graphics.PointF DefaultAnchor;
+    property public final long DefaultCircleColor;
+    property public final float DefaultCircleRadius;
+    property public final com.naver.maps.map.overlay.OverlayImage DefaultIcon;
+    property public final android.graphics.PointF DefaultSubAnchor;
+    property public final com.naver.maps.map.overlay.OverlayImage DefaultSubIconArrow;
+    property public final com.naver.maps.map.overlay.OverlayImage DefaultSubIconCone;
+    field public static final int GlobalZIndex = 300000; // 0x493e0
+    field public static final com.naver.maps.map.compose.LocationOverlayDefaults INSTANCE;
+    field public static final int SizeAuto = 0; // 0x0
+  }
+
+  public final class LocationOverlayKt {
+    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.NaverMapComposable public static void LocationOverlay(com.naver.maps.geometry.LatLng position, optional @FloatRange(from=0.0, to=360.0) float bearing, optional com.naver.maps.map.overlay.OverlayImage icon, optional int iconWidth, optional int iconHeight, optional android.graphics.PointF anchor, optional com.naver.maps.map.overlay.OverlayImage? subIcon, optional int subIconWidth, optional int subIconHeight, optional android.graphics.PointF subAnchor, optional float circleRadius, optional long circleColor, optional float circleOutlineWidth, optional long circleOutlineColor, optional Object? tag, optional boolean visible, optional double minZoom, optional boolean minZoomInclusive, optional double maxZoom, optional boolean maxZoomInclusive, optional int zIndex, optional int globalZIndex, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.LocationOverlay,java.lang.Boolean> onClick);
+  }
+
   @androidx.compose.runtime.Immutable public enum LocationTrackingMode {
     method public final com.naver.maps.map.LocationTrackingMode! getValue();
     property public final com.naver.maps.map.LocationTrackingMode! value;
