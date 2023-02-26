@@ -161,16 +161,16 @@ public class CameraPositionState(
 
     // Used to perform side effects thread-safely.
     // Guards all mutable properties that are not `by mutableStateOf`.
-    private val lock = Any()
+    private val lock = Unit
 
     // The map currently associated with this CameraPositionState.
     // Guarded by `lock`.
-    private var map: NaverMap? = null
+    private var map: NaverMap? by mutableStateOf(null)
 
     // An action to run when the map becomes available or unavailable.
     // represents a mutually exclusive mutation to perform while holding `lock`.
     // Guarded by `lock`.
-    private var onMapChanged: OnMapChangedCallback? = null
+    private var onMapChanged: OnMapChangedCallback? by mutableStateOf(null)
 
     /**
      * Set [onMapChanged] to [callback], invoking the current callback's
@@ -184,7 +184,7 @@ public class CameraPositionState(
     // A token representing the current owner of any ongoing motion in progress.
     // Used to determine if map animation should stop when calls to animate end.
     // Guarded by `lock`.
-    private var movementOwner: Any? = null
+    private var movementOwner: Any? by mutableStateOf(null)
 
     /**
      * Used with [onMapChangedLocked] to execute one-time actions when a map becomes available
