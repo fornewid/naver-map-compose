@@ -159,6 +159,7 @@ NaverMap {
 - `ArrowheadPathOverlay`
 - `CircleOverlay`
 - `GroundOverlay`
+- `LocationOverlay`
 - `Marker`
 - `MultipartPathOverlay`
 - `PathOverlay`
