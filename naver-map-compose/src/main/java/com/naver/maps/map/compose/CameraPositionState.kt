@@ -17,11 +17,13 @@ package com.naver.maps.map.compose
 
 import androidx.annotation.UiThread
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.staticCompositionLocalOf
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.CameraAnimation
@@ -396,3 +398,11 @@ public class CameraPositionState(
         )
     }
 }
+
+/** Provides the [CameraPositionState] used by the map. */
+internal val LocalCameraPositionState = staticCompositionLocalOf { CameraPositionState() }
+
+/** The current [CameraPositionState] used by the map. */
+public val currentCameraPositionState: CameraPositionState
+    @[NaverMapComposable ReadOnlyComposable Composable]
+    get() = LocalCameraPositionState.current
