@@ -108,6 +108,11 @@ private data class Category(
                         destination = Destination.CircleOverlay
                     ),
                     Demo(
+                        titleResId = R.string.name_location_overlay,
+                        descriptionResId = R.string.description_location_overlay,
+                        destination = Destination.LocationOverlay
+                    ),
+                    Demo(
                         titleResId = R.string.name_ground_overlay,
                         descriptionResId = R.string.description_ground_overlay,
                         destination = Destination.GroundOverlay

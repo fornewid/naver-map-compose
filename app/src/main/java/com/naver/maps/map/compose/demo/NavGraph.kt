@@ -52,6 +52,7 @@ import com.naver.maps.map.compose.demo.overlay.ArrowheadPathOverlayScreen
 import com.naver.maps.map.compose.demo.overlay.CircleOverlayScreen
 import com.naver.maps.map.compose.demo.overlay.GlobalZIndexScreen
 import com.naver.maps.map.compose.demo.overlay.GroundOverlayScreen
+import com.naver.maps.map.compose.demo.overlay.LocationOverlayScreen
 import com.naver.maps.map.compose.demo.overlay.MarkerScreen
 import com.naver.maps.map.compose.demo.overlay.MultipartPathOverlayScreen
 import com.naver.maps.map.compose.demo.overlay.OverlayCollisionScreen
@@ -73,6 +74,7 @@ enum class Destination(val route: String) {
     PolygonOverlay("PolygonOverlay"),
     PolylineOverlay("PolylineOverlay"),
     CircleOverlay("CircleOverlay"),
+    LocationOverlay("LocationOverlay"),
     GroundOverlay("GroundOverlay"),
     PathOverlay("PathOverlay"),
     MultipartPathOverlay("MultipartPathOverlay"),
@@ -160,6 +162,9 @@ fun NavGraph(
         }
         composable(Destination.CircleOverlay.route) {
             CircleOverlayScreen(upPress = upPress)
+        }
+        composable(Destination.LocationOverlay.route) {
+            LocationOverlayScreen(upPress = upPress)
         }
         composable(Destination.GroundOverlay.route) {
             GroundOverlayScreen(upPress = upPress)
