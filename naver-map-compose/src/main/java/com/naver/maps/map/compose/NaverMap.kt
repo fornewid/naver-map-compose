@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Composition
 import androidx.compose.runtime.CompositionContext
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
@@ -117,8 +118,11 @@ public fun NaverMap(
                     mapProperties = currentMapProperties,
                     mapUiSettings = currentUiSettings,
                 )
-
-                currentContent?.invoke()
+                CompositionLocalProvider(
+                    LocalCameraPositionState provides cameraPositionState,
+                ) {
+                    currentContent?.invoke()
+                }
             }
         }
     }

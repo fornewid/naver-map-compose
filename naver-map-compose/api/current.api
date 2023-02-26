@@ -70,6 +70,7 @@ package com.naver.maps.map.compose {
   }
 
   public final class CameraPositionStateKt {
+    method @androidx.compose.runtime.Composable @androidx.compose.runtime.ReadOnlyComposable @com.naver.maps.map.compose.NaverMapComposable public static com.naver.maps.map.compose.CameraPositionState getCurrentCameraPositionState();
     method @androidx.compose.runtime.Composable public static inline com.naver.maps.map.compose.CameraPositionState rememberCameraPositionState(optional String? key, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.compose.CameraPositionState,kotlin.Unit> init);
   }
 
