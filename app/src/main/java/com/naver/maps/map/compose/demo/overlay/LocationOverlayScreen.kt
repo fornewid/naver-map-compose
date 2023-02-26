@@ -15,9 +15,8 @@
  */
 package com.naver.maps.map.compose.demo.overlay
 
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.repeatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,10 +27,13 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Slider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -48,6 +50,7 @@ import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable
@@ -60,8 +63,8 @@ fun LocationOverlayScreen(upPress: () -> Unit) {
             )
         }
     ) { contentPadding ->
-        var currentBearing: Float by remember { mutableStateOf(0f) }
         Column(modifier = Modifier.padding(contentPadding)) {
+            var currentBearing: Float by remember { mutableStateOf(0f) }
             Row(
                 modifier = Modifier.requiredHeight(40.dp),
                 verticalAlignment = Alignment.CenterVertically
@@ -92,33 +95,15 @@ fun LocationOverlayScreen(upPress: () -> Unit) {
             var currentPosition by remember {
                 mutableStateOf(cameraPositionState.position.target)
             }
-            val infiniteTransition = rememberInfiniteTransition()
-            val fraction by infiniteTransition.animateFloat(
-                initialValue = 0f,
-                targetValue = 1f,
-                animationSpec = infiniteRepeatable(
-                    animation = tween(durationMillis = 1000),
-                )
-            )
-            val circleRadius: Dp by remember {
-                derivedStateOf {
-                    lerp(start = 0.dp, stop = 100.dp, fraction = fraction)
-                }
-            }
-            val circleColor: Color by remember {
-                derivedStateOf {
-                    lerp(
-                        start = Color(red = 148, green = 186, blue = 250, alpha = 127),
-                        stop = Color(red = 148, green = 186, blue = 250, alpha = 0),
-                        fraction = fraction,
-                    )
-                }
-            }
+            val circleAnimationState = remember { CircleAnimationState() }
+            val coroutineScope = rememberCoroutineScope()
             NaverMap(
                 contentPadding = contentPadding,
                 onMapClick = { _, coord ->
                     currentPosition = coord
-                    // TODO: animateCircle
+                    coroutineScope.launch {
+                        circleAnimationState.animateCircle()
+                    }
                 }
             ) {
                 LocationOverlay(
@@ -126,15 +111,46 @@ fun LocationOverlayScreen(upPress: () -> Unit) {
                     bearing = currentBearing,
                     subIcon = LocationOverlayDefaults.DefaultSubIconArrow,
                     circleOutlineWidth = 0.dp,
-                    circleRadius = circleRadius,
-                    circleColor = circleColor,
+                    circleRadius = circleAnimationState.circleRadius,
+                    circleColor = circleAnimationState.circleColor,
                     visible = true,
                     onClick = {
-                        // TODO: animateCircle
+                        coroutineScope.launch {
+                            circleAnimationState.animateCircle()
+                        }
                         true
                     },
                 )
             }
+            LaunchedEffect(Unit) {
+                circleAnimationState.animateCircle()
+            }
         }
+    }
+}
+
+@Stable
+private class CircleAnimationState {
+
+    private val fraction = Animatable(0f)
+
+    val circleRadius: Dp by derivedStateOf {
+        lerp(start = 0.dp, stop = 100.dp, fraction = fraction.value)
+    }
+
+    val circleColor: Color by derivedStateOf {
+        lerp(
+            start = Color(red = 148, green = 186, blue = 250, alpha = 127),
+            stop = Color(red = 148, green = 186, blue = 250, alpha = 0),
+            fraction = fraction.value,
+        )
+    }
+
+    suspend fun animateCircle() {
+        fraction.snapTo(0f)
+        fraction.animateTo(
+            targetValue = 1f,
+            animationSpec = repeatable(iterations = 2, tween(durationMillis = 1000))
+        )
     }
 }
