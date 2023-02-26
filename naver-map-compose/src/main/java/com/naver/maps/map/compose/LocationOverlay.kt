@@ -35,7 +35,16 @@ internal class LocationOverlayNode(
     val overlay: LocationOverlay,
     var onLocationOverlayClick: (LocationOverlay) -> Boolean,
     var density: Density,
-) : MapNode
+) : MapNode {
+
+    override fun onAttached() {
+        this.overlay.isVisible = true
+    }
+
+    override fun onRemoved() {
+        this.overlay.isVisible = false
+    }
+}
 
 public object LocationOverlayDefaults {
 
@@ -108,9 +117,6 @@ public object LocationOverlayDefaults {
  * @param circleOutlineWidth 원의 테두리 두께를 지정합니다. 0일 경우 테두리가 그려지지 않습니다.
  * @param circleOutlineColor 원의 테두리 색상을 지정합니다.
  * @param tag 태그를 지정합니다. 기본값은 null입니다.
- * @param visible 가시성을 지정합니다. 가시성이 false일 경우 오버레이는 화면에 나타나지 않으며 이벤트도 받지 못합니다.
- * 가시성은 명시적으로 지정하지 않는 한 변하지 않습니다. 즉, 오버레이가 현재 보이는 지도 영역의 바깥쪽으로 나가더라도 가시성이
- * false로 변하지는 않습니다. 기본값은 true입니다.
  * @param minZoom 오버레이가 보이는 최소 줌 레벨을 지정합니다. 기본값은 [NaverMapConstants.MinZoom]입니다.
  * @param minZoomInclusive 지도의 줌 레벨과 오버레이의 최소 줌 레벨이 동일할 때 오버레이를 보일지 여부를 지정합니다.
  * 만약 inclusive가 true이면 오버레이가 나타나고 false이면 나타나지 않습니다. 기본값은 true입니다.
@@ -143,7 +149,6 @@ public fun LocationOverlay(
     circleOutlineWidth: Dp = 0.dp,
     circleOutlineColor: Color = Color.Transparent,
     tag: Any? = null,
-    visible: Boolean = true,
     minZoom: Double = NaverMapConstants.MinZoom,
     minZoomInclusive: Boolean = true,
     maxZoom: Double = NaverMapConstants.MaxZoom,
@@ -175,7 +180,6 @@ public fun LocationOverlay(
 
                 // Overlay
                 this.tag = tag
-                this.isVisible = visible
                 this.minZoom = minZoom
                 this.isMinZoomInclusive = minZoomInclusive
                 this.maxZoom = maxZoom
@@ -219,7 +223,6 @@ public fun LocationOverlay(
 
             // Overlay
             set(tag) { this.overlay.tag = it }
-            set(visible) { this.overlay.isVisible = it }
             set(minZoom) { this.overlay.minZoom = it }
             set(minZoomInclusive) { this.overlay.isMinZoomInclusive = it }
             set(maxZoom) { this.overlay.maxZoom = it }

@@ -113,7 +113,6 @@ fun LocationOverlayScreen(upPress: () -> Unit) {
                     circleOutlineWidth = 0.dp,
                     circleRadius = circleAnimationState.circleRadius,
                     circleColor = circleAnimationState.circleColor,
-                    visible = true,
                     onClick = {
                         coroutineScope.launch {
                             circleAnimationState.animateCircle()
