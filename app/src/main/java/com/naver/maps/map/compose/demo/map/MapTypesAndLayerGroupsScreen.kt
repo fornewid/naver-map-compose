@@ -29,7 +29,7 @@ import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
-import androidx.compose.material.LocalMinimumTouchTargetEnforcement
+import androidx.compose.material.LocalMinimumInteractiveComponentEnforcement
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -131,7 +131,7 @@ fun MapTypesAndLayerGroupsScreen(upPress: () -> Unit) {
                         horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        CompositionLocalProvider(LocalMinimumTouchTargetEnforcement provides false) {
+                        CompositionLocalProvider(LocalMinimumInteractiveComponentEnforcement provides false) {
                             Button(
                                 onClick = {
                                     layerGroupExpanded = !layerGroupExpanded
