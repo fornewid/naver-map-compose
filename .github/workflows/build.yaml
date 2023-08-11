@@ -95,7 +95,7 @@ jobs:
           heap-size: 512M
           script: |
             adb logcat > logcat.txt &
-            ./gradlew connectedCheck -x :macrobenchmark-navermap:connectedBenchmarkAndroidTest
+            ./gradlew connectedCheck
 
       - name: Clean secrets
         if: always()
