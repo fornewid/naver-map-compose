@@ -3,6 +3,8 @@ package com.naver.maps.map.compose {
 
   @androidx.compose.runtime.Immutable public enum Align {
     method public final com.naver.maps.map.overlay.Align! getValue();
+    method public static com.naver.maps.map.compose.Align valueOf(String name) throws java.lang.IllegalArgumentException;
+    method public static com.naver.maps.map.compose.Align[] values();
     property public final com.naver.maps.map.overlay.Align! value;
     enum_constant public static final com.naver.maps.map.compose.Align Bottom;
     enum_constant public static final com.naver.maps.map.compose.Align BottomLeft;
@@ -36,7 +38,7 @@ package com.naver.maps.map.compose {
 
   public final class CameraPositionState {
     ctor public CameraPositionState(optional com.naver.maps.map.CameraPosition position);
-    method @UiThread @com.naver.maps.map.compose.ExperimentalNaverMapApi public suspend Object? animate(com.naver.maps.map.CameraUpdate update, optional com.naver.maps.map.CameraAnimation animation, optional int durationMs, optional kotlin.coroutines.Continuation<? super kotlin.Unit> p);
+    method @UiThread @com.naver.maps.map.compose.ExperimentalNaverMapApi public suspend Object? animate(com.naver.maps.map.CameraUpdate update, optional com.naver.maps.map.CameraAnimation animation, optional int durationMs, optional kotlin.coroutines.Continuation<? super kotlin.Unit>);
     method public com.naver.maps.map.compose.CameraUpdateReason getCameraUpdateReason();
     method public com.naver.maps.geometry.LatLngBounds? getContentBounds();
     method public com.naver.maps.geometry.LatLng![]? getContentRegion();
@@ -49,7 +51,7 @@ package com.naver.maps.map.compose {
     method public com.naver.maps.map.Projection? getProjection();
     method public boolean isMoving();
     method @UiThread @com.naver.maps.map.compose.ExperimentalNaverMapApi public void move(com.naver.maps.map.CameraUpdate update);
-    method public void setPosition(com.naver.maps.map.CameraPosition value);
+    method public void setPosition(com.naver.maps.map.CameraPosition);
     method @UiThread @com.naver.maps.map.compose.ExperimentalNaverMapApi public void stop();
     property public final com.naver.maps.map.compose.CameraUpdateReason cameraUpdateReason;
     property public final com.naver.maps.geometry.LatLngBounds? contentBounds;
@@ -72,10 +74,13 @@ package com.naver.maps.map.compose {
   public final class CameraPositionStateKt {
     method @androidx.compose.runtime.Composable @androidx.compose.runtime.ReadOnlyComposable @com.naver.maps.map.compose.NaverMapComposable public static com.naver.maps.map.compose.CameraPositionState getCurrentCameraPositionState();
     method @androidx.compose.runtime.Composable public static inline com.naver.maps.map.compose.CameraPositionState rememberCameraPositionState(optional String? key, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.compose.CameraPositionState,kotlin.Unit> init);
+    property @androidx.compose.runtime.Composable @androidx.compose.runtime.ReadOnlyComposable @com.naver.maps.map.compose.NaverMapComposable public static final com.naver.maps.map.compose.CameraPositionState currentCameraPositionState;
   }
 
   @androidx.compose.runtime.Immutable public enum CameraUpdateReason {
     method public final int getValue();
+    method public static com.naver.maps.map.compose.CameraUpdateReason valueOf(String name) throws java.lang.IllegalArgumentException;
+    method public static com.naver.maps.map.compose.CameraUpdateReason[] values();
     property public final int value;
     enum_constant public static final com.naver.maps.map.compose.CameraUpdateReason CONTROL;
     enum_constant public static final com.naver.maps.map.compose.CameraUpdateReason DEVELOPER;
@@ -116,7 +121,7 @@ package com.naver.maps.map.compose {
     property public final long passedOutlineColor;
   }
 
-  @kotlin.RequiresOptIn(message="This API is experimental and is likely to change or to be removed in the future.") @kotlin.annotation.MustBeDocumented @kotlin.annotation.Retention(kotlin.annotation.AnnotationRetention) public @interface ExperimentalNaverMapApi {
+  @kotlin.RequiresOptIn(message="This API is experimental and is likely to change or to be removed in the future.") @kotlin.annotation.MustBeDocumented @kotlin.annotation.Retention(kotlin.annotation.AnnotationRetention.BINARY) public @interface ExperimentalNaverMapApi {
   }
 
   public final class FusedLocationSourceKt {
@@ -136,6 +141,8 @@ package com.naver.maps.map.compose {
 
   @androidx.compose.runtime.Immutable public enum LineCap {
     method public final com.naver.maps.map.overlay.PolylineOverlay.LineCap! getValue();
+    method public static com.naver.maps.map.compose.LineCap valueOf(String name) throws java.lang.IllegalArgumentException;
+    method public static com.naver.maps.map.compose.LineCap[] values();
     property public final com.naver.maps.map.overlay.PolylineOverlay.LineCap! value;
     enum_constant public static final com.naver.maps.map.compose.LineCap Butt;
     enum_constant public static final com.naver.maps.map.compose.LineCap Round;
@@ -144,6 +151,8 @@ package com.naver.maps.map.compose {
 
   @androidx.compose.runtime.Immutable public enum LineJoin {
     method public final com.naver.maps.map.overlay.PolylineOverlay.LineJoin! getValue();
+    method public static com.naver.maps.map.compose.LineJoin valueOf(String name) throws java.lang.IllegalArgumentException;
+    method public static com.naver.maps.map.compose.LineJoin[] values();
     property public final com.naver.maps.map.overlay.PolylineOverlay.LineJoin! value;
     enum_constant public static final com.naver.maps.map.compose.LineJoin Bevel;
     enum_constant public static final com.naver.maps.map.compose.LineJoin Miter;
@@ -176,6 +185,8 @@ package com.naver.maps.map.compose {
 
   @androidx.compose.runtime.Immutable public enum LocationTrackingMode {
     method public final com.naver.maps.map.LocationTrackingMode! getValue();
+    method public static com.naver.maps.map.compose.LocationTrackingMode valueOf(String name) throws java.lang.IllegalArgumentException;
+    method public static com.naver.maps.map.compose.LocationTrackingMode[] values();
     property public final com.naver.maps.map.LocationTrackingMode! value;
     enum_constant public static final com.naver.maps.map.compose.LocationTrackingMode Face;
     enum_constant public static final com.naver.maps.map.compose.LocationTrackingMode Follow;
@@ -276,6 +287,8 @@ package com.naver.maps.map.compose {
 
   @androidx.compose.runtime.Immutable public enum MapType {
     method public final com.naver.maps.map.NaverMap.MapType! getValue();
+    method public static com.naver.maps.map.compose.MapType valueOf(String name) throws java.lang.IllegalArgumentException;
+    method public static com.naver.maps.map.compose.MapType[] values();
     property public final com.naver.maps.map.NaverMap.MapType! value;
     enum_constant public static final com.naver.maps.map.compose.MapType Basic;
     enum_constant public static final com.naver.maps.map.compose.MapType Hybrid;
@@ -370,7 +383,7 @@ package com.naver.maps.map.compose {
   public final class MarkerState {
     ctor public MarkerState(optional com.naver.maps.geometry.LatLng position);
     method public com.naver.maps.geometry.LatLng getPosition();
-    method public void setPosition(com.naver.maps.geometry.LatLng position);
+    method public void setPosition(com.naver.maps.geometry.LatLng);
     property public final com.naver.maps.geometry.LatLng position;
     field public static final com.naver.maps.map.compose.MarkerState.Companion Companion;
   }
@@ -389,7 +402,7 @@ package com.naver.maps.map.compose {
     method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.NaverMapComposable public static void MultipartPathOverlay(java.util.List<? extends java.util.List<com.naver.maps.geometry.LatLng>> coordParts, java.util.List<com.naver.maps.map.compose.ColorPart> colorParts, optional double progress, optional float width, optional float outlineWidth, optional com.naver.maps.map.overlay.OverlayImage? patternImage, optional float patternInterval, optional boolean isHideCollidedSymbols, optional boolean isHideCollidedMarkers, optional boolean isHideCollidedCaptions, optional Object? tag, optional boolean visible, optional double minZoom, optional boolean minZoomInclusive, optional double maxZoom, optional boolean maxZoomInclusive, optional int zIndex, optional int globalZIndex, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.MultipartPathOverlay,java.lang.Boolean> onClick);
   }
 
-  @androidx.compose.runtime.ComposableTargetMarker(description="Naver Map Composable") @kotlin.annotation.Retention(kotlin.annotation.AnnotationRetention) @kotlin.annotation.Target(allowedTargets={kotlin.annotation.AnnotationTarget, kotlin.annotation.AnnotationTarget, kotlin.annotation.AnnotationTarget, kotlin.annotation.AnnotationTarget, kotlin.annotation.AnnotationTarget}) public @interface NaverMapComposable {
+  @androidx.compose.runtime.ComposableTargetMarker(description="Naver Map Composable") @kotlin.annotation.Retention(kotlin.annotation.AnnotationRetention.BINARY) @kotlin.annotation.Target(allowedTargets={kotlin.annotation.AnnotationTarget.FILE, kotlin.annotation.AnnotationTarget.FUNCTION, kotlin.annotation.AnnotationTarget.PROPERTY_GETTER, kotlin.annotation.AnnotationTarget.TYPE, kotlin.annotation.AnnotationTarget.TYPE_PARAMETER}) public @interface NaverMapComposable {
   }
 
   public final class NaverMapConstants {

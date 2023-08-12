@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'com.vanniktech.maven.publish'
     id 'org.jetbrains.dokka'
+    id 'me.tylerbwong.gradle.metalava'
 }
 
 android {
@@ -28,6 +29,12 @@ android {
     kotlinOptions {
         freeCompilerArgs += '-Xexplicit-api=warning'
     }
+}
+
+metalava {
+    sourcePaths.setFrom("src/main")
+    filename.set("api/current.api")
+    reportLintsAsErrors.set(true)
 }
 
 dependencies {
