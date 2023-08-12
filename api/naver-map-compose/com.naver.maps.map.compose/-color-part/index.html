@@ -37,6 +37,9 @@
     <div>
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":naver-map-compose:dokkaHtmlPartial/release">androidJvm</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -46,93 +49,93 @@
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="naver-map-compose::com.naver.maps.map.compose/ColorPart///PointingToDeclaration//-535117375">
+<div class="main-content" data-page-type="classlike" id="content" pageids="naver-map-compose::com.naver.maps.map.compose/ColorPart///PointingToDeclaration//-535117375">
   <div class="breadcrumbs"><a href="../../index.html">naver-map-compose</a><span class="delimiter">/</span><a href="../index.html">com.naver.maps.map.compose</a><span class="delimiter">/</span><span class="current">ColorPart</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Color</span><wbr><span><span>Part</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">ColorPart</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>color<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.White<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>outlineColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.Black<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>passedColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.White<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>passedOutlineColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.Black</span></span><span class="token punctuation">)</span></div><p class="paragraph">하나의 색상 파트를 나타내는 클래스.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable.html"><span class="token annotation builtin">Immutable</span></a></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">ColorPart</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>color<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.White<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>outlineColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.Black<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>passedColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.White<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>passedOutlineColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.Black</span></span><span class="token punctuation">)</span></div><p class="paragraph">하나의 색상 파트를 나타내는 클래스.</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>color</span></span></u></div></span></div><div><div class="title"><p class="paragraph">경로선의 색상을 지정합니다. 경로선의 색상은 반투명일 수 없으며, 완전히 투명하거나 완전히 불투명해야 합니다. 색상의 알파가 0이 아닌 경우 완전히 불투명한 것으로 간주됩니다. 색상이 투명할 경우 테두리도 그려지지 않습니다. 기본값은 <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.Companion.html#white">Color.White</a>입니다.</p></div></div></div></div><div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>outline</span><wbr><span><span>Color</span></span></u></div></span></div><div><div class="title"><p class="paragraph">경로선의 테두리 색상을 지정합니다. 경로선의 테두리 색상은 반투명일 수 없으며, 완전히 투명하거나 완전히 불투명해야 합니다. 색상의 알파가 0이 아닌 경우 완전히 불투명한 것으로 간주됩니다. 기본값은 <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.Companion.html#black">Color.Black</a>입니다.</p></div></div></div></div><div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>passed</span><wbr><span><span>Color</span></span></u></div></span></div><div><div class="title"><p class="paragraph">지나온 경로선의 색상을 지정합니다. 지나온 경로선의 색상은 반투명일 수 없으며, 완전히 투명하거나 완전히 불투명해야 합니다. 색상의 알파가 0이 아닌 경우 완전히 불투명한 것으로 간주됩니다. 색상이 투명할 경우 테두리도 그려지지 않습니다. 기본값은 <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.Companion.html#white">Color.White</a>입니다.</p></div></div></div></div><div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>passed</span><wbr><span>Outline</span><wbr><span><span>Color</span></span></u></div></span></div><div><div class="title"><p class="paragraph">지나온 경로선의 테두리 색상을 지정합니다. 지나온 경로선의 테두리 색상은 반투명일 수 없으며, 완전히 투명하거나 완전히 불투명해야 합니다. 색상의 알파가 0이 아닌 경우 완전히 불투명한 것으로 간주됩니다. 기본값은 <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.Companion.html#black">Color.Black</a>입니다.</p></div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Parameters">Parameters</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
     <div class="tabs-section-body">
-      <h4 class="">Parameters</h4>
-      <div data-togglable="Parameters">
-        <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span><span>color</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">경로선의 색상을 지정합니다. 경로선의 색상은 반투명일 수 없으며, 완전히 투명하거나 완전히 불투명해야 합니다. 색상의 알파가 0이 아닌 경우 완전히 불투명한 것으로 간주됩니다. 색상이 투명할 경우 테두리도 그려지지 않습니다. 기본값은 <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.Companion.html#white">Color.White</a>입니다.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span>outline</span><wbr><span><span>Color</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">경로선의 테두리 색상을 지정합니다. 경로선의 테두리 색상은 반투명일 수 없으며, 완전히 투명하거나 완전히 불투명해야 합니다. 색상의 알파가 0이 아닌 경우 완전히 불투명한 것으로 간주됩니다. 기본값은 <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.Companion.html#black">Color.Black</a>입니다.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span>passed</span><wbr><span><span>Color</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">지나온 경로선의 색상을 지정합니다. 지나온 경로선의 색상은 반투명일 수 없으며, 완전히 투명하거나 완전히 불투명해야 합니다. 색상의 알파가 0이 아닌 경우 완전히 불투명한 것으로 간주됩니다. 색상이 투명할 경우 테두리도 그려지지 않습니다. 기본값은 <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.Companion.html#white">Color.White</a>입니다.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span>passed</span><wbr><span>Outline</span><wbr><span><span>Color</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">지나온 경로선의 테두리 색상을 지정합니다. 지나온 경로선의 테두리 색상은 반투명일 수 없으며, 완전히 투명하거나 완전히 불투명해야 합니다. 색상의 알파가 0이 아닌 경우 완전히 불투명한 것으로 간주됩니다. 기본값은 <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.Companion.html#black">Color.Black</a>입니다.</p></div></div></div></div></div></div></div></div></div>
-      </div>
-      <h2 class="tabbedcontent">Constructors</h2>
-      <div class="table" data-togglable="Constructors"><a data-name="-324975580%2FConstructors%2F-535117375" anchor-label="ColorPart" id="-324975580%2FConstructors%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue TabbedContent">
-            <div class=""><span class="inline-flex">
-                <div><a href="-color-part.html"><span>Color</span><wbr><span><span>Part</span></span></a></div>
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-324975580%2FConstructors%2F-535117375" anchor-label="ColorPart" id="-324975580%2FConstructors%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-color-part.html"><span>Color</span><wbr><span><span>Part</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-324975580%2FConstructors%2F-535117375"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-color-part.html"><span class="token function">ColorPart</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">color<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.White<span class="token punctuation">, </span></span><span class="parameter ">outlineColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.Black<span class="token punctuation">, </span></span><span class="parameter ">passedColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.White<span class="token punctuation">, </span></span><span class="parameter ">passedOutlineColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.Black</span></span><span class="token punctuation">)</span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">color<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.White<span class="token punctuation">, </span></span><span class="parameter ">outlineColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.Black<span class="token punctuation">, </span></span><span class="parameter ">passedColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.White<span class="token punctuation">, </span></span><span class="parameter ">passedOutlineColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>Color.Black</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <h2 class="">Properties</h2>
-      <div class="table" data-togglable="Properties"><a data-name="1323968110%2FProperties%2F-535117375" anchor-label="color" id="1323968110%2FProperties%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="color.html"><span><span>color</span></span></a></div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="1323968110%2FProperties%2F-535117375" anchor-label="color" id="1323968110%2FProperties%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color.html"><span><span>color</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1323968110%2FProperties%2F-535117375"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><a data-name="1323968110%2FProperties%2F-535117375" anchor-label="color" id="1323968110%2FProperties%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="color.html">color</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="color.html">color</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="11341672%2FProperties%2F-535117375" anchor-label="outlineColor" id="11341672%2FProperties%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="outline-color.html"><span>outline</span><wbr><span><span>Color</span></span></a></div>
+          <div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="outline-color.html"><span>outline</span><wbr><span><span>Color</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="11341672%2FProperties%2F-535117375"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><a data-name="11341672%2FProperties%2F-535117375" anchor-label="outlineColor" id="11341672%2FProperties%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="outline-color.html">outlineColor</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="outline-color.html">outlineColor</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1112233986%2FProperties%2F-535117375" anchor-label="passedColor" id="-1112233986%2FProperties%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="passed-color.html"><span>passed</span><wbr><span><span>Color</span></span></a></div>
+          <div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="passed-color.html"><span>passed</span><wbr><span><span>Color</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1112233986%2FProperties%2F-535117375"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><a data-name="-1112233986%2FProperties%2F-535117375" anchor-label="passedColor" id="-1112233986%2FProperties%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="passed-color.html">passedColor</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="passed-color.html">passedColor</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="552119256%2FProperties%2F-535117375" anchor-label="passedOutlineColor" id="552119256%2FProperties%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="passed-outline-color.html"><span>passed</span><wbr><span>Outline</span><wbr><span><span>Color</span></span></a></div>
+          <div class="table-row" data-filterable-current=":naver-map-compose:dokkaHtmlPartial/release" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="passed-outline-color.html"><span>passed</span><wbr><span>Outline</span><wbr><span><span>Color</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="552119256%2FProperties%2F-535117375"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><a data-name="552119256%2FProperties%2F-535117375" anchor-label="passedOutlineColor" id="552119256%2FProperties%2F-535117375" data-filterable-set=":naver-map-compose:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="passed-outline-color.html">passedOutlineColor</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":naver-map-compose:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="passed-outline-color.html">passedOutlineColor</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -146,6 +149,6 @@
       </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 
