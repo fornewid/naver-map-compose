@@ -23,6 +23,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.location.Location
 import android.os.Bundle
+import android.os.Looper
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -222,12 +223,16 @@ public abstract class FusedLocationSource(private val context: Context) : Locati
                 .addConnectionCallbacks(object : GoogleApiClient.ConnectionCallbacks {
                     @SuppressLint("MissingPermission")
                     override fun onConnected(bundle: Bundle?) {
-                        val request = LocationRequest()
+                        val request = LocationRequest.create()
                         request.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
                         request.interval = 1000L
                         request.fastestInterval = 1000L
                         LocationServices.getFusedLocationProviderClient(context)
-                            .requestLocationUpdates(request, locationCallback, null)
+                            .requestLocationUpdates(
+                                request,
+                                locationCallback,
+                                Looper.getMainLooper()
+                            )
                     }
 
                     override fun onConnectionSuspended(i: Int) {}
