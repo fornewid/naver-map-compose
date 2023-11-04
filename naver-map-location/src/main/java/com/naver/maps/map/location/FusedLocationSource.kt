@@ -22,13 +22,12 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.location.Location
-import android.os.Bundle
-import android.os.Looper
-import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import com.naver.maps.map.LocationSource
 import kotlin.math.abs
 import kotlin.math.atan2
@@ -218,28 +217,20 @@ public abstract class FusedLocationSource(private val context: Context) : Locati
             }
         }
 
+        @SuppressLint("MissingPermission")
         fun startListening() {
-            GoogleApiClient.Builder(context)
-                .addConnectionCallbacks(object : GoogleApiClient.ConnectionCallbacks {
-                    @SuppressLint("MissingPermission")
-                    override fun onConnected(bundle: Bundle?) {
-                        val request = LocationRequest.create()
-                        request.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-                        request.interval = 1000L
-                        request.fastestInterval = 1000L
-                        LocationServices.getFusedLocationProviderClient(context)
-                            .requestLocationUpdates(
-                                request,
-                                locationCallback,
-                                Looper.getMainLooper()
-                            )
-                    }
-
-                    override fun onConnectionSuspended(i: Int) {}
-                })
-                .addApi(LocationServices.API)
-                .build()
-                .connect()
+            val client = LocationServices.getFusedLocationProviderClient(context)
+            GoogleApiAvailability.getInstance()
+                .checkApiAvailability(client)
+                .onSuccessTask { _ ->
+                    val request = LocationRequest
+                        .Builder(Priority.PRIORITY_HIGH_ACCURACY, 1000L)
+                        .setMinUpdateIntervalMillis(1000L)
+                        .build()
+                    LocationServices.getFusedLocationProviderClient(context)
+                        .requestLocationUpdates(request, locationCallback, null)
+                }
+                .addOnFailureListener {}
         }
 
         fun stopListening() {
