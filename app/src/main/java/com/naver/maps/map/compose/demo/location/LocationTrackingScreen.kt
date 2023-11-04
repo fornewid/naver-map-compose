@@ -104,17 +104,23 @@ fun LocationTrackingScreen(upPress: () -> Unit) {
                 3 -> LocationTrackingMode.Face
                 else -> throw IllegalStateException()
             }
+            val isCompassEnabled = when (locationTrackingMode) {
+                LocationTrackingMode.Follow,
+                LocationTrackingMode.Face -> true
+                else -> false
+            }
             val cameraPositionState = rememberCameraPositionState()
             NaverMap(
                 cameraPositionState = cameraPositionState,
-                locationSource = rememberFusedLocationSource(),
+                locationSource = rememberFusedLocationSource(
+                    isCompassEnabled = isCompassEnabled,
+                ),
                 properties = MapProperties(
                     locationTrackingMode = locationTrackingMode,
                 ),
                 uiSettings = MapUiSettings(
                     isLocationButtonEnabled = true,
-                    isCompassEnabled = locationTrackingMode == LocationTrackingMode.Follow ||
-                        locationTrackingMode == LocationTrackingMode.Face
+                    isCompassEnabled = isCompassEnabled,
                 ),
                 onOptionChange = {
                     cameraPositionState.locationTrackingMode?.let {

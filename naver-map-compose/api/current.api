@@ -125,7 +125,7 @@ package com.naver.maps.map.compose {
   }
 
   public final class FusedLocationSourceKt {
-    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static com.naver.maps.map.LocationSource rememberFusedLocationSource();
+    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static com.naver.maps.map.LocationSource rememberFusedLocationSource(optional boolean isCompassEnabled);
   }
 
   public final class GroundOverlayDefaults {
