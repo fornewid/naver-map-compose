@@ -1,2 +1,3 @@
 include ':app'
 include ':naver-map-compose'
+include ':naver-map-location'
