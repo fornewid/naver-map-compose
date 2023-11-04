@@ -21,6 +21,7 @@ mavenPublish-pluginGradle = { module = "com.vanniktech:gradle-maven-publish-plug
 metalava-pluginGradle = { module = "me.tylerbwong.gradle.metalava:plugin", version.ref = "metalava" }
 
 naver-map = "com.naver.maps:map-sdk:3.16.1"
+naver-map-location = "io.github.fornewid:naver-map-location:16.0.0"
 naver-map-clustering = "io.github.ParkSangGwon:tedclustering-naver:1.0.2"
 google-play-services-location = "com.google.android.gms:play-services-location:21.0.1"
 

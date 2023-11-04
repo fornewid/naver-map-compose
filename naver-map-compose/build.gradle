@@ -39,7 +39,7 @@ metalava {
 
 dependencies {
     api libs.naver.map
-    api project(':naver-map-location')
+    api libs.naver.map.location
 
     implementation libs.compose.foundation
     implementation libs.kotlin.stdlib
