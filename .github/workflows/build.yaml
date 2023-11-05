@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - location-18.0.0-publish
     paths-ignore:
       - '**.md'
       - 'docs/**'
