@@ -18,6 +18,7 @@
 
 ## Download
 
+### naver-map-compose:
 <table>
  <tr>
   <td>Compose 1.1 (1.1.x)</td><td><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.fornewid/naver-map-compose?versionPrefix=1.0"/></td>
@@ -35,7 +36,20 @@
   <td>Compose 1.5 (1.5.x)</td><td><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.fornewid/naver-map-compose?versionPrefix=1.4"></td>
  </tr>
  <tr>
-  <td>Compose 1.6 (1.6.x)</td><td><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.fornewid/naver-map-compose"></td>
+  <td>Compose 1.6 (1.6.x)</td><td><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.fornewid/naver-map-compose?versionPrefix=1.5"></td>
+ </tr>
+</table>
+
+### naver-map-location:
+<table>
+ <tr>
+  <td>play-services-location 16.0.0 ~</td><td><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.fornewid/naver-map-location?versionPrefix=16.0.0"/></td>
+ </tr>
+ <tr>
+  <td>play-services-location 18.0.0 ~</td><td><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.fornewid/naver-map-location?versionPrefix=18.0.0"/></td>
+ </tr>
+ <tr>
+  <td>play-services-location 21.0.1 ~</td><td><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.fornewid/naver-map-location?versionPrefix=21.0.1"/></td>
  </tr>
 </table>
 
@@ -46,10 +60,15 @@ repositories {
 
 dependencies {
     implementation 'io.github.fornewid:naver-map-compose:<version>'
+
+    // (Optional) 위치 추적하기
+    // 다른 버전의 play-services-location 과 함께 사용하려면 선언해야 합니다.
+    // 선언하지 않았을 때, 기본으로 포함되는 play-services-location 버전은 16.0.0 입니다.
+    implementation 'io.github.fornewid:naver-map-location:<version>'
 }
 ```
 
-### :warning: 주의사항
+### :warning: Warnings
 
 이 라이브러리는 내부적으로 네이버 지도 SDK를 사용하고 있습니다.
 
@@ -74,6 +93,17 @@ dependencies {
 ```properties
 android.useAndroidX=true
 android.enableJetifier=true
+```
+
+3. 네이버 지도 SDK는 위치 추적기능을 지원하려고, play-services-location 라이브러리 16.0.0 버전을 사용합니다.
+   이 버전보다 높은 버전을 사용하고 있으면, 컴파일 혹은 런타임에 오류가 발생할 수 있습니다.
+   이 때는 play-services-location 라이브러리 버전과 같은 [naver-map-location](https://github.com/fornewid/naver-map-compose/edit/main/README.md#naver-map-location) 라이브러리를 추가로 선언해야 합니다.
+```diff
+  dependencies {
+      implementation 'io.github.fornewid:naver-map-compose:<version>'
+      implementation 'com.google.android.gms:play-services-location:21.0.1'
++     implementation 'io.github.fornewid:naver-map-location:21.0.1'
+  }
 ```
 
 ## Usage
@@ -199,6 +229,8 @@ NaverMap(
 
 ### 위치 추적하기
 
+> :warning: `play-services-location` 버전이 16.0.0 보다 높으면, 컴파일 혹은 런타임에 오류가 발생할 수 있습니다. ([Warnings 섹션을 참고하세요.](https://github.com/fornewid/naver-map-compose/edit/main/README.md#warning-warnings))
+
 구글에서 제공하는 [FusedLocationProviderClient](https://developers.google.com/android/reference/com/google/android/gms/location/FusedLocationProviderClient)을 이용하여, 위치를 추적하는 기능을 제공합니다.
 
 `MapProperties`의 `locationTrackingMode`를 설정하여 위치 추적 모드를 지정할 수 있습니다.
@@ -208,6 +240,20 @@ NaverMap(
     locationSource = rememberFusedLocationSource(),
     properties = MapProperties(
         locationTrackingMode = LocationTrackingMode.Follow,
+    ),
+    uiSettings = MapUiSettings(
+        isLocationButtonEnabled = true,
+    )
+)
+```
+
+`LocationTrackingMode`가 `Follow` 또는 `Face`일 때, 나침반 기능을 활성화하려면 `isCompassEnabled`을 true로 설정해야 합니다.
+
+```kotlin
+NaverMap(
+    locationSource = rememberFusedLocationSource(isCompassEnabled = true),
+    properties = MapProperties(
+        locationTrackingMode = LocationTrackingMode.Face,
     ),
     uiSettings = MapUiSettings(
         isLocationButtonEnabled = true,
