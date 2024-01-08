@@ -39,6 +39,7 @@ metalava {
 
 dependencies {
     api libs.naver.map
+    api 'io.github.fornewid:naver-map-location:16.0.0'
 
     implementation libs.compose.foundation
     implementation libs.kotlin.stdlib
