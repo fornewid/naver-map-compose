@@ -3,3 +3,5 @@ $dokka.linkExtension:html
 
 module:naver-map-compose
 com.naver.maps.map.compose
+module:naver-map-location
+com.naver.maps.map.location
