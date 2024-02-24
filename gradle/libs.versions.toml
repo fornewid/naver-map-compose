@@ -10,9 +10,9 @@ dokka = "1.8.10"
 # Compose
 activity = "1.8.2"
 navigation = "2.7.6"
-compose = "1.6.0"
+compose = "1.6.2"
 composeCompiler = "1.4.8"
-accompanist = "0.33.2-alpha"
+accompanist = "0.34.0"
 
 [libraries]
 
