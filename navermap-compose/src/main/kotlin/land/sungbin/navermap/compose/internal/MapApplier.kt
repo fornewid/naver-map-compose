@@ -17,13 +17,9 @@
 package land.sungbin.navermap.compose.internal
 
 import androidx.compose.runtime.Applier
-import com.naver.maps.map.NaverMap
 
 @PublishedApi
-internal class MapApplier(
-  val map: NaverMap,
-  private val root: MapOverlayNode,
-) : Applier<MapOverlayNode> {
+internal class MapApplier(val root: MapOverlayNode) : Applier<MapOverlayNode> {
   private val stack = mutableListOf<MapOverlayNode>()
   override var current = root
     private set

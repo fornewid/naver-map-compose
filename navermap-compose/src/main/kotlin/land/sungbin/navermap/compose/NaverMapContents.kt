@@ -17,11 +17,13 @@
 package land.sungbin.navermap.compose
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Composer
 import androidx.compose.runtime.DisallowComposableCalls
 import androidx.compose.runtime.ReusableComposeNode
 import androidx.compose.runtime.currentComposer
 import land.sungbin.navermap.compose.internal.MapApplier
 import land.sungbin.navermap.compose.internal.MapOverlayNode
+import land.sungbin.navermap.compose.internal.requireMap
 import land.sungbin.navermap.compose.modifier.MapModifier
 import land.sungbin.navermap.token.overlay.Overlay
 
@@ -31,14 +33,21 @@ public inline fun <reified O : Overlay<*>> MapOverlay(
   modifier: MapModifier = MapModifier,
   crossinline block: @DisallowComposableCalls O.() -> Unit = {},
 ) {
-  val map = (currentComposer.applier as MapApplier).map
+  val applier = currentComposer.mapApplier
 
   ReusableComposeNode<MapOverlayNode, MapApplier>(
-    factory = { MapOverlayNode(map = map) },
+    factory = MapOverlayNode.Constructor,
     update = {
-      init { MapOverlayNode.SetOverlay.invoke(/* receiver = */ this, /* value = */ O::class.java) }
+      init {
+        map = applier.root.requireMap()
+        MapOverlayNode.SetOverlay.invoke(/* receiver = */ this, /* value = */ O::class.java)
+      }
       set(value = modifier, block = MapOverlayNode.SetModifier)
       set(value = { block(this as O) }, block = MapOverlayNode.InvalidateOverlay)
     },
   )
 }
+
+@PublishedApi
+internal val Composer.mapApplier: MapApplier
+  inline get() = applier as? MapApplier ?: error("Should be used inside 'NaverMap' composable!")

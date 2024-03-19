@@ -21,8 +21,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
-import land.sungbin.navermap.compose.NaverMap
 import land.sungbin.navermap.compose.MapOverlay
+import land.sungbin.navermap.compose.NaverMap
 import land.sungbin.navermap.compose.modifier.MapModifier
 import land.sungbin.navermap.compose.modifier.size
 import land.sungbin.navermap.token.overlay.MarkerOverlay

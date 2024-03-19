@@ -24,5 +24,6 @@ internal sealed interface MapOwner {
   var callback: NaverMapContentLifecycleCallback
 }
 
-internal fun MapOwner.requireMap() =
+@PublishedApi
+internal fun MapOwner.requireMap(): NaverMap =
   checkNotNull(map) { "This node($this) does not have an Map." }

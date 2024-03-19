@@ -19,7 +19,7 @@ package land.sungbin.navermap.compose.updater
 import com.naver.maps.map.overlay.Marker
 import land.sungbin.navermap.token.overlay.MapOverlay
 
-internal object SizeUpdaters {
+internal object OverlayUpdaters {
   private val widthMap = mapOf(Marker::class.java to ::markerWidth)
   private val heightMap = mapOf(Marker::class.java to ::markerHeight)
 

@@ -22,12 +22,12 @@ import land.sungbin.navermap.compose.lifecycle.NaverMapContentLifecycleCallback
 import land.sungbin.navermap.compose.modifier.MapModifier
 import land.sungbin.navermap.compose.modifier.SizeModifierNode
 import land.sungbin.navermap.compose.modifier.findNodeByType
-import land.sungbin.navermap.compose.updater.SizeUpdaters
+import land.sungbin.navermap.compose.updater.OverlayUpdaters
 import land.sungbin.navermap.token.overlay.MapOverlay
 import land.sungbin.navermap.token.overlay.Overlay
 
 @PublishedApi
-internal class MapOverlayNode(override var map: NaverMap?) : MapOwner {
+internal class MapOverlayNode(override var map: NaverMap? = null) : MapOwner {
   private val components = mutableVectorOf<MapOverlayNode>()
 
   override var callback = NaverMapContentLifecycleCallback.Empty
@@ -46,8 +46,8 @@ internal class MapOverlayNode(override var map: NaverMap?) : MapOwner {
       if (field != value) {
         field = value
         value.findNodeByType<SizeModifierNode>()?.let { size ->
-          size.width?.let { SizeUpdaters.width(overlay = mapOverlay!!, value = it) }
-          size.height?.let { SizeUpdaters.height(overlay = mapOverlay!!, value = it) }
+          size.width?.let { OverlayUpdaters.width(overlay = mapOverlay!!, value = it) }
+          size.height?.let { OverlayUpdaters.height(overlay = mapOverlay!!, value = it) }
         }
       }
     }
@@ -104,6 +104,7 @@ internal class MapOverlayNode(override var map: NaverMap?) : MapOwner {
   }
 
   companion object {
+    val Constructor: () -> MapOverlayNode = { MapOverlayNode() }
     val SetOverlay: MapOverlayNode.(Class<out Overlay<*>>) -> Unit = MapOverlayNode::updateOverlay
     val InvalidateOverlay: MapOverlayNode.(Overlay<*>.() -> Unit) -> Unit = MapOverlayNode::invalidateOverlay
     val SetModifier: MapOverlayNode.(MapModifier) -> Unit = { modifier = it }

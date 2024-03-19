@@ -90,11 +90,10 @@ private suspend inline fun MapView.newComposition(
   getMapAsync(deferredMap::complete)
 
   val map = deferredMap.await()
+  map.cameraPosition = CameraPosition(LatLng(/* latitude = */ 36.019184, /* longitude = */ 129.343357), 10.0)
 
   val root = MapOverlayNode(map = map)
-  root.map!!.cameraPosition = CameraPosition(LatLng(/* latitude = */ 36.019184, /* longitude = */ 129.343357), 10.0)
-
-  val composition = Composition(applier = MapApplier(map = map, root = root), parent = parent)
+  val composition = Composition(applier = MapApplier(root = root), parent = parent)
 
   return composition.apply { setContent(content) }
 }
