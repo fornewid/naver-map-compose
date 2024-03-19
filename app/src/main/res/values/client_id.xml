@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- Use your Client ID here! -->
-    <string name="naver_map_sdk_client_id" translatable="false">hepyljgft5</string>
-</resources>
