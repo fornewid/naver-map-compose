@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package land.sungbin.navermap.token.intercept
+package land.sungbin.navermap.token.overlay
 
-public fun interface TokenInterceptor<T> {
-  public fun intercept(input: T): T
+import com.naver.maps.map.overlay.Overlay as MapOverlay
 
-  public companion object {
-    public inline operator fun <T> invoke(crossinline block: (T) -> T): TokenInterceptor<T> =
-      TokenInterceptor { token -> block(token) }
-  }
+public typealias MapOverlay = com.naver.maps.map.overlay.Overlay
+
+public interface Overlay<O : MapOverlay> {
+  public fun createOverlay(): O
 }

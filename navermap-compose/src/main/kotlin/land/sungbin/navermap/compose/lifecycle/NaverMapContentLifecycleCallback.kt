@@ -14,13 +14,21 @@
  * limitations under the License.
  */
 
-package land.sungbin.navermap.token.intercept
+package land.sungbin.navermap.compose.lifecycle
 
-public fun interface TokenInterceptor<T> {
-  public fun intercept(input: T): T
+public interface NaverMapContentLifecycleCallback {
+  public fun onAttached() {}
+  public fun onDetached() {}
 
   public companion object {
-    public inline operator fun <T> invoke(crossinline block: (T) -> T): TokenInterceptor<T> =
-      TokenInterceptor { token -> block(token) }
+    internal val Empty = NaverMapContentLifecycleCallback()
+
+    public inline operator fun invoke(
+      crossinline onAttached: () -> Unit = {},
+      crossinline onDetached: () -> Unit = {},
+    ): NaverMapContentLifecycleCallback = object : NaverMapContentLifecycleCallback {
+      override fun onAttached() = onAttached()
+      override fun onDetached() = onDetached()
+    }
   }
 }

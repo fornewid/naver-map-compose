@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package land.sungbin.navermap.token.intercept
+package land.sungbin.navermap.token
 
-public fun interface TokenInterceptor<T> {
-  public fun intercept(input: T): T
+import androidx.annotation.Px
 
-  public companion object {
-    public inline operator fun <T> invoke(crossinline block: (T) -> T): TokenInterceptor<T> =
-      TokenInterceptor { token -> block(token) }
-  }
+public interface HasSize {
+  @get:Px
+  public var width: Int?
+
+  @get:Px
+  public var height: Int?
 }

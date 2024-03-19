@@ -6,26 +6,26 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
 
 pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google {
-            content {
-                includeGroupByRegex(".*google.*")
-                includeGroupByRegex(".*android.*")
-            }
-        }
-        mavenCentral()
+  repositories {
+    gradlePluginPortal()
+    google {
+      content {
+        includeGroupByRegex(".*google.*")
+        includeGroupByRegex(".*android.*")
+      }
     }
+    mavenCentral()
+  }
 }
 
 buildCache {
-    local {
-        removeUnusedEntriesAfterDays = 7
-    }
+  local {
+    removeUnusedEntriesAfterDays = 7
+  }
 }
 
 include(
-    // ":sample",
+  ":sample",
   ":navermap-compose",
   ":navermap-token",
 )

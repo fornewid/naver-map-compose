@@ -14,13 +14,18 @@
  * limitations under the License.
  */
 
-package land.sungbin.navermap.token.intercept
+package land.sungbin.navermap.token.overlay
 
-public fun interface TokenInterceptor<T> {
-  public fun intercept(input: T): T
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.overlay.OverlayImage
+import land.sungbin.navermap.token.HasOverlayImage
+import land.sungbin.navermap.token.HasSize
 
-  public companion object {
-    public inline operator fun <T> invoke(crossinline block: (T) -> T): TokenInterceptor<T> =
-      TokenInterceptor { token -> block(token) }
-  }
+public open class MarkerOverlay : HasOverlayImage, HasSize, Overlay<Marker> {
+  override var overlayImage: OverlayImage? = null
+  override var width: Int? = null
+  override var height: Int? = null
+
+  public final override fun createOverlay(): Marker = Marker(LatLng(/* latitude = */ 36.019184, /* longitude = */ 129.343357))
 }

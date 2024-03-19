@@ -14,13 +14,10 @@
  * limitations under the License.
  */
 
-package land.sungbin.navermap.token.intercept
+package land.sungbin.navermap.compose
 
-public fun interface TokenInterceptor<T> {
-  public fun intercept(input: T): T
+import androidx.compose.runtime.ComposableTargetMarker
 
-  public companion object {
-    public inline operator fun <T> invoke(crossinline block: (T) -> T): TokenInterceptor<T> =
-      TokenInterceptor { token -> block(token) }
-  }
-}
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.TYPE)
+@ComposableTargetMarker(description = "NaverMap Composable")
+public annotation class NaverMapComposable

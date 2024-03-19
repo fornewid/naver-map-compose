@@ -1,3 +1,19 @@
+/*
+ * Copyright 2024 SOUP, Ji Sungbin
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package land.sungbin.navermap.compose
 
 import android.content.ComponentCallbacks
@@ -22,18 +38,22 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.NaverMapOptions
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.awaitCancellation
 import land.sungbin.navermap.compose.internal.MapApplier
-import land.sungbin.navermap.compose.internal.MapNode
+import land.sungbin.navermap.compose.internal.MapOverlayNode
+
+private val NoContent: @Composable @NaverMapComposable () -> Unit = {}
 
 @Composable
 public fun NaverMap(
   modifier: Modifier = Modifier,
-  innerContent: (@Composable () -> Unit)? = null,
+  content: @Composable @NaverMapComposable () -> Unit = NoContent,
 ) {
   val context = LocalContext.current
   val map = remember { MapView(context, NaverMapOptions()) }
@@ -42,12 +62,12 @@ public fun NaverMap(
   MapLifecycle(map)
 
   val parentComposition = rememberCompositionContext()
-  val currentInnerContent by rememberUpdatedState(innerContent)
+  val currentContent by rememberUpdatedState(content)
 
   LaunchedEffect(Unit) {
     disposingComposition {
       map.newComposition(parentComposition) {
-        currentInnerContent?.invoke()
+        currentContent()
       }
     }
   }
@@ -66,17 +86,17 @@ private suspend inline fun MapView.newComposition(
   parent: CompositionContext,
   noinline content: @Composable () -> Unit,
 ): Composition {
-  val map = CompletableDeferred<NaverMap>()
-  getMapAsync(map::complete)
+  val deferredMap = CompletableDeferred<NaverMap>()
+  getMapAsync(deferredMap::complete)
 
-  val root = MapNode()
+  val map = deferredMap.await()
 
-  return Composition(
-    applier = MapApplier(map = map.await(), root = root),
-    parent = parent,
-  ).apply {
-    setContent(content)
-  }
+  val root = MapOverlayNode(map = map)
+  root.map!!.cameraPosition = CameraPosition(LatLng(/* latitude = */ 36.019184, /* longitude = */ 129.343357), 10.0)
+
+  val composition = Composition(applier = MapApplier(map = map, root = root), parent = parent)
+
+  return composition.apply { setContent(content) }
 }
 
 @Composable
@@ -136,12 +156,10 @@ private fun MapView.lifecycleObserver(
   previousState.value = event
 }
 
-private fun MapView.componentCallbacks(): ComponentCallbacks {
-  return object : ComponentCallbacks {
-    override fun onConfigurationChanged(config: Configuration) {}
-    override fun onLowMemory() {
-      this@componentCallbacks.onLowMemory()
-    }
+private fun MapView.componentCallbacks() = object : ComponentCallbacks {
+  override fun onConfigurationChanged(config: Configuration) {}
+  override fun onLowMemory() {
+    this@componentCallbacks.onLowMemory()
   }
 }
 

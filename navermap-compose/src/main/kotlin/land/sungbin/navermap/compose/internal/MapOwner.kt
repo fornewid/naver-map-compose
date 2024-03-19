@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package land.sungbin.navermap.token.intercept
+package land.sungbin.navermap.compose.internal
 
-public fun interface TokenInterceptor<T> {
-  public fun intercept(input: T): T
+import com.naver.maps.map.NaverMap
+import land.sungbin.navermap.compose.lifecycle.NaverMapContentLifecycleCallback
 
-  public companion object {
-    public inline operator fun <T> invoke(crossinline block: (T) -> T): TokenInterceptor<T> =
-      TokenInterceptor { token -> block(token) }
-  }
+internal sealed interface MapOwner {
+  var map: NaverMap?
+  var callback: NaverMapContentLifecycleCallback
 }
+
+internal fun MapOwner.requireMap() =
+  checkNotNull(map) { "This node($this) does not have an Map." }
