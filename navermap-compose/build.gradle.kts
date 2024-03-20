@@ -54,7 +54,9 @@ kotlin {
 
 dependencies {
   implementation(libs.compose.runtime)
-  implementation(libs.compose.ui)
-  implementation(libs.navermap)
+  implementation(libs.compose.foundation)
+  implementation(libs.kotlin.reflect)
+
+  api(libs.navermap)
   api(projects.navermapToken)
 }

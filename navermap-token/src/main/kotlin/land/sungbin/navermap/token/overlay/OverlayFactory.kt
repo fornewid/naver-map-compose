@@ -14,16 +14,10 @@
  * limitations under the License.
  */
 
-package land.sungbin.navermap.compose.internal
+package land.sungbin.navermap.token.overlay
 
-import com.naver.maps.map.NaverMap
-import land.sungbin.navermap.compose.lifecycle.NaverMapContentLifecycleCallback
+import com.naver.maps.map.overlay.Overlay
 
-internal sealed interface MapOwner {
-  var map: NaverMap?
-  var callback: NaverMapContentLifecycleCallback
+public interface OverlayFactory<O : Overlay> {
+  public fun createOverlay(): O
 }
-
-@PublishedApi
-internal fun MapOwner.requireMap(): NaverMap =
-  checkNotNull(map) { "This node($this) does not have an Map." }

@@ -21,29 +21,29 @@ import androidx.compose.runtime.Composer
 import androidx.compose.runtime.DisallowComposableCalls
 import androidx.compose.runtime.ReusableComposeNode
 import androidx.compose.runtime.currentComposer
-import land.sungbin.navermap.compose.internal.MapApplier
-import land.sungbin.navermap.compose.internal.MapOverlayNode
-import land.sungbin.navermap.compose.internal.requireMap
+import land.sungbin.navermap.compose.runtime.MapApplier
+import land.sungbin.navermap.compose.runtime.MapUiNode
+import land.sungbin.navermap.compose.runtime.requireMap
 import land.sungbin.navermap.compose.modifier.MapModifier
-import land.sungbin.navermap.token.overlay.Overlay
+import land.sungbin.navermap.token.overlay.OverlayFactory
 
 @Composable
 @NaverMapComposable
-public inline fun <reified O : Overlay<*>> MapOverlay(
+public inline fun <reified O : OverlayFactory<*>> MapOverlay(
   modifier: MapModifier = MapModifier,
   crossinline block: @DisallowComposableCalls O.() -> Unit = {},
 ) {
   val applier = currentComposer.mapApplier
 
-  ReusableComposeNode<MapOverlayNode, MapApplier>(
-    factory = MapOverlayNode.Constructor,
+  ReusableComposeNode<MapUiNode, MapApplier>(
+    factory = MapUiNode.Constructor,
     update = {
       init {
         map = applier.root.requireMap()
-        MapOverlayNode.SetOverlay.invoke(/* receiver = */ this, /* value = */ O::class.java)
+        MapUiNode.SetOverlay.invoke(/* receiver = */ this, /* value = */ O::class.java)
       }
-      set(value = modifier, block = MapOverlayNode.SetModifier)
-      set(value = { block(this as O) }, block = MapOverlayNode.InvalidateOverlay)
+      set(value = modifier, block = MapUiNode.SetModifier)
+      set(value = { block(this as O) }, block = MapUiNode.InvalidateOverlay)
     },
   )
 }

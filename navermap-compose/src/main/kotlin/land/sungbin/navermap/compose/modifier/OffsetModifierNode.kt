@@ -21,16 +21,15 @@ import androidx.compose.runtime.Stable
 import com.naver.maps.geometry.LatLng
 
 @Stable
-public fun MapModifier.offset(coord: LatLng): MapModifier =
-  this then OffsetModifierNode(lat = coord.latitude, lng = coord.longitude, head = this)
+public fun MapModifier.offset(position: LatLng): MapModifier =
+  this then OffsetModifierNode(position = position, head = this)
 
 @Stable
 public fun MapModifier.offset(lat: Double, lng: Double): MapModifier =
-  this then OffsetModifierNode(lat = lat, lng = lng, head = this)
+  this then OffsetModifierNode(position = LatLng(/* latitude = */ lat, /* longitude = */ lng), head = this)
 
 @Immutable
 internal data class OffsetModifierNode(
-  val lat: Double,
-  val lng: Double,
+  val position: LatLng,
   override val head: MapModifier?,
 ) : MapModifier

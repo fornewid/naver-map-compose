@@ -16,19 +16,19 @@
 
 package land.sungbin.navermap.token.intercept
 
-import land.sungbin.navermap.token.overlay.MapOverlay
-import land.sungbin.navermap.token.overlay.Overlay
+import com.naver.maps.map.overlay.Overlay
+import land.sungbin.navermap.token.overlay.OverlayFactory
 
-public interface OverlayInterceptor<O : MapOverlay> {
-  public fun request(overlay: Overlay<O>): O? = null
+public interface OverlayInterceptor<O : Overlay> {
+  public fun request(factory: OverlayFactory<O>): O? = null
   public fun built(overlay: O): O = overlay
 
   public companion object {
-    public inline operator fun <O : MapOverlay> invoke(
-      crossinline request: (Overlay<O>) -> O? = { null },
+    public inline operator fun <O : Overlay> invoke(
+      crossinline request: (OverlayFactory<O>) -> O? = { null },
       crossinline built: (O) -> O = { it },
     ): OverlayInterceptor<O> = object : OverlayInterceptor<O> {
-      override fun request(overlay: Overlay<O>) = request(overlay)
+      override fun request(factory: OverlayFactory<O>) = request(factory)
       override fun built(overlay: O) = built(overlay)
     }
   }

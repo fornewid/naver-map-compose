@@ -22,10 +22,10 @@ import com.naver.maps.map.overlay.OverlayImage
 import land.sungbin.navermap.token.HasOverlayImage
 import land.sungbin.navermap.token.HasSize
 
-public open class MarkerOverlay : HasOverlayImage, HasSize, Overlay<Marker> {
+public open class MarkerOverlay : HasOverlayImage, HasSize, OverlayFactory<Marker> {
   override var overlayImage: OverlayImage? = null
   override var width: Int? = null
   override var height: Int? = null
 
-  public final override fun createOverlay(): Marker = Marker(LatLng(/* latitude = */ 36.019184, /* longitude = */ 129.343357))
+  public override fun createOverlay(): Marker = Marker(LatLng(0.0, 0.0))
 }

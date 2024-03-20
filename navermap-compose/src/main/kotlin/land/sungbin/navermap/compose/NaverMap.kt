@@ -18,14 +18,19 @@ package land.sungbin.navermap.compose
 
 import android.content.ComponentCallbacks
 import android.content.res.Configuration
+import android.graphics.PointF
+import android.location.Location
 import android.os.Bundle
 import android.widget.ImageView
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Composition
 import androidx.compose.runtime.CompositionContext
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.currentCompositionLocalContext
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,20 +44,48 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.naver.maps.geometry.LatLng
-import com.naver.maps.map.CameraPosition
+import com.naver.maps.map.LocationSource
 import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.NaverMapOptions
+import com.naver.maps.map.Symbol
+import com.naver.maps.map.indoor.IndoorSelection
+import java.util.Locale
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.awaitCancellation
-import land.sungbin.navermap.compose.internal.MapApplier
-import land.sungbin.navermap.compose.internal.MapOverlayNode
+import land.sungbin.navermap.compose.options.CameraPositionState
+import land.sungbin.navermap.compose.options.DefaultMapProperties
+import land.sungbin.navermap.compose.options.DefaultMapUiSettings
+import land.sungbin.navermap.compose.options.LocalCameraPositionState
+import land.sungbin.navermap.compose.options.MapClickListeners
+import land.sungbin.navermap.compose.options.MapProperties
+import land.sungbin.navermap.compose.options.MapUiSettings
+import land.sungbin.navermap.compose.options.rememberCameraPositionState
+import land.sungbin.navermap.compose.runtime.MapApplier
+import land.sungbin.navermap.compose.runtime.MapUiNode
+import land.sungbin.navermap.compose.updater.MapOptionUpdater
+import land.sungbin.navermap.compose.updater.NoPadding
 
 private val NoContent: @Composable @NaverMapComposable () -> Unit = {}
 
 @Composable
 public fun NaverMap(
   modifier: Modifier = Modifier,
+  cameraPositionState: CameraPositionState = rememberCameraPositionState(),
+  properties: MapProperties = DefaultMapProperties,
+  uiSettings: MapUiSettings = DefaultMapUiSettings,
+  locationSource: LocationSource? = null,
+  locale: Locale? = null,
+  onMapClick: (PointF, LatLng) -> Unit = { _, _ -> },
+  onMapLongClick: (PointF, LatLng) -> Unit = { _, _ -> },
+  onMapDoubleTab: (point: PointF, coord: LatLng) -> Boolean = { _, _ -> false },
+  onMapTwoFingerTap: (point: PointF, coord: LatLng) -> Boolean = { _, _ -> false },
+  onMapLoaded: () -> Unit = {},
+  onLocationChange: (Location) -> Unit = {},
+  onOptionChange: () -> Unit = {},
+  onSymbolClick: (Symbol) -> Boolean = { false },
+  onIndoorSelectionChange: (IndoorSelection?) -> Unit = {},
+  contentPadding: PaddingValues = NoPadding,
   content: @Composable @NaverMapComposable () -> Unit = NoContent,
 ) {
   val context = LocalContext.current
@@ -61,13 +94,47 @@ public fun NaverMap(
   AndroidView(modifier = modifier, factory = { unwrapAppCompat(map) })
   MapLifecycle(map)
 
-  val parentComposition = rememberCompositionContext()
+  // rememberUpdatedState and friends are used here to make these values observable to
+  // the subcomposition without providing a new content function each recomposition
+  val mapClickListeners = remember { MapClickListeners() }.also {
+    it.onMapClick = onMapClick
+    it.onMapLongClick = onMapLongClick
+    it.onMapDoubleTab = onMapDoubleTab
+    it.onMapTwoFingerTap = onMapTwoFingerTap
+    it.onMapLoaded = onMapLoaded
+    it.onLocationChange = onLocationChange
+    it.onOptionChange = onOptionChange
+    it.onSymbolClick = onSymbolClick
+    it.onIndoorSelectionChange = onIndoorSelectionChange
+  }
+  val currentLocationSource by rememberUpdatedState(locationSource)
+  val currentLocale by rememberUpdatedState(locale)
+  val currentCameraPositionState by rememberUpdatedState(cameraPositionState)
+  val currentContentPadding by rememberUpdatedState(contentPadding)
+  val currentUiSettings by rememberUpdatedState(uiSettings)
+  val currentMapProperties by rememberUpdatedState(properties)
   val currentContent by rememberUpdatedState(content)
 
-  LaunchedEffect(Unit) {
+  val parentComposition = rememberCompositionContext()
+  val compositionLocalContext = currentCompositionLocalContext
+
+  LaunchedEffect(map) {
     disposingComposition {
       map.newComposition(parentComposition) {
-        currentContent()
+        CompositionLocalProvider(context = compositionLocalContext) {
+          CompositionLocalProvider(LocalCameraPositionState provides cameraPositionState) {
+            MapOptionUpdater(
+              cameraPositionState = currentCameraPositionState,
+              clickListeners = mapClickListeners,
+              contentPadding = currentContentPadding,
+              locationSource = currentLocationSource,
+              locale = currentLocale,
+              mapProperties = currentMapProperties,
+              mapUiSettings = currentUiSettings,
+            )
+            currentContent()
+          }
+        }
       }
     }
   }
@@ -89,10 +156,7 @@ private suspend inline fun MapView.newComposition(
   val deferredMap = CompletableDeferred<NaverMap>()
   getMapAsync(deferredMap::complete)
 
-  val map = deferredMap.await()
-  map.cameraPosition = CameraPosition(LatLng(/* latitude = */ 36.019184, /* longitude = */ 129.343357), 10.0)
-
-  val root = MapOverlayNode(map = map)
+  val root = MapUiNode(map = deferredMap.await())
   val composition = Composition(applier = MapApplier(root = root), parent = parent)
 
   return composition.apply { setContent(content) }

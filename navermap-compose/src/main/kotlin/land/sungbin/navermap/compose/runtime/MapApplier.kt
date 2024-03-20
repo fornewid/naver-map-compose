@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package land.sungbin.navermap.compose.internal
+package land.sungbin.navermap.compose.runtime
 
 import androidx.compose.runtime.Applier
 
 @PublishedApi
-internal class MapApplier(val root: MapOverlayNode) : Applier<MapOverlayNode> {
-  private val stack = mutableListOf<MapOverlayNode>()
+internal class MapApplier(val root: MapUiNode) : Applier<MapUiNode> {
+  private val stack = mutableListOf<MapUiNode>()
   override var current = root
     private set
 
-  override fun down(node: MapOverlayNode) {
+  override fun down(node: MapUiNode) {
     stack.add(current)
     current = node
   }
@@ -34,12 +34,12 @@ internal class MapApplier(val root: MapOverlayNode) : Applier<MapOverlayNode> {
     current = stack.removeAt(stack.size - 1)
   }
 
-  override fun insertTopDown(index: Int, instance: MapOverlayNode) {
+  override fun insertTopDown(index: Int, instance: MapUiNode) {
     // Ignored. Insert is performed in [insertBottomUp] to build the tree bottom-up to avoid
     // duplicate notification when the child nodes enter the tree
   }
 
-  override fun insertBottomUp(index: Int, instance: MapOverlayNode) {
+  override fun insertBottomUp(index: Int, instance: MapUiNode) {
     current.insertAt(index, instance)
   }
 
@@ -52,8 +52,8 @@ internal class MapApplier(val root: MapOverlayNode) : Applier<MapOverlayNode> {
   }
 
   override fun clear() {
-    stack.forEach(MapOverlayNode::removeAll)
+    stack.forEach(MapUiNode::removeAll)
     stack.clear()
-    current = root.also(MapOverlayNode::removeAll)
+    current = root.also(MapUiNode::removeAll)
   }
 }
