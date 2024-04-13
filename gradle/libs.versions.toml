@@ -1,6 +1,6 @@
 [versions]
 
-gradlePlugin = "8.1.1"
+gradlePlugin = "8.3.2"
 mavenPublish = "0.25.1"
 metalava = "0.3.3"
 
@@ -10,9 +10,9 @@ dokka = "1.8.10"
 # Compose
 activity = "1.8.2"
 navigation = "2.7.6"
-compose = "1.7.0-alpha01"
+compose = "1.7.0-alpha06"
 composeCompiler = "1.4.8"
-accompanist = "0.34.0"
+accompanist = "0.35.0-alpha"
 
 [libraries]
 
