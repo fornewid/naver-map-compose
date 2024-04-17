@@ -20,15 +20,15 @@ android-pluginGradle = { module = "com.android.tools.build:gradle", version.ref 
 mavenPublish-pluginGradle = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "mavenPublish" }
 metalava-pluginGradle = { module = "me.tylerbwong.gradle.metalava:plugin", version.ref = "metalava" }
 
-naver-map = "com.naver.maps:map-sdk:3.16.1"
-naver-map-location = "io.github.fornewid:naver-map-location:16.0.0"
+naver-map = "com.naver.maps:map-sdk:3.17.0"
+naver-map-location = "io.github.fornewid:naver-map-location:21.0.1"
 naver-map-clustering = "io.github.ParkSangGwon:tedclustering-naver:1.0.2"
 google-play-services-location = "com.google.android.gms:play-services-location:21.0.1"
 
 # Kotlin
 
 kotlin-pluginGradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk7", version.ref = "kotlin" }
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 
 dokka-pluginGradle = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 
