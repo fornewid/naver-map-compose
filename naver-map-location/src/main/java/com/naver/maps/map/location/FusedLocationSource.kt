@@ -22,12 +22,15 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.location.Location
+import android.view.Surface
+import android.view.WindowManager
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
+import com.naver.maps.geometry.MathUtils
 import com.naver.maps.map.LocationSource
 import kotlin.math.abs
 import kotlin.math.atan2
@@ -93,7 +96,7 @@ public abstract class FusedLocationSource(private val context: Context) : Locati
                     if (enabled) {
                         sensorEventListener.register(context)
                     } else {
-                        sensorEventListener.unregister(context)
+                        sensorEventListener.unregister()
                         this.bearingDegrees = Float.NaN
                     }
                 }
@@ -127,22 +130,30 @@ public abstract class FusedLocationSource(private val context: Context) : Locati
         private val R: FloatArray = FloatArray(9)
         private val I: FloatArray = FloatArray(9)
         private val values: FloatArray = FloatArray(3)
+        private var context: Context? = null
         private var geomagnetic: FloatArray? = null
         private var gravity: FloatArray? = null
 
         fun register(context: Context) {
-            val sm = context.getSystemService(Context.SENSOR_SERVICE) as? SensorManager
-            if (sm != null) {
-                sm.registerListener(this, sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), 1)
-                sm.registerListener(this, sm.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD), 1)
+            if (this.context == null) {
+                this.context = context
+                val sm = context.getSystemService(Context.SENSOR_SERVICE) as? SensorManager
+                if (sm != null) {
+                    sm.registerListener(this, sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), 1)
+                    sm.registerListener(this, sm.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD), 1)
+                }
             }
         }
 
-        fun unregister(context: Context) {
-            val sm = context.getSystemService(Context.SENSOR_SERVICE) as? SensorManager
-            sm?.unregisterListener(this)
-            gravity = null
-            geomagnetic = null
+        fun unregister() {
+            val context = this.context
+            if (context != null) {
+                val sm = context.getSystemService(Context.SENSOR_SERVICE) as? SensorManager
+                sm?.unregisterListener(this)
+                gravity = null
+                geomagnetic = null
+                this.context = null
+            }
         }
 
         override fun onSensorChanged(event: SensorEvent) {
@@ -173,14 +184,29 @@ public abstract class FusedLocationSource(private val context: Context) : Locati
             if (gravity != null && geomagnetic != null) {
                 if (SensorManager.getRotationMatrix(R, I, gravity, geomagnetic)) {
                     SensorManager.getOrientation(R, values)
-                    locationSource.setBearingDegrees(
-                        Math.toDegrees(bearing.calculate(values[0])).toFloat()
-                    )
+                    val degree = adjustDegree(values[0].toDouble()).toFloat()
+                    locationSource.setBearingDegrees(Math.toDegrees(bearing.calculate(degree)).toFloat())
                 }
             }
         }
 
         override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
+        }
+
+        private fun adjustDegree(degree: Double): Double {
+            var newDegree = degree
+            val context = context
+            return if (context == null) {
+                newDegree
+            } else {
+                val rotation = (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay.rotation
+                when (rotation) {
+                    Surface.ROTATION_90 -> newDegree += 90.0
+                    Surface.ROTATION_180 -> newDegree += 180.0
+                    Surface.ROTATION_270 -> newDegree += 270.0
+                }
+                MathUtils.wrap(newDegree, -180.0, 180.0)
+            }
         }
 
         private class BearingCalculator {
