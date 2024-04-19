@@ -34,7 +34,7 @@ allprojects {
         google()
         mavenCentral()
         maven {
-            url 'https://naver.jfrog.io/artifactory/maven/'
+            url 'https://repository.map.naver.com/archive/maven'
         }
     }
 }

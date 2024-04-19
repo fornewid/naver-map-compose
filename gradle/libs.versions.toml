@@ -20,7 +20,7 @@ android-pluginGradle = { module = "com.android.tools.build:gradle", version.ref 
 mavenPublish-pluginGradle = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "mavenPublish" }
 metalava-pluginGradle = { module = "me.tylerbwong.gradle.metalava:plugin", version.ref = "metalava" }
 
-naver-map = "com.naver.maps:map-sdk:3.17.0"
+naver-map = "com.naver.maps:map-sdk:3.18.0"
 naver-map-location = "io.github.fornewid:naver-map-location:21.0.1"
 naver-map-clustering = "io.github.ParkSangGwon:tedclustering-naver:1.0.2"
 google-play-services-location = "com.google.android.gms:play-services-location:21.0.1"

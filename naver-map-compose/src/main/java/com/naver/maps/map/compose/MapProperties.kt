@@ -146,6 +146,11 @@ public enum class MapType(public val value: com.naver.maps.map.NaverMap.MapType)
     Hybrid(com.naver.maps.map.NaverMap.MapType.Hybrid),
 
     /**
+     * 내비게이션용 위성 지도(겹쳐보기).
+     */
+    NaviHybrid(com.naver.maps.map.NaverMap.MapType.NaviHybrid),
+
+    /**
      * 지형도.
      */
     Terrain(com.naver.maps.map.NaverMap.MapType.Terrain),
