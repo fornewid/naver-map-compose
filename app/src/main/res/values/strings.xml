@@ -280,6 +280,7 @@
         <item>Navi</item>
         <item>Satellite</item>
         <item>Hybrid</item>
+        <item>NaviHybrid</item>
         <item>Terrain</item>
         <item>None</item>
     </string-array>
