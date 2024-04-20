@@ -153,6 +153,11 @@ private data class Category(
                         destination = Destination.Clustering
                     ),
                     Demo(
+                        titleResId = R.string.name_complex_clustering,
+                        descriptionResId = R.string.description_complex_clustering,
+                        destination = Destination.ComplexClustering
+                    ),
+                    Demo(
                         titleResId = R.string.name_ted_clustering,
                         descriptionResId = R.string.description_ted_clustering,
                         destination = Destination.TedClustering

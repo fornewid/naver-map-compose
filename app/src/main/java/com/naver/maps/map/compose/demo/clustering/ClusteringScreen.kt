@@ -29,7 +29,6 @@ import androidx.compose.ui.res.stringResource
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.clustering.Clusterer
-import com.naver.maps.map.clustering.ClusteringKey
 import com.naver.maps.map.clustering.DefaultLeafMarkerUpdater
 import com.naver.maps.map.clustering.LeafMarkerInfo
 import com.naver.maps.map.compose.DisposableMapEffect
@@ -108,23 +107,6 @@ private fun Clustering() {
             }
         }
     }
-}
-
-private class ItemKey(
-    val id: Int,
-    private val position: LatLng,
-) : ClusteringKey {
-
-    override fun getPosition() = position
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other == null || javaClass != other.javaClass) return false
-        val itemKey = other as ItemKey
-        return id == itemKey.id
-    }
-
-    override fun hashCode() = id
 }
 
 private val ICONS = arrayOf(Marker.DEFAULT_ICON, MarkerIcons.BLUE, MarkerIcons.RED, MarkerIcons.YELLOW)

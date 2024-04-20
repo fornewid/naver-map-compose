@@ -30,6 +30,7 @@ import com.naver.maps.map.compose.demo.camera.CameraUpdateParamsScreen
 import com.naver.maps.map.compose.demo.camera.FitBoundsScreen
 import com.naver.maps.map.compose.demo.camera.PivotScreen
 import com.naver.maps.map.compose.demo.clustering.ClusteringScreen
+import com.naver.maps.map.compose.demo.clustering.ComplexClusteringScreen
 import com.naver.maps.map.compose.demo.clustering.TedClusteringScreen
 import com.naver.maps.map.compose.demo.event.MapClickEventScreen
 import com.naver.maps.map.compose.demo.event.OverlayClickEventScreen
@@ -85,6 +86,7 @@ enum class Destination(val route: String) {
 
     // CLUSTERING
     Clustering("Clustering"),
+    ComplexClustering("ComplexClustering"),
     TedClustering("TedClustering"),
 
     // CAMERA
@@ -192,6 +194,9 @@ fun NavGraph(
         // CLUSTERING
         composable(Destination.Clustering.route) {
             ClusteringScreen(upPress = upPress)
+        }
+        composable(Destination.ComplexClustering.route) {
+            ComplexClusteringScreen(upPress = upPress)
         }
         composable(Destination.TedClustering.route) {
             TedClusteringScreen(upPress = upPress)
