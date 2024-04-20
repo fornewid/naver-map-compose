@@ -21,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.naver.maps.map.compose.demo.basic.MapClusteringScreen
 import com.naver.maps.map.compose.demo.basic.MapInColumnScreen
 import com.naver.maps.map.compose.demo.basic.MapScreen
 import com.naver.maps.map.compose.demo.camera.CameraAnimationScreen
@@ -30,6 +29,8 @@ import com.naver.maps.map.compose.demo.camera.CameraMoveScreen
 import com.naver.maps.map.compose.demo.camera.CameraUpdateParamsScreen
 import com.naver.maps.map.compose.demo.camera.FitBoundsScreen
 import com.naver.maps.map.compose.demo.camera.PivotScreen
+import com.naver.maps.map.compose.demo.clustering.ClusteringScreen
+import com.naver.maps.map.compose.demo.clustering.TedClusteringScreen
 import com.naver.maps.map.compose.demo.event.MapClickEventScreen
 import com.naver.maps.map.compose.demo.event.OverlayClickEventScreen
 import com.naver.maps.map.compose.demo.event.SymbolClickEventScreen
@@ -67,7 +68,6 @@ enum class Destination(val route: String) {
     // BASIC
     Map("Map"),
     MapInColumn("MapInColumn"),
-    MapClustering("MapClustering"),
 
     // OVERLAY
     Marker("Marker"),
@@ -82,6 +82,10 @@ enum class Destination(val route: String) {
     OverlayMinMaxZoom("OverlayMinMaxZoom"),
     GlobalZIndex("GlobalZIndex"),
     OverlayCollision("OverlayCollision"),
+
+    // CLUSTERING
+    Clustering("Clustering"),
+    TedClustering("TedClustering"),
 
     // CAMERA
     CameraMove("CameraMove"),
@@ -146,9 +150,6 @@ fun NavGraph(
         composable(Destination.MapInColumn.route) {
             MapInColumnScreen(upPress = upPress)
         }
-        composable(Destination.MapClustering.route) {
-            MapClusteringScreen(upPress = upPress)
-        }
 
         // OVERLAY
         composable(Destination.Marker.route) {
@@ -186,6 +187,14 @@ fun NavGraph(
         }
         composable(Destination.OverlayCollision.route) {
             OverlayCollisionScreen(upPress = upPress)
+        }
+
+        // CLUSTERING
+        composable(Destination.Clustering.route) {
+            ClusteringScreen(upPress = upPress)
+        }
+        composable(Destination.TedClustering.route) {
+            TedClusteringScreen(upPress = upPress)
         }
 
         // CAMERA

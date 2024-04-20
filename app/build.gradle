@@ -54,7 +54,7 @@ android {
 
 dependencies {
     implementation project(':naver-map-compose')
-    implementation libs.naver.map.clustering
+    implementation libs.naver.map.tedclustering
 
     implementation libs.compose.foundation
     implementation libs.compose.material

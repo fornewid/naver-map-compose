@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.naver.maps.map.compose.demo.basic
+package com.naver.maps.map.compose.demo.clustering
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -43,11 +43,11 @@ import ted.gun0912.clustering.naver.TedNaverClustering
 import kotlin.random.Random
 
 @Composable
-fun MapClusteringScreen(upPress: () -> Unit) {
+fun TedClusteringScreen(upPress: () -> Unit) {
     Scaffold(
         topBar = {
             DefaultTopAppBar(
-                text = stringResource(R.string.name_map_clustering),
+                text = stringResource(R.string.name_ted_clustering),
                 upPress = upPress
             )
         }
