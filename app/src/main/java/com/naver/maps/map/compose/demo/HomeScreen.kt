@@ -77,11 +77,6 @@ private data class Category(
                         descriptionResId = R.string.description_map_in_column,
                         destination = Destination.MapInColumn
                     ),
-                    Demo(
-                        titleResId = R.string.name_map_clustering,
-                        descriptionResId = R.string.description_map_clustering,
-                        destination = Destination.MapClustering
-                    )
                 )
             ),
             Category(
@@ -146,6 +141,26 @@ private data class Category(
                         titleResId = R.string.name_overlay_collision,
                         descriptionResId = R.string.description_overlay_collision,
                         destination = Destination.OverlayCollision
+                    ),
+                )
+            ),
+            Category(
+                titleResId = R.string.category_clustering,
+                items = listOf(
+                    Demo(
+                        titleResId = R.string.name_clustering,
+                        descriptionResId = R.string.description_clustering,
+                        destination = Destination.Clustering
+                    ),
+                    Demo(
+                        titleResId = R.string.name_complex_clustering,
+                        descriptionResId = R.string.description_complex_clustering,
+                        destination = Destination.ComplexClustering
+                    ),
+                    Demo(
+                        titleResId = R.string.name_ted_clustering,
+                        descriptionResId = R.string.description_ted_clustering,
+                        destination = Destination.TedClustering
                     ),
                 )
             ),
