@@ -39,7 +39,7 @@
   <td>Compose 1.6 (1.6.x)</td><td><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.fornewid/naver-map-compose?versionPrefix=1.5"></td>
  </tr>
  <tr>
-  <td>Compose 1.7 (1.7.x)</td><td><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.fornewid/naver-map-compose?versionPrefix=1.6"></td>
+  <td>Compose 1.7 (1.7.x)</td><td><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.fornewid/naver-map-compose?versionPrefix=1.7"></td>
  </tr>
 </table>
 
@@ -52,7 +52,7 @@
   <td>play-services-location 18.0.0 ~</td><td><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.fornewid/naver-map-location?versionPrefix=18.0.0"/></td>
  </tr>
  <tr>
-  <td>play-services-location 21.0.1 ~</td><td><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.fornewid/naver-map-location?versionPrefix=21.0.1"/></td>
+  <td>play-services-location 21.0.1 ~</td><td><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.fornewid/naver-map-location?versionPrefix=21.0.2"/></td>
  </tr>
 </table>
 
@@ -77,7 +77,7 @@ dependencies {
 
 이에 따라오는 몇 가지 주의사항이 있습니다. (참고: [네이버 지도 안드로이드 SDK - 시작하기 - 의존성 추가](https://navermaps.github.io/android-map-sdk/guide-ko/1.html))
 
-1. 네이버 지도 SDK는 https://naver.jfrog.io/artifactory/maven/ Maven 저장소에서 배포됩니다.
+1. 네이버 지도 SDK는 https://repository.map.naver.com/archive/maven Maven 저장소에서 배포됩니다.
    따라서 루트 프로젝트의 `build.gradle`에 저장소 설정을 추가해야 합니다.
 ```diff
   allprojects {
@@ -85,14 +85,17 @@ dependencies {
           google()
           mavenCentral()
 +         maven {
-+             url 'https://naver.jfrog.io/artifactory/maven/'
++             url 'https://repository.map.naver.com/archive/maven'
 +         }
+          // naver-map-compose 1.5.6 버전까지는 다른 Maven 저장소 주소를 사용해야 합니다.
+          // maven { url 'https://naver.jfrog.io/artifactory/maven/' }
       }
   }
 ```
 
-2. 네이버 지도 SDK는 [appcompat-v7](https://developer.android.com/topic/libraries/support-library/packages#v7-appcompat) 28 버전을 사용합니다.
-   요즘에는 보통 AndroidX 의존성을 갖고 있으므로, `gradle.properties`에 Jetifier 옵션을 추가해줘야 합니다.
+2. 예전 네이버 지도 SDK는 [appcompat-v7](https://developer.android.com/topic/libraries/support-library/packages#v7-appcompat) 28 버전을 사용합니다.
+   naver-map-compose 1.5.6 버전까지는, `gradle.properties`에 Jetifier 옵션을 추가해줘야 합니다.
+   naver-map-compose 1.5.7 버전부터는 필요하지 않습니다.
 ```properties
 android.useAndroidX=true
 android.enableJetifier=true
@@ -105,7 +108,7 @@ android.enableJetifier=true
   dependencies {
       implementation 'io.github.fornewid:naver-map-compose:<version>'
       implementation 'com.google.android.gms:play-services-location:21.0.1'
-+     implementation 'io.github.fornewid:naver-map-location:21.0.1'
++     implementation 'io.github.fornewid:naver-map-location:21.0.2'
   }
 ```
 
