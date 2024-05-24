@@ -15,18 +15,31 @@
  */
 package com.naver.maps.map.compose.demo.overlay
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.compose.Align
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.Marker
+import com.naver.maps.map.compose.MarkerComposable
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.NaverMapConstants
 import com.naver.maps.map.compose.demo.R
@@ -119,6 +132,26 @@ fun MarkerScreen(upPress: () -> Unit) {
                 iconTintColor = Color.Red,
                 alpha = 0.5f
             )
+            MarkerComposable(
+                keys = arrayOf("hotel"),
+                state = rememberMarkerState(
+                    position = LatLng(37.564378, 126.980058)
+                ),
+            ) {
+                Box(
+                    modifier = Modifier
+                        .width(88.dp)
+                        .wrapContentHeight()
+                        .clip(RoundedCornerShape(16.dp))
+                        .background(Color.Green),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        text = "Compose Marker",
+                        textAlign = TextAlign.Center,
+                    )
+                }
+            }
         }
     }
 }
