@@ -75,7 +75,7 @@ public fun NaverMap(
     onSymbolClick: (Symbol) -> Boolean = { false },
     onIndoorSelectionChange: (IndoorSelection?) -> Unit = {},
     contentPadding: PaddingValues = NoPadding,
-    content: (@Composable @NaverMapComposable () -> Unit)? = null,
+    content: @Composable @NaverMapComposable () -> Unit = {},
 ) {
     val context = LocalContext.current
     val mapView = remember { MapView(context, NaverMapOptions()) }
@@ -120,9 +120,8 @@ public fun NaverMap(
                 )
                 CompositionLocalProvider(
                     LocalCameraPositionState provides cameraPositionState,
-                ) {
-                    currentContent?.invoke()
-                }
+                    content = currentContent,
+                )
             }
         }
     }
