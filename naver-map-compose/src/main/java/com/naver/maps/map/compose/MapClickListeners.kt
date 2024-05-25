@@ -25,13 +25,13 @@ import com.naver.maps.map.Symbol
 import com.naver.maps.map.indoor.IndoorSelection
 
 internal class MapClickListeners {
-    var onMapClick: (PointF, LatLng) -> Unit by mutableStateOf({ _, _ -> })
-    var onMapLongClick: (PointF, LatLng) -> Unit by mutableStateOf({ _, _ -> })
-    var onMapDoubleTab: (point: PointF, coord: LatLng) -> Boolean by mutableStateOf({ _, _ -> false })
-    var onMapTwoFingerTap: (point: PointF, coord: LatLng) -> Boolean by mutableStateOf({ _, _ -> false })
+    var onMapClick: ((PointF, LatLng) -> Unit)? by mutableStateOf(null)
+    var onMapLongClick: ((PointF, LatLng) -> Unit)? by mutableStateOf(null)
+    var onMapDoubleTab: ((point: PointF, coord: LatLng) -> Boolean)? by mutableStateOf(null)
+    var onMapTwoFingerTap: ((point: PointF, coord: LatLng) -> Boolean)? by mutableStateOf(null)
     var onMapLoaded: () -> Unit by mutableStateOf({})
     var onLocationChange: (Location) -> Unit by mutableStateOf({})
     var onOptionChange: () -> Unit by mutableStateOf({ })
-    var onSymbolClick: (Symbol) -> Boolean by mutableStateOf({ false })
+    var onSymbolClick: ((Symbol) -> Boolean)? by mutableStateOf(null)
     var onIndoorSelectionChange: (IndoorSelection?) -> Unit by mutableStateOf({})
 }

@@ -74,21 +74,11 @@ internal class MapPropertiesNode(
     }
 
     override fun onAttached() {
-        map.setOnMapClickListener { point, coord ->
-            clickListeners.onMapClick(point, coord)
-        }
-        map.setOnMapLongClickListener { point, coord ->
-            clickListeners.onMapLongClick(point, coord)
-        }
-        map.setOnMapDoubleTapListener { point, coord ->
-            clickListeners.onMapDoubleTab(point, coord)
-        }
-        map.setOnMapTwoFingerTapListener { point, coord ->
-            clickListeners.onMapTwoFingerTap(point, coord)
-        }
-        map.setOnSymbolClickListener {
-            clickListeners.onSymbolClick(it)
-        }
+        map.setOnMapClickListener(clickListeners.onMapClick)
+        map.setOnMapLongClickListener(clickListeners.onMapLongClick)
+        map.setOnMapDoubleTapListener(clickListeners.onMapDoubleTab)
+        map.setOnMapTwoFingerTapListener(clickListeners.onMapTwoFingerTap)
+        map.setOnSymbolClickListener(clickListeners.onSymbolClick)
         map.addOnLoadListener(loadListener)
         map.addOnCameraIdleListener(cameraIdleListener)
         map.addOnCameraChangeListener(cameraChangeListener)
