@@ -65,14 +65,14 @@ public fun NaverMap(
     uiSettings: MapUiSettings = DefaultMapUiSettings,
     locationSource: LocationSource? = null,
     locale: Locale? = null,
-    onMapClick: ((PointF, LatLng) -> Unit)? = null,
-    onMapLongClick: ((PointF, LatLng) -> Unit)? = null,
-    onMapDoubleTab: ((point: PointF, coord: LatLng) -> Boolean)? = null,
-    onMapTwoFingerTap: ((point: PointF, coord: LatLng) -> Boolean)? = null,
+    onMapClick: (PointF, LatLng) -> Unit = { _, _ -> },
+    onMapLongClick: (PointF, LatLng) -> Unit = { _, _ -> },
+    onMapDoubleTab: (point: PointF, coord: LatLng) -> Boolean = { _, _ -> false },
+    onMapTwoFingerTap: (point: PointF, coord: LatLng) -> Boolean = { _, _ -> false },
     onMapLoaded: () -> Unit = {},
     onLocationChange: (Location) -> Unit = {},
     onOptionChange: () -> Unit = {},
-    onSymbolClick: ((Symbol) -> Boolean)? = null,
+    onSymbolClick: (Symbol) -> Boolean = { false },
     onIndoorSelectionChange: (IndoorSelection?) -> Unit = {},
     contentPadding: PaddingValues = NoPadding,
     content: @Composable @NaverMapComposable () -> Unit = {},
@@ -108,16 +108,18 @@ public fun NaverMap(
 
     LaunchedEffect(Unit) {
         disposingComposition {
-            mapView.newComposition(parentComposition) {
+            mapView.newComposition(parentComposition, mapClickListeners) {
                 MapUpdater(
                     cameraPositionState = currentCameraPositionState,
-                    clickListeners = mapClickListeners,
                     contentPadding = currentContentPadding,
                     locationSource = currentLocationSource,
                     locale = currentLocale,
                     mapProperties = currentMapProperties,
                     mapUiSettings = currentUiSettings,
                 )
+
+                MapClickListenerUpdater()
+
                 CompositionLocalProvider(
                     LocalCameraPositionState provides currentCameraPositionState,
                     content = currentContent,
@@ -138,11 +140,12 @@ private suspend inline fun disposingComposition(factory: () -> Composition) {
 
 private suspend inline fun MapView.newComposition(
     parent: CompositionContext,
+    mapClickListeners: MapClickListeners,
     noinline content: @Composable () -> Unit,
 ): Composition {
     val map = awaitMap()
     return Composition(
-        MapApplier(map), parent
+        MapApplier(map, mapClickListeners), parent
     ).apply {
         setContent(content)
     }
