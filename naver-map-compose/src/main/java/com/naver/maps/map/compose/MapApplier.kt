@@ -37,6 +37,7 @@ private object MapNodeRoot : MapNode
 
 internal class MapApplier(
     val map: NaverMap,
+    val mapClickListeners: MapClickListeners,
 ) : AbstractApplier<MapNode>(MapNodeRoot) {
 
     private val decorations = mutableListOf<MapNode>()

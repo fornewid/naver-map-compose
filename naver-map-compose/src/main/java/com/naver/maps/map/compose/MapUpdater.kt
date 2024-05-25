@@ -31,7 +31,6 @@ import java.util.Locale
 internal class MapPropertiesNode(
     val map: NaverMap,
     cameraPositionState: CameraPositionState,
-    var clickListeners: MapClickListeners,
     var density: Density,
     var layoutDirection: LayoutDirection,
 ) : MapNode {
@@ -60,31 +59,10 @@ internal class MapPropertiesNode(
         cameraPositionState.isMoving = true
         cameraPositionState.rawPosition = map.cameraPosition
     }
-    private val loadListener = NaverMap.OnLoadListener {
-        clickListeners.onMapLoaded()
-    }
-    private val locationChangeListener = NaverMap.OnLocationChangeListener {
-        clickListeners.onLocationChange(it)
-    }
-    private val optionChangeListener = NaverMap.OnOptionChangeListener {
-        clickListeners.onOptionChange()
-    }
-    private val indoorSelectionChangeListener = NaverMap.OnIndoorSelectionChangeListener {
-        clickListeners.onIndoorSelectionChange(it)
-    }
 
     override fun onAttached() {
-        map.setOnMapClickListener(clickListeners.onMapClick)
-        map.setOnMapLongClickListener(clickListeners.onMapLongClick)
-        map.setOnMapDoubleTapListener(clickListeners.onMapDoubleTab)
-        map.setOnMapTwoFingerTapListener(clickListeners.onMapTwoFingerTap)
-        map.setOnSymbolClickListener(clickListeners.onSymbolClick)
-        map.addOnLoadListener(loadListener)
         map.addOnCameraIdleListener(cameraIdleListener)
         map.addOnCameraChangeListener(cameraChangeListener)
-        map.addOnLocationChangeListener(locationChangeListener)
-        map.addOnOptionChangeListener(optionChangeListener)
-        map.addOnIndoorSelectionChangeListener(indoorSelectionChangeListener)
     }
 
     override fun onRemoved() {
@@ -92,12 +70,8 @@ internal class MapPropertiesNode(
     }
 
     override fun onCleared() {
-        map.removeOnLoadListener(loadListener)
         map.removeOnCameraIdleListener(cameraIdleListener)
         map.removeOnCameraChangeListener(cameraChangeListener)
-        map.removeOnLocationChangeListener(locationChangeListener)
-        map.removeOnOptionChangeListener(optionChangeListener)
-        map.removeOnIndoorSelectionChangeListener(indoorSelectionChangeListener)
 
         cameraPositionState.setMap(null)
     }
@@ -112,7 +86,6 @@ internal val NoPadding = PaddingValues()
 @Composable
 internal inline fun MapUpdater(
     cameraPositionState: CameraPositionState,
-    clickListeners: MapClickListeners,
     contentPadding: PaddingValues = NoPadding,
     locationSource: LocationSource?,
     locale: Locale? = null,
@@ -127,7 +100,6 @@ internal inline fun MapUpdater(
             MapPropertiesNode(
                 map = map,
                 cameraPositionState = cameraPositionState,
-                clickListeners = clickListeners,
                 density = density,
                 layoutDirection = layoutDirection,
             )
@@ -229,7 +201,5 @@ internal inline fun MapUpdater(
         set(mapProperties.backgroundResource) { map.setBackgroundResource(it) }
         set(locationSource) { map.locationSource = it }
         set(mapProperties.locationTrackingMode) { map.locationTrackingMode = it.value }
-
-        update(clickListeners) { this.clickListeners = it }
     }
 }
