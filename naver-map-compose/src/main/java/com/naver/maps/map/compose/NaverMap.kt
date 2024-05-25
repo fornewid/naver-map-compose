@@ -119,7 +119,7 @@ public fun NaverMap(
                     mapUiSettings = currentUiSettings,
                 )
                 CompositionLocalProvider(
-                    LocalCameraPositionState provides cameraPositionState,
+                    LocalCameraPositionState provides currentCameraPositionState,
                     content = currentContent,
                 )
             }
