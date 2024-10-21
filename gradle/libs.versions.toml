@@ -14,16 +14,21 @@ compose = "1.8.0-alpha04"
 composeCompiler = "1.4.8"
 accompanist = "0.36.0"
 
+naver-map = "3.19.1"
+naver-map-location = "21.0.1"
+naver-map-tedclustering = "1.0.2"
+google-play-services-location = "21.0.1"
+
 [libraries]
 
 android-pluginGradle = { module = "com.android.tools.build:gradle", version.ref = "gradlePlugin" }
 mavenPublish-pluginGradle = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "mavenPublish" }
 metalava-pluginGradle = { module = "me.tylerbwong.gradle.metalava:plugin", version.ref = "metalava" }
 
-naver-map = "com.naver.maps:map-sdk:3.18.0"
-naver-map-location = "io.github.fornewid:naver-map-location:21.0.1"
-naver-map-tedclustering = "io.github.ParkSangGwon:tedclustering-naver:1.0.2"
-google-play-services-location = "com.google.android.gms:play-services-location:21.0.1"
+naver-map = { module = "com.naver.maps:map-sdk", version.ref = "naver-map" }
+naver-map-location = { module = "io.github.fornewid:naver-map-location", version.ref = "naver-map-location" }
+naver-map-tedclustering = { module = "io.github.ParkSangGwon:tedclustering-naver", version.ref = "naver-map-tedclustering" }
+google-play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "google-play-services-location" }
 
 # Kotlin
 
