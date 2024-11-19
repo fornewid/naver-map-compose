@@ -83,7 +83,7 @@ fun CameraEventScreen(upPress: () -> Unit) {
                 if (cameraPositionState.isMoving) {
                     Log.d(
                         "CameraEventScreen",
-                        "Map camera updated due to ${cameraPositionState.cameraUpdateReason.name}"
+                        "Map camera updated due to ${cameraPositionState.cameraUpdateReason}"
                     )
                 }
             }
