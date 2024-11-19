@@ -77,22 +77,40 @@ package com.naver.maps.map.compose {
     property @androidx.compose.runtime.Composable @androidx.compose.runtime.ReadOnlyComposable @com.naver.maps.map.compose.NaverMapComposable public static final com.naver.maps.map.compose.CameraPositionState currentCameraPositionState;
   }
 
-  @androidx.compose.runtime.Immutable public enum CameraUpdateReason {
-    method public final int getValue();
-    method public static com.naver.maps.map.compose.CameraUpdateReason valueOf(String value) throws java.lang.IllegalArgumentException, java.lang.NullPointerException;
-    method public static com.naver.maps.map.compose.CameraUpdateReason[] values();
-    property public final int value;
-    enum_constant public static final com.naver.maps.map.compose.CameraUpdateReason CONTROL;
-    enum_constant public static final com.naver.maps.map.compose.CameraUpdateReason DEVELOPER;
-    enum_constant public static final com.naver.maps.map.compose.CameraUpdateReason GESTURE;
-    enum_constant public static final com.naver.maps.map.compose.CameraUpdateReason LOCATION;
-    enum_constant public static final com.naver.maps.map.compose.CameraUpdateReason NO_MOVEMENT_YET;
-    enum_constant public static final com.naver.maps.map.compose.CameraUpdateReason UNKNOWN;
+  @androidx.compose.runtime.Immutable public sealed interface CameraUpdateReason {
     field public static final com.naver.maps.map.compose.CameraUpdateReason.Companion Companion;
+  }
+
+  public static final class CameraUpdateReason.CONTENT_PADDING implements com.naver.maps.map.compose.CameraUpdateReason {
+    field public static final com.naver.maps.map.compose.CameraUpdateReason.CONTENT_PADDING INSTANCE;
+  }
+
+  public static final class CameraUpdateReason.CONTROL implements com.naver.maps.map.compose.CameraUpdateReason {
+    field public static final com.naver.maps.map.compose.CameraUpdateReason.CONTROL INSTANCE;
   }
 
   public static final class CameraUpdateReason.Companion {
     method public com.naver.maps.map.compose.CameraUpdateReason fromInt(int reason);
+  }
+
+  public static final class CameraUpdateReason.DEVELOPER implements com.naver.maps.map.compose.CameraUpdateReason {
+    field public static final com.naver.maps.map.compose.CameraUpdateReason.DEVELOPER INSTANCE;
+  }
+
+  public static final class CameraUpdateReason.GESTURE implements com.naver.maps.map.compose.CameraUpdateReason {
+    field public static final com.naver.maps.map.compose.CameraUpdateReason.GESTURE INSTANCE;
+  }
+
+  public static final class CameraUpdateReason.LOCATION implements com.naver.maps.map.compose.CameraUpdateReason {
+    field public static final com.naver.maps.map.compose.CameraUpdateReason.LOCATION INSTANCE;
+  }
+
+  public static final class CameraUpdateReason.NO_MOVEMENT_YET implements com.naver.maps.map.compose.CameraUpdateReason {
+    field public static final com.naver.maps.map.compose.CameraUpdateReason.NO_MOVEMENT_YET INSTANCE;
+  }
+
+  public static final class CameraUpdateReason.UNKNOWN implements com.naver.maps.map.compose.CameraUpdateReason {
+    field public static final com.naver.maps.map.compose.CameraUpdateReason.UNKNOWN INSTANCE;
   }
 
   public final class CircleOverlayDefaults {
