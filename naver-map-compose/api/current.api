@@ -282,18 +282,35 @@ package com.naver.maps.map.compose {
     property public final float symbolScale;
   }
 
-  @androidx.compose.runtime.Immutable public enum MapType {
-    method public final com.naver.maps.map.NaverMap.MapType! getValue();
-    method public static com.naver.maps.map.compose.MapType valueOf(String value) throws java.lang.IllegalArgumentException, java.lang.NullPointerException;
-    method public static com.naver.maps.map.compose.MapType[] values();
-    property public final com.naver.maps.map.NaverMap.MapType! value;
-    enum_constant public static final com.naver.maps.map.compose.MapType Basic;
-    enum_constant public static final com.naver.maps.map.compose.MapType Hybrid;
-    enum_constant public static final com.naver.maps.map.compose.MapType Navi;
-    enum_constant public static final com.naver.maps.map.compose.MapType NaviHybrid;
-    enum_constant public static final com.naver.maps.map.compose.MapType None;
-    enum_constant public static final com.naver.maps.map.compose.MapType Satellite;
-    enum_constant public static final com.naver.maps.map.compose.MapType Terrain;
+  @androidx.compose.runtime.Immutable public sealed interface MapType {
+  }
+
+  public static final class MapType.Basic implements com.naver.maps.map.compose.MapType {
+    field public static final com.naver.maps.map.compose.MapType.Basic INSTANCE;
+  }
+
+  public static final class MapType.Hybrid implements com.naver.maps.map.compose.MapType {
+    field public static final com.naver.maps.map.compose.MapType.Hybrid INSTANCE;
+  }
+
+  public static final class MapType.Navi implements com.naver.maps.map.compose.MapType {
+    field public static final com.naver.maps.map.compose.MapType.Navi INSTANCE;
+  }
+
+  public static final class MapType.NaviHybrid implements com.naver.maps.map.compose.MapType {
+    field public static final com.naver.maps.map.compose.MapType.NaviHybrid INSTANCE;
+  }
+
+  public static final class MapType.None implements com.naver.maps.map.compose.MapType {
+    field public static final com.naver.maps.map.compose.MapType.None INSTANCE;
+  }
+
+  public static final class MapType.Satellite implements com.naver.maps.map.compose.MapType {
+    field public static final com.naver.maps.map.compose.MapType.Satellite INSTANCE;
+  }
+
+  public static final class MapType.Terrain implements com.naver.maps.map.compose.MapType {
+    field public static final com.naver.maps.map.compose.MapType.Terrain INSTANCE;
   }
 
   public final class MapUiSettings {
