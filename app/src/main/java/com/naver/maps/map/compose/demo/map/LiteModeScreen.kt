@@ -37,7 +37,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -63,8 +62,15 @@ fun LiteModeScreen(upPress: () -> Unit) {
         }
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
-            val mapTypes = stringArrayResource(R.array.map_types_without_navi)
-            var selectedPosition by remember { mutableStateOf(0) }
+            val mapTypes = remember {
+                listOf(
+                    MapType.Basic,
+                    MapType.Satellite,
+                    MapType.Hybrid,
+                    MapType.Terrain,
+                )
+            }
+            var selectedMapType by remember { mutableStateOf<MapType>(MapType.Basic) }
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
@@ -85,9 +91,11 @@ fun LiteModeScreen(upPress: () -> Unit) {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = mapTypes[selectedPosition],
+                            text = selectedMapType.toString(),
                             fontSize = 18.sp,
-                            modifier = Modifier.padding(end = 8.dp).weight(1f)
+                            modifier = Modifier
+                                .padding(end = 8.dp)
+                                .weight(1f)
                         )
                         Icon(
                             Icons.Filled.ArrowDropDown,
@@ -98,14 +106,14 @@ fun LiteModeScreen(upPress: () -> Unit) {
                             expanded = expanded,
                             onDismissRequest = { expanded = false }
                         ) {
-                            mapTypes.forEachIndexed { index, mapType ->
+                            mapTypes.forEach { mapType ->
                                 DropdownMenuItem(
                                     onClick = {
                                         expanded = false
-                                        selectedPosition = index
+                                        selectedMapType = mapType
                                     }
                                 ) {
-                                    Text(text = mapType)
+                                    Text(text = mapType.toString())
                                 }
                             }
                         }
@@ -124,7 +132,7 @@ fun LiteModeScreen(upPress: () -> Unit) {
                 cameraPositionState = cameraPositionState,
                 properties = MapProperties(
                     isLiteModeEnabled = true,
-                    mapType = MapType.valueOf(mapTypes[selectedPosition])
+                    mapType = selectedMapType,
                 ),
             )
         }

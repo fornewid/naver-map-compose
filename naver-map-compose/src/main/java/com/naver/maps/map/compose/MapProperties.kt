@@ -121,47 +121,6 @@ public data class MapProperties(
 }
 
 /**
- * 지도의 유형을 나타내는 열거형.
- */
-@Immutable
-public enum class MapType(public val value: com.naver.maps.map.NaverMap.MapType) {
-    /**
-     * 일반 지도.
-     */
-    Basic(com.naver.maps.map.NaverMap.MapType.Basic),
-
-    /**
-     * 내비게이션 지도.
-     */
-    Navi(com.naver.maps.map.NaverMap.MapType.Navi),
-
-    /**
-     * 위성 지도.
-     */
-    Satellite(com.naver.maps.map.NaverMap.MapType.Satellite),
-
-    /**
-     * 위성 지도(겹쳐보기).
-     */
-    Hybrid(com.naver.maps.map.NaverMap.MapType.Hybrid),
-
-    /**
-     * 내비게이션용 위성 지도(겹쳐보기).
-     */
-    NaviHybrid(com.naver.maps.map.NaverMap.MapType.NaviHybrid),
-
-    /**
-     * 지형도.
-     */
-    Terrain(com.naver.maps.map.NaverMap.MapType.Terrain),
-
-    /**
-     * 없음. 지도는 나타나지 않고 오버레이만이 나타납니다.
-     */
-    None(com.naver.maps.map.NaverMap.MapType.None)
-}
-
-/**
  * 위치 추적 모드를 나타내는 열거형.
  */
 @Immutable
