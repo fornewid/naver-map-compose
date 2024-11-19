@@ -15,9 +15,23 @@
  */
 package com.naver.maps.map.compose
 
+import java.lang.reflect.Field
+import java.lang.reflect.Modifier
+import kotlin.reflect.KClass
+
 /**
  * The list of the immediate subclasses if this class is a sealed class, or an empty list otherwise.
  */
 internal inline fun <reified T> sealedSubclasses(): List<T> {
     return T::class.sealedSubclasses.mapNotNull { it.objectInstance }
 }
+
+/**
+ * Returns the public static fields of the class, or an empty list otherwise.
+ */
+internal val KClass<*>.publicStaticFields: List<Field>
+    get() = runCatching {
+        java.declaredFields.filter { field ->
+            Modifier.isStatic(field.modifiers) && Modifier.isPublic(field.modifiers)
+        }
+    }.getOrDefault(emptyList())
