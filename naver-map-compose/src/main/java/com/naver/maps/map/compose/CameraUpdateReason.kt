@@ -16,6 +16,7 @@
 package com.naver.maps.map.compose
 
 import androidx.compose.runtime.Immutable
+import com.naver.maps.map.CameraUpdate as NaverCameraUpdate
 
 /**
  * 지도 카메라가 움직였음을 나타내는 값들.
@@ -32,18 +33,25 @@ import androidx.compose.runtime.Immutable
  * 이 경우 라이브러리가 새 상수를 포함하도록 업데이트되어야 합니다.
  */
 @Immutable
-public enum class CameraUpdateReason(public val value: Int) {
-    UNKNOWN(2),
-    NO_MOVEMENT_YET(1),
-    DEVELOPER(com.naver.maps.map.CameraUpdate.REASON_DEVELOPER),
-    GESTURE(com.naver.maps.map.CameraUpdate.REASON_GESTURE),
-    CONTROL(com.naver.maps.map.CameraUpdate.REASON_CONTROL),
-    LOCATION(com.naver.maps.map.CameraUpdate.REASON_LOCATION),
-    ;
+public sealed interface CameraUpdateReason {
+    public data object UNKNOWN : CameraUpdateReason
+    public data object NO_MOVEMENT_YET : CameraUpdateReason
+    public data object DEVELOPER : CameraUpdateReason
+    public data object GESTURE : CameraUpdateReason
+    public data object CONTROL : CameraUpdateReason
+    public data object LOCATION : CameraUpdateReason
+    public data object CONTENT_PADDING : CameraUpdateReason
 
     public companion object {
         public fun fromInt(reason: Int): CameraUpdateReason {
-            return values().firstOrNull { it.value == reason } ?: return UNKNOWN
+            return when (reason) {
+                NaverCameraUpdate.REASON_DEVELOPER -> DEVELOPER
+                NaverCameraUpdate.REASON_GESTURE -> GESTURE
+                NaverCameraUpdate.REASON_CONTROL -> CONTROL
+                NaverCameraUpdate.REASON_LOCATION -> LOCATION
+                NaverCameraUpdate.REASON_CONTENT_PADDING -> CONTENT_PADDING
+                else -> UNKNOWN
+            }
         }
     }
 }
