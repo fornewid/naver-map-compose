@@ -48,6 +48,8 @@ dependencies {
     implementation libs.google.play.services.location
     implementation libs.accompanist.permissions
 
+    androidTestImplementation libs.kotlin.test
+    androidTestImplementation libs.kotlin.reflect
     androidTestImplementation libs.androidx.test.ext.junit
     androidTestImplementation libs.androidx.test.espresso.core
 }

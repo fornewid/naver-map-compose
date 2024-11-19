@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 SOUP
+ * Copyright 2024 SOUP
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,22 +16,23 @@
 package com.naver.maps.map.compose
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
+import kotlin.test.assertEquals
+import com.naver.maps.map.NaverMap.MapType as NaverMapType
+import com.naver.maps.map.compose.MapType as ComposeMapType
 
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
 @RunWith(AndroidJUnit4::class)
-internal class ExampleInstrumentedTest {
+internal class MapTypeTest {
+
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.naver.maps.map.compose.test", appContext.packageName)
+    fun equals() {
+        val naverMapTypes = NaverMapType.entries.map { it.name }.sorted()
+        val composeMapTypes = sealedSubclasses<ComposeMapType>().map { it.toString() }.sorted()
+        assertEquals(
+            expected = naverMapTypes,
+            actual = composeMapTypes,
+            message = "The MapType class of NaverMap SDK and naver-map-compose do not match exactly.",
+        )
     }
 }

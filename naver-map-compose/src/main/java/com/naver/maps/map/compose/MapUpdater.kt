@@ -27,6 +27,8 @@ import androidx.compose.ui.unit.LayoutDirection
 import com.naver.maps.map.LocationSource
 import com.naver.maps.map.NaverMap
 import java.util.Locale
+import com.naver.maps.map.NaverMap.MapType as NaverMapType
+import com.naver.maps.map.compose.MapType as ComposeMapType
 
 internal class MapPropertiesNode(
     val map: NaverMap,
@@ -203,3 +205,14 @@ internal inline fun MapUpdater(
         set(mapProperties.locationTrackingMode) { map.locationTrackingMode = it.value }
     }
 }
+
+private val ComposeMapType.value: NaverMapType
+    get() = when (this) {
+        ComposeMapType.Basic -> NaverMapType.Basic
+        ComposeMapType.Navi -> NaverMapType.Navi
+        ComposeMapType.Satellite -> NaverMapType.Satellite
+        ComposeMapType.Hybrid -> NaverMapType.Hybrid
+        ComposeMapType.NaviHybrid -> NaverMapType.NaviHybrid
+        ComposeMapType.Terrain -> NaverMapType.Terrain
+        ComposeMapType.None -> NaverMapType.None
+    }

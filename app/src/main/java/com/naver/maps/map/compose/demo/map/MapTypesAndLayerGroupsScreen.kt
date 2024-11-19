@@ -42,7 +42,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -68,8 +67,18 @@ fun MapTypesAndLayerGroupsScreen(upPress: () -> Unit) {
         }
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
-            val mapTypes = stringArrayResource(R.array.map_types)
-            var selectedMapTypePosition by remember { mutableStateOf(0) }
+            val mapTypes = remember {
+                listOf(
+                    MapType.Basic,
+                    MapType.Navi,
+                    MapType.Satellite,
+                    MapType.Hybrid,
+                    MapType.NaviHybrid,
+                    MapType.Terrain,
+                    MapType.None,
+                )
+            }
+            var selectedMapType by remember { mutableStateOf<MapType>(MapType.Basic) }
 
             var isBuildingLayerGroupEnabled by remember { mutableStateOf(true) }
             var isTransitLayerGroupEnabled by remember { mutableStateOf(false) }
@@ -97,7 +106,7 @@ fun MapTypesAndLayerGroupsScreen(upPress: () -> Unit) {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = mapTypes[selectedMapTypePosition],
+                            text = selectedMapType.toString(),
                             fontSize = 18.sp,
                             modifier = Modifier.padding(end = 8.dp).weight(1f)
                         )
@@ -114,10 +123,10 @@ fun MapTypesAndLayerGroupsScreen(upPress: () -> Unit) {
                                 DropdownMenuItem(
                                     onClick = {
                                         mapTypeExpanded = false
-                                        selectedMapTypePosition = index
+                                        selectedMapType = mapType
                                     }
                                 ) {
-                                    Text(text = mapType)
+                                    Text(text = mapType.toString())
                                 }
                             }
                         }
@@ -235,7 +244,7 @@ fun MapTypesAndLayerGroupsScreen(upPress: () -> Unit) {
             NaverMap(
                 cameraPositionState = cameraPositionState,
                 properties = MapProperties(
-                    mapType = MapType.valueOf(mapTypes[selectedMapTypePosition]),
+                    mapType = selectedMapType,
                     isBuildingLayerGroupEnabled = isBuildingLayerGroupEnabled,
                     isTransitLayerGroupEnabled = isTransitLayerGroupEnabled,
                     isBicycleLayerGroupEnabled = isBicycleLayerGroupEnabled,
