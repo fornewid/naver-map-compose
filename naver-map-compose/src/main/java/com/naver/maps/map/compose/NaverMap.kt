@@ -16,10 +16,12 @@
 package com.naver.maps.map.compose
 
 import android.content.ComponentCallbacks
+import android.content.Context
 import android.content.res.Configuration
 import android.graphics.PointF
 import android.location.Location
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -252,15 +254,34 @@ private fun MapView.componentCallbacks(): ComponentCallbacks {
  * 네이버지도 SDK 내부에서 생성되는 Widget 중 [srcCompat] 속성으로 이미지가 설정되는 부분을 직접 설정한다.
  */
 private fun unwrapAppCompat(mapView: MapView): MapView = mapView.apply {
-    val compassIcon: ImageView = findViewById(com.naver.maps.map.R.id.navermap_compass_icon)
-    compassIcon.setImageResource(com.naver.maps.map.R.drawable.navermap_compass)
+    if (!isAppCompatTheme(context)) {
+        // TODO: InfoView must be implemented...
+        val logoIcon: View = findViewById(com.naver.maps.map.R.id.navermap_logo)
+        logoIcon.setOnClickListener(null)
 
-    val locationIcon: ImageView = findViewById(com.naver.maps.map.R.id.navermap_location_icon)
-    locationIcon.setImageResource(com.naver.maps.map.R.drawable.navermap_location_none_normal)
+        val compassIcon: ImageView = findViewById(com.naver.maps.map.R.id.navermap_compass_icon)
+        compassIcon.setImageResource(com.naver.maps.map.R.drawable.navermap_compass)
 
-    val zoomInIcon: ImageView = findViewById(com.naver.maps.map.R.id.navermap_zoom_in)
-    zoomInIcon.setImageResource(com.naver.maps.map.R.drawable.navermap_zoom_in)
+        val locationIcon: ImageView = findViewById(com.naver.maps.map.R.id.navermap_location_icon)
+        locationIcon.setImageResource(com.naver.maps.map.R.drawable.navermap_location_none_normal)
 
-    val zoomOutIcon: ImageView = findViewById(com.naver.maps.map.R.id.navermap_zoom_out)
-    zoomOutIcon.setImageResource(com.naver.maps.map.R.drawable.navermap_zoom_out)
+        val zoomInIcon: ImageView = findViewById(com.naver.maps.map.R.id.navermap_zoom_in)
+        zoomInIcon.setImageResource(com.naver.maps.map.R.drawable.navermap_zoom_in)
+
+        val zoomOutIcon: ImageView = findViewById(com.naver.maps.map.R.id.navermap_zoom_out)
+        zoomOutIcon.setImageResource(com.naver.maps.map.R.drawable.navermap_zoom_out)
+    }
+}
+
+/**
+ * [androidx.appcompat.widget.ThemeUtils.checkAppCompatTheme] 참고.
+ */
+private fun isAppCompatTheme(context: Context): Boolean {
+    val a = context.obtainStyledAttributes(androidx.appcompat.R.styleable.AppCompatTheme)
+    if (!a.hasValue(androidx.appcompat.R.styleable.AppCompatTheme_windowActionBar)) {
+        a.recycle()
+        return false
+    }
+    a.recycle()
+    return true
 }
