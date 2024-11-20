@@ -15,7 +15,7 @@
  */
 package com.naver.maps.map.compose
 
-import android.content.ComponentCallbacks
+import android.content.ComponentCallbacks2
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.PointF
@@ -181,7 +181,19 @@ private fun MapLifecycle(mapView: MapView) {
             savedInstanceState.takeUnless { it.isEmpty },
             previousState,
         )
-        val callbacks = mapView.componentCallbacks()
+
+        val callbacks = object : ComponentCallbacks2 {
+            override fun onConfigurationChanged(config: Configuration) {}
+
+            @Deprecated("This callback is superseded by onTrimMemory")
+            override fun onLowMemory() {
+                mapView.onLowMemory()
+            }
+
+            override fun onTrimMemory(level: Int) {
+                mapView.onLowMemory()
+            }
+        }
 
         lifecycle.addObserver(mapLifecycleObserver)
         context.registerComponentCallbacks(callbacks)
@@ -232,16 +244,6 @@ private fun MapView.lifecycleObserver(
             else -> throw IllegalStateException()
         }
         previousState.value = event
-    }
-}
-
-private fun MapView.componentCallbacks(): ComponentCallbacks {
-    return object : ComponentCallbacks {
-        override fun onConfigurationChanged(config: Configuration) {}
-
-        override fun onLowMemory() {
-            this@componentCallbacks.onLowMemory()
-        }
     }
 }
 
