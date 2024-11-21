@@ -12,8 +12,6 @@ android {
     defaultConfig {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
@@ -28,6 +26,10 @@ android {
     }
     kotlinOptions {
         freeCompilerArgs += '-Xexplicit-api=warning'
+    }
+    // https://github.com/robolectric/robolectric-gradle-plugin/issues/144#issuecomment-265620470
+    testOptions.unitTests.all {
+        jvmArgs '-noverify'
     }
 }
 
@@ -48,8 +50,9 @@ dependencies {
     implementation libs.google.play.services.location
     implementation libs.accompanist.permissions
 
-    androidTestImplementation libs.kotlin.test
-    androidTestImplementation libs.kotlin.reflect
-    androidTestImplementation libs.androidx.test.ext.junit
-    androidTestImplementation libs.androidx.test.espresso.core
+    testImplementation libs.kotlin.test
+    testImplementation libs.kotlin.reflect
+    testImplementation libs.junit
+    testImplementation libs.robolectric
+    testImplementation libs.androidx.test.junit
 }

@@ -19,6 +19,12 @@ naver-map-location = "21.0.1"
 naver-map-tedclustering = "1.0.2"
 google-play-services-location = "21.0.1"
 
+# Test
+junit = "4.13.2"
+robolectric = "4.14.1"
+androidx-test-junit = "1.2.1"
+androidx-test-espresso = "3.6.1"
+
 [libraries]
 
 android-pluginGradle = { module = "com.android.tools.build:gradle", version.ref = "gradlePlugin" }
@@ -62,6 +68,8 @@ androidx-profileinstaller = "androidx.profileinstaller:profileinstaller:1.2.0"
 
 # Test
 
-androidx-test-ext-junit = "androidx.test.ext:junit:1.2.1"
-androidx-test-espresso-core = "androidx.test.espresso:espresso-core:3.4.0"
-androidx-test-uiautomator = "androidx.test.uiautomator:uiautomator:2.2.0"
+junit = { module = "junit:junit", version.ref = "junit" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+
+androidx-test-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test-junit" }
+androidx-test-espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-test-espresso" }
