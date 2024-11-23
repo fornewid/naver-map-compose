@@ -1,17 +1,17 @@
 [versions]
 
-gradlePlugin = "8.4.2"
-mavenPublish = "0.25.1"
+agp = "8.4.2"
+mavenPublish = "0.28.0"
 metalava = "0.3.5"
 
 kotlin = "1.9.0"
-dokka = "1.8.10"
+dokka = "1.9.20"
 
 # Compose
 activity = "1.9.3"
 navigation = "2.8.3"
 compose = "1.8.0-alpha06"
-composeCompiler = "1.5.0"
+compose-compiler = "1.5.0"
 accompanist = "0.36.0"
 
 naver-map = "3.19.1"
@@ -27,10 +27,6 @@ androidx-test-espresso = "3.6.1"
 
 [libraries]
 
-android-pluginGradle = { module = "com.android.tools.build:gradle", version.ref = "gradlePlugin" }
-mavenPublish-pluginGradle = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "mavenPublish" }
-metalava-pluginGradle = { module = "me.tylerbwong.gradle.metalava:plugin", version.ref = "metalava" }
-
 naver-map = { module = "com.naver.maps:map-sdk", version.ref = "naver-map" }
 naver-map-location = { module = "io.github.fornewid:naver-map-location", version.ref = "naver-map-location" }
 naver-map-tedclustering = { module = "io.github.ParkSangGwon:tedclustering-naver", version.ref = "naver-map-tedclustering" }
@@ -38,7 +34,6 @@ google-play-services-location = { module = "com.google.android.gms:play-services
 
 # Kotlin
 
-kotlin-pluginGradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
@@ -73,3 +68,16 @@ robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectr
 
 androidx-test-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test-junit" }
 androidx-test-espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-test-espresso" }
+
+# Dependencies of the included build-logic
+android-pluginGradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+kotlin-pluginGradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+metalava-pluginGradle = { module = "me.tylerbwong.gradle.metalava:plugin", version.ref = "metalava" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+metalava = { id = "me.tylerbwong.gradle.metalava", version.ref = "metalava" }
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }
