@@ -41,9 +41,9 @@ fun ExtentScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_extent),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             val cameraPositionState = rememberCameraPositionState()
@@ -51,7 +51,7 @@ fun ExtentScreen(upPress: () -> Unit) {
                 cameraPositionState = cameraPositionState,
                 properties = MapProperties(
                     extent = MapConstants.EXTENT_KOREA,
-                )
+                ),
             ) {
                 PolylineOverlay(
                     coords = MapConstants.EXTENT_KOREA.toPolygon().toList(),

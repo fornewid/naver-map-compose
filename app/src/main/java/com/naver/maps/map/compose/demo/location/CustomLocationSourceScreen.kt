@@ -42,9 +42,9 @@ fun CustomLocationSourceScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_custom_location_source),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             val context = LocalContext.current
@@ -52,16 +52,16 @@ fun CustomLocationSourceScreen(upPress: () -> Unit) {
             NaverMap(
                 locationSource = locationSource,
                 properties = MapProperties(
-                    locationTrackingMode = LocationTrackingMode.NoFollow
+                    locationTrackingMode = LocationTrackingMode.NoFollow,
                 ),
                 onMapClick = locationSource::onMapClick,
                 onLocationChange = {
                     context.showToast(
                         R.string.format_location_changed,
                         it.latitude,
-                        it.longitude
+                        it.longitude,
                     )
-                }
+                },
             )
         }
     }
@@ -84,7 +84,7 @@ private class CustomLocationSource : LocationSource {
                 latitude = coord.latitude
                 longitude = coord.longitude
                 accuracy = 100f
-            }
+            },
         )
     }
 }

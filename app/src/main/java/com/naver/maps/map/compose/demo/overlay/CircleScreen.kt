@@ -34,9 +34,9 @@ fun CircleOverlayScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_circle_overlay),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         NaverMap(
             contentPadding = contentPadding,
@@ -46,7 +46,7 @@ fun CircleOverlayScreen(upPress: () -> Unit) {
                 color = MaterialTheme.colors.primary.copy(alpha = 0.12f),
                 radius = 500.0,
                 outlineColor = MaterialTheme.colors.primary,
-                outlineWidth = dimensionResource(R.dimen.overlay_line_width)
+                outlineWidth = dimensionResource(R.dimen.overlay_line_width),
             )
         }
     }

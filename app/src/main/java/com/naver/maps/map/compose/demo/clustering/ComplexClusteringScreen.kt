@@ -62,9 +62,9 @@ fun ComplexClusteringScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_complex_clustering),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             ComplexClustering()
@@ -91,7 +91,7 @@ private fun ComplexClustering() {
     }
     NaverMap(
         modifier = Modifier.fillMaxSize(),
-        cameraPositionState = cameraPositionState
+        cameraPositionState = cameraPositionState,
     ) {
         var clusterManager by remember { mutableStateOf<Clusterer<ItemKey>?>(null) }
         DisposableMapEffect(toiletLocationList) { map ->
@@ -174,7 +174,7 @@ private fun ComplexClustering() {
             val keyTagMap = toiletLocationList.associate {
                 ItemKey(it.id, LatLng(it.latitude, it.longitude)) to ItemData(
                     it.name,
-                    it.gu
+                    it.gu,
                 )
             }
             clusterManager?.addAll(keyTagMap)
@@ -206,7 +206,7 @@ private fun rememberToiletLocationList(): List<ToiletLocation> {
                                 gu = split[1],
                                 longitude = split[2].toDouble(),
                                 latitude = split[3].toDouble(),
-                            )
+                            ),
                         )
                     }
                 }

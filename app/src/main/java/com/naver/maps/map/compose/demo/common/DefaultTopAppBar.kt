@@ -34,9 +34,9 @@ fun DefaultTopAppBar(
             IconButton(onClick = upPress) {
                 Icon(
                     Icons.AutoMirrored.Default.ArrowBack,
-                    contentDescription = null
+                    contentDescription = null,
                 )
             }
-        }
+        },
     )
 }

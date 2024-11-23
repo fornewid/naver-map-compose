@@ -61,9 +61,9 @@ fun MapInColumnScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_map_in_column),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             val cameraPositionState = rememberCameraPositionState()
@@ -104,22 +104,22 @@ private fun MapInColumn(
                 .fillMaxSize()
                 .verticalScroll(
                     state = rememberScrollState(),
-                    enabled = columnScrollingEnabled
+                    enabled = columnScrollingEnabled,
                 ),
-            horizontalAlignment = Alignment.Start
+            horizontalAlignment = Alignment.Start,
         ) {
             Spacer(modifier = Modifier.padding(5.dp))
             for (i in 1..20) {
                 Text(
                     text = "Item $i",
-                    modifier = Modifier.padding(vertical = 5.dp, horizontal = 10.dp)
+                    modifier = Modifier.padding(vertical = 5.dp, horizontal = 10.dp),
                 )
             }
             Spacer(modifier = Modifier.padding(5.dp))
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(200.dp)
+                    .height(200.dp),
             ) {
                 NaverMapInColumn(
                     modifier = Modifier
@@ -132,7 +132,7 @@ private fun MapInColumn(
                                 } else {
                                     true
                                 }
-                            }
+                            },
                         ),
                     cameraPositionState = cameraPositionState,
                 )
@@ -141,7 +141,7 @@ private fun MapInColumn(
             for (i in 21..40) {
                 Text(
                     text = "Item $i",
-                    modifier = Modifier.padding(vertical = 5.dp, horizontal = 10.dp)
+                    modifier = Modifier.padding(vertical = 5.dp, horizontal = 10.dp),
                 )
             }
             Spacer(modifier = Modifier.padding(5.dp))

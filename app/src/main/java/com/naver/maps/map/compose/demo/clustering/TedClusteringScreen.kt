@@ -48,9 +48,9 @@ fun TedClusteringScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_ted_clustering),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             NaverMapClustering()
@@ -81,7 +81,7 @@ private fun NaverMapClustering(items: List<MyItem>) {
     }
     NaverMap(
         modifier = Modifier.fillMaxSize(),
-        cameraPositionState = cameraPositionState
+        cameraPositionState = cameraPositionState,
     ) {
         val context = LocalContext.current
         var clusterManager by remember { mutableStateOf<TedNaverClustering<MyItem>?>(null) }

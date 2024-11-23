@@ -50,9 +50,9 @@ fun CameraMoveScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_camera_move),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             val cameraPositionState = rememberCameraPositionState()
@@ -73,12 +73,12 @@ fun CameraMoveScreen(upPress: () -> Unit) {
                     val coord = if (flag) COORD_2 else COORD_1
                     cameraPositionState.move(CameraUpdate.scrollTo(coord))
                     flag = !flag
-                }
+                },
             ) {
                 Icon(
                     Icons.Default.PlayArrow,
                     contentDescription = stringResource(R.string.content_description_run),
-                    tint = Color.White
+                    tint = Color.White,
                 )
             }
         }

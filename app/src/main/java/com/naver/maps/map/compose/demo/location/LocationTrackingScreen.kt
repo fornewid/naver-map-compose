@@ -53,9 +53,9 @@ fun LocationTrackingScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_location_tracking),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
             val options = listOf(
@@ -79,19 +79,19 @@ fun LocationTrackingScreen(upPress: () -> Unit) {
                             .selectable(
                                 selected = selectedOption == index,
                                 onClick = { onOptionSelected(index) },
-                                role = Role.RadioButton
+                                role = Role.RadioButton,
                             )
                             .padding(horizontal = 8.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         RadioButton(
                             selected = selectedOption == index,
-                            onClick = null
+                            onClick = null,
                         )
                         Text(
                             text = text,
                             style = MaterialTheme.typography.body1.merge(),
-                            modifier = Modifier.padding(start = 8.dp)
+                            modifier = Modifier.padding(start = 8.dp),
                         )
                     }
                 }
@@ -106,7 +106,8 @@ fun LocationTrackingScreen(upPress: () -> Unit) {
             }
             val isCompassEnabled = when (locationTrackingMode) {
                 LocationTrackingMode.Follow,
-                LocationTrackingMode.Face -> true
+                LocationTrackingMode.Face,
+                -> true
                 else -> false
             }
             val cameraPositionState = rememberCameraPositionState()

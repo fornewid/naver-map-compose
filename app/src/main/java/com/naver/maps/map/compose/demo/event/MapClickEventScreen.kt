@@ -35,9 +35,9 @@ fun MapClickEventScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_map_click_event),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             val context = LocalContext.current
@@ -46,16 +46,16 @@ fun MapClickEventScreen(upPress: () -> Unit) {
                     context.showToast(
                         R.string.format_map_click,
                         coord.latitude,
-                        coord.longitude
+                        coord.longitude,
                     )
                 },
                 onMapLongClick = { _, coord ->
                     context.showToast(
                         R.string.format_map_long_click,
                         coord.latitude,
-                        coord.longitude
+                        coord.longitude,
                     )
-                }
+                },
             )
         }
     }

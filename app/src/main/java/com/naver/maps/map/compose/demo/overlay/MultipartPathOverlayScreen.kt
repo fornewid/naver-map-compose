@@ -52,19 +52,19 @@ fun MultipartPathOverlayScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_multipart_path_overlay),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         var sliderPosition: Float by remember { mutableStateOf(130f) }
         Column(modifier = Modifier.padding(contentPadding)) {
             Row(
                 modifier = Modifier.requiredHeight(40.dp),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     text = stringResource(R.string.label_progress),
-                    modifier = Modifier.padding(start = 8.dp)
+                    modifier = Modifier.padding(start = 8.dp),
                 )
                 Slider(
                     value = sliderPosition,
@@ -74,7 +74,7 @@ fun MultipartPathOverlayScreen(upPress: () -> Unit) {
                     modifier = Modifier
                         .padding(8.dp)
                         .weight(1f),
-                    valueRange = 0f..200f
+                    valueRange = 0f..200f,
                 )
                 val progress: Int by remember {
                     derivedStateOf { (sliderPosition - 100).toInt() }
@@ -83,7 +83,7 @@ fun MultipartPathOverlayScreen(upPress: () -> Unit) {
                     text = stringResource(R.string.format_progress, progress),
                     modifier = Modifier
                         .padding(end = 8.dp)
-                        .requiredWidth(50.dp)
+                        .requiredWidth(50.dp),
                 )
             }
 
@@ -97,7 +97,7 @@ fun MultipartPathOverlayScreen(upPress: () -> Unit) {
                 onMapClick = { _, coord ->
                     val progress = GeometryUtils.getProgressForCoordParts(coordParts, coord)
                     sliderPosition = (progress * 100 + 100).toFloat()
-                }
+                },
             ) {
                 val width = dimensionResource(R.dimen.path_overlay_width)
                 val outlineWidth = dimensionResource(R.dimen.path_overlay_outline_width)
@@ -160,7 +160,7 @@ private val COORDS_1 = listOf(
         LatLng(37.5639577, 126.9770749),
         LatLng(37.5640074, 126.9770927),
         LatLng(37.5644783, 126.9771755),
-        LatLng(37.5649229, 126.9772482)
+        LatLng(37.5649229, 126.9772482),
     ),
     listOf(
         LatLng(37.5649229, 126.9772482),
@@ -223,31 +223,31 @@ private val COLORS_1 = listOf(
         Color.Red,
         Color.White,
         Color.Gray,
-        Color.White
+        Color.White,
     ),
     ColorPart(
         Color.Yellow,
         Color.White,
         Color.Gray,
-        Color.White
+        Color.White,
     ),
     ColorPart(
         Color.Green,
         Color.White,
         Color.Gray,
-        Color.White
+        Color.White,
     ),
     ColorPart(
         Color.Red,
         Color.White,
         Color.Gray,
-        Color.White
+        Color.White,
     ),
     ColorPart(
         Color.Yellow,
         Color.White,
         Color.Gray,
-        Color.White
+        Color.White,
     ),
 )
 
@@ -317,18 +317,18 @@ private val COLORS_2 = listOf(
         Color.LightGray,
         Color.White,
         Color.LightGray,
-        Color.White
+        Color.White,
     ),
     ColorPart(
         Color.Gray,
         Color.White,
         Color.Gray,
-        Color.White
+        Color.White,
     ),
     ColorPart(
         Color.DarkGray,
         Color.White,
         Color.DarkGray,
-        Color.White
+        Color.White,
     ),
 )

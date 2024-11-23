@@ -42,9 +42,9 @@ fun GestureSettingsScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_gesture_settings),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
             val isScrollGesturesEnabled = remember { mutableStateOf(true) }
@@ -54,37 +54,37 @@ fun GestureSettingsScreen(upPress: () -> Unit) {
             val isStopGesturesEnabled = remember { mutableStateOf(true) }
 
             Row(
-                modifier = Modifier.horizontalScroll(rememberScrollState())
+                modifier = Modifier.horizontalScroll(rememberScrollState()),
             ) {
                 CheckedText(
                     text = stringResource(R.string.scroll),
                     checked = isScrollGesturesEnabled.value,
                     onCheckedChange = { isScrollGesturesEnabled.value = it },
-                    modifier = Modifier.wrapContentWidth()
+                    modifier = Modifier.wrapContentWidth(),
                 )
                 CheckedText(
                     text = stringResource(R.string.zoom),
                     checked = isZoomGesturesEnabled.value,
                     onCheckedChange = { isZoomGesturesEnabled.value = it },
-                    modifier = Modifier.wrapContentWidth()
+                    modifier = Modifier.wrapContentWidth(),
                 )
                 CheckedText(
                     text = stringResource(R.string.tilt),
                     checked = isTiltGesturesEnabled.value,
                     onCheckedChange = { isTiltGesturesEnabled.value = it },
-                    modifier = Modifier.wrapContentWidth()
+                    modifier = Modifier.wrapContentWidth(),
                 )
                 CheckedText(
                     text = stringResource(R.string.rotate),
                     checked = isRotateGesturesEnabled.value,
                     onCheckedChange = { isRotateGesturesEnabled.value = it },
-                    modifier = Modifier.wrapContentWidth()
+                    modifier = Modifier.wrapContentWidth(),
                 )
                 CheckedText(
                     text = stringResource(R.string.stop),
                     checked = isStopGesturesEnabled.value,
                     onCheckedChange = { isStopGesturesEnabled.value = it },
-                    modifier = Modifier.wrapContentWidth()
+                    modifier = Modifier.wrapContentWidth(),
                 )
             }
 
@@ -96,7 +96,7 @@ fun GestureSettingsScreen(upPress: () -> Unit) {
                     isTiltGesturesEnabled = isTiltGesturesEnabled.value,
                     isRotateGesturesEnabled = isRotateGesturesEnabled.value,
                     isStopGesturesEnabled = isStopGesturesEnabled.value,
-                )
+                ),
             )
         }
     }

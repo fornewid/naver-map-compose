@@ -37,16 +37,16 @@ fun ArrowheadPathOverlayScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_arrowhead_path_overlay),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         val cameraPositionState = rememberCameraPositionState {
             this.position = CameraPosition(
                 LatLng(37.5701573, 126.9777503),
                 14.0,
                 50.0,
-                0.0
+                0.0,
             )
         }
         NaverMap(
@@ -84,11 +84,11 @@ fun ArrowheadPathOverlayScreen(upPress: () -> Unit) {
 private val COORDS_1 = listOf(
     LatLng(37.568003, 126.9782503),
     LatLng(37.5701573, 126.9782503),
-    LatLng(37.5701573, 126.9803745)
+    LatLng(37.5701573, 126.9803745),
 )
 
 private val COORDS_2 = listOf(
     LatLng(37.568003, 126.9772503),
     LatLng(37.5701573, 126.9772503),
-    LatLng(37.5701573, 126.9751261)
+    LatLng(37.5701573, 126.9751261),
 )

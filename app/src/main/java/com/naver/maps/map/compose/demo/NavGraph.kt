@@ -135,13 +135,13 @@ fun NavGraph(
     NavHost(
         navController = navController,
         startDestination = startDestination,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         composable(Destination.Home.route) {
             HomeScreen(
                 onItemClick = {
                     navController.navigate(route = it.route)
-                }
+                },
             )
         }
 

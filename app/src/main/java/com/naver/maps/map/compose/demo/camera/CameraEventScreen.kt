@@ -66,9 +66,9 @@ fun CameraEventScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_camera_event),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
             val cameraPositionState = rememberCameraPositionState()
@@ -83,7 +83,7 @@ fun CameraEventScreen(upPress: () -> Unit) {
                 if (cameraPositionState.isMoving) {
                     Log.d(
                         "CameraEventScreen",
-                        "Map camera updated due to ${cameraPositionState.cameraUpdateReason}"
+                        "Map camera updated due to ${cameraPositionState.cameraUpdateReason}",
                     )
                 }
             }
@@ -95,7 +95,7 @@ fun CameraEventScreen(upPress: () -> Unit) {
                     fontSize = 14.sp,
                     modifier = Modifier
                         .requiredWidth(50.dp)
-                        .padding(top = 8.dp, bottom = 8.dp, start = 16.dp)
+                        .padding(top = 8.dp, bottom = 8.dp, start = 16.dp),
                 )
                 Text(
                     text = stringResource(
@@ -104,7 +104,7 @@ fun CameraEventScreen(upPress: () -> Unit) {
                         position.target.longitude,
                         position.zoom,
                         position.tilt,
-                        position.bearing
+                        position.bearing,
                     ),
                     fontSize = 14.sp,
                     modifier = Modifier.fillMaxWidth(),
@@ -116,7 +116,7 @@ fun CameraEventScreen(upPress: () -> Unit) {
                     fontSize = 14.sp,
                     modifier = Modifier
                         .requiredWidth(50.dp)
-                        .padding(top = 8.dp, bottom = 8.dp, start = 16.dp)
+                        .padding(top = 8.dp, bottom = 8.dp, start = 16.dp),
                 )
                 var idlePosition by remember { mutableStateOf(position) }
                 if (cameraPositionState.isMoving.not()) {
@@ -129,7 +129,7 @@ fun CameraEventScreen(upPress: () -> Unit) {
                         idlePosition.target.longitude,
                         idlePosition.zoom,
                         idlePosition.tilt,
-                        idlePosition.bearing
+                        idlePosition.bearing,
                     ),
                     fontSize = 14.sp,
                     modifier = Modifier.fillMaxWidth(),
@@ -148,14 +148,14 @@ fun CameraEventScreen(upPress: () -> Unit) {
                     contentDescription = stringResource(R.string.content_description_center_marker),
                     modifier = Modifier
                         .padding(bottom = 54.dp)
-                        .align(Alignment.Center)
+                        .align(Alignment.Center),
                 )
                 Image(
                     painterResource(R.drawable.crosshair),
                     contentDescription = stringResource(R.string.content_description_center_crosshair),
                     modifier = Modifier
                         .requiredSize(14.dp, 14.dp)
-                        .align(Alignment.Center)
+                        .align(Alignment.Center),
                 )
 
                 val context = LocalContext.current
@@ -187,13 +187,13 @@ fun CameraEventScreen(upPress: () -> Unit) {
                                                 .finishCallback {
                                                     isMovingByAnimation = false
                                                     context.showToast(R.string.camera_update_finished)
-                                                }
+                                                },
                                         )
                                     },
                             )
                             isMovingByAnimation = true
                         }
-                    }
+                    },
                 ) {
                     Icon(
                         if (isMovingByAnimation) {
@@ -202,7 +202,7 @@ fun CameraEventScreen(upPress: () -> Unit) {
                             Icons.Default.PlayArrow
                         },
                         contentDescription = stringResource(R.string.content_description_move_camera),
-                        tint = Color.White
+                        tint = Color.White,
                     )
                 }
             }

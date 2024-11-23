@@ -48,9 +48,9 @@ fun ClusteringScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_clustering),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             Clustering()
@@ -66,7 +66,7 @@ private fun Clustering() {
     }
     NaverMap(
         modifier = Modifier.fillMaxSize(),
-        cameraPositionState = cameraPositionState
+        cameraPositionState = cameraPositionState,
     ) {
         var clusterManager by remember { mutableStateOf<Clusterer<ItemKey>?>(null) }
         DisposableMapEffect(Unit) { map ->
