@@ -77,7 +77,9 @@ public fun NaverMap(
     onSymbolClick: (Symbol) -> Boolean = { false },
     onIndoorSelectionChange: (IndoorSelection?) -> Unit = {},
     contentPadding: PaddingValues = NoPadding,
-    content: @Composable @NaverMapComposable () -> Unit = {},
+    content:
+    @Composable @NaverMapComposable
+    () -> Unit = {},
 ) {
     val context = LocalContext.current
     val mapView = remember { MapView(context, NaverMapOptions()) }
@@ -147,7 +149,8 @@ private suspend inline fun MapView.newComposition(
 ): Composition {
     val map = awaitMap()
     return Composition(
-        MapApplier(map, mapClickListeners), parent
+        MapApplier(map, mapClickListeners),
+        parent,
     ).apply {
         setContent(content)
     }

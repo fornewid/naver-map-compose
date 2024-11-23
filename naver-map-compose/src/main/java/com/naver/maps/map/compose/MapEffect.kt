@@ -194,7 +194,7 @@ public fun MapEffect(
 @ExperimentalNaverMapApi
 public fun MapEffect(
     vararg keys: Any?,
-    block: suspend CoroutineScope.(NaverMap) -> Unit
+    block: suspend CoroutineScope.(NaverMap) -> Unit,
 ) {
     val map = (currentComposer.applier as MapApplier).map
     LaunchedEffect(keys = keys) {

@@ -265,7 +265,7 @@ public class CameraPositionState(
                                     // Cancel the animate caller and crash the map setter
                                     @Suppress("ThrowableNotThrown")
                                     continuation.resumeWithException(
-                                        CancellationException("internal error; no NaverMap available")
+                                        CancellationException("internal error; no NaverMap available"),
                                     )
                                     error("internal error; no NaverMap available to animate position")
                                 }
@@ -274,13 +274,13 @@ public class CameraPositionState(
                                     update,
                                     animation,
                                     durationMs,
-                                    continuation
+                                    continuation,
                                 )
                             }
 
                             override fun onCancelLocked() {
                                 continuation.resumeWithException(
-                                    CancellationException("Animation cancelled")
+                                    CancellationException("Animation cancelled"),
                                 )
                             }
                         }
@@ -332,13 +332,13 @@ public class CameraPositionState(
             map.moveCamera(
                 update.animate(animation)
                     .cancelCallback(cancelableCallback)
-                    .finishCallback(cancelableCallback)
+                    .finishCallback(cancelableCallback),
             )
         } else {
             map.moveCamera(
                 update.animate(animation, durationMs.toLong())
                     .cancelCallback(cancelableCallback)
-                    .finishCallback(cancelableCallback)
+                    .finishCallback(cancelableCallback),
             )
         }
         doOnMapChangedLocked {
@@ -394,7 +394,7 @@ public class CameraPositionState(
          */
         public val Saver: Saver<CameraPositionState, CameraPosition> = Saver(
             save = { it.position },
-            restore = { CameraPositionState(it) }
+            restore = { CameraPositionState(it) },
         )
     }
 }

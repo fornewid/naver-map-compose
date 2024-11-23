@@ -147,5 +147,5 @@ public enum class LocationTrackingMode(public val value: com.naver.maps.map.Loca
      * [com.naver.maps.map.overlay.LocationOverlay]와 카메라의 좌표, 베어링이 사용자의 위치, 사용자가 바라보고 있는
      * 방향을 따라 움직입니다. API나 제스처를 사용해 지도를 임의로 움직일 경우 모드가 [NoFollow]로 바뀝니다.
      */
-    Face(com.naver.maps.map.LocationTrackingMode.Face)
+    Face(com.naver.maps.map.LocationTrackingMode.Face),
 }

@@ -70,7 +70,7 @@ private fun renderComposableToOverlayImage(
     if (composeView.measuredWidth == 0 || composeView.measuredHeight == 0) {
         throw IllegalStateException(
             "The ComposeView was measured to have a width or height of " +
-                "zero. Make sure that the content has a non-zero size."
+                "zero. Make sure that the content has a non-zero size.",
         )
     }
 

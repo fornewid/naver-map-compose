@@ -128,7 +128,7 @@ public class MarkerState(
          */
         public val Saver: Saver<MarkerState, LatLng> = Saver(
             save = { it.position },
-            restore = { MarkerState(it) }
+            restore = { MarkerState(it) },
         )
     }
 }
@@ -747,7 +747,7 @@ private fun MarkerImpl(
             set(maxZoomInclusive) { this.overlay.isMaxZoomInclusive = it }
             set(zIndex) { this.overlay.zIndex = it }
             set(globalZIndex) { this.overlay.globalZIndex = it }
-        }
+        },
     )
 }
 
@@ -818,7 +818,14 @@ public enum class Align(public val value: com.naver.maps.map.overlay.Align) {
          * 모서리와 꼭짓점 방향.
          */
         public val OUTSIDES: Array<Align> = arrayOf(
-            Bottom, Right, Left, Top, BottomRight, BottomLeft, TopRight, TopLeft
+            Bottom,
+            Right,
+            Left,
+            Top,
+            BottomRight,
+            BottomLeft,
+            TopRight,
+            TopLeft,
         )
     }
 }
