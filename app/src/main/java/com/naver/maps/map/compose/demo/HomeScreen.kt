@@ -70,14 +70,14 @@ private data class Category(
                     Demo(
                         titleResId = R.string.name_map,
                         descriptionResId = R.string.description_map,
-                        destination = Destination.Map
+                        destination = Destination.Map,
                     ),
                     Demo(
                         titleResId = R.string.name_map_in_column,
                         descriptionResId = R.string.description_map_in_column,
-                        destination = Destination.MapInColumn
+                        destination = Destination.MapInColumn,
                     ),
-                )
+                ),
             ),
             Category(
                 titleResId = R.string.category_overlay,
@@ -85,64 +85,64 @@ private data class Category(
                     Demo(
                         titleResId = R.string.name_marker,
                         descriptionResId = R.string.description_marker,
-                        destination = Destination.Marker
+                        destination = Destination.Marker,
                     ),
                     Demo(
                         titleResId = R.string.name_polygon_overlay,
                         descriptionResId = R.string.description_polygon_overlay,
-                        destination = Destination.PolygonOverlay
+                        destination = Destination.PolygonOverlay,
                     ),
                     Demo(
                         titleResId = R.string.name_polyline_overlay,
                         descriptionResId = R.string.description_polyline_overlay,
-                        destination = Destination.PolylineOverlay
+                        destination = Destination.PolylineOverlay,
                     ),
                     Demo(
                         titleResId = R.string.name_circle_overlay,
                         descriptionResId = R.string.description_circle_overlay,
-                        destination = Destination.CircleOverlay
+                        destination = Destination.CircleOverlay,
                     ),
                     Demo(
                         titleResId = R.string.name_location_overlay,
                         descriptionResId = R.string.description_location_overlay,
-                        destination = Destination.LocationOverlay
+                        destination = Destination.LocationOverlay,
                     ),
                     Demo(
                         titleResId = R.string.name_ground_overlay,
                         descriptionResId = R.string.description_ground_overlay,
-                        destination = Destination.GroundOverlay
+                        destination = Destination.GroundOverlay,
                     ),
                     Demo(
                         titleResId = R.string.name_path_overlay,
                         descriptionResId = R.string.description_path_overlay,
-                        destination = Destination.PathOverlay
+                        destination = Destination.PathOverlay,
                     ),
                     Demo(
                         titleResId = R.string.name_multipart_path_overlay,
                         descriptionResId = R.string.description_multipart_path_overlay,
-                        destination = Destination.MultipartPathOverlay
+                        destination = Destination.MultipartPathOverlay,
                     ),
                     Demo(
                         titleResId = R.string.name_arrowhead_path_overlay,
                         descriptionResId = R.string.description_arrowhead_path_overlay,
-                        destination = Destination.ArrowheadPathOverlay
+                        destination = Destination.ArrowheadPathOverlay,
                     ),
                     Demo(
                         titleResId = R.string.name_overlay_min_max_zoom,
                         descriptionResId = R.string.description_overlay_min_max_zoom,
-                        destination = Destination.OverlayMinMaxZoom
+                        destination = Destination.OverlayMinMaxZoom,
                     ),
                     Demo(
                         titleResId = R.string.name_global_z_index,
                         descriptionResId = R.string.description_global_z_index,
-                        destination = Destination.GlobalZIndex
+                        destination = Destination.GlobalZIndex,
                     ),
                     Demo(
                         titleResId = R.string.name_overlay_collision,
                         descriptionResId = R.string.description_overlay_collision,
-                        destination = Destination.OverlayCollision
+                        destination = Destination.OverlayCollision,
                     ),
-                )
+                ),
             ),
             Category(
                 titleResId = R.string.category_clustering,
@@ -150,19 +150,19 @@ private data class Category(
                     Demo(
                         titleResId = R.string.name_clustering,
                         descriptionResId = R.string.description_clustering,
-                        destination = Destination.Clustering
+                        destination = Destination.Clustering,
                     ),
                     Demo(
                         titleResId = R.string.name_complex_clustering,
                         descriptionResId = R.string.description_complex_clustering,
-                        destination = Destination.ComplexClustering
+                        destination = Destination.ComplexClustering,
                     ),
                     Demo(
                         titleResId = R.string.name_ted_clustering,
                         descriptionResId = R.string.description_ted_clustering,
-                        destination = Destination.TedClustering
+                        destination = Destination.TedClustering,
                     ),
-                )
+                ),
             ),
             Category(
                 titleResId = R.string.category_camera,
@@ -170,34 +170,34 @@ private data class Category(
                     Demo(
                         titleResId = R.string.name_camera_move,
                         descriptionResId = R.string.description_camera_move,
-                        destination = Destination.CameraMove
+                        destination = Destination.CameraMove,
                     ),
                     Demo(
                         titleResId = R.string.name_camera_animation,
                         descriptionResId = R.string.description_camera_animation,
-                        destination = Destination.CameraAnimation
+                        destination = Destination.CameraAnimation,
                     ),
                     Demo(
                         titleResId = R.string.name_camera_update_params,
                         descriptionResId = R.string.description_camera_update_params,
-                        destination = Destination.CameraUpdateParams
+                        destination = Destination.CameraUpdateParams,
                     ),
                     Demo(
                         titleResId = R.string.name_fit_bounds,
                         descriptionResId = R.string.description_fit_bounds,
-                        destination = Destination.FitBounds
+                        destination = Destination.FitBounds,
                     ),
                     Demo(
                         titleResId = R.string.name_pivot,
                         descriptionResId = R.string.description_pivot,
-                        destination = Destination.Pivot
+                        destination = Destination.Pivot,
                     ),
                     Demo(
                         titleResId = R.string.name_camera_event,
                         descriptionResId = R.string.description_camera_event,
-                        destination = Destination.CameraEvent
+                        destination = Destination.CameraEvent,
                     ),
-                )
+                ),
             ),
             Category(
                 titleResId = R.string.category_map,
@@ -205,34 +205,34 @@ private data class Category(
                     Demo(
                         titleResId = R.string.name_map_types_and_layer_groups,
                         descriptionResId = R.string.description_map_types_and_layer_groups,
-                        destination = Destination.MapTypesAndLayerGroups
+                        destination = Destination.MapTypesAndLayerGroups,
                     ),
                     Demo(
                         titleResId = R.string.name_display_options,
                         descriptionResId = R.string.description_display_options,
-                        destination = Destination.DisplayOptions
+                        destination = Destination.DisplayOptions,
                     ),
                     Demo(
                         titleResId = R.string.name_indoor_map,
                         descriptionResId = R.string.description_indoor_map,
-                        destination = Destination.IndoorMap
+                        destination = Destination.IndoorMap,
                     ),
                     Demo(
                         titleResId = R.string.name_lite_mode,
                         descriptionResId = R.string.description_lite_mode,
-                        destination = Destination.LiteMode
+                        destination = Destination.LiteMode,
                     ),
                     Demo(
                         titleResId = R.string.name_night_mode,
                         descriptionResId = R.string.description_night_mode,
-                        destination = Destination.NightMode
+                        destination = Destination.NightMode,
                     ),
                     Demo(
                         titleResId = R.string.name_locale,
                         descriptionResId = R.string.description_locale,
-                        destination = Destination.Locale
+                        destination = Destination.Locale,
                     ),
-                )
+                ),
             ),
             Category(
                 titleResId = R.string.category_option,
@@ -240,34 +240,34 @@ private data class Category(
                     Demo(
                         titleResId = R.string.name_min_max_zoom,
                         descriptionResId = R.string.description_min_max_zoom,
-                        destination = Destination.MinMaxZoom
+                        destination = Destination.MinMaxZoom,
                     ),
                     Demo(
                         titleResId = R.string.name_max_tilt,
                         descriptionResId = R.string.description_max_tilt,
-                        destination = Destination.MaxTilt
+                        destination = Destination.MaxTilt,
                     ),
                     Demo(
                         titleResId = R.string.name_extent,
                         descriptionResId = R.string.description_extent,
-                        destination = Destination.Extent
+                        destination = Destination.Extent,
                     ),
                     Demo(
                         titleResId = R.string.name_content_padding,
                         descriptionResId = R.string.description_content_padding,
-                        destination = Destination.ContentPadding
+                        destination = Destination.ContentPadding,
                     ),
                     Demo(
                         titleResId = R.string.name_control_settings,
                         descriptionResId = R.string.description_control_settings,
-                        destination = Destination.ControlSettings
+                        destination = Destination.ControlSettings,
                     ),
                     Demo(
                         titleResId = R.string.name_gesture_settings,
                         descriptionResId = R.string.description_gesture_settings,
-                        destination = Destination.GestureSettings
+                        destination = Destination.GestureSettings,
                     ),
-                )
+                ),
             ),
             Category(
                 titleResId = R.string.category_event,
@@ -275,24 +275,24 @@ private data class Category(
                     Demo(
                         titleResId = R.string.name_map_click_event,
                         descriptionResId = R.string.description_map_click_event,
-                        destination = Destination.MapClickEvent
+                        destination = Destination.MapClickEvent,
                     ),
                     Demo(
                         titleResId = R.string.name_overlay_click_event,
                         descriptionResId = R.string.description_overlay_click_event,
-                        destination = Destination.OverlayClickEvent
+                        destination = Destination.OverlayClickEvent,
                     ),
                     Demo(
                         titleResId = R.string.name_symbol_click_event,
                         descriptionResId = R.string.description_symbol_click_event,
-                        destination = Destination.SymbolClickEvent
+                        destination = Destination.SymbolClickEvent,
                     ),
                     Demo(
                         titleResId = R.string.name_zoom_gestures_event,
                         descriptionResId = R.string.description_zoom_gestures_event,
-                        destination = Destination.ZoomGesturesEvent
+                        destination = Destination.ZoomGesturesEvent,
                     ),
-                )
+                ),
             ),
             Category(
                 titleResId = R.string.category_location,
@@ -300,14 +300,14 @@ private data class Category(
                     Demo(
                         titleResId = R.string.name_location_tracking,
                         descriptionResId = R.string.description_location_tracking,
-                        destination = Destination.LocationTracking
+                        destination = Destination.LocationTracking,
                     ),
                     Demo(
                         titleResId = R.string.name_custom_location_source,
                         descriptionResId = R.string.description_custom_location_source,
-                        destination = Destination.CustomLocationSource
+                        destination = Destination.CustomLocationSource,
                     ),
-                )
+                ),
             ),
         )
     }
@@ -325,25 +325,25 @@ fun HomeScreen(onItemClick: (Destination) -> Unit) {
                         IconButton(onClick = { openDropdownMenu = true }) {
                             Icon(Icons.Default.MoreVert, contentDescription = null)
                         }
-                    }
+                    },
                 )
-            }
+            },
         ) { contentPadding ->
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
-                contentPadding = contentPadding
+                contentPadding = contentPadding,
             ) {
                 Category.items.forEachIndexed { index, category ->
                     item(
                         key = index,
-                        contentType = { "Category" }
+                        contentType = { "Category" },
                     ) {
                         HomeCategoryItem(title = stringResource(category.titleResId))
                     }
                     items(
                         items = category.items,
                         key = { it.destination.route },
-                        contentType = { "Demo" }
+                        contentType = { "Demo" },
                     ) { demo ->
                         HomeDemoItem(demo, onItemClick = onItemClick)
                     }
@@ -355,11 +355,11 @@ fun HomeScreen(onItemClick: (Destination) -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .wrapContentSize(Alignment.TopEnd)
-                .padding(end = 4.dp)
+                .padding(end = 4.dp),
         ) {
             DropdownMenu(
                 expanded = openDropdownMenu,
-                onDismissRequest = { openDropdownMenu = false }
+                onDismissRequest = { openDropdownMenu = false },
             ) {
                 val context = LocalContext.current
                 DropdownMenuItem(onClick = {
@@ -402,7 +402,7 @@ private fun HomeDemoItem(
     Column(
         modifier = modifier.clickable {
             onItemClick(demo.destination)
-        }
+        },
     ) {
         Text(
             text = stringResource(demo.titleResId),

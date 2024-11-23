@@ -34,9 +34,9 @@ fun GroundOverlayScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_ground_overlay),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         NaverMap(
             contentPadding = contentPadding,
@@ -44,17 +44,17 @@ fun GroundOverlayScreen(upPress: () -> Unit) {
             GroundOverlay(
                 bounds = LatLngBounds(
                     LatLng(37.57023, 126.97672),
-                    LatLng(37.57545, 126.98323)
+                    LatLng(37.57545, 126.98323),
                 ),
-                alpha = 0.8f
+                alpha = 0.8f,
             )
 
             GroundOverlay(
                 bounds = LatLngBounds(
                     LatLng(37.566351, 126.977234),
-                    LatLng(37.568528, 126.97998)
+                    LatLng(37.568528, 126.97998),
                 ),
-                image = OverlayImage.fromResource(R.drawable.ground_overlay)
+                image = OverlayImage.fromResource(R.drawable.ground_overlay),
             )
         }
     }

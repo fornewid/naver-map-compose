@@ -33,7 +33,7 @@ fun CheckedText(
     text: String,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier
@@ -41,19 +41,19 @@ fun CheckedText(
             .toggleable(
                 value = checked,
                 onValueChange = { onCheckedChange(it) },
-                role = Role.Checkbox
+                role = Role.Checkbox,
             )
             .padding(horizontal = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Checkbox(
             checked = checked,
-            onCheckedChange = null
+            onCheckedChange = null,
         )
         Text(
             text = text,
             style = MaterialTheme.typography.body1.merge(),
-            modifier = Modifier.padding(start = 8.dp)
+            modifier = Modifier.padding(start = 8.dp),
         )
     }
 }

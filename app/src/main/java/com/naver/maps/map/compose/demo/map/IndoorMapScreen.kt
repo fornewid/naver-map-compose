@@ -38,9 +38,9 @@ fun IndoorMapScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_indoor_map),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
             val cameraPositionState = rememberCameraPositionState {

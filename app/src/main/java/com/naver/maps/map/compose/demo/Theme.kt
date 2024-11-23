@@ -30,15 +30,15 @@ private val LightColorPalette = lightColors(
     onPrimary = Color.White,
     secondary = Colors.Brand,
     secondaryVariant = Colors.Brand,
-    onSecondary = Color.White
+    onSecondary = Color.White,
 )
 
 @Composable
 fun NaverMapTheme(
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     MaterialTheme(
         colors = LightColorPalette,
-        content = content
+        content = content,
     )
 }

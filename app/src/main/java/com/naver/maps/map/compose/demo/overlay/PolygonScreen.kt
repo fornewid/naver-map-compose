@@ -35,9 +35,9 @@ fun PolygonOverlayScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_polygon_overlay),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         NaverMap(
             contentPadding = contentPadding,
@@ -51,7 +51,7 @@ fun PolygonOverlayScreen(upPress: () -> Unit) {
             PolygonOverlay(
                 coords = COORDS_2,
                 holes = HOLES,
-                color = Color.Gray.copy(alpha = 0.5f)
+                color = Color.Gray.copy(alpha = 0.5f),
             )
         }
     }

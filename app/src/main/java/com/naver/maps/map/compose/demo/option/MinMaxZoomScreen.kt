@@ -47,9 +47,9 @@ fun MinMaxZoomScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_min_max_zoom),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             val cameraPositionState = rememberCameraPositionState()
@@ -58,27 +58,27 @@ fun MinMaxZoomScreen(upPress: () -> Unit) {
                 properties = MapProperties(
                     minZoom = 10.0,
                     maxZoom = 16.0,
-                )
+                ),
             )
 
             Text(
                 text = stringResource(
                     R.string.format_double,
-                    cameraPositionState.position.zoom
+                    cameraPositionState.position.zoom,
                 ),
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(16.dp)
                     .background(
                         color = MaterialTheme.colors.primary,
-                        shape = RoundedCornerShape(8.dp)
+                        shape = RoundedCornerShape(8.dp),
                     )
                     .requiredSize(width = 64.dp, height = 36.dp)
                     .wrapContentHeight(),
                 color = Color.White,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
         }
     }

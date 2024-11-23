@@ -35,9 +35,9 @@ fun SymbolClickEventScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_symbol_click_event),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             val context = LocalContext.current
@@ -46,7 +46,7 @@ fun SymbolClickEventScreen(upPress: () -> Unit) {
                     context.showToast(
                         R.string.format_map_click,
                         coord.latitude,
-                        coord.longitude
+                        coord.longitude,
                     )
                 },
                 onSymbolClick = {
@@ -54,10 +54,10 @@ fun SymbolClickEventScreen(upPress: () -> Unit) {
                         R.string.format_symbol_click,
                         it.caption,
                         it.position.latitude,
-                        it.position.longitude
+                        it.position.longitude,
                     )
                     true
-                }
+                },
             )
         }
     }

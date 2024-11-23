@@ -45,9 +45,9 @@ fun ControlSettingsScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_control_settings),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
             val isCompassEnabled = remember { mutableStateOf(true) }
@@ -58,43 +58,43 @@ fun ControlSettingsScreen(upPress: () -> Unit) {
             val isLogoClickEnabled = remember { mutableStateOf(true) }
 
             Row(
-                modifier = Modifier.horizontalScroll(rememberScrollState())
+                modifier = Modifier.horizontalScroll(rememberScrollState()),
             ) {
                 CheckedText(
                     text = stringResource(R.string.compass),
                     checked = isCompassEnabled.value,
                     onCheckedChange = { isCompassEnabled.value = it },
-                    modifier = Modifier.wrapContentWidth()
+                    modifier = Modifier.wrapContentWidth(),
                 )
                 CheckedText(
                     text = stringResource(R.string.scale_bar),
                     checked = isScaleBarEnabled.value,
                     onCheckedChange = { isScaleBarEnabled.value = it },
-                    modifier = Modifier.wrapContentWidth()
+                    modifier = Modifier.wrapContentWidth(),
                 )
                 CheckedText(
                     text = stringResource(R.string.zoom_control),
                     checked = isZoomControlEnabled.value,
                     onCheckedChange = { isZoomControlEnabled.value = it },
-                    modifier = Modifier.wrapContentWidth()
+                    modifier = Modifier.wrapContentWidth(),
                 )
                 CheckedText(
                     text = stringResource(R.string.indoor_level_picker),
                     checked = isIndoorLevelPickerEnabled.value,
                     onCheckedChange = { isIndoorLevelPickerEnabled.value = it },
-                    modifier = Modifier.wrapContentWidth()
+                    modifier = Modifier.wrapContentWidth(),
                 )
                 CheckedText(
                     text = stringResource(R.string.location_button),
                     checked = isLocationButtonEnabled.value,
                     onCheckedChange = { isLocationButtonEnabled.value = it },
-                    modifier = Modifier.wrapContentWidth()
+                    modifier = Modifier.wrapContentWidth(),
                 )
                 CheckedText(
                     text = stringResource(R.string.logo_click),
                     checked = isLogoClickEnabled.value,
                     onCheckedChange = { isLogoClickEnabled.value = it },
-                    modifier = Modifier.wrapContentWidth()
+                    modifier = Modifier.wrapContentWidth(),
                 )
             }
 
@@ -111,7 +111,7 @@ fun ControlSettingsScreen(upPress: () -> Unit) {
                     isIndoorLevelPickerEnabled = isIndoorLevelPickerEnabled.value,
                     isLocationButtonEnabled = isLocationButtonEnabled.value,
                     isLogoClickEnabled = isLogoClickEnabled.value,
-                )
+                ),
             )
         }
     }

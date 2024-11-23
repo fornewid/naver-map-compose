@@ -59,19 +59,19 @@ fun LocationOverlayScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_location_overlay),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
             var currentBearing: Float by remember { mutableStateOf(0f) }
             Row(
                 modifier = Modifier.requiredHeight(40.dp),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     text = stringResource(R.string.label_bearing),
-                    modifier = Modifier.padding(start = 8.dp)
+                    modifier = Modifier.padding(start = 8.dp),
                 )
                 Slider(
                     value = currentBearing,
@@ -81,13 +81,13 @@ fun LocationOverlayScreen(upPress: () -> Unit) {
                     modifier = Modifier
                         .padding(8.dp)
                         .weight(1f),
-                    valueRange = 0f..360f
+                    valueRange = 0f..360f,
                 )
                 Text(
                     text = stringResource(R.string.format_bearing, currentBearing.toInt()),
                     modifier = Modifier
                         .padding(end = 8.dp)
-                        .requiredWidth(40.dp)
+                        .requiredWidth(40.dp),
                 )
             }
 
@@ -104,7 +104,7 @@ fun LocationOverlayScreen(upPress: () -> Unit) {
                     coroutineScope.launch {
                         circleAnimationState.animateCircle()
                     }
-                }
+                },
             ) {
                 LocationOverlay(
                     position = currentPosition,
@@ -149,7 +149,7 @@ private class CircleAnimationState {
         fraction.snapTo(0f)
         fraction.animateTo(
             targetValue = 1f,
-            animationSpec = repeatable(iterations = 2, tween(durationMillis = 1000))
+            animationSpec = repeatable(iterations = 2, tween(durationMillis = 1000)),
         )
     }
 }

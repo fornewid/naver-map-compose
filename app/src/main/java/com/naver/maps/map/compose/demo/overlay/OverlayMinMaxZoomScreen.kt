@@ -60,9 +60,9 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_overlay_min_max_zoom),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             val cameraPositionState = rememberCameraPositionState {
@@ -74,7 +74,7 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
                 Marker(
                     icon = MarkerIcons.GREEN,
                     state = rememberMarkerState(
-                        position = LatLng(37.56713851901027, 126.97891430703686)
+                        position = LatLng(37.56713851901027, 126.97891430703686),
                     ),
                     captionText = stringResource(R.string.caption_marker_1),
                     minZoom = 15.0,
@@ -86,7 +86,7 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
                 Marker(
                     icon = MarkerIcons.BLUE,
                     state = rememberMarkerState(
-                        position = LatLng(37.56713851901027, 126.97786189296272)
+                        position = LatLng(37.56713851901027, 126.97786189296272),
                     ),
                     captionText = stringResource(R.string.caption_marker_2),
                     minZoom = 15.0,
@@ -98,7 +98,7 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
                 Marker(
                     icon = MarkerIcons.RED,
                     state = rememberMarkerState(
-                        position = LatLng(37.566081877242425, 126.97891430703686)
+                        position = LatLng(37.566081877242425, 126.97891430703686),
                     ),
                     captionText = stringResource(R.string.caption_marker_3),
                     minZoom = 15.0,
@@ -110,7 +110,7 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
                 Marker(
                     icon = MarkerIcons.YELLOW,
                     state = rememberMarkerState(
-                        position = LatLng(37.566081877242425, 126.97786189296272)
+                        position = LatLng(37.566081877242425, 126.97786189296272),
                     ),
                     captionText = stringResource(R.string.caption_marker_4),
                     minZoom = 15.0,
@@ -123,21 +123,21 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
             Text(
                 text = stringResource(
                     R.string.format_double,
-                    cameraPositionState.position.zoom
+                    cameraPositionState.position.zoom,
                 ),
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(16.dp)
                     .background(
                         color = MaterialTheme.colors.primary,
-                        shape = RoundedCornerShape(8.dp)
+                        shape = RoundedCornerShape(8.dp),
                     )
                     .requiredSize(width = 64.dp, height = 36.dp)
                     .wrapContentHeight(),
                 color = Color.White,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
 
             val coroutineScope = rememberCoroutineScope()
@@ -150,15 +150,15 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
                     coroutineScope.launch {
                         cameraPositionState.animate(
                             CameraUpdate.toCameraPosition(DEFAULT_CAMERA_POSITION),
-                            animation = CameraAnimation.Easing
+                            animation = CameraAnimation.Easing,
                         )
                     }
-                }
+                },
             ) {
                 Icon(
                     Icons.Default.Refresh,
                     contentDescription = stringResource(R.string.content_description_reset),
-                    tint = Color.White
+                    tint = Color.White,
                 )
             }
         }
@@ -167,5 +167,5 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
 
 private val DEFAULT_CAMERA_POSITION = CameraPosition(
     NaverMapConstants.DefaultCameraPosition.target,
-    16.0
+    16.0,
 )

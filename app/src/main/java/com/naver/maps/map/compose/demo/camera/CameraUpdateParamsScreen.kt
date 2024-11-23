@@ -55,9 +55,9 @@ fun CameraUpdateParamsScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_camera_update_params),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             val cameraPositionState = rememberCameraPositionState()
@@ -90,16 +90,16 @@ fun CameraUpdateParamsScreen(upPress: () -> Unit) {
                         cameraPositionState.animate(
                             CameraUpdate.withParams(params),
                             animation = CameraAnimation.Easing,
-                            durationMs = 200
+                            durationMs = 200,
                         )
                     }
                     step = (step + 1) % 3
-                }
+                },
             ) {
                 Icon(
                     Icons.Default.PlayArrow,
                     contentDescription = stringResource(R.string.content_description_run),
-                    tint = Color.White
+                    tint = Color.White,
                 )
             }
         }

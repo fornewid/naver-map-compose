@@ -56,9 +56,9 @@ fun FitBoundsScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_fit_bounds),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             val cameraPositionState = rememberCameraPositionState()
@@ -87,16 +87,16 @@ fun FitBoundsScreen(upPress: () -> Unit) {
                         cameraPositionState.animate(
                             CameraUpdate.fitBounds(bounds, padding),
                             animation = CameraAnimation.Fly,
-                            durationMs = 5000
+                            durationMs = 5000,
                         )
                     }
                     flag = !flag
-                }
+                },
             ) {
                 Icon(
                     Icons.Default.PlayArrow,
                     contentDescription = stringResource(R.string.content_description_run),
-                    tint = Color.White
+                    tint = Color.White,
                 )
             }
         }
@@ -105,9 +105,9 @@ fun FitBoundsScreen(upPress: () -> Unit) {
 
 private val BOUNDS_1 = LatLngBounds(
     LatLng(37.4282975, 126.7644840),
-    LatLng(37.7014553, 127.1837949)
+    LatLng(37.7014553, 127.1837949),
 )
 private val BOUNDS_2 = LatLngBounds(
     LatLng(34.8357234, 128.7614072),
-    LatLng(35.3890374, 129.3055979)
+    LatLng(35.3890374, 129.3055979),
 )

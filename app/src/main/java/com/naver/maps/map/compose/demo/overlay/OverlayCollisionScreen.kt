@@ -61,49 +61,48 @@ fun OverlayCollisionScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_overlay_collision),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
-
             val isHideCollidedSymbols = remember { mutableStateOf(false) }
             val isHideCollidedMarkers = remember { mutableStateOf(false) }
             val isHideCollidedCaptions = remember { mutableStateOf(false) }
             val forceShowIcon = remember { mutableStateOf(false) }
             val forceShowCaption = remember { mutableStateOf(false) }
             Row(
-                modifier = Modifier.horizontalScroll(rememberScrollState())
+                modifier = Modifier.horizontalScroll(rememberScrollState()),
             ) {
                 CheckedText(
                     text = stringResource(R.string.hide_collided_symbols),
                     checked = isHideCollidedSymbols.value,
                     onCheckedChange = { isHideCollidedSymbols.value = it },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 )
                 CheckedText(
                     text = stringResource(R.string.hide_collided_markers),
                     checked = isHideCollidedMarkers.value,
                     onCheckedChange = { isHideCollidedMarkers.value = it },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 )
                 CheckedText(
                     text = stringResource(R.string.hide_collided_captions),
                     checked = isHideCollidedCaptions.value,
                     onCheckedChange = { isHideCollidedCaptions.value = it },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 )
                 CheckedText(
                     text = stringResource(R.string.force_show_icon),
                     checked = forceShowIcon.value,
                     onCheckedChange = { forceShowIcon.value = it },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 )
                 CheckedText(
                     text = stringResource(R.string.force_show_caption),
                     checked = forceShowCaption.value,
                     onCheckedChange = { forceShowCaption.value = it },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 )
             }
 
@@ -123,7 +122,7 @@ fun OverlayCollisionScreen(upPress: () -> Unit) {
                 Text(
                     text = stringResource(R.string.label_caption_aligns),
                     style = MaterialTheme.typography.body2.merge(),
-                    modifier = Modifier.padding(start = 16.dp)
+                    modifier = Modifier.padding(start = 16.dp),
                 )
                 radioOptions.forEachIndexed { index, text ->
                     Row(
@@ -133,19 +132,19 @@ fun OverlayCollisionScreen(upPress: () -> Unit) {
                             .selectable(
                                 selected = selectedOption == index,
                                 onClick = { onOptionSelected(index) },
-                                role = Role.RadioButton
+                                role = Role.RadioButton,
                             )
                             .padding(horizontal = 8.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         RadioButton(
                             selected = selectedOption == index,
-                            onClick = null
+                            onClick = null,
                         )
                         Text(
                             text = text,
                             style = MaterialTheme.typography.body1.merge(),
-                            modifier = Modifier.padding(start = 8.dp)
+                            modifier = Modifier.padding(start = 8.dp),
                         )
                     }
                 }
@@ -174,8 +173,8 @@ fun OverlayCollisionScreen(upPress: () -> Unit) {
                     val markerState = rememberMarkerState(
                         position = LatLng(
                             (BOUNDS.northLatitude - BOUNDS.southLatitude) * Math.random() + BOUNDS.southLatitude,
-                            (BOUNDS.eastLongitude - BOUNDS.westLongitude) * Math.random() + BOUNDS.westLongitude
-                        )
+                            (BOUNDS.eastLongitude - BOUNDS.westLongitude) * Math.random() + BOUNDS.westLongitude,
+                        ),
                     )
                     var important by remember { mutableStateOf(i < 10) }
                     Marker(
@@ -192,7 +191,7 @@ fun OverlayCollisionScreen(upPress: () -> Unit) {
                         onClick = {
                             important = !important
                             true
-                        }
+                        },
                     )
                 }
             }

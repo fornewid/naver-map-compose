@@ -44,9 +44,9 @@ fun OverlayClickEventScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_overlay_click_event),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             val context = LocalContext.current
@@ -55,14 +55,14 @@ fun OverlayClickEventScreen(upPress: () -> Unit) {
                     context.showToast(
                         R.string.format_map_click,
                         coord.latitude,
-                        coord.longitude
+                        coord.longitude,
                     )
-                }
+                },
             ) {
                 var enabled1 by remember { mutableStateOf(true) }
                 Marker(
                     state = rememberMarkerState(
-                        position = LatLng(37.57207, 126.97917)
+                        position = LatLng(37.57207, 126.97917),
                     ),
                     captionText = stringResource(R.string.consume_event),
                     icon = if (enabled1) {
@@ -73,13 +73,13 @@ fun OverlayClickEventScreen(upPress: () -> Unit) {
                     onClick = {
                         enabled1 = !enabled1
                         true
-                    }
+                    },
                 )
 
                 var enabled2 by remember { mutableStateOf(true) }
                 Marker(
                     state = rememberMarkerState(
-                        position = LatLng(37.56361, 126.97439)
+                        position = LatLng(37.56361, 126.97439),
                     ),
                     captionText = stringResource(R.string.propagate_event),
                     icon = if (enabled2) {
@@ -90,14 +90,14 @@ fun OverlayClickEventScreen(upPress: () -> Unit) {
                     onClick = {
                         enabled2 = !enabled2
                         false
-                    }
+                    },
                 )
 
                 Marker(
                     state = rememberMarkerState(
-                        position = LatLng(37.56671, 126.98260)
+                        position = LatLng(37.56671, 126.98260),
                     ),
-                    captionText = stringResource(R.string.no_event_listener)
+                    captionText = stringResource(R.string.no_event_listener),
                 )
             }
         }

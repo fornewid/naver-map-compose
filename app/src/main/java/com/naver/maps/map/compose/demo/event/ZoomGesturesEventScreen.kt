@@ -45,9 +45,9 @@ fun ZoomGesturesEventScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_zoom_gestures_event),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
             val consumeDoubleTap = remember { mutableStateOf(false) }
@@ -59,19 +59,19 @@ fun ZoomGesturesEventScreen(upPress: () -> Unit) {
                     fontSize = 14.sp,
                     modifier = Modifier
                         .requiredWidth(100.dp)
-                        .padding(top = 8.dp, bottom = 8.dp, start = 16.dp)
+                        .padding(top = 8.dp, bottom = 8.dp, start = 16.dp),
                 )
                 CheckedText(
                     text = stringResource(R.string.double_tap),
                     checked = consumeDoubleTap.value,
                     onCheckedChange = { consumeDoubleTap.value = it },
-                    modifier = Modifier.wrapContentWidth()
+                    modifier = Modifier.wrapContentWidth(),
                 )
                 CheckedText(
                     text = stringResource(R.string.two_finger_tap),
                     checked = consumeTwoFingerTap.value,
                     onCheckedChange = { consumeTwoFingerTap.value = it },
-                    modifier = Modifier.wrapContentWidth()
+                    modifier = Modifier.wrapContentWidth(),
                 )
             }
 
@@ -81,7 +81,7 @@ fun ZoomGesturesEventScreen(upPress: () -> Unit) {
                     context.showToast(
                         R.string.format_map_double_tap,
                         coord.latitude,
-                        coord.longitude
+                        coord.longitude,
                     )
                     consumeDoubleTap.value
                 },
@@ -89,7 +89,7 @@ fun ZoomGesturesEventScreen(upPress: () -> Unit) {
                     context.showToast(
                         R.string.format_map_two_finger_tap,
                         coord.latitude,
-                        coord.longitude
+                        coord.longitude,
                     )
                     consumeTwoFingerTap.value
                 },

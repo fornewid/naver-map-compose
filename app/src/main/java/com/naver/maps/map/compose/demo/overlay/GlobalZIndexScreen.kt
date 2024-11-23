@@ -39,9 +39,9 @@ fun GlobalZIndexScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_global_z_index),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         NaverMap(
             contentPadding = contentPadding,
@@ -56,14 +56,14 @@ fun GlobalZIndexScreen(upPress: () -> Unit) {
 
             Marker(
                 state = rememberMarkerState(
-                    position = LatLng(37.5701761, 126.9799315)
+                    position = LatLng(37.5701761, 126.9799315),
                 ),
                 captionText = stringResource(R.string.marker_over_path),
             )
 
             Marker(
                 state = rememberMarkerState(
-                    position = LatLng(37.5664663, 126.9772952)
+                    position = LatLng(37.5664663, 126.9772952),
                 ),
                 icon = MarkerIcons.BLUE,
                 captionText = stringResource(R.string.marker_under_path),
