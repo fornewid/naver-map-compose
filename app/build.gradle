@@ -1,19 +1,14 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
+    id("navermap.android.application")
+    id("navermap.android.compose")
 }
 
 android {
     namespace 'com.naver.maps.map.compose.demo'
-    compileSdkVersion buildConfig.compileSdk
     defaultConfig {
         applicationId "com.naver.maps.map.compose.demo"
-        minSdkVersion buildConfig.minSdk
-        targetSdkVersion buildConfig.targetSdk
         versionCode 1
         versionName "1.0.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
         // We use a bundled debug keystore, to allow debug builds from CI to be upgradable
@@ -33,16 +28,6 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion "${libs.versions.composeCompiler.get()}"
-    }
-    buildFeatures {
-        compose true
     }
     packagingOptions {
         resources {

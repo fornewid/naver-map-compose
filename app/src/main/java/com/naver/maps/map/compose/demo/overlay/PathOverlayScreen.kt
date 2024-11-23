@@ -52,19 +52,19 @@ fun PathOverlayScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_path_overlay),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         var sliderPosition: Float by remember { mutableStateOf(130f) }
         Column(modifier = Modifier.padding(contentPadding)) {
             Row(
                 modifier = Modifier.requiredHeight(40.dp),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     text = stringResource(R.string.label_progress),
-                    modifier = Modifier.padding(start = 8.dp)
+                    modifier = Modifier.padding(start = 8.dp),
                 )
                 Slider(
                     value = sliderPosition,
@@ -74,7 +74,7 @@ fun PathOverlayScreen(upPress: () -> Unit) {
                     modifier = Modifier
                         .padding(8.dp)
                         .weight(1f),
-                    valueRange = 0f..200f
+                    valueRange = 0f..200f,
                 )
                 val progress: Int by remember {
                     derivedStateOf { (sliderPosition - 100).toInt() }
@@ -83,7 +83,7 @@ fun PathOverlayScreen(upPress: () -> Unit) {
                     text = stringResource(R.string.format_progress, progress),
                     modifier = Modifier
                         .padding(end = 8.dp)
-                        .requiredWidth(50.dp)
+                        .requiredWidth(50.dp),
                 )
             }
 
@@ -97,7 +97,7 @@ fun PathOverlayScreen(upPress: () -> Unit) {
                 onMapClick = { _, coord ->
                     val progress = GeometryUtils.getProgress(coords, coord)
                     sliderPosition = (progress * 100 + 100).toFloat()
-                }
+                },
             ) {
                 val width = dimensionResource(R.dimen.path_overlay_width)
                 val outlineWidth = dimensionResource(R.dimen.path_overlay_outline_width)

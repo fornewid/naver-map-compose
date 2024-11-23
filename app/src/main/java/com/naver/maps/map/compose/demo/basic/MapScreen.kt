@@ -30,12 +30,12 @@ fun MapScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_map),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         NaverMap(
-            contentPadding = contentPadding
+            contentPadding = contentPadding,
         )
     }
 }

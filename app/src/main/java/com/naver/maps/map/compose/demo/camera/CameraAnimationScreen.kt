@@ -54,14 +54,14 @@ fun CameraAnimationScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_camera_animation),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             val cameraPositionState = rememberCameraPositionState()
             NaverMap(
-                cameraPositionState = cameraPositionState
+                cameraPositionState = cameraPositionState,
             ) {
                 Marker(state = rememberMarkerState(position = POSITION_1.target))
                 Marker(state = rememberMarkerState(position = POSITION_2.target))
@@ -81,16 +81,16 @@ fun CameraAnimationScreen(upPress: () -> Unit) {
                         cameraPositionState.animate(
                             CameraUpdate.toCameraPosition(position),
                             animation = animation,
-                            durationMs = 5000
+                            durationMs = 5000,
                         )
                     }
                     flag = !flag
-                }
+                },
             ) {
                 Icon(
                     Icons.Default.PlayArrow,
                     contentDescription = stringResource(R.string.content_description_run),
-                    tint = Color.White
+                    tint = Color.White,
                 )
             }
         }

@@ -194,6 +194,6 @@ public fun PathOverlay(
             set(maxZoomInclusive) { this.overlay.isMaxZoomInclusive = it }
             set(zIndex) { this.overlay.zIndex = it }
             set(globalZIndex) { this.overlay.globalZIndex = it }
-        }
+        },
     )
 }

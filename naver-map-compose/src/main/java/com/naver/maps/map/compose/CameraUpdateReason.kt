@@ -31,6 +31,7 @@ import androidx.compose.runtime.Immutable
  * 이는 naver-map-compose에서 아직 지원하지 않는 Maps SDK의 새 상수 값일 수 있습니다.
  * 이 경우 라이브러리가 새 상수를 포함하도록 업데이트되어야 합니다.
  */
+@Suppress("ClassName")
 @Immutable
 public enum class CameraUpdateReason(public val value: Int) {
     UNKNOWN(2),

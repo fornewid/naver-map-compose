@@ -48,9 +48,9 @@ fun NightModeScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_night_mode),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
             var isNightModeEnabled by remember { mutableStateOf(true) }
@@ -58,7 +58,7 @@ fun NightModeScreen(upPress: () -> Unit) {
                 text = stringResource(R.string.night_mode),
                 checked = isNightModeEnabled,
                 onCheckedChange = { isNightModeEnabled = it },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             )
 
             val mapProperties by remember {
@@ -83,7 +83,6 @@ fun NightModeScreen(upPress: () -> Unit) {
             NaverMap(
                 properties = mapProperties,
             ) {
-
                 MARKER_COORDS.forEach {
                     Marker(
                         state = rememberMarkerState(position = it),

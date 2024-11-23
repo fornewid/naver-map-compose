@@ -52,9 +52,9 @@ fun DisplayOptionsScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_display_options),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
             var lightnessProgress by remember { mutableStateOf(100f) }
@@ -114,7 +114,7 @@ fun DisplayOptionsScreen(upPress: () -> Unit) {
                     NaverMapConstants.DefaultCameraPosition.target,
                     16.0,
                     40.0,
-                    0.0
+                    0.0,
                 )
             }
             NaverMap(
@@ -141,7 +141,7 @@ private fun SliderItem(
                 fontSize = 16.sp,
                 modifier = Modifier
                     .padding(start = 16.dp)
-                    .requiredWidth(100.dp)
+                    .requiredWidth(100.dp),
             )
             Slider(
                 value = value,
@@ -149,17 +149,17 @@ private fun SliderItem(
                 modifier = Modifier
                     .padding(horizontal = 8.dp)
                     .weight(1f),
-                valueRange = valueRange
+                valueRange = valueRange,
             )
             Text(
                 text = stringResource(
                     R.string.format_display_option_value,
-                    valuePercent
+                    valuePercent,
                 ),
                 fontSize = 16.sp,
                 modifier = Modifier
                     .padding(end = 16.dp)
-                    .requiredWidth(60.dp)
+                    .requiredWidth(60.dp),
             )
         }
     }

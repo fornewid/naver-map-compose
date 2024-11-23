@@ -63,9 +63,9 @@ fun MapTypesAndLayerGroupsScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_map_types_and_layer_groups),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
             val mapTypes = stringArrayResource(R.array.map_types)
@@ -84,7 +84,7 @@ fun MapTypesAndLayerGroupsScreen(upPress: () -> Unit) {
                     fontSize = 14.sp,
                     modifier = Modifier
                         .requiredWidth(80.dp)
-                        .padding(top = 8.dp, bottom = 8.dp, start = 16.dp)
+                        .padding(top = 8.dp, bottom = 8.dp, start = 16.dp),
                 )
 
                 var mapTypeExpanded by remember { mutableStateOf(false) }
@@ -94,28 +94,28 @@ fun MapTypesAndLayerGroupsScreen(upPress: () -> Unit) {
                             .clickable { mapTypeExpanded = !mapTypeExpanded }
                             .padding(8.dp),
                         horizontalArrangement = Arrangement.Center,
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Text(
                             text = mapTypes[selectedMapTypePosition],
                             fontSize = 18.sp,
-                            modifier = Modifier.padding(end = 8.dp).weight(1f)
+                            modifier = Modifier.padding(end = 8.dp).weight(1f),
                         )
                         Icon(
                             Icons.Filled.ArrowDropDown,
-                            contentDescription = null
+                            contentDescription = null,
                         )
 
                         DropdownMenu(
                             expanded = mapTypeExpanded,
-                            onDismissRequest = { mapTypeExpanded = false }
+                            onDismissRequest = { mapTypeExpanded = false },
                         ) {
                             mapTypes.forEachIndexed { index, mapType ->
                                 DropdownMenuItem(
                                     onClick = {
                                         mapTypeExpanded = false
                                         selectedMapTypePosition = index
-                                    }
+                                    },
                                 ) {
                                     Text(text = mapType)
                                 }
@@ -129,13 +129,13 @@ fun MapTypesAndLayerGroupsScreen(upPress: () -> Unit) {
                     Row(
                         Modifier.padding(8.dp),
                         horizontalArrangement = Arrangement.Center,
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         CompositionLocalProvider(LocalMinimumInteractiveComponentEnforcement provides false) {
                             Button(
                                 onClick = {
                                     layerGroupExpanded = !layerGroupExpanded
-                                }
+                                },
                             ) {
                                 Text(
                                     text = stringResource(R.string.layer_groups),
@@ -146,78 +146,78 @@ fun MapTypesAndLayerGroupsScreen(upPress: () -> Unit) {
 
                         DropdownMenu(
                             expanded = layerGroupExpanded,
-                            onDismissRequest = { layerGroupExpanded = false }
+                            onDismissRequest = { layerGroupExpanded = false },
                         ) {
                             DropdownMenuItem(
                                 onClick = {
                                     layerGroupExpanded = false
                                     isBuildingLayerGroupEnabled = !isBuildingLayerGroupEnabled
-                                }
+                                },
                             ) {
                                 Text(text = stringResource(R.string.building))
                                 Checkbox(
                                     checked = isBuildingLayerGroupEnabled,
-                                    onCheckedChange = null
+                                    onCheckedChange = null,
                                 )
                             }
                             DropdownMenuItem(
                                 onClick = {
                                     layerGroupExpanded = false
                                     isTransitLayerGroupEnabled = !isTransitLayerGroupEnabled
-                                }
+                                },
                             ) {
                                 Text(text = stringResource(R.string.transit))
                                 Checkbox(
                                     checked = isTransitLayerGroupEnabled,
-                                    onCheckedChange = null
+                                    onCheckedChange = null,
                                 )
                             }
                             DropdownMenuItem(
                                 onClick = {
                                     layerGroupExpanded = false
                                     isBicycleLayerGroupEnabled = !isBicycleLayerGroupEnabled
-                                }
+                                },
                             ) {
                                 Text(text = stringResource(R.string.bicycle))
                                 Checkbox(
                                     checked = isBicycleLayerGroupEnabled,
-                                    onCheckedChange = null
+                                    onCheckedChange = null,
                                 )
                             }
                             DropdownMenuItem(
                                 onClick = {
                                     layerGroupExpanded = false
                                     isTrafficLayerGroupEnabled = !isTrafficLayerGroupEnabled
-                                }
+                                },
                             ) {
                                 Text(text = stringResource(R.string.traffic))
                                 Checkbox(
                                     checked = isTrafficLayerGroupEnabled,
-                                    onCheckedChange = null
+                                    onCheckedChange = null,
                                 )
                             }
                             DropdownMenuItem(
                                 onClick = {
                                     layerGroupExpanded = false
                                     isCadastralLayerGroupEnabled = !isCadastralLayerGroupEnabled
-                                }
+                                },
                             ) {
                                 Text(text = stringResource(R.string.cadastral))
                                 Checkbox(
                                     checked = isCadastralLayerGroupEnabled,
-                                    onCheckedChange = null
+                                    onCheckedChange = null,
                                 )
                             }
                             DropdownMenuItem(
                                 onClick = {
                                     layerGroupExpanded = false
                                     isMountainLayerGroupEnabled = !isMountainLayerGroupEnabled
-                                }
+                                },
                             ) {
                                 Text(text = stringResource(R.string.mountain))
                                 Checkbox(
                                     checked = isMountainLayerGroupEnabled,
-                                    onCheckedChange = null
+                                    onCheckedChange = null,
                                 )
                             }
                         }
@@ -229,7 +229,7 @@ fun MapTypesAndLayerGroupsScreen(upPress: () -> Unit) {
                     NaverMapConstants.DefaultCameraPosition.target,
                     16.0,
                     40.0,
-                    0.0
+                    0.0,
                 )
             }
             NaverMap(

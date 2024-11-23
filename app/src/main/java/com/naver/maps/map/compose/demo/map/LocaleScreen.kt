@@ -54,9 +54,9 @@ fun LocaleScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_locale),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
             var selectedPosition by remember { mutableStateOf(0) }
@@ -67,7 +67,7 @@ fun LocaleScreen(upPress: () -> Unit) {
                     fontSize = 14.sp,
                     modifier = Modifier
                         .requiredWidth(80.dp)
-                        .padding(top = 8.dp, bottom = 8.dp, start = 16.dp)
+                        .padding(top = 8.dp, bottom = 8.dp, start = 16.dp),
                 )
 
                 var expanded by remember { mutableStateOf(false) }
@@ -77,29 +77,29 @@ fun LocaleScreen(upPress: () -> Unit) {
                             .clickable { expanded = !expanded }
                             .padding(8.dp),
                         horizontalArrangement = Arrangement.Center,
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         val locales = stringArrayResource(R.array.locales)
                         Text(
                             text = locales[selectedPosition],
                             fontSize = 18.sp,
-                            modifier = Modifier.padding(end = 8.dp).weight(1f)
+                            modifier = Modifier.padding(end = 8.dp).weight(1f),
                         )
                         Icon(
                             Icons.Filled.ArrowDropDown,
-                            contentDescription = null
+                            contentDescription = null,
                         )
 
                         DropdownMenu(
                             expanded = expanded,
-                            onDismissRequest = { expanded = false }
+                            onDismissRequest = { expanded = false },
                         ) {
                             locales.forEachIndexed { index, locale ->
                                 DropdownMenuItem(
                                     onClick = {
                                         expanded = false
                                         selectedPosition = index
-                                    }
+                                    },
                                 ) {
                                     Text(text = locale)
                                 }

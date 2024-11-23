@@ -51,9 +51,9 @@ fun PivotScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_pivot),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             val cameraPositionState = rememberCameraPositionState()
@@ -75,12 +75,12 @@ fun PivotScreen(upPress: () -> Unit) {
                     val pivot = if (flag) PIVOT_2 else PIVOT_1
                     cameraPositionState.move(CameraUpdate.scrollTo(coord).pivot(pivot))
                     flag = !flag
-                }
+                },
             ) {
                 Icon(
                     Icons.Default.PlayArrow,
                     contentDescription = stringResource(R.string.content_description_run),
-                    tint = Color.White
+                    tint = Color.White,
                 )
             }
         }

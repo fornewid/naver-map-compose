@@ -47,9 +47,9 @@ fun MaxTiltScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_max_tilt),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             val cameraPositionState = rememberCameraPositionState()
@@ -57,27 +57,27 @@ fun MaxTiltScreen(upPress: () -> Unit) {
                 cameraPositionState = cameraPositionState,
                 properties = MapProperties(
                     maxTilt = 30.0,
-                )
+                ),
             )
 
             Text(
                 text = stringResource(
                     R.string.format_double,
-                    cameraPositionState.position.tilt
+                    cameraPositionState.position.tilt,
                 ),
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(16.dp)
                     .background(
                         color = MaterialTheme.colors.primary,
-                        shape = RoundedCornerShape(8.dp)
+                        shape = RoundedCornerShape(8.dp),
                     )
                     .requiredSize(width = 64.dp, height = 36.dp)
                     .wrapContentHeight(),
                 color = Color.White,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
         }
     }

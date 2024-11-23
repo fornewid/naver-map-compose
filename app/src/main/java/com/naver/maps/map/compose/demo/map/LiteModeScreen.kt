@@ -58,9 +58,9 @@ fun LiteModeScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_lite_mode),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
             val mapTypes = stringArrayResource(R.array.map_types_without_navi)
@@ -72,7 +72,7 @@ fun LiteModeScreen(upPress: () -> Unit) {
                     fontSize = 14.sp,
                     modifier = Modifier
                         .requiredWidth(80.dp)
-                        .padding(top = 8.dp, bottom = 8.dp, start = 16.dp)
+                        .padding(top = 8.dp, bottom = 8.dp, start = 16.dp),
                 )
 
                 var expanded by remember { mutableStateOf(false) }
@@ -82,28 +82,30 @@ fun LiteModeScreen(upPress: () -> Unit) {
                             .clickable { expanded = !expanded }
                             .padding(8.dp),
                         horizontalArrangement = Arrangement.Center,
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Text(
                             text = mapTypes[selectedPosition],
                             fontSize = 18.sp,
-                            modifier = Modifier.padding(end = 8.dp).weight(1f)
+                            modifier = Modifier
+                                .padding(end = 8.dp)
+                                .weight(1f),
                         )
                         Icon(
                             Icons.Filled.ArrowDropDown,
-                            contentDescription = null
+                            contentDescription = null,
                         )
 
                         DropdownMenu(
                             expanded = expanded,
-                            onDismissRequest = { expanded = false }
+                            onDismissRequest = { expanded = false },
                         ) {
                             mapTypes.forEachIndexed { index, mapType ->
                                 DropdownMenuItem(
                                     onClick = {
                                         expanded = false
                                         selectedPosition = index
-                                    }
+                                    },
                                 ) {
                                     Text(text = mapType)
                                 }
@@ -117,7 +119,7 @@ fun LiteModeScreen(upPress: () -> Unit) {
                     NaverMapConstants.DefaultCameraPosition.target,
                     16.0,
                     40.0,
-                    0.0
+                    0.0,
                 )
             }
             NaverMap(

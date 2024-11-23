@@ -56,16 +56,16 @@ fun MarkerScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_marker),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         val cameraPositionState = rememberCameraPositionState {
             this.position = CameraPosition(
                 NaverMapConstants.DefaultCameraPosition.target,
                 NaverMapConstants.DefaultCameraPosition.zoom,
                 30.0,
-                45.0
+                45.0,
             )
         }
         NaverMap(
@@ -74,19 +74,19 @@ fun MarkerScreen(upPress: () -> Unit) {
         ) {
             Marker(
                 state = rememberMarkerState(
-                    position = LatLng(37.5666102, 126.9783881)
+                    position = LatLng(37.5666102, 126.9783881),
                 ),
             )
             Marker(
                 state = rememberMarkerState(
-                    position = LatLng(37.57000, 126.97618)
+                    position = LatLng(37.57000, 126.97618),
                 ),
                 icon = MarkerIcons.BLACK,
                 angle = 315f,
             )
             Marker(
                 state = rememberMarkerState(
-                    position = LatLng(37.57145, 126.98191)
+                    position = LatLng(37.57145, 126.98191),
                 ),
                 icon = OverlayImage.fromResource(R.drawable.ic_info_black_24dp),
                 width = dimensionResource(R.dimen.marker_size),
@@ -96,7 +96,7 @@ fun MarkerScreen(upPress: () -> Unit) {
             )
             Marker(
                 state = rememberMarkerState(
-                    position = LatLng(37.56768, 126.98602)
+                    position = LatLng(37.56768, 126.98602),
                 ),
                 icon = OverlayImage.fromResource(R.drawable.marker_right_bottom),
                 anchor = Offset(1f, 1f),
@@ -104,7 +104,7 @@ fun MarkerScreen(upPress: () -> Unit) {
             )
             Marker(
                 state = rememberMarkerState(
-                    position = LatLng(37.56436, 126.97499)
+                    position = LatLng(37.56436, 126.97499),
                 ),
                 icon = MarkerIcons.YELLOW,
                 captionMinZoom = 12.0,
@@ -113,7 +113,7 @@ fun MarkerScreen(upPress: () -> Unit) {
             )
             Marker(
                 state = rememberMarkerState(
-                    position = LatLng(37.56138, 126.97970)
+                    position = LatLng(37.56138, 126.97970),
                 ),
                 icon = MarkerIcons.PINK,
                 captionTextSize = 14.sp,
@@ -126,16 +126,16 @@ fun MarkerScreen(upPress: () -> Unit) {
             )
             Marker(
                 state = rememberMarkerState(
-                    position = LatLng(37.56500, 126.9783881)
+                    position = LatLng(37.56500, 126.9783881),
                 ),
                 icon = MarkerIcons.BLACK,
                 iconTintColor = Color.Red,
-                alpha = 0.5f
+                alpha = 0.5f,
             )
             MarkerComposable(
                 keys = arrayOf("hotel"),
                 state = rememberMarkerState(
-                    position = LatLng(37.564378, 126.980058)
+                    position = LatLng(37.564378, 126.980058),
                 ),
             ) {
                 Box(

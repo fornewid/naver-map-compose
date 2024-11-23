@@ -35,9 +35,9 @@ fun PolylineOverlayScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_polyline_overlay),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         NaverMap(
             contentPadding = contentPadding,
@@ -48,14 +48,14 @@ fun PolylineOverlayScreen(upPress: () -> Unit) {
             PolylineOverlay(
                 width = width,
                 coords = COORDS_1,
-                color = MaterialTheme.colors.primary
+                color = MaterialTheme.colors.primary,
             )
 
             PolylineOverlay(
                 width = width,
                 coords = COORDS_2,
                 pattern = arrayOf(patternInterval, patternInterval),
-                color = Color.Gray
+                color = Color.Gray,
             )
         }
     }

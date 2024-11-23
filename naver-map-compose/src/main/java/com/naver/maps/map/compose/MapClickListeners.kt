@@ -56,7 +56,7 @@ internal class MapClickListeners {
 internal class MapClickListenerNode<L : Any>(
     private val map: NaverMap,
     private val setter: NaverMap.(L?) -> Unit,
-    private val listener: L
+    private val listener: L,
 ) : MapNode {
     override fun onAttached() = setListener(listener)
     override fun onRemoved() = setListener(null)
@@ -72,7 +72,7 @@ internal class MapChangeListenerNode<L : Any>(
     private val map: NaverMap,
     private val add: NaverMap.(L) -> Unit,
     private val remove: NaverMap.(L) -> Unit,
-    private val listener: L
+    private val listener: L,
 ) : MapNode {
     override fun onAttached() = map.add(listener)
     override fun onRemoved() = Unit
@@ -90,7 +90,7 @@ internal fun MapClickListenerUpdater() {
             MapClickListenerComposeNode(
                 callback,
                 NaverMap::setOnMapClickListener,
-                OnMapClickListener { point, coord -> callback().invoke(point, coord) }
+                OnMapClickListener { point, coord -> callback().invoke(point, coord) },
             )
         }
 
@@ -98,7 +98,7 @@ internal fun MapClickListenerUpdater() {
             MapClickListenerComposeNode(
                 callback,
                 NaverMap::setOnMapLongClickListener,
-                OnMapLongClickListener { point, coord -> callback().invoke(point, coord) }
+                OnMapLongClickListener { point, coord -> callback().invoke(point, coord) },
             )
         }
 
@@ -106,7 +106,7 @@ internal fun MapClickListenerUpdater() {
             MapClickListenerComposeNode(
                 callback,
                 NaverMap::setOnMapDoubleTapListener,
-                OnMapDoubleTapListener { point, coord -> callback().invoke(point, coord) }
+                OnMapDoubleTapListener { point, coord -> callback().invoke(point, coord) },
             )
         }
 
@@ -114,7 +114,7 @@ internal fun MapClickListenerUpdater() {
             MapClickListenerComposeNode(
                 callback,
                 NaverMap::setOnMapTwoFingerTapListener,
-                OnMapTwoFingerTapListener { point, coord -> callback().invoke(point, coord) }
+                OnMapTwoFingerTapListener { point, coord -> callback().invoke(point, coord) },
             )
         }
 
@@ -123,7 +123,7 @@ internal fun MapClickListenerUpdater() {
                 callback,
                 NaverMap::addOnLoadListener,
                 NaverMap::removeOnLoadListener,
-                OnLoadListener { callback().invoke() }
+                OnLoadListener { callback().invoke() },
             )
         }
 
@@ -132,7 +132,7 @@ internal fun MapClickListenerUpdater() {
                 callback,
                 NaverMap::addOnLocationChangeListener,
                 NaverMap::removeOnLocationChangeListener,
-                OnLocationChangeListener { callback().invoke(it) }
+                OnLocationChangeListener { callback().invoke(it) },
             )
         }
 
@@ -141,7 +141,7 @@ internal fun MapClickListenerUpdater() {
                 callback,
                 NaverMap::addOnOptionChangeListener,
                 NaverMap::removeOnOptionChangeListener,
-                OnOptionChangeListener { callback().invoke() }
+                OnOptionChangeListener { callback().invoke() },
             )
         }
 
@@ -149,7 +149,7 @@ internal fun MapClickListenerUpdater() {
             MapClickListenerComposeNode(
                 callback,
                 NaverMap::setOnSymbolClickListener,
-                OnSymbolClickListener { callback().invoke(it) }
+                OnSymbolClickListener { callback().invoke(it) },
             )
         }
 
@@ -158,7 +158,7 @@ internal fun MapClickListenerUpdater() {
                 callback,
                 NaverMap::addOnIndoorSelectionChangeListener,
                 NaverMap::removeOnIndoorSelectionChangeListener,
-                OnIndoorSelectionChangeListener { callback().invoke(it) }
+                OnIndoorSelectionChangeListener { callback().invoke(it) },
             )
         }
     }
@@ -182,7 +182,7 @@ internal fun MapClickListenerUpdater() {
 private fun <L : Any> MapClickListenerComposeNode(
     callback: () -> Any?,
     setter: NaverMap.(L?) -> Unit,
-    listener: L
+    listener: L,
 ) {
     val mapApplier = currentComposer.applier as MapApplier
 
@@ -193,7 +193,7 @@ private fun <L : Any> MapClickListenerComposeNode(
 @NaverMapComposable
 private fun MapClickListenerComposeNode(
     callback: () -> Any?,
-    factory: () -> MapClickListenerNode<*>
+    factory: () -> MapClickListenerNode<*>,
 ) {
     if (callback() != null) ComposeNode<MapClickListenerNode<*>, MapApplier>(factory) {}
 }
@@ -204,7 +204,7 @@ private fun <L : Any> MapChangeListenerComposeNode(
     callback: () -> Any?,
     add: NaverMap.(L) -> Unit,
     remove: NaverMap.(L) -> Unit,
-    listener: L
+    listener: L,
 ) {
     val mapApplier = currentComposer.applier as MapApplier
 
@@ -217,7 +217,7 @@ private fun <L : Any> MapChangeListenerComposeNode(
 @NaverMapComposable
 private fun MapChangeListenerComposeNode(
     callback: () -> Any?,
-    factory: () -> MapChangeListenerNode<*>
+    factory: () -> MapChangeListenerNode<*>,
 ) {
     if (callback() != null) ComposeNode<MapChangeListenerNode<*>, MapApplier>(factory) {}
 }

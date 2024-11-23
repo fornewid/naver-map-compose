@@ -1,31 +1,13 @@
 plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
-    id 'com.vanniktech.maven.publish'
-    id 'org.jetbrains.dokka'
-    id 'me.tylerbwong.gradle.metalava'
+    id("navermap.android.library")
+    id("navermap.android.compose")
+    alias(libs.plugins.maven.publish)
+    alias(libs.plugins.jetbrains.dokka)
+    alias(libs.plugins.metalava)
 }
 
 android {
     namespace 'com.naver.maps.map.compose'
-    compileSdkVersion buildConfig.compileSdk
-    defaultConfig {
-        minSdkVersion buildConfig.minSdk
-        targetSdkVersion buildConfig.targetSdk
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion "${libs.versions.composeCompiler.get()}"
-    }
-    buildFeatures {
-        buildConfig false
-        compose true
-    }
     kotlinOptions {
         freeCompilerArgs += '-Xexplicit-api=warning'
     }

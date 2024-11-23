@@ -103,7 +103,7 @@ internal inline fun MapUpdater(
                 density = density,
                 layoutDirection = layoutDirection,
             )
-        }
+        },
     ) {
         // The node holds density and layoutDirection so that the updater blocks can be
         // non-capturing, allowing the compiler to turn them into singletons
@@ -122,7 +122,7 @@ internal inline fun MapUpdater(
                     it.calculateLeftPadding(node.layoutDirection).roundToPx(),
                     it.calculateTopPadding().roundToPx(),
                     it.calculateRightPadding(node.layoutDirection).roundToPx(),
-                    it.calculateBottomPadding().roundToPx()
+                    it.calculateBottomPadding().roundToPx(),
                 )
             }
         }
@@ -160,7 +160,7 @@ internal inline fun MapUpdater(
                     it.calculateLeftPadding(node.layoutDirection).roundToPx(),
                     it.calculateTopPadding().roundToPx(),
                     it.calculateRightPadding(node.layoutDirection).roundToPx(),
-                    it.calculateBottomPadding().roundToPx()
+                    it.calculateBottomPadding().roundToPx(),
                 )
             }
         }

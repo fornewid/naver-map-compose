@@ -66,16 +66,15 @@ fun ContentPaddingScreen(upPress: () -> Unit) {
         topBar = {
             DefaultTopAppBar(
                 text = stringResource(R.string.name_content_padding),
-                upPress = upPress
+                upPress = upPress,
             )
-        }
+        },
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
-
             val cameraPositionState = rememberCameraPositionState {
                 this.position = CameraPosition(
                     COORD_1,
-                    NaverMapConstants.DefaultCameraPosition.zoom
+                    NaverMapConstants.DefaultCameraPosition.zoom,
                 )
             }
 
@@ -85,7 +84,7 @@ fun ContentPaddingScreen(upPress: () -> Unit) {
                     fontSize = 14.sp,
                     modifier = Modifier
                         .padding(start = 16.dp)
-                        .requiredWidth(100.dp)
+                        .requiredWidth(100.dp),
                 )
                 Text(
                     text = cameraPositionState.contentBounds
@@ -95,14 +94,14 @@ fun ContentPaddingScreen(upPress: () -> Unit) {
                                 content.southLatitude,
                                 content.westLongitude,
                                 content.northLatitude,
-                                content.eastLongitude
+                                content.eastLongitude,
                             )
                         }
                         .orEmpty(),
                     fontSize = 14.sp,
                     modifier = Modifier
                         .padding(end = 16.dp)
-                        .fillMaxWidth()
+                        .fillMaxWidth(),
                 )
             }
 
@@ -112,7 +111,7 @@ fun ContentPaddingScreen(upPress: () -> Unit) {
                     fontSize = 14.sp,
                     modifier = Modifier
                         .padding(start = 16.dp)
-                        .requiredWidth(100.dp)
+                        .requiredWidth(100.dp),
                 )
                 Text(
                     text = cameraPositionState.coveringBounds
@@ -122,14 +121,14 @@ fun ContentPaddingScreen(upPress: () -> Unit) {
                                 covering.southLatitude,
                                 covering.westLongitude,
                                 covering.northLatitude,
-                                covering.eastLongitude
+                                covering.eastLongitude,
                             )
                         }
                         .orEmpty(),
                     fontSize = 14.sp,
                     modifier = Modifier
                         .padding(end = 16.dp)
-                        .fillMaxWidth()
+                        .fillMaxWidth(),
                 )
             }
 
@@ -140,14 +139,14 @@ fun ContentPaddingScreen(upPress: () -> Unit) {
                         start = dimensionResource(R.dimen.map_padding_left),
                         top = dimensionResource(R.dimen.map_padding_top),
                         end = dimensionResource(R.dimen.map_padding_right),
-                        bottom = dimensionResource(R.dimen.map_padding_bottom)
-                    )
+                        bottom = dimensionResource(R.dimen.map_padding_bottom),
+                    ),
                 ) {
                     Marker(
-                        state = rememberMarkerState(position = COORD_1)
+                        state = rememberMarkerState(position = COORD_1),
                     )
                     Marker(
-                        state = rememberMarkerState(position = COORD_2)
+                        state = rememberMarkerState(position = COORD_2),
                     )
                 }
 
@@ -156,28 +155,28 @@ fun ContentPaddingScreen(upPress: () -> Unit) {
                         .align(Alignment.TopCenter)
                         .fillMaxWidth()
                         .requiredHeight(dimensionResource(R.dimen.map_padding_top))
-                        .background(Color(0x30000000))
+                        .background(Color(0x30000000)),
                 )
                 Spacer(
                     modifier = Modifier
                         .align(Alignment.TopStart)
                         .fillMaxWidth()
                         .requiredHeight(dimensionResource(R.dimen.map_padding_left))
-                        .background(Color(0x30000000))
+                        .background(Color(0x30000000)),
                 )
                 Spacer(
                     modifier = Modifier
                         .align(Alignment.BottomCenter)
                         .fillMaxWidth()
                         .requiredHeight(dimensionResource(R.dimen.map_padding_bottom))
-                        .background(Color(0x30000000))
+                        .background(Color(0x30000000)),
                 )
                 Spacer(
                     modifier = Modifier
                         .align(Alignment.TopEnd)
                         .fillMaxWidth()
                         .requiredHeight(dimensionResource(R.dimen.map_padding_right))
-                        .background(Color(0x30000000))
+                        .background(Color(0x30000000)),
                 )
 
                 val coroutineScope = rememberCoroutineScope()
@@ -193,16 +192,16 @@ fun ContentPaddingScreen(upPress: () -> Unit) {
                             cameraPositionState.animate(
                                 CameraUpdate.scrollTo(coord),
                                 animation = CameraAnimation.Fly,
-                                durationMs = 3000
+                                durationMs = 3000,
                             )
                         }
                         flag = !flag
-                    }
+                    },
                 ) {
                     Icon(
                         Icons.Default.PlayArrow,
                         contentDescription = stringResource(R.string.content_description_run),
-                        tint = Color.White
+                        tint = Color.White,
                     )
                 }
             }
