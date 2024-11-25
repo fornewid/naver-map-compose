@@ -35,7 +35,6 @@ import com.naver.maps.map.NaverMap.OnMapLongClickListener
 import com.naver.maps.map.NaverMap.OnMapTwoFingerTapListener
 import com.naver.maps.map.NaverMap.OnOptionChangeListener
 import com.naver.maps.map.NaverMap.OnSymbolClickListener
-import com.naver.maps.map.Symbol
 import com.naver.maps.map.indoor.IndoorSelection
 
 internal class MapClickListeners {
@@ -149,7 +148,14 @@ internal fun MapClickListenerUpdater() {
             MapClickListenerComposeNode(
                 callback,
                 NaverMap::setOnSymbolClickListener,
-                OnSymbolClickListener { callback().invoke(it) },
+                OnSymbolClickListener {
+                    callback().invoke(
+                        Symbol(
+                            position = it.position,
+                            caption = it.caption,
+                        ),
+                    )
+                },
             )
         }
 
