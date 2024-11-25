@@ -162,6 +162,7 @@
 
     <string name="name_indoor_map">Indoor Map</string>
     <string name="description_indoor_map">실내지도 사용</string>
+    <string name="format_indoor_selection">실내지도: %1$s 층</string>
 
     <string name="name_lite_mode">Lite Mode</string>
     <string name="description_lite_mode">라이트 모드 사용</string>

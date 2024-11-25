@@ -463,7 +463,7 @@ package com.naver.maps.map.compose {
   }
 
   public final class NaverMapKt {
-    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void NaverMap(optional androidx.compose.ui.Modifier modifier, optional com.naver.maps.map.compose.CameraPositionState cameraPositionState, optional com.naver.maps.map.compose.MapProperties properties, optional com.naver.maps.map.compose.MapUiSettings uiSettings, optional com.naver.maps.map.LocationSource? locationSource, optional java.util.Locale? locale, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,kotlin.Unit> onMapClick, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,kotlin.Unit> onMapLongClick, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,java.lang.Boolean> onMapDoubleTab, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,java.lang.Boolean> onMapTwoFingerTap, optional kotlin.jvm.functions.Function0<kotlin.Unit> onMapLoaded, optional kotlin.jvm.functions.Function1<? super android.location.Location,kotlin.Unit> onLocationChange, optional kotlin.jvm.functions.Function0<kotlin.Unit> onOptionChange, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.compose.Symbol,java.lang.Boolean> onSymbolClick, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.indoor.IndoorSelection,kotlin.Unit> onIndoorSelectionChange, optional androidx.compose.foundation.layout.PaddingValues contentPadding, optional kotlin.jvm.functions.Function0<kotlin.Unit> content);
+    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void NaverMap(optional androidx.compose.ui.Modifier modifier, optional com.naver.maps.map.compose.CameraPositionState cameraPositionState, optional com.naver.maps.map.compose.MapProperties properties, optional com.naver.maps.map.compose.MapUiSettings uiSettings, optional com.naver.maps.map.LocationSource? locationSource, optional java.util.Locale? locale, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,kotlin.Unit> onMapClick, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,kotlin.Unit> onMapLongClick, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,java.lang.Boolean> onMapDoubleTab, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,java.lang.Boolean> onMapTwoFingerTap, optional kotlin.jvm.functions.Function0<kotlin.Unit> onMapLoaded, optional kotlin.jvm.functions.Function1<? super android.location.Location,kotlin.Unit> onLocationChange, optional kotlin.jvm.functions.Function0<kotlin.Unit> onOptionChange, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.compose.Symbol,java.lang.Boolean> onSymbolClick, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.compose.indoor.IndoorSelection,kotlin.Unit> onIndoorSelectionChange, optional androidx.compose.foundation.layout.PaddingValues contentPadding, optional kotlin.jvm.functions.Function0<kotlin.Unit> content);
   }
 
   public final class PathOverlayDefaults {
@@ -499,6 +499,69 @@ package com.naver.maps.map.compose {
     method public com.naver.maps.geometry.LatLng getPosition();
     property public final String caption;
     property public final com.naver.maps.geometry.LatLng position;
+  }
+
+}
+
+package com.naver.maps.map.compose.indoor {
+
+  public final class IndoorLevel {
+    ctor public IndoorLevel(String name, com.naver.maps.map.compose.indoor.IndoorView indoorView, java.util.List<com.naver.maps.map.compose.indoor.IndoorView> connections);
+    method public com.naver.maps.map.compose.indoor.IndoorView? getConnection(String zoneId);
+    method public int getConnectionIndex(String zoneId);
+    method public java.util.List<com.naver.maps.map.compose.indoor.IndoorView> getConnections();
+    method public com.naver.maps.map.compose.indoor.IndoorView getIndoorView();
+    method public String getName();
+    property public final java.util.List<com.naver.maps.map.compose.indoor.IndoorView> connections;
+    property public final com.naver.maps.map.compose.indoor.IndoorView indoorView;
+    property public final String name;
+  }
+
+  public final class IndoorRegion {
+    ctor public IndoorRegion(java.util.List<com.naver.maps.map.compose.indoor.IndoorZone> zones);
+    method public com.naver.maps.map.compose.indoor.IndoorZone? getZone(String zoneId);
+    method public int getZoneIndex(String zoneId);
+    method public java.util.List<com.naver.maps.map.compose.indoor.IndoorZone> getZones();
+    property public final java.util.List<com.naver.maps.map.compose.indoor.IndoorZone> zones;
+  }
+
+  public final class IndoorSelection {
+    ctor public IndoorSelection(com.naver.maps.map.compose.indoor.IndoorRegion region, int zoneIndex, int levelIndex);
+    method public com.naver.maps.map.compose.indoor.IndoorLevel getLevel();
+    method public int getLevelIndex();
+    method public com.naver.maps.map.compose.indoor.IndoorRegion getRegion();
+    method public com.naver.maps.map.compose.indoor.IndoorZone getZone();
+    method public int getZoneIndex();
+    property public final com.naver.maps.map.compose.indoor.IndoorLevel level;
+    property public final int levelIndex;
+    property public final com.naver.maps.map.compose.indoor.IndoorRegion region;
+    property public final com.naver.maps.map.compose.indoor.IndoorZone zone;
+    property public final int zoneIndex;
+  }
+
+  public final class IndoorView {
+    ctor public IndoorView(String zoneId, String levelId);
+    method public String component1();
+    method public String component2();
+    method public com.naver.maps.map.compose.indoor.IndoorView copy(String zoneId, String levelId);
+    method public String getLevelId();
+    method public String getZoneId();
+    property public final String levelId;
+    property public final String zoneId;
+  }
+
+  public final class IndoorZone {
+    ctor public IndoorZone(String zoneId, int defaultLevelIndex, java.util.List<com.naver.maps.map.compose.indoor.IndoorLevel> levels);
+    method public com.naver.maps.map.compose.indoor.IndoorLevel getDefaultLevel();
+    method public int getDefaultLevelIndex();
+    method public com.naver.maps.map.compose.indoor.IndoorLevel? getLevel(String levelId);
+    method public int getLevelIndex(String levelId);
+    method public java.util.List<com.naver.maps.map.compose.indoor.IndoorLevel> getLevels();
+    method public String getZoneId();
+    property public final com.naver.maps.map.compose.indoor.IndoorLevel defaultLevel;
+    property public final int defaultLevelIndex;
+    property public final java.util.List<com.naver.maps.map.compose.indoor.IndoorLevel> levels;
+    property public final String zoneId;
   }
 
 }

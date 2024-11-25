@@ -35,7 +35,11 @@ import com.naver.maps.map.NaverMap.OnMapLongClickListener
 import com.naver.maps.map.NaverMap.OnMapTwoFingerTapListener
 import com.naver.maps.map.NaverMap.OnOptionChangeListener
 import com.naver.maps.map.NaverMap.OnSymbolClickListener
-import com.naver.maps.map.indoor.IndoorSelection
+import com.naver.maps.map.compose.indoor.IndoorLevel
+import com.naver.maps.map.compose.indoor.IndoorRegion
+import com.naver.maps.map.compose.indoor.IndoorSelection
+import com.naver.maps.map.compose.indoor.IndoorView
+import com.naver.maps.map.compose.indoor.IndoorZone
 
 internal class MapClickListeners {
     var onMapClick: (PointF, LatLng) -> Unit by mutableStateOf({ _, _ -> })
@@ -164,7 +168,41 @@ internal fun MapClickListenerUpdater() {
                 callback,
                 NaverMap::addOnIndoorSelectionChangeListener,
                 NaverMap::removeOnIndoorSelectionChangeListener,
-                OnIndoorSelectionChangeListener { callback().invoke(it) },
+                OnIndoorSelectionChangeListener { it ->
+                    callback().invoke(
+                        it?.let { selection ->
+                            IndoorSelection(
+                                region = selection.region.let { region ->
+                                    IndoorRegion(
+                                        zones = region.zones.map { zone ->
+                                            IndoorZone(
+                                                zoneId = zone.zoneId,
+                                                defaultLevelIndex = zone.defultLevelIndex,
+                                                levels = zone.levels.map { level ->
+                                                    IndoorLevel(
+                                                        name = level.name,
+                                                        indoorView = IndoorView(
+                                                            zoneId = level.indoorView.zoneId,
+                                                            levelId = level.indoorView.levelId,
+                                                        ),
+                                                        connections = level.connections.map {
+                                                            IndoorView(
+                                                                zoneId = it.zoneId,
+                                                                levelId = it.levelId,
+                                                            )
+                                                        },
+                                                    )
+                                                },
+                                            )
+                                        },
+                                    )
+                                },
+                                zoneIndex = selection.zoneIndex,
+                                levelIndex = selection.levelIndex,
+                            )
+                        },
+                    )
+                },
             )
         }
     }

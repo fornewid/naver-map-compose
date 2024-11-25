@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
@@ -29,6 +30,7 @@ import com.naver.maps.map.compose.MapUiSettings
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
+import com.naver.maps.map.compose.demo.common.showToast
 import com.naver.maps.map.compose.rememberCameraPositionState
 
 @OptIn(ExperimentalNaverMapApi::class)
@@ -46,10 +48,19 @@ fun IndoorMapScreen(upPress: () -> Unit) {
             val cameraPositionState = rememberCameraPositionState {
                 this.position = CameraPosition(LatLng(37.5116620, 127.0594274), 16.0)
             }
+            val context = LocalContext.current
             NaverMap(
                 cameraPositionState = cameraPositionState,
                 properties = MapProperties(isIndoorEnabled = true),
                 uiSettings = MapUiSettings(isIndoorLevelPickerEnabled = true),
+                onIndoorSelectionChange = { selection ->
+                    if (selection != null) {
+                        context.showToast(
+                            R.string.format_indoor_selection,
+                            selection.level.name,
+                        )
+                    }
+                },
             )
         }
     }

@@ -48,7 +48,7 @@ import com.naver.maps.map.LocationSource
 import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.NaverMapOptions
-import com.naver.maps.map.indoor.IndoorSelection
+import com.naver.maps.map.compose.indoor.IndoorSelection
 import kotlinx.coroutines.awaitCancellation
 import java.util.Locale
 import kotlin.coroutines.resume
