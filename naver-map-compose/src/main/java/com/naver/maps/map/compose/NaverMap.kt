@@ -18,7 +18,6 @@ package com.naver.maps.map.compose
 import android.content.ComponentCallbacks2
 import android.content.Context
 import android.content.res.Configuration
-import android.graphics.PointF
 import android.location.Location
 import android.os.Bundle
 import android.view.View
@@ -66,10 +65,10 @@ public fun NaverMap(
     uiSettings: MapUiSettings = DefaultMapUiSettings,
     locationSource: LocationSource? = null,
     locale: Locale? = null,
-    onMapClick: (PointF, LatLng) -> Unit = { _, _ -> },
-    onMapLongClick: (PointF, LatLng) -> Unit = { _, _ -> },
-    onMapDoubleTab: (point: PointF, coord: LatLng) -> Boolean = { _, _ -> false },
-    onMapTwoFingerTap: (point: PointF, coord: LatLng) -> Boolean = { _, _ -> false },
+    onMapClick: (Point, LatLng) -> Unit = { _, _ -> },
+    onMapLongClick: (Point, LatLng) -> Unit = { _, _ -> },
+    onMapDoubleTab: (point: Point, coord: LatLng) -> Boolean = { _, _ -> false },
+    onMapTwoFingerTap: (point: Point, coord: LatLng) -> Boolean = { _, _ -> false },
     onMapLoaded: () -> Unit = {},
     onLocationChange: (Location) -> Unit = {},
     onOptionChange: () -> Unit = {},
