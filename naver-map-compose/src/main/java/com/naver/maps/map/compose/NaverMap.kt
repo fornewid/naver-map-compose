@@ -42,7 +42,6 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.LocationSource
 import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap

@@ -157,6 +157,96 @@ package com.naver.maps.map.compose {
     method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.NaverMapComposable public static void GroundOverlay(com.naver.maps.geometry.LatLngBounds bounds, optional com.naver.maps.map.overlay.OverlayImage image, optional float alpha, optional Object? tag, optional boolean visible, optional double minZoom, optional boolean minZoomInclusive, optional double maxZoom, optional boolean maxZoomInclusive, optional int zIndex, optional int globalZIndex, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.overlay.GroundOverlay,java.lang.Boolean> onClick);
   }
 
+  public final class LatLng {
+    ctor public LatLng(double latitude, double longitude);
+    method public double component1();
+    method public double component2();
+    method public com.naver.maps.map.compose.LatLng copy(double latitude, double longitude);
+    method public double distanceTo(com.naver.maps.map.compose.LatLng other);
+    method public double getLatitude();
+    method public double getLongitude();
+    method public boolean isValid();
+    method public boolean isWithinCoverage();
+    method public com.naver.maps.map.compose.LatLng offset(double northMeter, double eastMeter);
+    method public com.naver.maps.map.compose.LatLng wrap();
+    property public final boolean isValid;
+    property public final boolean isWithinCoverage;
+    property public final double latitude;
+    property public final double longitude;
+    field public static final com.naver.maps.map.compose.LatLng.Companion Companion;
+    field public static final double MAXIMUM_LATITUDE = 90.0;
+    field public static final double MAXIMUM_LONGITUDE = 180.0;
+    field public static final double MINIMUM_LATITUDE = -90.0;
+    field public static final double MINIMUM_LONGITUDE = -180.0;
+  }
+
+  public static final class LatLng.Companion {
+    method public com.naver.maps.map.compose.LatLngBounds getCOVERAGE();
+    method public com.naver.maps.map.compose.LatLng getINVALID();
+    property public final com.naver.maps.map.compose.LatLngBounds COVERAGE;
+    property public final com.naver.maps.map.compose.LatLng INVALID;
+  }
+
+  public final class LatLngBounds {
+    ctor public LatLngBounds(com.naver.maps.map.compose.LatLng southWest, com.naver.maps.map.compose.LatLng northEast);
+    method public com.naver.maps.map.compose.LatLngBounds buffer(double meter);
+    method public com.naver.maps.map.compose.LatLng component1();
+    method public com.naver.maps.map.compose.LatLng component2();
+    method public operator boolean contains(com.naver.maps.map.compose.LatLng latLng);
+    method public operator boolean contains(com.naver.maps.map.compose.LatLngBounds bounds);
+    method public com.naver.maps.map.compose.LatLngBounds copy(com.naver.maps.map.compose.LatLng southWest, com.naver.maps.map.compose.LatLng northEast);
+    method public com.naver.maps.map.compose.LatLngBounds expand(com.naver.maps.map.compose.LatLng latLng);
+    method public com.naver.maps.map.compose.LatLng getCenter();
+    method public double getEastLongitude();
+    method public com.naver.maps.map.compose.LatLng getNorthEast();
+    method public double getNorthLatitude();
+    method public com.naver.maps.map.compose.LatLng getNorthWest();
+    method public com.naver.maps.map.compose.LatLng getSouthEast();
+    method public double getSouthLatitude();
+    method public com.naver.maps.map.compose.LatLng getSouthWest();
+    method public com.naver.maps.map.compose.LatLng![] getVertexes();
+    method public double getWestLongitude();
+    method public com.naver.maps.map.compose.LatLngBounds? intersection(com.naver.maps.map.compose.LatLngBounds bounds);
+    method public boolean intersects(com.naver.maps.map.compose.LatLngBounds bounds);
+    method public boolean isEmpty();
+    method public boolean isValid();
+    method public com.naver.maps.map.compose.LatLng![] toPolygon();
+    method public com.naver.maps.map.compose.LatLngBounds union(com.naver.maps.map.compose.LatLngBounds bounds);
+    property public final com.naver.maps.map.compose.LatLng center;
+    property public final double eastLongitude;
+    property public final boolean isEmpty;
+    property public final boolean isValid;
+    property public final com.naver.maps.map.compose.LatLng northEast;
+    property public final double northLatitude;
+    property public final com.naver.maps.map.compose.LatLng northWest;
+    property public final com.naver.maps.map.compose.LatLng southEast;
+    property public final double southLatitude;
+    property public final com.naver.maps.map.compose.LatLng southWest;
+    property public final com.naver.maps.map.compose.LatLng![] vertexes;
+    property public final double westLongitude;
+    field public static final com.naver.maps.map.compose.LatLngBounds.Companion Companion;
+  }
+
+  public static final class LatLngBounds.Builder {
+    ctor public LatLngBounds.Builder();
+    method public com.naver.maps.map.compose.LatLngBounds build();
+    method public com.naver.maps.map.compose.LatLngBounds? buildOrNull();
+    method public com.naver.maps.map.compose.LatLngBounds.Builder include(com.naver.maps.map.compose.LatLng? latLng);
+    method public com.naver.maps.map.compose.LatLngBounds.Builder include(com.naver.maps.map.compose.LatLng... latLngs);
+    method public com.naver.maps.map.compose.LatLngBounds.Builder include(java.util.Collection<com.naver.maps.map.compose.LatLng> latLngs);
+  }
+
+  public static final class LatLngBounds.Companion {
+    method public com.naver.maps.map.compose.LatLngBounds from(com.naver.maps.map.compose.LatLng... latLngs);
+    method public com.naver.maps.map.compose.LatLngBounds from(java.util.Collection<com.naver.maps.map.compose.LatLng> latLngs);
+    method public com.naver.maps.map.compose.LatLngBounds? fromOrNull(com.naver.maps.map.compose.LatLng... latLngs);
+    method public com.naver.maps.map.compose.LatLngBounds? fromOrNull(java.util.Collection<com.naver.maps.map.compose.LatLng> latLngs);
+    method public com.naver.maps.map.compose.LatLngBounds getINVALID();
+    method public com.naver.maps.map.compose.LatLngBounds getWORLD();
+    property public final com.naver.maps.map.compose.LatLngBounds INVALID;
+    property public final com.naver.maps.map.compose.LatLngBounds WORLD;
+  }
+
   @androidx.compose.runtime.Immutable public enum LineCap {
     method public final com.naver.maps.map.overlay.PolylineOverlay.LineCap! getValue();
     method public static com.naver.maps.map.compose.LineCap valueOf(String value) throws java.lang.IllegalArgumentException, java.lang.NullPointerException;
@@ -463,7 +553,7 @@ package com.naver.maps.map.compose {
   }
 
   public final class NaverMapKt {
-    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void NaverMap(optional androidx.compose.ui.Modifier modifier, optional com.naver.maps.map.compose.CameraPositionState cameraPositionState, optional com.naver.maps.map.compose.MapProperties properties, optional com.naver.maps.map.compose.MapUiSettings uiSettings, optional com.naver.maps.map.LocationSource? locationSource, optional java.util.Locale? locale, optional kotlin.jvm.functions.Function2<? super com.naver.maps.map.compose.Point,? super com.naver.maps.geometry.LatLng,kotlin.Unit> onMapClick, optional kotlin.jvm.functions.Function2<? super com.naver.maps.map.compose.Point,? super com.naver.maps.geometry.LatLng,kotlin.Unit> onMapLongClick, optional kotlin.jvm.functions.Function2<? super com.naver.maps.map.compose.Point,? super com.naver.maps.geometry.LatLng,java.lang.Boolean> onMapDoubleTab, optional kotlin.jvm.functions.Function2<? super com.naver.maps.map.compose.Point,? super com.naver.maps.geometry.LatLng,java.lang.Boolean> onMapTwoFingerTap, optional kotlin.jvm.functions.Function0<kotlin.Unit> onMapLoaded, optional kotlin.jvm.functions.Function1<? super android.location.Location,kotlin.Unit> onLocationChange, optional kotlin.jvm.functions.Function0<kotlin.Unit> onOptionChange, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.compose.Symbol,java.lang.Boolean> onSymbolClick, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.compose.indoor.IndoorSelection,kotlin.Unit> onIndoorSelectionChange, optional androidx.compose.foundation.layout.PaddingValues contentPadding, optional kotlin.jvm.functions.Function0<kotlin.Unit> content);
+    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void NaverMap(optional androidx.compose.ui.Modifier modifier, optional com.naver.maps.map.compose.CameraPositionState cameraPositionState, optional com.naver.maps.map.compose.MapProperties properties, optional com.naver.maps.map.compose.MapUiSettings uiSettings, optional com.naver.maps.map.LocationSource? locationSource, optional java.util.Locale? locale, optional kotlin.jvm.functions.Function2<? super com.naver.maps.map.compose.Point,? super com.naver.maps.map.compose.LatLng,kotlin.Unit> onMapClick, optional kotlin.jvm.functions.Function2<? super com.naver.maps.map.compose.Point,? super com.naver.maps.map.compose.LatLng,kotlin.Unit> onMapLongClick, optional kotlin.jvm.functions.Function2<? super com.naver.maps.map.compose.Point,? super com.naver.maps.map.compose.LatLng,java.lang.Boolean> onMapDoubleTab, optional kotlin.jvm.functions.Function2<? super com.naver.maps.map.compose.Point,? super com.naver.maps.map.compose.LatLng,java.lang.Boolean> onMapTwoFingerTap, optional kotlin.jvm.functions.Function0<kotlin.Unit> onMapLoaded, optional kotlin.jvm.functions.Function1<? super android.location.Location,kotlin.Unit> onLocationChange, optional kotlin.jvm.functions.Function0<kotlin.Unit> onOptionChange, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.compose.Symbol,java.lang.Boolean> onSymbolClick, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.compose.indoor.IndoorSelection,kotlin.Unit> onIndoorSelectionChange, optional androidx.compose.foundation.layout.PaddingValues contentPadding, optional kotlin.jvm.functions.Function0<kotlin.Unit> content);
   }
 
   public final class PathOverlayDefaults {
