@@ -15,7 +15,6 @@
  */
 package com.naver.maps.map.compose.demo.location
 
-import android.graphics.PointF
 import android.location.Location
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -54,7 +53,9 @@ fun CustomLocationSourceScreen(upPress: () -> Unit) {
                 properties = MapProperties(
                     locationTrackingMode = LocationTrackingMode.NoFollow,
                 ),
-                onMapClick = locationSource::onMapClick,
+                onMapClick = { _, coord ->
+                    locationSource.onMapClick(coord = coord)
+                },
                 onLocationChange = {
                     context.showToast(
                         R.string.format_location_changed,
@@ -78,7 +79,7 @@ private class CustomLocationSource : LocationSource {
         listener = null
     }
 
-    fun onMapClick(point: PointF, coord: LatLng) {
+    fun onMapClick(coord: LatLng) {
         listener?.onLocationChanged(
             Location("CustomLocationSource").apply {
                 latitude = coord.latitude

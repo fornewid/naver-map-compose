@@ -15,7 +15,6 @@
  */
 package com.naver.maps.map.compose
 
-import android.graphics.PointF
 import android.location.Location
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ComposeNode
@@ -42,10 +41,10 @@ import com.naver.maps.map.compose.indoor.IndoorView
 import com.naver.maps.map.compose.indoor.IndoorZone
 
 internal class MapClickListeners {
-    var onMapClick: (PointF, LatLng) -> Unit by mutableStateOf({ _, _ -> })
-    var onMapLongClick: (PointF, LatLng) -> Unit by mutableStateOf({ _, _ -> })
-    var onMapDoubleTab: (point: PointF, coord: LatLng) -> Boolean by mutableStateOf({ _, _ -> false })
-    var onMapTwoFingerTap: (point: PointF, coord: LatLng) -> Boolean by mutableStateOf({ _, _ -> false })
+    var onMapClick: (Point, LatLng) -> Unit by mutableStateOf({ _, _ -> })
+    var onMapLongClick: (Point, LatLng) -> Unit by mutableStateOf({ _, _ -> })
+    var onMapDoubleTab: (point: Point, coord: LatLng) -> Boolean by mutableStateOf({ _, _ -> false })
+    var onMapTwoFingerTap: (point: Point, coord: LatLng) -> Boolean by mutableStateOf({ _, _ -> false })
     var onMapLoaded: () -> Unit by mutableStateOf({})
     var onLocationChange: (Location) -> Unit by mutableStateOf({})
     var onOptionChange: () -> Unit by mutableStateOf({ })
@@ -93,7 +92,12 @@ internal fun MapClickListenerUpdater() {
             MapClickListenerComposeNode(
                 callback,
                 NaverMap::setOnMapClickListener,
-                OnMapClickListener { point, coord -> callback().invoke(point, coord) },
+                OnMapClickListener { point, coord ->
+                    callback().invoke(
+                        Point(x = point.x, y = point.y),
+                        coord,
+                    )
+                },
             )
         }
 
@@ -101,7 +105,12 @@ internal fun MapClickListenerUpdater() {
             MapClickListenerComposeNode(
                 callback,
                 NaverMap::setOnMapLongClickListener,
-                OnMapLongClickListener { point, coord -> callback().invoke(point, coord) },
+                OnMapLongClickListener { point, coord ->
+                    callback().invoke(
+                        Point(x = point.x, y = point.y),
+                        coord,
+                    )
+                },
             )
         }
 
@@ -109,7 +118,12 @@ internal fun MapClickListenerUpdater() {
             MapClickListenerComposeNode(
                 callback,
                 NaverMap::setOnMapDoubleTapListener,
-                OnMapDoubleTapListener { point, coord -> callback().invoke(point, coord) },
+                OnMapDoubleTapListener { point, coord ->
+                    callback().invoke(
+                        Point(x = point.x, y = point.y),
+                        coord,
+                    )
+                },
             )
         }
 
@@ -117,7 +131,12 @@ internal fun MapClickListenerUpdater() {
             MapClickListenerComposeNode(
                 callback,
                 NaverMap::setOnMapTwoFingerTapListener,
-                OnMapTwoFingerTapListener { point, coord -> callback().invoke(point, coord) },
+                OnMapTwoFingerTapListener { point, coord ->
+                    callback().invoke(
+                        Point(x = point.x, y = point.y),
+                        coord,
+                    )
+                },
             )
         }
 
