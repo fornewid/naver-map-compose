@@ -38,11 +38,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraAnimation
-import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.compose.CameraPosition
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.LatLng
 import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.NaverMapConstants
@@ -66,7 +66,7 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
             val cameraPositionState = rememberCameraPositionState {
-                this.position = DEFAULT_CAMERA_POSITION
+                this.position = NaverMapConstants.DefaultCameraPosition
             }
             NaverMap(
                 cameraPositionState = cameraPositionState,
@@ -149,7 +149,7 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
                 onClick = {
                     coroutineScope.launch {
                         cameraPositionState.animate(
-                            CameraUpdate.toCameraPosition(DEFAULT_CAMERA_POSITION),
+                            CameraUpdate.toCameraPosition(DefaultCameraPosition.asOriginal()),
                             animation = CameraAnimation.Easing,
                         )
                     }
@@ -165,7 +165,7 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
     }
 }
 
-private val DEFAULT_CAMERA_POSITION = CameraPosition(
-    NaverMapConstants.DefaultCameraPosition.target,
-    16.0,
+private val DefaultCameraPosition = CameraPosition(
+    target = NaverMapConstants.DefaultCameraPosition.target,
+    zoom = 16.0,
 )

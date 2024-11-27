@@ -24,7 +24,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.overlay.Overlay.InvalidCoordinateException
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.overlay.PathOverlay
@@ -127,7 +126,7 @@ public fun PathOverlay(
         factory = {
             val map = mapApplier?.map ?: error("Error adding PathOverlay")
             val overlay = PathOverlay().apply {
-                this.coords = coords
+                this.coords = coords.map { it.asOriginal() }
                 this.progress = progress
                 this.width = with(density) { width.roundToPx() }
                 this.outlineWidth = with(density) { outlineWidth.roundToPx() }
@@ -167,7 +166,7 @@ public fun PathOverlay(
             update(density) { this.density = it }
             update(onClick) { this.onPathOverlayClick = it }
 
-            set(coords) { this.overlay.coords = it }
+            set(coords) { this.overlay.coords = it.map { it.asOriginal() } }
             set(progress) { this.overlay.progress = it }
             set(width) { this.overlay.width = with(this.density) { it.roundToPx() } }
             set(outlineWidth) {

@@ -34,9 +34,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.LatLng
 import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.R
@@ -73,7 +73,7 @@ fun PivotScreen(upPress: () -> Unit) {
                 onClick = {
                     val coord = if (flag) COORD_2 else COORD_1
                     val pivot = if (flag) PIVOT_2 else PIVOT_1
-                    cameraPositionState.move(CameraUpdate.scrollTo(coord).pivot(pivot))
+                    cameraPositionState.move(CameraUpdate.scrollTo(coord.asOriginal()).pivot(pivot))
                     flag = !flag
                 },
             ) {

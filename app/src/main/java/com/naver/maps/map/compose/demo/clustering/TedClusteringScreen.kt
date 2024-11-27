@@ -29,10 +29,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import com.naver.maps.geometry.LatLng
-import com.naver.maps.map.CameraPosition
+import com.naver.maps.map.compose.CameraPosition
 import com.naver.maps.map.compose.DisposableMapEffect
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.LatLng
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar

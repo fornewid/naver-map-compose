@@ -180,6 +180,14 @@ public data class LatLngBounds(
         }
     }
 
+    // TODO: remove this
+    public fun asOriginal(): com.naver.maps.geometry.LatLngBounds {
+        return com.naver.maps.geometry.LatLngBounds(
+            southWest.asOriginal(),
+            northEast.asOriginal(),
+        )
+    }
+
     public companion object {
         public val INVALID: LatLngBounds = LatLngBounds(LatLng.INVALID, LatLng.INVALID)
         public val WORLD: LatLngBounds = LatLngBounds(LatLng(-90.0, -180.0), LatLng(90.0, 180.0))
@@ -200,6 +208,14 @@ public data class LatLngBounds(
 
         public fun fromOrNull(latLngs: Collection<LatLng>): LatLngBounds? {
             return (Builder()).include(latLngs).buildOrNull()
+        }
+
+        // TODO: remove this
+        public fun fromOriginal(original: com.naver.maps.geometry.LatLngBounds): LatLngBounds {
+            return LatLngBounds(
+                southWest = LatLng.fromOriginal(original.southWest),
+                northEast = LatLng.fromOriginal(original.northEast),
+            )
         }
     }
 }

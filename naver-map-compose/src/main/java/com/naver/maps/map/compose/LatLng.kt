@@ -65,6 +65,11 @@ public data class LatLng(
         )
     }
 
+    // TODO: remove this
+    public fun asOriginal(): com.naver.maps.geometry.LatLng {
+        return com.naver.maps.geometry.LatLng(latitude, longitude)
+    }
+
     public companion object {
         public val INVALID: LatLng = LatLng(Double.NaN, Double.NaN)
         public const val MINIMUM_LATITUDE: Double = -90.0
@@ -75,5 +80,13 @@ public data class LatLng(
             southWest = LatLng(latitude = -90.0, longitude = -180.0),
             northEast = LatLng(latitude = 90.0, longitude = 180.0),
         )
+
+        // TODO: remove this
+        public fun fromOriginal(original: com.naver.maps.geometry.LatLng): LatLng {
+            return LatLng(
+                latitude = original.latitude,
+                longitude = original.longitude,
+            )
+        }
     }
 }

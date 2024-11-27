@@ -35,7 +35,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.Overlay.InvalidCoordinateException
 import com.naver.maps.map.overlay.OverlayImage
@@ -619,7 +618,7 @@ private fun MarkerImpl(
         factory = {
             val map = mapApplier?.map ?: error("Error adding Marker")
             val overlay: Marker = Marker().apply {
-                this.position = state.position
+                this.position = state.position.asOriginal()
                 this.icon = icon
                 this.iconTintColor = iconTintColor.toArgb()
                 this.width = with(density) { width.roundToPx() }
@@ -689,7 +688,7 @@ private fun MarkerImpl(
             update(density) { this.density = it }
             update(onClick) { this.onMarkerClick = it }
 
-            set(state.position) { this.overlay.position = it }
+            set(state.position) { this.overlay.position = it.asOriginal() }
             set(icon) { this.overlay.icon = it }
             set(iconTintColor) { this.overlay.iconTintColor = it.toArgb() }
             set(width) {

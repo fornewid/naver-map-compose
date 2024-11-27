@@ -54,12 +54,12 @@ internal class MapPropertiesNode(
         // setOnCameraMoveListener is only invoked when the camera position
         // is changed via .animate(). To handle updating state when .move()
         // is used, it's necessary to set the camera's position here as well
-        this.cameraPositionState.rawPosition = map.cameraPosition
+        this.cameraPositionState.rawPosition = CameraPosition.fromOriginal(map.cameraPosition)
     }
     private val cameraChangeListener = NaverMap.OnCameraChangeListener { reason, animated ->
         cameraPositionState.cameraUpdateReason = CameraUpdateReason.fromInt(reason)
         cameraPositionState.isMoving = true
-        cameraPositionState.rawPosition = map.cameraPosition
+        cameraPositionState.rawPosition = CameraPosition.fromOriginal(map.cameraPosition)
     }
 
     override fun onAttached() {

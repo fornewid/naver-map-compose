@@ -25,7 +25,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.overlay.MultipartPathOverlay
 import com.naver.maps.map.overlay.Overlay.InvalidCoordinateException
 import com.naver.maps.map.overlay.OverlayImage
@@ -116,7 +115,7 @@ public fun MultipartPathOverlay(
         factory = {
             val map = mapApplier?.map ?: error("Error adding MultipartPathOverlay")
             val overlay = MultipartPathOverlay().apply {
-                this.coordParts = coordParts
+                this.coordParts = coordParts.map { it.map { it.asOriginal() } }
                 this.colorParts = colorParts.map { it.value }
                 this.progress = progress
                 this.width = with(density) { width.roundToPx() }
@@ -153,7 +152,7 @@ public fun MultipartPathOverlay(
             update(density) { this.density = it }
             update(onClick) { this.onMultipartPathOverlayClick = it }
 
-            set(coordParts) { this.overlay.coordParts = it }
+            set(coordParts) { this.overlay.coordParts = it.map { it.map { it.asOriginal() } } }
             set(colorParts) { this.overlay.colorParts = it.map { colorPart -> colorPart.value } }
             set(progress) { this.overlay.progress = it }
             set(width) {

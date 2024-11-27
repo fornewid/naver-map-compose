@@ -24,7 +24,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.overlay.ArrowheadPathOverlay
 import com.naver.maps.map.overlay.Overlay.InvalidCoordinateException
 
@@ -103,7 +102,7 @@ public fun ArrowheadPathOverlay(
         factory = {
             val map = mapApplier?.map ?: error("Error adding ArrowheadPathOverlay")
             val overlay = ArrowheadPathOverlay().apply {
-                this.coords = coords
+                this.coords = coords.map { it.asOriginal() }
                 this.width = with(density) { width.roundToPx() }
                 this.headSizeRatio = headSizeRatio
                 this.color = color.toArgb()
@@ -137,7 +136,7 @@ public fun ArrowheadPathOverlay(
             update(density) { this.density = it }
             update(onClick) { this.onArrowheadPathOverlayClick = it }
 
-            set(coords) { this.overlay.coords = it }
+            set(coords) { this.overlay.coords = it.map { it.asOriginal() } }
             set(width) {
                 this.overlay.width = with(this.density) { it.roundToPx() }
             }

@@ -35,7 +35,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.naver.maps.geometry.LatLng
-import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.clustering.Clusterer
 import com.naver.maps.map.clustering.DefaultClusterMarkerUpdater
 import com.naver.maps.map.clustering.DefaultClusterOnClickListener
@@ -43,6 +42,7 @@ import com.naver.maps.map.clustering.DefaultDistanceStrategy
 import com.naver.maps.map.clustering.DefaultMarkerManager
 import com.naver.maps.map.clustering.DistanceStrategy
 import com.naver.maps.map.clustering.Node
+import com.naver.maps.map.compose.CameraPosition
 import com.naver.maps.map.compose.DisposableMapEffect
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.NaverMap

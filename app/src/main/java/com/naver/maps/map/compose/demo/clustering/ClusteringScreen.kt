@@ -26,14 +26,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.naver.maps.geometry.LatLng
-import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.clustering.Clusterer
 import com.naver.maps.map.clustering.DefaultLeafMarkerUpdater
 import com.naver.maps.map.clustering.LeafMarkerInfo
+import com.naver.maps.map.compose.CameraPosition
 import com.naver.maps.map.compose.DisposableMapEffect
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.LatLng
 import com.naver.maps.map.compose.NaverMap
+import com.naver.maps.map.compose.NaverMapConstants
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
@@ -62,7 +63,10 @@ fun ClusteringScreen(upPress: () -> Unit) {
 @Composable
 private fun Clustering() {
     val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition(MapConstants.EXTENT_KOREA.center, 4.0)
+        position = CameraPosition(
+            target = NaverMapConstants.ExtentKorea.center,
+            zoom = NaverMapConstants.MinZoomKorea,
+        )
     }
     NaverMap(
         modifier = Modifier.fillMaxSize(),
@@ -95,7 +99,10 @@ private fun Clustering() {
                     put(
                         ItemKey(
                             i,
-                            LatLng(height * Math.random() + south, width * Math.random() + west),
+                            LatLng(
+                                latitude = height * Math.random() + south,
+                                longitude = width * Math.random() + west,
+                            ).asOriginal(),
                         ),
                         (Math.random() * ICONS.size).toInt(),
                     )

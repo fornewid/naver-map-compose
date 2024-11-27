@@ -35,9 +35,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.compose.ColorPart
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.LatLng
 import com.naver.maps.map.compose.MultipartPathOverlay
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.R
@@ -95,7 +95,10 @@ fun MultipartPathOverlayScreen(upPress: () -> Unit) {
             }
             NaverMap(
                 onMapClick = { _, coord ->
-                    val progress = GeometryUtils.getProgressForCoordParts(coordParts, coord)
+                    val progress = GeometryUtils.getProgressForCoordParts(
+                        coordParts.map { it.map { it.asOriginal() } },
+                        coord.asOriginal(),
+                    )
                     sliderPosition = (progress * 100 + 100).toFloat()
                 },
             ) {

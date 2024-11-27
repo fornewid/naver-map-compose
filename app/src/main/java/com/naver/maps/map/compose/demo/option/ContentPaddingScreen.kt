@@ -45,11 +45,11 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraAnimation
-import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.compose.CameraPosition
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.LatLng
 import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.NaverMapConstants
@@ -190,7 +190,7 @@ fun ContentPaddingScreen(upPress: () -> Unit) {
                         val coord = if (flag) COORD_1 else COORD_2
                         coroutineScope.launch {
                             cameraPositionState.animate(
-                                CameraUpdate.scrollTo(coord),
+                                CameraUpdate.scrollTo(coord.asOriginal()),
                                 animation = CameraAnimation.Fly,
                                 durationMs = 3000,
                             )
@@ -209,5 +209,5 @@ fun ContentPaddingScreen(upPress: () -> Unit) {
     }
 }
 
-private val COORD_1 = LatLng(37.5666102, 126.9783881)
-private val COORD_2 = LatLng(35.1798159, 129.0750222)
+private val COORD_1 = LatLng(latitude = 37.5666102, longitude = 126.9783881)
+private val COORD_2 = LatLng(latitude = 35.1798159, longitude = 129.0750222)

@@ -36,8 +36,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.LatLng
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.PathOverlay
 import com.naver.maps.map.compose.demo.R
@@ -95,7 +95,7 @@ fun PathOverlayScreen(upPress: () -> Unit) {
             }
             NaverMap(
                 onMapClick = { _, coord ->
-                    val progress = GeometryUtils.getProgress(coords, coord)
+                    val progress = GeometryUtils.getProgress(coords.map { it.asOriginal() }, coord.asOriginal())
                     sliderPosition = (progress * 100 + 100).toFloat()
                 },
             ) {
