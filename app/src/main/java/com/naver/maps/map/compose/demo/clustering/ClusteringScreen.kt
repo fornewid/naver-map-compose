@@ -90,10 +90,10 @@ private fun Clustering() {
                     .apply { this.map = map }
             }
             val keyTagMap = buildMap(5000) {
-                val south = MapConstants.EXTENT_KOREA.southLatitude
-                val west = MapConstants.EXTENT_KOREA.westLongitude
-                val height = MapConstants.EXTENT_KOREA.northLatitude - south
-                val width = MapConstants.EXTENT_KOREA.eastLongitude - west
+                val south = NaverMapConstants.ExtentKorea.southLatitude
+                val west = NaverMapConstants.ExtentKorea.westLongitude
+                val height = NaverMapConstants.ExtentKorea.northLatitude - south
+                val width = NaverMapConstants.ExtentKorea.eastLongitude - west
 
                 repeat(5000) { i ->
                     put(
