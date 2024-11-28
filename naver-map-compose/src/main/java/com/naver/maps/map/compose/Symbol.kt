@@ -15,8 +15,6 @@
  */
 package com.naver.maps.map.compose
 
-import com.naver.maps.geometry.LatLng
-
 /**
  * 지도에 표시되는 아이콘, 텍스트 등 피킹 가능한 심벌을 나타내는 클래스.
  *

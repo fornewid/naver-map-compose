@@ -47,10 +47,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraAnimation
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.LatLng
 import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.R
@@ -170,7 +170,7 @@ fun CameraEventScreen(upPress: () -> Unit) {
                         } else {
                             // TODO: How to improve the chains of camera animations?
                             cameraPositionState.move(
-                                CameraUpdate.scrollTo(COORD_1)
+                                CameraUpdate.scrollTo(COORD_1.asOriginal())
                                     .animate(CameraAnimation.Fly, 3000)
                                     .cancelCallback {
                                         isMovingByAnimation = false
@@ -178,7 +178,7 @@ fun CameraEventScreen(upPress: () -> Unit) {
                                     }
                                     .finishCallback {
                                         cameraPositionState.move(
-                                            CameraUpdate.scrollTo(COORD_2)
+                                            CameraUpdate.scrollTo(COORD_2.asOriginal())
                                                 .animate(CameraAnimation.Fly, 3000)
                                                 .cancelCallback {
                                                     isMovingByAnimation = false

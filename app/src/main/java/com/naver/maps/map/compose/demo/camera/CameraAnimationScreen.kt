@@ -34,11 +34,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraAnimation
-import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.compose.CameraPosition
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.LatLng
 import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.R
@@ -79,7 +79,7 @@ fun CameraAnimationScreen(upPress: () -> Unit) {
                     val animation = if (flag) CameraAnimation.Linear else CameraAnimation.Easing
                     coroutineScope.launch {
                         cameraPositionState.animate(
-                            CameraUpdate.toCameraPosition(position),
+                            CameraUpdate.toCameraPosition(position.asOriginal()),
                             animation = animation,
                             durationMs = 5000,
                         )

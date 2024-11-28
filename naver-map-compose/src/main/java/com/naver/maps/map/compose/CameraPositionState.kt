@@ -24,10 +24,7 @@ import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.naver.maps.geometry.LatLng
-import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.CameraAnimation
-import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
@@ -60,7 +57,7 @@ public inline fun rememberCameraPositionState(
  * @param position 초기 좌표를 지정합니다.
  */
 public class CameraPositionState(
-    position: CameraPosition = NaverMap.DEFAULT_CAMERA_POSITION,
+    position: CameraPosition = NaverMapConstants.DefaultCameraPosition,
 ) {
     /**
      * 카메라가 현재 움직이고 있는지 여부입니다. 여기에는 이동, 확대/축소 또는 회전과 같은 모든 종류의 이동이 포함됩니다.
@@ -101,7 +98,7 @@ public class CameraPositionState(
                 if (map == null) {
                     rawPosition = value
                 } else {
-                    map.moveCamera(CameraUpdate.toCameraPosition(value))
+                    map.moveCamera(CameraUpdate.toCameraPosition(value.asOriginal()))
                 }
             }
         }
@@ -112,7 +109,12 @@ public class CameraPositionState(
      * 콘텐츠 패딩이 지정되어 있으면 [coveringBounds]에서 콘텐츠 패딩을 제외한 영역이 반환됩니다.
      */
     public val contentBounds: LatLngBounds?
-        get() = map?.contentBounds
+        get() = map?.run {
+            LatLngBounds(
+                southWest = LatLng.fromOriginal(contentBounds.southWest),
+                northEast = LatLng.fromOriginal(contentBounds.northEast),
+            )
+        }
 
     /**
      * 지도의 콘텐츠 영역에 대한 좌표열을 반환합니다. 좌표열은 네 개의 좌표로 구성된 사각형으로 표현됩니다.
@@ -121,20 +123,33 @@ public class CameraPositionState(
      * 콘텐츠 패딩이 지정되어 있으면 [coveringRegion]에서 콘텐츠 패딩을 제외한 사각형이 반환됩니다.
      */
     public val contentRegion: Array<LatLng>?
-        get() = map?.contentRegion
+        get() = map?.run {
+            contentRegion
+                .map { LatLng(latitude = it.latitude, longitude = it.longitude) }
+                .toTypedArray()
+        }
 
     /**
      * 콘텐츠 패딩을 포함한 지도의 뷰 전체 영역에 대한 [LatLngBounds]를 반환합니다.
      */
     public val coveringBounds: LatLngBounds?
-        get() = map?.coveringBounds
+        get() = map?.run {
+            LatLngBounds(
+                southWest = LatLng.fromOriginal(coveringBounds.southWest),
+                northEast = LatLng.fromOriginal(coveringBounds.northEast),
+            )
+        }
 
     /**
      * 콘텐츠 패딩을 포함한 지도의 뷰 전체 영역에 대한 좌표열을 반환합니다. 좌표열은 네 개의 좌표로 구성된 사각형으로 표현됩니다.
      * 단, 반환되는 배열의 크기는 5이며, 첫 번째 원소와 마지막 원소가 동일한 지점을 가리킵니다.
      */
     public val coveringRegion: Array<LatLng>?
-        get() = map?.coveringRegion
+        get() = map?.run {
+            coveringRegion
+                .map { LatLng(latitude = it.latitude, longitude = it.longitude) }
+                .toTypedArray()
+        }
 
     /**
      * 콘텐츠 패딩을 포함한 지도의 뷰 전체를 완전히 덮는 타일 ID의 목록을 반환합니다.
@@ -210,7 +225,7 @@ public class CameraPositionState(
             if (map == null) {
                 isMoving = false
             } else {
-                map.moveCamera(CameraUpdate.toCameraPosition(position))
+                map.moveCamera(CameraUpdate.toCameraPosition(position.asOriginal()))
             }
             onMapChanged?.let {
                 // Clear this first since the callback itself might set it again for later

@@ -41,10 +41,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.naver.maps.geometry.LatLng
-import com.naver.maps.map.CameraPosition
+import com.naver.maps.map.compose.CameraPosition
 import com.naver.maps.map.compose.CameraPositionState
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.LatLng
 import com.naver.maps.map.compose.MapProperties
 import com.naver.maps.map.compose.MapType
 import com.naver.maps.map.compose.MapUiSettings

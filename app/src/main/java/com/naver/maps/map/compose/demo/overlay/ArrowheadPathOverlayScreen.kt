@@ -21,10 +21,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import com.naver.maps.geometry.LatLng
-import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.compose.ArrowheadPathOverlay
+import com.naver.maps.map.compose.CameraPosition
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.LatLng
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
@@ -43,10 +43,10 @@ fun ArrowheadPathOverlayScreen(upPress: () -> Unit) {
     ) { contentPadding ->
         val cameraPositionState = rememberCameraPositionState {
             this.position = CameraPosition(
-                LatLng(37.5701573, 126.9777503),
-                14.0,
-                50.0,
-                0.0,
+                target = LatLng(latitude = 37.5701573, longitude = 126.9777503),
+                zoom = 14.0,
+                tilt = 50.0,
+                bearing = 0.0,
             )
         }
         NaverMap(

@@ -37,11 +37,11 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraAnimation
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.CameraUpdateParams
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.LatLng
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
@@ -82,7 +82,7 @@ fun CameraUpdateParamsScreen(upPress: () -> Unit) {
                 onClick = {
                     val params = CameraUpdateParams()
                     when (step) {
-                        0 -> params.scrollTo(COORD).zoomTo(10.0).tiltTo(0.0)
+                        0 -> params.scrollTo(COORD.asOriginal()).zoomTo(10.0).tiltTo(0.0)
                         1 -> params.scrollBy(PointF(deltaX, deltaY)).zoomBy(3.0)
                         else -> params.rotateBy(90.0).tiltTo(40.0)
                     }

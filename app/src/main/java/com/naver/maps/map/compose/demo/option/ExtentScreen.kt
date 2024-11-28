@@ -28,11 +28,11 @@ import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.MapProperties
 import com.naver.maps.map.compose.NaverMap
+import com.naver.maps.map.compose.NaverMapConstants
 import com.naver.maps.map.compose.PolylineOverlay
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
-import com.naver.maps.map.util.MapConstants
 
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable
@@ -50,11 +50,11 @@ fun ExtentScreen(upPress: () -> Unit) {
             NaverMap(
                 cameraPositionState = cameraPositionState,
                 properties = MapProperties(
-                    extent = MapConstants.EXTENT_KOREA,
+                    extent = NaverMapConstants.ExtentKorea,
                 ),
             ) {
                 PolylineOverlay(
-                    coords = MapConstants.EXTENT_KOREA.toPolygon().toList(),
+                    coords = NaverMapConstants.ExtentKorea.toPolygon().toList(),
                 )
             }
 
@@ -62,7 +62,12 @@ fun ExtentScreen(upPress: () -> Unit) {
                 dimensionResource(R.dimen.fit_bounds_padding).roundToPx()
             }
             LaunchedEffect(Unit) {
-                cameraPositionState.move(CameraUpdate.fitBounds(MapConstants.EXTENT_KOREA, padding))
+                cameraPositionState.move(
+                    CameraUpdate.fitBounds(
+                        NaverMapConstants.ExtentKorea.asOriginal(),
+                        padding,
+                    ),
+                )
             }
         }
     }

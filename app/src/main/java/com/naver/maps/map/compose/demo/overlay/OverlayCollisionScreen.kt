@@ -40,10 +40,10 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
-import com.naver.maps.geometry.LatLng
-import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.compose.Align
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.LatLng
+import com.naver.maps.map.compose.LatLngBounds
 import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.MarkerDefaults
 import com.naver.maps.map.compose.NaverMap

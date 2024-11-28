@@ -23,7 +23,6 @@ import androidx.compose.runtime.currentComposer
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.NaverMap.OnIndoorSelectionChangeListener
 import com.naver.maps.map.NaverMap.OnLoadListener
@@ -95,7 +94,7 @@ internal fun MapClickListenerUpdater() {
                 OnMapClickListener { point, coord ->
                     callback().invoke(
                         Point(x = point.x, y = point.y),
-                        coord,
+                        LatLng(latitude = coord.latitude, longitude = coord.longitude),
                     )
                 },
             )
@@ -108,7 +107,7 @@ internal fun MapClickListenerUpdater() {
                 OnMapLongClickListener { point, coord ->
                     callback().invoke(
                         Point(x = point.x, y = point.y),
-                        coord,
+                        LatLng(latitude = coord.latitude, longitude = coord.longitude),
                     )
                 },
             )
@@ -121,7 +120,7 @@ internal fun MapClickListenerUpdater() {
                 OnMapDoubleTapListener { point, coord ->
                     callback().invoke(
                         Point(x = point.x, y = point.y),
-                        coord,
+                        LatLng(latitude = coord.latitude, longitude = coord.longitude),
                     )
                 },
             )
@@ -134,7 +133,7 @@ internal fun MapClickListenerUpdater() {
                 OnMapTwoFingerTapListener { point, coord ->
                     callback().invoke(
                         Point(x = point.x, y = point.y),
-                        coord,
+                        LatLng(latitude = coord.latitude, longitude = coord.longitude),
                     )
                 },
             )
@@ -174,7 +173,7 @@ internal fun MapClickListenerUpdater() {
                 OnSymbolClickListener {
                     callback().invoke(
                         Symbol(
-                            position = it.position,
+                            position = LatLng.fromOriginal(it.position),
                             caption = it.caption,
                         ),
                     )

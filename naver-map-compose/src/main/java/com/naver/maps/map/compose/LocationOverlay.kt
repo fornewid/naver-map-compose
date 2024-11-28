@@ -26,7 +26,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.overlay.LocationOverlay
 import com.naver.maps.map.overlay.Overlay.InvalidCoordinateException
 import com.naver.maps.map.overlay.OverlayImage
@@ -163,7 +162,7 @@ public fun LocationOverlay(
         factory = {
             val map = mapApplier?.map ?: error("Error adding LocationOverlay")
             val overlay = map.locationOverlay.apply {
-                this.position = position
+                this.position = position.asOriginal()
                 this.bearing = bearing
                 this.icon = icon
                 this.iconWidth = iconWidth
@@ -202,7 +201,7 @@ public fun LocationOverlay(
             update(density) { this.density = it }
             update(onClick) { this.onLocationOverlayClick = it }
 
-            set(position) { this.overlay.position = it }
+            set(position) { this.overlay.position = it.asOriginal() }
             set(bearing) { this.overlay.bearing = it }
             set(icon) { this.overlay.icon = it }
             set(iconWidth) { this.overlay.iconWidth = it }

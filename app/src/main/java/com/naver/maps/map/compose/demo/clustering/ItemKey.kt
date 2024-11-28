@@ -15,11 +15,11 @@
  */
 package com.naver.maps.map.compose.demo.clustering
 
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.clustering.ClusteringKey
+import com.naver.maps.map.compose.LatLng
 
 class ItemKey(val id: Int, private val latLng: LatLng) : ClusteringKey {
-    override fun getPosition() = latLng
+    override fun getPosition(): com.naver.maps.geometry.LatLng = latLng.asOriginal()
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

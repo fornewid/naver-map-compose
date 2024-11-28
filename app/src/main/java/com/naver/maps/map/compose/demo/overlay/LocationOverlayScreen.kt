@@ -44,6 +44,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.LatLng
 import com.naver.maps.map.compose.LocationOverlay
 import com.naver.maps.map.compose.LocationOverlayDefaults
 import com.naver.maps.map.compose.NaverMap
@@ -92,7 +93,7 @@ fun LocationOverlayScreen(upPress: () -> Unit) {
             }
 
             val cameraPositionState = rememberCameraPositionState()
-            var currentPosition by remember {
+            var currentPosition: LatLng by remember {
                 mutableStateOf(cameraPositionState.position.target)
             }
             val circleAnimationState = remember { CircleAnimationState() }

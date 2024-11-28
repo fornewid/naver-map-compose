@@ -36,11 +36,11 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.naver.maps.geometry.LatLng
-import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.CameraAnimation
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.LatLng
+import com.naver.maps.map.compose.LatLngBounds
 import com.naver.maps.map.compose.Marker
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.R
@@ -85,7 +85,7 @@ fun FitBoundsScreen(upPress: () -> Unit) {
                     val bounds = if (flag) BOUNDS_2 else BOUNDS_1
                     coroutineScope.launch {
                         cameraPositionState.animate(
-                            CameraUpdate.fitBounds(bounds, padding),
+                            CameraUpdate.fitBounds(bounds.asOriginal(), padding),
                             animation = CameraAnimation.Fly,
                             durationMs = 5000,
                         )

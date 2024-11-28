@@ -24,7 +24,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.overlay.Overlay.InvalidCoordinateException
 import com.naver.maps.map.overlay.PolygonOverlay
 
@@ -101,8 +100,8 @@ public fun PolygonOverlay(
         factory = {
             val map = mapApplier?.map ?: error("Error adding PolygonOverlay")
             val overlay = PolygonOverlay().apply {
-                this.coords = coords
-                this.holes = holes
+                this.coords = coords.map { it.asOriginal() }
+                this.holes = holes.map { it.map { it.asOriginal() } }
                 this.color = color.toArgb()
                 this.outlineWidth = with(density) { outlineWidth.roundToPx() }
                 this.outlineColor = outlineColor.toArgb()
@@ -133,8 +132,8 @@ public fun PolygonOverlay(
             update(density) { this.density = it }
             update(onClick) { this.onPolygonOverlayClick = it }
 
-            set(coords) { this.overlay.coords = it }
-            set(holes) { this.overlay.holes = it }
+            set(coords) { this.overlay.coords = it.map { it.asOriginal() } }
+            set(holes) { this.overlay.holes = it.map { it.map { it.asOriginal() } } }
             set(color) { this.overlay.color = it.toArgb() }
             set(outlineWidth) {
                 this.overlay.outlineWidth = with(this.density) { it.roundToPx() }

@@ -19,7 +19,6 @@ import androidx.annotation.DrawableRes
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.naver.maps.map.CameraPosition
 
 public object NaverMapConstants {
 
@@ -101,8 +100,12 @@ public object NaverMapConstants {
     /**
      * 지도의 기본 카메라 위치.
      */
-    public val DefaultCameraPosition: CameraPosition =
-        com.naver.maps.map.NaverMap.DEFAULT_CAMERA_POSITION
+    public val DefaultCameraPosition: CameraPosition = CameraPosition(
+        target = LatLng(latitude = 37.5666102, longitude = 126.9783881),
+        zoom = 14.0,
+        tilt = 0.0,
+        bearing = 0.0,
+    )
 
     /**
      * 기본 밝은 배경색.
@@ -129,4 +132,17 @@ public object NaverMapConstants {
     @DrawableRes
     public val DefaultBackgroundDrawableDark: Int =
         com.naver.maps.map.NaverMap.DEFAULT_BACKGROUND_DRWABLE_DARK
+
+    /**
+     * 한국 지역만을 포함하는 영역.
+     */
+    public val ExtentKorea: LatLngBounds = LatLngBounds(
+        southWest = LatLng(latitude = 31.43, longitude = 122.37),
+        northEast = LatLng(latitude = 44.35, longitude = 132.0),
+    )
+
+    /**
+     * 한국 지역만 표시하고자 할 경우 사용하기 적합한 최소 줌 레벨.
+     */
+    public const val MinZoomKorea: Double = 4.0
 }

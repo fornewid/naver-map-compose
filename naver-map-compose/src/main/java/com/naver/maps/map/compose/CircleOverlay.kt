@@ -24,7 +24,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.overlay.CircleOverlay
 import com.naver.maps.map.overlay.Overlay.InvalidCoordinateException
 
@@ -97,7 +96,7 @@ public fun CircleOverlay(
         factory = {
             val map = mapApplier?.map ?: error("Error adding CircleOverlay")
             val overlay = CircleOverlay().apply {
-                this.center = center
+                this.center = center.asOriginal()
                 this.color = color.toArgb()
                 this.radius = radius
                 this.outlineWidth = with(density) { outlineWidth.roundToPx() }
@@ -129,7 +128,7 @@ public fun CircleOverlay(
             update(density) { this.density = it }
             update(onClick) { this.onCircleOverlayClick = it }
 
-            set(center) { this.overlay.center = it }
+            set(center) { this.overlay.center = it.asOriginal() }
             set(color) { this.overlay.color = it.toArgb() }
             set(radius) { this.overlay.radius = it }
             set(outlineWidth) {
