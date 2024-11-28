@@ -173,7 +173,7 @@ internal fun MapClickListenerUpdater() {
                 OnSymbolClickListener {
                     callback().invoke(
                         Symbol(
-                            position = it.position,
+                            position = LatLng.fromOriginal(it.position),
                             caption = it.caption,
                         ),
                     )

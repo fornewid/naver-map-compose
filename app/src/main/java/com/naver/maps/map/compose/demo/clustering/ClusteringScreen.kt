@@ -102,7 +102,7 @@ private fun Clustering() {
                             LatLng(
                                 latitude = height * Math.random() + south,
                                 longitude = width * Math.random() + west,
-                            ).asOriginal(),
+                            ),
                         ),
                         (Math.random() * ICONS.size).toInt(),
                     )

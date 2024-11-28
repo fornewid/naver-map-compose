@@ -18,10 +18,10 @@ package com.naver.maps.map.compose.demo.overlay
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import com.naver.maps.geometry.LatLng
-import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.compose.ExperimentalNaverMapApi
 import com.naver.maps.map.compose.GroundOverlay
+import com.naver.maps.map.compose.LatLng
+import com.naver.maps.map.compose.LatLngBounds
 import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar

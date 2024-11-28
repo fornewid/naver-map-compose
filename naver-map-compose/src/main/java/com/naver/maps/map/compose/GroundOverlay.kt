@@ -18,7 +18,6 @@ package com.naver.maps.map.compose
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ComposeNode
 import androidx.compose.runtime.currentComposer
-import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.overlay.GroundOverlay
 import com.naver.maps.map.overlay.Overlay.InvalidBoundsException
 import com.naver.maps.map.overlay.OverlayImage
@@ -91,7 +90,7 @@ public fun GroundOverlay(
         factory = {
             val map = mapApplier?.map ?: error("Error adding GroundOverlay")
             val overlay = GroundOverlay().apply {
-                this.bounds = bounds
+                this.bounds = bounds.asOriginal()
                 this.image = image
                 this.alpha = alpha
 
@@ -118,7 +117,7 @@ public fun GroundOverlay(
         update = {
             update(onClick) { this.onGroundOverlayClick = it }
 
-            set(bounds) { this.overlay.bounds = bounds }
+            set(bounds) { this.overlay.bounds = bounds.asOriginal() }
             set(image) { this.overlay.image = it }
             set(alpha) { this.overlay.alpha = it }
 

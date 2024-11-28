@@ -113,7 +113,7 @@ internal inline fun MapUpdater(
         update(layoutDirection) { this.layoutDirection = it }
         set(locale) { map.locale = it }
 
-        set(mapProperties.extent) { map.extent = it }
+        set(mapProperties.extent) { map.extent = it?.asOriginal() }
         set(mapProperties.minZoom) { map.minZoom = it }
         set(mapProperties.maxZoom) { map.maxZoom = it }
         set(mapProperties.maxTilt) { map.maxTilt = it }

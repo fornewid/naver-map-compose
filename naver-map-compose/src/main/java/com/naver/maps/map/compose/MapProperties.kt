@@ -19,7 +19,6 @@ import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
-import com.naver.maps.geometry.LatLngBounds
 
 internal val DefaultMapProperties = MapProperties()
 
