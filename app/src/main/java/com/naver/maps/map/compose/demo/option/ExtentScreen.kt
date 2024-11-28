@@ -33,7 +33,6 @@ import com.naver.maps.map.compose.PolylineOverlay
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
-import com.naver.maps.map.util.MapConstants
 
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable
@@ -67,7 +66,7 @@ fun ExtentScreen(upPress: () -> Unit) {
                     CameraUpdate.fitBounds(
                         NaverMapConstants.ExtentKorea.asOriginal(),
                         padding,
-                    )
+                    ),
                 )
             }
         }

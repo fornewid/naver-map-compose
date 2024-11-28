@@ -40,7 +40,6 @@ import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.Overlay
-import com.naver.maps.map.util.MapConstants
 import com.naver.maps.map.util.MarkerIcons
 
 @Composable
