@@ -208,6 +208,26 @@ package com.naver.maps.map.compose {
     method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi @com.naver.maps.map.compose.NaverMapComposable public static void MapEffect(Object![]? keys, kotlin.jvm.functions.Function3<? super kotlinx.coroutines.CoroutineScope,? super com.naver.maps.map.NaverMap,? super kotlin.coroutines.Continuation<? super kotlin.Unit>,?> block);
   }
 
+  public final class MapOptions {
+    ctor public MapOptions(optional boolean preserveEGLContextOnPause, optional boolean useTextureView, optional boolean translucentTextureSurface, optional boolean msaaEnabled);
+    method public boolean component1();
+    method public boolean component2();
+    method public boolean component3();
+    method public boolean component4();
+    method public com.naver.maps.map.compose.MapOptions copy(boolean preserveEGLContextOnPause, boolean useTextureView, boolean translucentTextureSurface, boolean msaaEnabled);
+    method public boolean getMsaaEnabled();
+    method public boolean getPreserveEGLContextOnPause();
+    method public boolean getTranslucentTextureSurface();
+    method public boolean getUseTextureView();
+    property public final boolean msaaEnabled;
+    property public final boolean preserveEGLContextOnPause;
+    property public final boolean translucentTextureSurface;
+    property public final boolean useTextureView;
+  }
+
+  public final class MapOptionsKt {
+  }
+
   public final class MapProperties {
     ctor public MapProperties(optional com.naver.maps.map.compose.MapType mapType, optional com.naver.maps.geometry.LatLngBounds? extent, optional double minZoom, optional double maxZoom, optional double maxTilt, optional int defaultCameraAnimationDuration, optional int fpsLimit, optional boolean isBuildingLayerGroupEnabled, optional boolean isTransitLayerGroupEnabled, optional boolean isBicycleLayerGroupEnabled, optional boolean isTrafficLayerGroupEnabled, optional boolean isCadastralLayerGroupEnabled, optional boolean isMountainLayerGroupEnabled, optional boolean isLiteModeEnabled, optional boolean isNightModeEnabled, optional boolean isIndoorEnabled, optional float indoorFocusRadius, optional float buildingHeight, optional float lightness, optional float symbolScale, optional float symbolPerspectiveRatio, optional long backgroundColor, optional @DrawableRes int backgroundResource, optional com.naver.maps.map.compose.LocationTrackingMode locationTrackingMode);
     method public com.naver.maps.map.compose.MapType component1();
@@ -440,7 +460,7 @@ package com.naver.maps.map.compose {
   }
 
   public final class NaverMapKt {
-    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void NaverMap(optional androidx.compose.ui.Modifier modifier, optional com.naver.maps.map.compose.CameraPositionState cameraPositionState, optional com.naver.maps.map.compose.MapProperties properties, optional com.naver.maps.map.compose.MapUiSettings uiSettings, optional com.naver.maps.map.LocationSource? locationSource, optional java.util.Locale? locale, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,kotlin.Unit> onMapClick, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,kotlin.Unit> onMapLongClick, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,java.lang.Boolean> onMapDoubleTab, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,java.lang.Boolean> onMapTwoFingerTap, optional kotlin.jvm.functions.Function0<kotlin.Unit> onMapLoaded, optional kotlin.jvm.functions.Function1<? super android.location.Location,kotlin.Unit> onLocationChange, optional kotlin.jvm.functions.Function0<kotlin.Unit> onOptionChange, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.Symbol,java.lang.Boolean> onSymbolClick, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.indoor.IndoorSelection,kotlin.Unit> onIndoorSelectionChange, optional androidx.compose.foundation.layout.PaddingValues contentPadding, optional kotlin.jvm.functions.Function0<kotlin.Unit> content);
+    method @androidx.compose.runtime.Composable @com.naver.maps.map.compose.ExperimentalNaverMapApi public static void NaverMap(optional androidx.compose.ui.Modifier modifier, optional com.naver.maps.map.compose.CameraPositionState cameraPositionState, optional com.naver.maps.map.compose.MapOptions options, optional com.naver.maps.map.compose.MapProperties properties, optional com.naver.maps.map.compose.MapUiSettings uiSettings, optional com.naver.maps.map.LocationSource? locationSource, optional java.util.Locale? locale, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,kotlin.Unit> onMapClick, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,kotlin.Unit> onMapLongClick, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,java.lang.Boolean> onMapDoubleTab, optional kotlin.jvm.functions.Function2<? super android.graphics.PointF,? super com.naver.maps.geometry.LatLng,java.lang.Boolean> onMapTwoFingerTap, optional kotlin.jvm.functions.Function0<kotlin.Unit> onMapLoaded, optional kotlin.jvm.functions.Function1<? super android.location.Location,kotlin.Unit> onLocationChange, optional kotlin.jvm.functions.Function0<kotlin.Unit> onOptionChange, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.Symbol,java.lang.Boolean> onSymbolClick, optional kotlin.jvm.functions.Function1<? super com.naver.maps.map.indoor.IndoorSelection,kotlin.Unit> onIndoorSelectionChange, optional androidx.compose.foundation.layout.PaddingValues contentPadding, optional kotlin.jvm.functions.Function0<kotlin.Unit> content);
   }
 
   public final class PathOverlayDefaults {

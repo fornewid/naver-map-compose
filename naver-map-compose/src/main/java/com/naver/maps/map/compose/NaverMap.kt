@@ -61,6 +61,7 @@ import kotlin.coroutines.suspendCoroutine
 public fun NaverMap(
     modifier: Modifier = Modifier,
     cameraPositionState: CameraPositionState = rememberCameraPositionState(),
+    options: MapOptions = DefaultMapOptions,
     properties: MapProperties = DefaultMapProperties,
     uiSettings: MapUiSettings = DefaultMapUiSettings,
     locationSource: LocationSource? = null,
@@ -78,7 +79,14 @@ public fun NaverMap(
     content: @Composable @NaverMapComposable () -> Unit = {},
 ) {
     val context = LocalContext.current
-    val mapView = remember { MapView(context, NaverMapOptions()) }
+    val mapOptions = remember(options) {
+        NaverMapOptions()
+            .preserveEGLContextOnPause(options.preserveEGLContextOnPause)
+            .useTextureView(options.useTextureView)
+            .translucentTextureSurface(options.translucentTextureSurface)
+            .msaaEnabled(options.msaaEnabled)
+    }
+    val mapView = remember(context, mapOptions) { MapView(context, mapOptions) }
 
     AndroidView(modifier = modifier, factory = { unwrapAppCompat(mapView) })
     MapLifecycle(mapView)
