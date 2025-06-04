@@ -126,7 +126,7 @@ fun LiteModeScreen(upPress: () -> Unit) {
                 cameraPositionState = cameraPositionState,
                 properties = MapProperties(
                     isLiteModeEnabled = true,
-                    mapType = MapType.valueOf(mapTypes[selectedPosition])
+                    mapType = MapType.valueOf(mapTypes[selectedPosition]),
                 ),
             )
         }
