@@ -1,7 +1,7 @@
 [versions]
 
 agp = "8.7.3"
-mavenPublish = "0.28.0"
+mavenPublish = "0.32.0"
 metalava = "0.3.5"
 
 kotlin = "2.0.21"
