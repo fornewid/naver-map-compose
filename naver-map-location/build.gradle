@@ -1,6 +1,6 @@
 plugins {
     id("navermap.android.library")
-    alias(libs.plugins.maven.publish)
+//    alias(libs.plugins.maven.publish)
     alias(libs.plugins.jetbrains.dokka)
     alias(libs.plugins.metalava)
 }
