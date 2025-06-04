@@ -1,6 +1,6 @@
 [versions]
 
-agp = "8.4.2"
+agp = "8.7.3"
 mavenPublish = "0.28.0"
 metalava = "0.3.5"
 
