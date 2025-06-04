@@ -4,14 +4,13 @@ agp = "8.4.2"
 mavenPublish = "0.28.0"
 metalava = "0.3.5"
 
-kotlin = "1.9.0"
+kotlin = "2.0.21"
 dokka = "1.9.20"
 
 # Compose
 activity = "1.9.3"
 navigation = "2.8.3"
-compose = "1.8.0-alpha06"
-compose-compiler = "1.5.0"
+compose = "1.8.0"
 accompanist = "0.36.0"
 
 naver-map = "3.19.1"
@@ -62,12 +61,14 @@ androidx-test-uiautomator = "androidx.test.uiautomator:uiautomator:2.2.0"
 # Dependencies of the included build-logic
 android-pluginGradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-pluginGradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+compose-compiler-pluginGradle = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 metalava-pluginGradle = { module = "me.tylerbwong.gradle.metalava:plugin", version.ref = "metalava" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 jetbrains-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 metalava = { id = "me.tylerbwong.gradle.metalava", version.ref = "metalava" }
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }

@@ -158,7 +158,7 @@ public enum class MapType(public val value: com.naver.maps.map.NaverMap.MapType)
     /**
      * 없음. 지도는 나타나지 않고 오버레이만이 나타납니다.
      */
-    None(com.naver.maps.map.NaverMap.MapType.None)
+    None(com.naver.maps.map.NaverMap.MapType.None),
 }
 
 /**
