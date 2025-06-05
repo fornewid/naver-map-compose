@@ -272,13 +272,13 @@ NaverMap(
 
 ## Snapshots
 
-현재 개발 중인 버전을 확인하고 싶다면 [SNAPSHOT 버전](https://s01.oss.sonatype.org/content/repositories/snapshots/io/github/fornewid/naver-map-compose/)을 사용할 수 있습니다.
+현재 개발 중인 버전을 확인하고 싶다면 [SNAPSHOT 버전](https://central.sonatype.com/service/rest/repository/browse/maven-snapshots/io/github/fornewid/naver-map-compose/)을 사용할 수 있습니다.
 
 Snapshot은 `main` branch에 커밋이 추가될 때마다 업데이트됩니다.
 
 ```groovy
 repositories {
-    maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots' }
+    maven { url 'https://central.sonatype.com/repository/maven-snapshots' }
 }
 
 dependencies {
