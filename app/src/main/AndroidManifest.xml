@@ -16,8 +16,8 @@
         tools:targetApi="31">
 
         <meta-data
-            android:name="com.naver.maps.map.CLIENT_ID"
-            android:value="@string/naver_map_sdk_client_id" />
+            android:name="com.naver.maps.map.NCP_KEY_ID"
+            android:value="@string/naver_map_sdk_ncp_key_id" />
 
         <activity
             android:name=".MapSampleActivity"

@@ -13,7 +13,7 @@ navigation = "2.8.3"
 compose = "1.8.0"
 accompanist = "0.36.0"
 
-naver-map = "3.19.1"
+naver-map = "3.21.0"
 naver-map-location = "21.0.1"
 naver-map-tedclustering = "1.0.2"
 google-play-services-location = "21.0.1"
