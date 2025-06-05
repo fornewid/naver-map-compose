@@ -13,7 +13,7 @@
 실행하려면 다음을 수행해야 합니다.
 
 1. [NAVER Map Android SDK Demo](https://github.com/navermaps/android-map-sdk) 레포지터리의 [How To Run](https://github.com/navermaps/android-map-sdk#how-to-run)을 참고하여, 클라이언트 ID를 발급받습니다.
-2. [`client_id.xml`](app/src/main/res/values/client_id.xml)의 `naver_map_sdk_client_id`에 발급받은 클라이언트 ID를 입력합니다.
+2. [`ncp_key_id.xml`](app/src/main/res/values/ncp_key_id.xml)의 `naver_map_sdk_ncp_key_id`에 발급받은 클라이언트 ID를 입력합니다.
 3. 빌드하고 실행합니다.
 
 ## Download
