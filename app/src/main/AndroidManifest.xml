@@ -17,7 +17,7 @@
 
         <meta-data
             android:name="com.naver.maps.map.NCP_KEY_ID"
-            android:value="@string/naver_map_sdk_ncp_key_id" />
+            android:value="${NCP_KEY_ID}" />
 
         <activity
             android:name=".MapSampleActivity"

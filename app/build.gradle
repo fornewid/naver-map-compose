@@ -9,6 +9,14 @@ android {
         applicationId "com.naver.maps.map.compose.demo"
         versionCode 1
         versionName "1.0.0"
+
+        def localProperties = new Properties()
+        def localPropertiesFile = rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            localProperties.load(new FileInputStream(localPropertiesFile))
+        }
+
+        manifestPlaceholders = [NCP_KEY_ID: localProperties.getProperty("NCP_KEY_ID", "DEFAULT_API_KEY")]
     }
     signingConfigs {
         // We use a bundled debug keystore, to allow debug builds from CI to be upgradable
