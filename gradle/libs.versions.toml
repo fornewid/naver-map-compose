@@ -10,8 +10,8 @@ dokka = "1.9.20"
 # Compose
 activity = "1.9.3"
 navigation = "2.8.3"
-compose = "1.8.0"
-accompanist = "0.36.0"
+compose = "1.9.0"
+accompanist = "0.37.3"
 
 naver-map = "3.21.0"
 naver-map-location = "21.0.1"
