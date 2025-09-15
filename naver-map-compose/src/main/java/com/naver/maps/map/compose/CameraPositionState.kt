@@ -47,6 +47,24 @@ import kotlin.coroutines.resumeWithException
  */
 @Composable
 public inline fun rememberCameraPositionState(
+    crossinline init: CameraPositionState.() -> Unit = {},
+): CameraPositionState = rememberSaveable(saver = CameraPositionState.Saver) {
+    CameraPositionState().apply(init)
+}
+
+/**
+ * [CameraPositionState]를 만들고 [CameraPositionState.Saver]를 사용하여 [rememberSaveable]합니다.
+ * [init]은 초기 상태를 구성하기 위해 [CameraPositionState]가 처음 생성될 때 호출됩니다.
+ */
+@Deprecated(
+    message = "The 'key' parameter is deprecated. Please use the new `rememberCameraPositionState` function without a key.",
+    replaceWith = ReplaceWith(
+        "rememberCameraPositionState(init)",
+        "com.naver.maps.map.compose.rememberCameraPositionState",
+    ),
+)
+@Composable
+public inline fun rememberCameraPositionState(
     key: String? = null,
     crossinline init: CameraPositionState.() -> Unit = {},
 ): CameraPositionState = rememberSaveable(key = key, saver = CameraPositionState.Saver) {
