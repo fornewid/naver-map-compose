@@ -23,6 +23,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.currentComposer
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -141,6 +142,16 @@ public class MarkerState(
     }
 }
 
+@Deprecated(
+    message = "'rememberUpdatedMarkerState'를 사용하세요. 추후 제거될 예정입니다.",
+    replaceWith = ReplaceWith(
+        expression = """rememberSaveable(key = key, saver = MarkerState.Saver) {
+    MarkerState(position)
+}""",
+        "com.naver.maps.map.compose.MarkerState.Saver",
+        "androidx.compose.runtime.saveable.rememberSaveable",
+    ),
+)
 @ExperimentalNaverMapApi
 @Composable
 @NaverMapComposable
@@ -150,6 +161,18 @@ public fun rememberMarkerState(
 ): MarkerState = rememberSaveable(key = key, saver = MarkerState.Saver) {
     MarkerState(position)
 }
+
+/**
+ * 이 함수는 'rememberUpdatedState'처럼 입력 매개변수의 업데이트에 따라 상태 값을 업데이트합니다.
+ *
+ * Configuration 변경 시 상태를 보존하는 목적으로는 사용할 수 없습니다.
+ */
+@Composable
+public fun rememberUpdatedMarkerState(
+    position: LatLng = LatLng(0.0, 0.0),
+): MarkerState = remember {
+    MarkerState(position = position)
+}.also { it.position = position }
 
 /**
  * 지도 상의 [Marker]에 대한 [Composable]입니다.
