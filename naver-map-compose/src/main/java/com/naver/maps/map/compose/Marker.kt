@@ -67,13 +67,17 @@ public object MarkerDefaults {
 
     /**
      * 기본 전역 Z 인덱스.
+     *
+     * [Marker.DEFAULT_GLOBAL_Z_INDEX] 참고.
      */
-    public const val GlobalZIndex: Int = Marker.DEFAULT_GLOBAL_Z_INDEX
+    public const val GlobalZIndex: Int = 200000
 
     /**
      * 너비 또는 높이가 자동임을 나타내는 상수. 너비 또는 높이가 자동일 경우 아이콘 이미지의 크기에 맞춰집니다.
+     *
+     * [Marker.SIZE_AUTO] 참고.
      */
-    public val SizeAuto: Dp = Marker.SIZE_AUTO.dp
+    public val SizeAuto: Dp = 0.dp
 
     /**
      * 기본 아이콘. [MarkerIcons.GREEN]과 동일합니다.
@@ -82,13 +86,17 @@ public object MarkerDefaults {
 
     /**
      * 기본 앵커. 가운데 아래를 가리킵니다.
+     *
+     * [Marker.DEFAULT_ANCHOR] 참고.
      */
-    public val Anchor: Offset = Offset(Marker.DEFAULT_ANCHOR.x, Marker.DEFAULT_ANCHOR.y)
+    public val Anchor: Offset = Offset(0.5f, 1.0f)
 
     /**
      * 기본 캡션 크기. DP 단위.
+     *
+     * [Marker.DEFAULT_CAPTION_TEXT_SIZE] 참고.
      */
-    public val CaptionTextSize: TextUnit = Marker.DEFAULT_CAPTION_TEXT_SIZE.sp
+    public val CaptionTextSize: TextUnit = 12.sp
 
     /**
      * 기본 캡션 정렬 방향. [Align.Bottom].
