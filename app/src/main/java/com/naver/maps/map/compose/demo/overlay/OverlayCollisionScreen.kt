@@ -52,7 +52,6 @@ import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.CheckedText
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberUpdatedMarkerState
-import com.naver.maps.map.compose.rememberUpdatedMarkerState
 import com.naver.maps.map.util.MarkerIcons
 
 @OptIn(ExperimentalNaverMapApi::class)
