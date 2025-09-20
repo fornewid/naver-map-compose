@@ -34,7 +34,7 @@ import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.demo.common.showToast
-import com.naver.maps.map.compose.rememberMarkerState
+import com.naver.maps.map.compose.rememberUpdatedMarkerState
 import com.naver.maps.map.util.MarkerIcons
 
 @OptIn(ExperimentalNaverMapApi::class)
@@ -61,7 +61,7 @@ fun OverlayClickEventScreen(upPress: () -> Unit) {
             ) {
                 var enabled1 by remember { mutableStateOf(true) }
                 Marker(
-                    state = rememberMarkerState(
+                    state = rememberUpdatedMarkerState(
                         position = LatLng(37.57207, 126.97917),
                     ),
                     captionText = stringResource(R.string.consume_event),
@@ -78,7 +78,7 @@ fun OverlayClickEventScreen(upPress: () -> Unit) {
 
                 var enabled2 by remember { mutableStateOf(true) }
                 Marker(
-                    state = rememberMarkerState(
+                    state = rememberUpdatedMarkerState(
                         position = LatLng(37.56361, 126.97439),
                     ),
                     captionText = stringResource(R.string.propagate_event),
@@ -94,7 +94,7 @@ fun OverlayClickEventScreen(upPress: () -> Unit) {
                 )
 
                 Marker(
-                    state = rememberMarkerState(
+                    state = rememberUpdatedMarkerState(
                         position = LatLng(37.56671, 126.98260),
                     ),
                     captionText = stringResource(R.string.no_event_listener),

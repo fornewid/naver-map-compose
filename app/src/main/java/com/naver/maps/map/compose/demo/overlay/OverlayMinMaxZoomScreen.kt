@@ -49,7 +49,7 @@ import com.naver.maps.map.compose.NaverMapConstants
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
-import com.naver.maps.map.compose.rememberMarkerState
+import com.naver.maps.map.compose.rememberUpdatedMarkerState
 import com.naver.maps.map.util.MarkerIcons
 import kotlinx.coroutines.launch
 
@@ -73,7 +73,7 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
             ) {
                 Marker(
                     icon = MarkerIcons.GREEN,
-                    state = rememberMarkerState(
+                    state = rememberUpdatedMarkerState(
                         position = LatLng(37.56713851901027, 126.97891430703686),
                     ),
                     captionText = stringResource(R.string.caption_marker_1),
@@ -85,7 +85,7 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
 
                 Marker(
                     icon = MarkerIcons.BLUE,
-                    state = rememberMarkerState(
+                    state = rememberUpdatedMarkerState(
                         position = LatLng(37.56713851901027, 126.97786189296272),
                     ),
                     captionText = stringResource(R.string.caption_marker_2),
@@ -97,7 +97,7 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
 
                 Marker(
                     icon = MarkerIcons.RED,
-                    state = rememberMarkerState(
+                    state = rememberUpdatedMarkerState(
                         position = LatLng(37.566081877242425, 126.97891430703686),
                     ),
                     captionText = stringResource(R.string.caption_marker_3),
@@ -109,7 +109,7 @@ fun OverlayMinMaxZoomScreen(upPress: () -> Unit) {
 
                 Marker(
                     icon = MarkerIcons.YELLOW,
-                    state = rememberMarkerState(
+                    state = rememberUpdatedMarkerState(
                         position = LatLng(37.566081877242425, 126.97786189296272),
                     ),
                     captionText = stringResource(R.string.caption_marker_4),

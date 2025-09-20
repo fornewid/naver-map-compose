@@ -257,7 +257,7 @@ public fun rememberUpdatedMarkerState(
 @Composable
 @NaverMapComposable
 public fun Marker(
-    state: MarkerState = rememberMarkerState(),
+    state: MarkerState = rememberUpdatedMarkerState(),
     icon: OverlayImage = MarkerDefaults.Icon,
     iconTintColor: Color = Color.Transparent,
     width: Dp = MarkerDefaults.SizeAuto,
@@ -431,7 +431,7 @@ public fun Marker(
 @NaverMapComposable
 public fun MarkerComposable(
     vararg keys: Any,
-    state: MarkerState = rememberMarkerState(),
+    state: MarkerState = rememberUpdatedMarkerState(),
     iconTintColor: Color = Color.Transparent,
     width: Dp = MarkerDefaults.SizeAuto,
     height: Dp = MarkerDefaults.SizeAuto,
@@ -602,7 +602,7 @@ public fun MarkerComposable(
 @Composable
 @NaverMapComposable
 private fun MarkerImpl(
-    state: MarkerState = rememberMarkerState(),
+    state: MarkerState = rememberUpdatedMarkerState(),
     icon: OverlayImage = MarkerDefaults.Icon,
     iconTintColor: Color = Color.Transparent,
     width: Dp = MarkerDefaults.SizeAuto,

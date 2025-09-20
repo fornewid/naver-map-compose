@@ -53,7 +53,7 @@ import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
-import com.naver.maps.map.compose.rememberMarkerState
+import com.naver.maps.map.compose.rememberUpdatedMarkerState
 
 @Composable
 fun MapInColumnScreen(upPress: () -> Unit) {
@@ -161,7 +161,7 @@ private fun NaverMapInColumn(
         properties = MapProperties(mapType = MapType.Basic),
         uiSettings = MapUiSettings(isCompassEnabled = false),
     ) {
-        Marker(state = rememberMarkerState(position = POSITION.target))
+        Marker(state = rememberUpdatedMarkerState(position = POSITION.target))
     }
 }
 

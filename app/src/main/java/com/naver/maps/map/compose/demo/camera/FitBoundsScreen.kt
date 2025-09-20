@@ -46,7 +46,7 @@ import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
-import com.naver.maps.map.compose.rememberMarkerState
+import com.naver.maps.map.compose.rememberUpdatedMarkerState
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalNaverMapApi::class)
@@ -65,10 +65,10 @@ fun FitBoundsScreen(upPress: () -> Unit) {
             NaverMap(
                 cameraPositionState = cameraPositionState,
             ) {
-                Marker(state = rememberMarkerState(position = BOUNDS_1.northEast))
-                Marker(state = rememberMarkerState(position = BOUNDS_1.southWest))
-                Marker(state = rememberMarkerState(position = BOUNDS_2.northEast))
-                Marker(state = rememberMarkerState(position = BOUNDS_2.southWest))
+                Marker(state = rememberUpdatedMarkerState(position = BOUNDS_1.northEast))
+                Marker(state = rememberUpdatedMarkerState(position = BOUNDS_1.southWest))
+                Marker(state = rememberUpdatedMarkerState(position = BOUNDS_2.northEast))
+                Marker(state = rememberUpdatedMarkerState(position = BOUNDS_2.southWest))
             }
 
             val coroutineScope = rememberCoroutineScope()
