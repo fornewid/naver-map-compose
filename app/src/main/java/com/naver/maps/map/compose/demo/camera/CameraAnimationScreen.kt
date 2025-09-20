@@ -44,7 +44,7 @@ import com.naver.maps.map.compose.NaverMap
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
-import com.naver.maps.map.compose.rememberMarkerState
+import com.naver.maps.map.compose.rememberUpdatedMarkerState
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalNaverMapApi::class)
@@ -63,8 +63,8 @@ fun CameraAnimationScreen(upPress: () -> Unit) {
             NaverMap(
                 cameraPositionState = cameraPositionState,
             ) {
-                Marker(state = rememberMarkerState(position = POSITION_1.target))
-                Marker(state = rememberMarkerState(position = POSITION_2.target))
+                Marker(state = rememberUpdatedMarkerState(position = POSITION_1.target))
+                Marker(state = rememberUpdatedMarkerState(position = POSITION_2.target))
             }
 
             val coroutineScope = rememberCoroutineScope()

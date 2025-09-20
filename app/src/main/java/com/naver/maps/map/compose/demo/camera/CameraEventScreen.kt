@@ -57,7 +57,7 @@ import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.demo.common.showToast
 import com.naver.maps.map.compose.rememberCameraPositionState
-import com.naver.maps.map.compose.rememberMarkerState
+import com.naver.maps.map.compose.rememberUpdatedMarkerState
 
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable
@@ -139,8 +139,8 @@ fun CameraEventScreen(upPress: () -> Unit) {
                 NaverMap(
                     cameraPositionState = cameraPositionState,
                 ) {
-                    Marker(state = rememberMarkerState(position = COORD_1))
-                    Marker(state = rememberMarkerState(position = COORD_2))
+                    Marker(state = rememberUpdatedMarkerState(position = COORD_1))
+                    Marker(state = rememberUpdatedMarkerState(position = COORD_2))
                 }
 
                 Image(

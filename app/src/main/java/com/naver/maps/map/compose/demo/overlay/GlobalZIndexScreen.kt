@@ -29,7 +29,7 @@ import com.naver.maps.map.compose.PathOverlay
 import com.naver.maps.map.compose.PathOverlayDefaults
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
-import com.naver.maps.map.compose.rememberMarkerState
+import com.naver.maps.map.compose.rememberUpdatedMarkerState
 import com.naver.maps.map.util.MarkerIcons
 
 @OptIn(ExperimentalNaverMapApi::class)
@@ -55,14 +55,14 @@ fun GlobalZIndexScreen(upPress: () -> Unit) {
             )
 
             Marker(
-                state = rememberMarkerState(
+                state = rememberUpdatedMarkerState(
                     position = LatLng(37.5701761, 126.9799315),
                 ),
                 captionText = stringResource(R.string.marker_over_path),
             )
 
             Marker(
-                state = rememberMarkerState(
+                state = rememberUpdatedMarkerState(
                     position = LatLng(37.5664663, 126.9772952),
                 ),
                 icon = MarkerIcons.BLUE,

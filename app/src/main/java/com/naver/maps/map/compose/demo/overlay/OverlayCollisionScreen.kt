@@ -51,7 +51,8 @@ import com.naver.maps.map.compose.PathOverlay
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.CheckedText
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
-import com.naver.maps.map.compose.rememberMarkerState
+import com.naver.maps.map.compose.rememberUpdatedMarkerState
+import com.naver.maps.map.compose.rememberUpdatedMarkerState
 import com.naver.maps.map.util.MarkerIcons
 
 @OptIn(ExperimentalNaverMapApi::class)
@@ -170,7 +171,7 @@ fun OverlayCollisionScreen(upPress: () -> Unit) {
                 )
 
                 repeat(50) { i ->
-                    val markerState = rememberMarkerState(
+                    val markerState = rememberUpdatedMarkerState(
                         position = LatLng(
                             (BOUNDS.northLatitude - BOUNDS.southLatitude) * Math.random() + BOUNDS.southLatitude,
                             (BOUNDS.eastLongitude - BOUNDS.westLongitude) * Math.random() + BOUNDS.westLongitude,

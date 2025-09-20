@@ -45,7 +45,7 @@ import com.naver.maps.map.compose.NaverMapConstants
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
-import com.naver.maps.map.compose.rememberMarkerState
+import com.naver.maps.map.compose.rememberUpdatedMarkerState
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.MarkerIcons
 
@@ -73,19 +73,19 @@ fun MarkerScreen(upPress: () -> Unit) {
             contentPadding = contentPadding,
         ) {
             Marker(
-                state = rememberMarkerState(
+                state = rememberUpdatedMarkerState(
                     position = LatLng(37.5666102, 126.9783881),
                 ),
             )
             Marker(
-                state = rememberMarkerState(
+                state = rememberUpdatedMarkerState(
                     position = LatLng(37.57000, 126.97618),
                 ),
                 icon = MarkerIcons.BLACK,
                 angle = 315f,
             )
             Marker(
-                state = rememberMarkerState(
+                state = rememberUpdatedMarkerState(
                     position = LatLng(37.57145, 126.98191),
                 ),
                 icon = OverlayImage.fromResource(R.drawable.ic_info_black_24dp),
@@ -95,7 +95,7 @@ fun MarkerScreen(upPress: () -> Unit) {
                 angle = 90f,
             )
             Marker(
-                state = rememberMarkerState(
+                state = rememberUpdatedMarkerState(
                     position = LatLng(37.56768, 126.98602),
                 ),
                 icon = OverlayImage.fromResource(R.drawable.marker_right_bottom),
@@ -103,7 +103,7 @@ fun MarkerScreen(upPress: () -> Unit) {
                 angle = 90f,
             )
             Marker(
-                state = rememberMarkerState(
+                state = rememberUpdatedMarkerState(
                     position = LatLng(37.56436, 126.97499),
                 ),
                 icon = MarkerIcons.YELLOW,
@@ -112,7 +112,7 @@ fun MarkerScreen(upPress: () -> Unit) {
                 captionText = stringResource(R.string.marker_caption_1),
             )
             Marker(
-                state = rememberMarkerState(
+                state = rememberUpdatedMarkerState(
                     position = LatLng(37.56138, 126.97970),
                 ),
                 icon = MarkerIcons.PINK,
@@ -125,7 +125,7 @@ fun MarkerScreen(upPress: () -> Unit) {
                 subCaptionMinZoom = 13.0,
             )
             Marker(
-                state = rememberMarkerState(
+                state = rememberUpdatedMarkerState(
                     position = LatLng(37.56500, 126.9783881),
                 ),
                 icon = MarkerIcons.BLACK,
@@ -134,7 +134,7 @@ fun MarkerScreen(upPress: () -> Unit) {
             )
             MarkerComposable(
                 keys = arrayOf("hotel"),
-                state = rememberMarkerState(
+                state = rememberUpdatedMarkerState(
                     position = LatLng(37.564378, 126.980058),
                 ),
             ) {

@@ -56,7 +56,7 @@ import com.naver.maps.map.compose.NaverMapConstants
 import com.naver.maps.map.compose.demo.R
 import com.naver.maps.map.compose.demo.common.DefaultTopAppBar
 import com.naver.maps.map.compose.rememberCameraPositionState
-import com.naver.maps.map.compose.rememberMarkerState
+import com.naver.maps.map.compose.rememberUpdatedMarkerState
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalNaverMapApi::class)
@@ -143,10 +143,10 @@ fun ContentPaddingScreen(upPress: () -> Unit) {
                     ),
                 ) {
                     Marker(
-                        state = rememberMarkerState(position = COORD_1),
+                        state = rememberUpdatedMarkerState(position = COORD_1),
                     )
                     Marker(
-                        state = rememberMarkerState(position = COORD_2),
+                        state = rememberUpdatedMarkerState(position = COORD_2),
                     )
                 }
 
