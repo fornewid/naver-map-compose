@@ -35,7 +35,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v5
         with:
-          gradle-home-cache-cleanup: true
+          cache-cleanup: on-success
 
       - name: Check spotless
         run: ./gradlew spotlessCheck --init-script gradle/init.gradle.kts --stacktrace
@@ -98,7 +98,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v5
         with:
-          gradle-home-cache-cleanup: true
+          cache-cleanup: on-success
 
       - name: Build tests
         run: ./gradlew assembleDebugAndroidTest --scan
@@ -158,7 +158,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v5
         with:
-          gradle-home-cache-cleanup: true
+          cache-cleanup: on-success
 
       - name: Deploy to Sonatype
         run: ./gradlew publish --no-parallel --stacktrace
