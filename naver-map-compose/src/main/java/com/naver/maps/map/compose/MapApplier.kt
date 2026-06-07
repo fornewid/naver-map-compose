@@ -16,6 +16,7 @@
 package com.naver.maps.map.compose
 
 import androidx.compose.runtime.AbstractApplier
+import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.overlay.ArrowheadPathOverlay
 import com.naver.maps.map.overlay.CircleOverlay
@@ -37,6 +38,7 @@ private object MapNodeRoot : MapNode
 
 internal class MapApplier(
     val map: NaverMap,
+    val mapView: MapView,
     val mapClickListeners: MapClickListeners,
 ) : AbstractApplier<MapNode>(MapNodeRoot) {
 

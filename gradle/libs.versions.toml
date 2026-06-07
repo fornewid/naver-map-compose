@@ -15,14 +15,12 @@ accompanist = "0.37.3"
 
 naver-map = "3.21.0"
 naver-map-location = "21.0.1"
-naver-map-tedclustering = "1.0.2"
 google-play-services-location = "21.0.1"
 
 [libraries]
 
 naver-map = { module = "com.naver.maps:map-sdk", version.ref = "naver-map" }
 naver-map-location = { module = "io.github.fornewid:naver-map-location", version.ref = "naver-map-location" }
-naver-map-tedclustering = { module = "io.github.ParkSangGwon:tedclustering-naver", version.ref = "naver-map-tedclustering" }
 google-play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "google-play-services-location" }
 
 # Kotlin
